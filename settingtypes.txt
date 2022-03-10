@@ -1,0 +1,126 @@
+# This file contains settings of MineClone 2that can be changed in
+# minetest.conf
+
+[World]
+# In creative mode, players are able to dig all kind of blocks
+# instantly, and have access to unlimited resources.
+# Items are not used up, and blocks do not drop.
+# Some of the functionality is only available if this setting is present
+# at startup.
+# This setting may be removed in later version in favor of
+# per-player Creative Mode.
+creative_mode (Creative mode) bool false
+
+# Fire spreads and flammable blocks might be destroyed by nearby fire.
+# Destructive fire may cause severe destruction.
+# Fire blocks will be non-destructive and stops spreading when this
+# setting is disabled, but they still deal damage to creatures.
+enable_fire (Destructive and spreading fire) bool true
+
+# If enabled, the weather will change naturally over time.
+mcl_doWeatherCycle (Change weather) bool true
+
+# If enabled, breaking blocks will cause them to drop as item.
+# Note that blocks never have drops when in Creative Mode.
+mcl_doTileDrops (Blocks have drops) bool true
+
+# If enabled, TNT explosions destroy blocks.
+mcl_tnt_griefing (TNT destroys blocks) bool true
+
+[Players]
+# If enabled, players respawn at the bed they last lay on instead of normal
+# spawn.
+# This setting is only read at startup.
+enable_bed_respawn (Respawn at bed) bool true
+
+# If enabled, the night can be skipped if all players are in bed.
+# This setting is only read at startup.
+enable_bed_night_skip (Skip night when sleeping) bool true
+# Normally, players drop all their items when they die. Enable this
+# setting, so players always keep their inventory on death.
+mcl_keepInventory (Keep inventory on death) bool false
+
+# If enabled, chat messages are shown to everyone when a player dies.
+mcl_showDeathMessages (Show death messages) bool true
+
+[Mobs]
+# If enabled, mobs will spawn naturally. This does not affect
+# affect mob spawners.
+# This setting is only read at startup.
+mobs_spawn (Spawn mobs naturally) bool true
+
+# Controls the overall amount of mobs that spawn. The higher the number,
+# the less often mobs will spawn. This does not affect mob spawners.
+mobs_spawn_chance (Mob spawn chance) float 2.5 0.0
+
+# If enabled, only peaceful mobs will appear naturally. This does not
+# affect mob spawners.
+# This setting is only read at startup.
+only_peaceful_mobs (Spawn only peaceful mobs) bool false
+
+# Allow mobs to spawn in protected areas. This does not affect
+# mob spawners.
+mobs_spawn_protected (Mobs spawn in protected areas) bool false
+
+# Mobs difficulty. This is a number that will affect the initial and maximum
+# health and the amount of damage that mobs deal. Health and damage will
+# be multiplied with this number.
+mob_difficulty (Mob difficulty factor) float 1.0 0.0
+
+# If enabled, mobs might drop items when they die.
+mobs_drop_items (Mobs drop items) bool true
+
+# If enabled, mobs can take, place, change and destroy blocks around them.
+mobs_griefing (Mobs change blocks) bool true
+
+# If enabled, mobs won't damage particles when they got hurt.
+mobs_disable_blood (Disable mob damage particles) bool false
+
+[Audio]
+# Enable flame sound.
+flame_sound (Flame sound) bool true
+
+[Graphics]
+# How many vertical animation frames the fire texture (fire_basic_flame_animated.png) has.
+# This may vary depending on the texture pack you use.
+# Form: Image height / Image width
+fire_animation_frames (Fire Animation Frames) int 8
+
+# How long to wait between frames of the fire animation in frames per second.
+# A higher number means it looks better but also results in a lot of additional network traffic. A low single digit value is recommended for multiplayer.
+#(default: 30)
+fire_animation_fps (Fire Animation FPS) int 30 0 60
+
+# Whether to animate chests when open / close
+animated_chests (Animated chests) bool true
+
+# Whether to preview the player in inventory in 3D (requires Minetest 5.4)
+3d_player_preview (3D Player preview) bool true
+
+[Experimental]
+
+# If enabled, the “flat” map generator generates a Classic Superflat world:
+# Completely flat, 1 layer of grass blocks on top of 2 layers of dirt on
+# top of a final layer of bedrock. No caves, trees or plants.
+# Also, if enabled, the setting “mgflat_flags” is ignored.
+# If disabled, Minetest's default flat map generator is used, that is, trees,
+# caves, and a deeper underground can be generated.
+#
+# Caution: Change this setting with care!
+# If you change this setting, then play on an existing flat world
+# that started with a different setting (e.g. you changed from superflat
+# from “enabled” to “disabled”), there will be continuity errors when players
+# reach new areas. Most importantly, the void is much higher in Superflat than
+# in “normal” Flat.
+# But creating new flat worlds after changing this setting should be safe.
+mcl_superflat_classic (Classic superflat map generation) bool false
+
+# If disabled, no ores will be generated.
+mcl_generate_ores (Generate Ores) bool true
+
+# Make some blocks emit decorative particles like flames. This setting
+# specifies the detail level of particles, with higher levels being
+# more CPU demanding.
+# WARNING: This setting has quite poor performance and can slow down your
+# game by a lot.
+mcl_node_particles (Block particles detail level) enum none high,medium,low,none
