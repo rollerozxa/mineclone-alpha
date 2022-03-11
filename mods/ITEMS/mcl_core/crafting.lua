@@ -25,22 +25,6 @@ for _, p in pairs(planks) do
 end
 
 minetest.register_craft({
-	output = "mcl_core:bone_block",
-	recipe = {
-		{ "mcl_dye:white", "mcl_dye:white", "mcl_dye:white" },
-		{ "mcl_dye:white", "mcl_dye:white", "mcl_dye:white" },
-		{ "mcl_dye:white", "mcl_dye:white", "mcl_dye:white" },
-	},
-})
-
-minetest.register_craft({
-	output = "mcl_dye:white 9",
-	recipe = {
-		{ "mcl_core:bone_block" },
-	},
-})
-
-minetest.register_craft({
 	output = 'mcl_core:stick 4',
 	recipe = {
 		{'group:wood'},
@@ -98,22 +82,6 @@ minetest.register_craft({
 	}
 })
 
-
-minetest.register_craft({
-	output = 'mcl_core:sandstone',
-	recipe = {
-		{'mcl_core:sand', 'mcl_core:sand'},
-		{'mcl_core:sand', 'mcl_core:sand'},
-	}
-})
-
-minetest.register_craft({
-	output = 'mcl_core:redsandstone',
-	recipe = {
-		{'mcl_core:redsand', 'mcl_core:redsand'},
-		{'mcl_core:redsand', 'mcl_core:redsand'},
-	}
-})
 
 minetest.register_craft({
 	output = 'mcl_core:clay',
