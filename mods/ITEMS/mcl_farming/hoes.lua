@@ -57,10 +57,6 @@ local uses = {
 	diamond = 1562,
 }
 
-local hoe_tt = S("Turns block into farmland")
-local hoe_longdesc = S("Hoes are essential tools for growing crops. They are used to create farmland in order to plant seeds on it. Hoes can also be used as very weak weapons in a pinch.")
-local hoe_usagehelp = S("Use the hoe on a cultivatable block (by rightclicking it) to turn it into farmland. Dirt, grass blocks and grass paths are cultivatable blocks. Using a hoe on coarse dirt turns it into dirt.")
-
 minetest.register_tool("mcl_farming:hoe_wood", {
 	description = S("Wood Hoe"),
 	inventory_image = "farming_tool_woodhoe.png",

@@ -31,7 +31,7 @@ for _, row in ipairs(wool.dyes) do
 	local name = row[1]
 	local texture = row[2]
 	local desc_wool = row[3]
-	local color_group = row[5]
+	local color_group = row[4]
 	local longdesc_wool, name_wool
 
 	-- Node Definition

@@ -1,13 +1,3 @@
---[[ This table contains the concrete itemstrings to be used by this mod.
-All mobs in this mod must use variables in this table, instead
-of hardcoding the itemstring.
-This way, external mods are enabled to replace the itemstrings to provide
-their own items and game integration is made much simpler.
-
-An item IDs is supposed to be overwritten by adding
-mobs_mc.override.items["example:item"] in a game mod
-with name "mobs_mc_gameconfig". ]]
-
 
 -- Standard items
 
@@ -51,17 +41,4 @@ mobs_mc.spawn_height = {
 mobs_mc.misc = {
 	shears_wear = 276, -- Wear to add per shears usage (238 uses)
 }
-
--- Item name overrides from mobs_mc_gameconfig (if present)
-if minetest.get_modpath("mobs_mc_gameconfig") and mobs_mc.override then
-	local tables = {"items", "follow", "replace", "spawn", "spawn_height", "misc"}
-	for t=1, #tables do
-		local tbl = tables[t]
-		if mobs_mc.override[tbl] then
-			for k, v in pairs(mobs_mc.override[tbl]) do
-				mobs_mc[tbl][k] = v
-			end
-		end
-	end
-end
 

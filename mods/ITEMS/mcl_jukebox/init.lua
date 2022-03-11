@@ -15,9 +15,6 @@ local hud_sequence_numbers = {}
 
 function mcl_jukebox.register_record(title, author, identifier, image, sound)
 	mcl_jukebox.registered_records["mcl_jukebox:record_"..identifier] = {title, author, identifier, image, sound}
-	local entryname = S("Music Disc")
-	local longdesc = S("A music disc holds a single music track which can be used in a jukebox to play music.")
-	local usagehelp = S("Place a music disc into an empty jukebox to play the music. Use the jukebox again to retrieve the music disc. The music can only be heard by you, not by other players.")
 	minetest.register_craftitem(":mcl_jukebox:record_"..identifier, {
 		description =
 			core.colorize("#55FFFF", S("Music Disc")) .. "\n" ..

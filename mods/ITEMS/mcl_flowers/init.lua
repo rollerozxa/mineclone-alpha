@@ -3,8 +3,6 @@ local S = minetest.get_translator("mcl_flowers")
 local mod_screwdriver = minetest.get_modpath("screwdriver") ~= nil
 
 -- Simple flower template
-local smallflowerlongdesc = S("This is a small flower. Small flowers are mainly used for dye production and can also be potted.")
-local plant_usage_help = S("It can only be placed on a block on which it would also survive.")
 
 local get_palette_color_from_pos = function(pos)
 	local biome_data = minetest.get_biome_data(pos)

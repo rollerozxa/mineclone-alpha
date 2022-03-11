@@ -217,7 +217,7 @@ local function register_wires()
 		local tiles_off = { crossing_off, crossing_off, straight0_off, straight1_off, straight0_off, straight1_off }
 		local tiles_on = { crossing_on, crossing_on, straight0_on, straight1_on, straight0_on, straight1_on }
 
-		local wirehelp, tt, longdesc, usagehelp, img, desc_off, desc_on
+		local wirehelp, img, desc_off, desc_on
 		if nodeid == "00000000" then
 			-- Non-connected redstone wire
 			nodebox.fixed = {-8/16, -.5, -8/16, 8/16, -.5+1/64, 8/16}
@@ -225,13 +225,6 @@ local function register_wires()
 			tiles_off = { dot_off, dot_off, "blank.png", "blank.png", "blank.png", "blank.png" }
 			tiles_on = { dot_on, dot_on, "blank.png", "blank.png", "blank.png", "blank.png" }
 
-			tt = S("Transmits redstone power, powers mechanisms")
-			longdesc = S("Redstone is a versatile conductive mineral which transmits redstone power. It can be placed on the ground as a trail.").."\n"..
-S("A redstone trail can be in two states: Powered or not powered. A powered redstone trail will power (and thus activate) adjacent redstone components.").."\n"..
-S("Redstone power can be received from various redstone components, such as a block of redstone or a button. Redstone power is used to activate numerous mechanisms, such as redstone lamps or pistons.")
-			usagehelp = S("Place redstone on the ground to build a redstone trail. The trails will connect to each other automatically and it can also go over hills.").."\n\n"..
-
-S("Read the help entries on the other redstone components to learn how redstone components interact.")
 			img = "redstone_redstone_dust.png"
 			desc_off = S("Redstone")
 			desc_on = S("Powered Redstone Spot (@1)", nodeid)

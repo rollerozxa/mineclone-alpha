@@ -98,16 +98,6 @@ function mesecon.register_pressure_plate(basename, description, textures_off, te
 	if not longdesc then
 		longdesc = S("A pressure plate is a redstone component which supplies its surrounding blocks with redstone power while someone or something rests on top of it.")
 	end
-	local tt = S("Provides redstone power when pushed")
-	if not activated_by then
-		tt = tt .. "\n" .. S("Pushable by players, mobs and objects")
-	elseif activated_by.mob and activated_by.player then
-		tt = tt .. "\n" .. S("Pushable by players and mobs")
-	elseif activated_by.mob then
-		tt = tt .. "\n" .. S("Pushable by mobs")
-	elseif activated_by.player then
-		tt = tt .. "\n" .. S("Pushable by players")
-	end
 
 	mesecon.register_node(basename, {
 		drawtype = "nodebox",

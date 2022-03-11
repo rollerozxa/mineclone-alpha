@@ -216,7 +216,6 @@ function mcl_stairs.register_slab(subname, recipeitem, groups, images, descripti
 
 	groups.slab = 1
 	groups.building_block = 1
-	local longdesc = S("Slabs are half as high as their full block counterparts and occupy either the lower or upper part of a block, depending on how it was placed. Slabs can be easily stepped on without needing to jump. When a slab is placed on another slab of the same type, a double slab is created.")
 
 	local slabdef = {
 		description = description,

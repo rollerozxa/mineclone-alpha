@@ -5,9 +5,6 @@ dofile(minetest.get_modpath(minetest.get_current_modname()).."/alias.lua")
 
 -- Regisiter Head Armor
 
-local longdesc = S("This is a piece of equippable armor which reduces the amount of damage you receive.")
-local usage = S("To equip it, put it on the corresponding armor slot in your inventory menu.")
-
 minetest.register_tool("mcl_armor:helmet_leather", {
 	description = S("Leather Cap"),
 	inventory_image = "mcl_armor_inv_helmet_leather.png",

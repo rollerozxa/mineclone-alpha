@@ -5,9 +5,7 @@
 
 local path = minetest.get_modpath("mobs_mc")
 
-if not minetest.get_modpath("mobs_mc_gameconfig") then
-	mobs_mc = {}
-end
+mobs_mc = {}
 
 -- For utility functions
 mobs_mc.tools = {}
