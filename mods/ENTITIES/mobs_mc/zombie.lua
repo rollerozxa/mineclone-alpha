@@ -10,7 +10,7 @@ local S = minetest.get_translator("mobs_mc")
 --###################
 
 local drops_common = {
-	{name = mobs_mc.items.rotten_flesh,
+	{name = "mcl_mobitems:feather",
 	chance = 1,
 	min = 0,
 	max = 2,

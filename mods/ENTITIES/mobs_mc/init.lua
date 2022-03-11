@@ -12,22 +12,8 @@ end
 -- For utility functions
 mobs_mc.tools = {}
 
--- This function checks if the item ID has been overwritten and returns true if it is unchanged
-if minetest.get_modpath("mobs_mc_gameconfig") and mobs_mc.override and mobs_mc.override.items then
-	mobs_mc.is_item_variable_overridden = function(id)
-		return mobs_mc.override.items[id] == nil
-	end
-else
-	-- No items are overwritten, so always return true
-	mobs_mc.is_item_variable_overridden = function(id)
-		return true
-	end
-end
-
 --MOB ITEMS SELECTOR SWITCH
 dofile(path .. "/0_gameconfig.lua")
---Items
-dofile(path .. "/1_items_default.lua")
 
 -- Bow, arrow and throwables
 dofile(path .. "/2_throwing.lua")

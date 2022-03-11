@@ -28,50 +28,13 @@ Origin of those models:
     * License (if not mentioned otherwise): CC BY-SA 4.0
     * Some textures have been modified or added
     * Modifications and additions by MysticTempest:
-        * `mobs_mc_cave_spider.png`
-        * `mobs_mc_enderman_eyes.png`
-        * `mobs_mc_enderman.png`
-        * `mobs_mc_ghast.png`
         * `mobs_mc_skeleton.png`
         * `mobs_mc_slime.png`
         * `mobs_mc_spider.png`
         * `mobs_mc_squid.png`
         * `mobs_mc_zombie.png`
-        * `mobs_mc_villager_butcher.png`
-        * `mobs_mc_villager_farmer.png`
-        * `mobs_mc_villager_librarian.png`
-        * `mobs_mc_villager.png`
-        * `mobs_mc_villager_priest.png`
-        * `mobs_mc_villager_smith.png`
-        * `mobs_mc_parrot_blue.png`
-        * `mobs_mc_parrot_green.png`
-        * `mobs_mc_parrot_grey.png`
-        * `mobs_mc_parrot_red_blue.png`
-        * `mobs_mc_parrot_yellow_blue.png`
-        * `mobs_mc_evoker_base.png` (modified by kingoscargames)
-        * `mobs_mc_illusionist_bow.png`
-        * `mobs_mc_illusionist.png`
-        * `mobs_mc_vindicator_axe.png`
-        * `mobs_mc_vindicator_base.png`
-        * `mobs_mc_horse_skeleton.png`
     * Additions by kingoscargames:
-        * `mobs_mc_vex.png`
-        * `mobs_mc_vex_charging.png`
-        * `mobs_mc_llama.png`
-        * `mobs_mc_llama_creamy.png`
-        * `mobs_mc_llama_brown.png`
-        * `mobs_mc_llama_white.png`
-        * `mobs_mc_llama_gray.png`
-        * `mobs_mc_llama_chest.png`
-        * `mobs_mc_endermite.png`
-        * `mobs_mc_magmacube.png`
         * `mobs_mc_chicken.png`
-        * `mobs_mc_wither.png`
-        * `mobs_mc_wither_skeleton.png`
-        * `mobs_mc_TEMP_wither_projectile.png`	
-    * Gerold55
-        * `mobs_mc_mooshroom_brown.png` (CC0)
-        * `mobs_mc_mushroom_brown.png` (CC0)
 
 * “Spawn egg” textures (`mobs_mc_spawn_icon_*`) by 22i
 * Any other texture not mentioned here are licensed under the MIT License
@@ -117,45 +80,8 @@ Origin of those models:
 * [bevibeldesign](https://freesound.org/people/bevibeldesign/)
     * `mobs_mc_wither_spawn.ogg` (CC0)
         * Source: <https://freesound.org/people/bevibeldesign/sounds/366095/>
-* [rubberduck](https://opengameart.org/users/rubberduck)
-    * `mobs_mc_endermite_*.ogg` (CC0)
-    * `mobs_mc_zombiepig_*.ogg` (CC0)
-    * `mobs_mc_enderman_teleport_*.ogg` (CC0)
-        * Source 1: <https://opengameart.org/content/80-cc0-creature-sfx>
-        * Source 2: <https://opengameart.org/content/80-cc0-creture-sfx-2>
-* [Soundscapes55](https://freesound.org/people/Soundscapes55/)
-    * `mobs_mc_enderman_random.1.ogg` (CC0)
-        * Source: <https://freesound.org/people/Soundscapes55/sounds/434973/>
-* [griffinjennings](https://freesound.org/people/griffinjennings/)
-    * `mobs_mc_enderman_death.*.ogg` (CC BY 3.0)
-    * `mobs_mc_enderman_hurt.*.ogg` (CC BY 3.0)
-        * Sounds were heavily modified
-        * Source: <https://freesound.org/people/griffinjennings/sounds/463972/>
-* [pointparkcinema](https://freesound.org/people/pointparkcinema/)
-    * `mobs_mc_guardian_random.1.ogg` (CC0)
-        * Source: <https://freesound.org/people/pointparkcinema/sounds/407252/>
-* [nornalbion](https://freesound.org/people/nornalbion/)
-    * `mobs_mc_guardian_random.2.ogg` (CC BY 3.0)
-    * `mobs_mc_guardian_random.3.ogg` (CC BY 3.0)
-    * `mobs_mc_guardian_hurt.*.ogg` (CC BY 3.0)
-        * Sounds were modified
-        * Source: <https://freesound.org/people/nornalbion/sounds/195733/>
-* [TheBuilder15](https://freesound.org/people/TheBuilder15/)
-    * `mobs_mc_guardian_death.ogg` (CC0)
-        * Source: <https://freesound.org/people/pointparkcinema/sounds/407252/>
 * Blender Foundation (CC BY 3.0)
     * `mobs_sheep.ogg`,
-* [qubodup](https://opengameart.org/content/slime-monster)
-    * `mobs_mc_squid_hurt.*.ogg` (CC BY 3.0)
-    * `mobs_mc_squid_death.*.ogg` (CC BY 3.0)
-        * Changes were made
-        * Source: <https://opengameart.org/content/slime-monster>
-* [kyles](https://freesound.org/people/kyles/)
-    * `mobs_mc_squid_flop.*.ogg` (CC0)
-        * Source: <https://freesound.org/people/kyles/sounds/450830/>
-    * `mobs_mc_snowman_hurt.1.ogg` (CC0)
-        * Source: <https://freesound.org/people/kyles/sounds/450848/>
-	* Source: <https://freesound.org/people/thefilmbakery/sounds/137836/>
 * TenPlus1, from `mobs_monster` or `mobs_animal` mod (MIT License)
     * `mobs_fireball.ogg`
     * `mobs_mc_cat_idle.1.ogg`
@@ -181,9 +107,6 @@ Origin of those models:
         * Source: <https://freesound.org/people/haratman/sounds/393749/>
     * `mobs_mc_zombie_hurt.ogg`
         * Source: <https://freesound.org/people/haratman/sounds/393749/>
-* [Spennnyyy](https://freesound.org/people/Spennnyyy/) (CC0)
-    * `mcl_totems_totem.ogg`
-        * Source: <https://freesound.org/people/Spennnyyy/sounds/323502/>
 * [Baŝto](https://opengameart.org/users/ba%C5%9Dto)
     * `mobs_mc_skeleton_random.*.ogg` (CC BY 3.0)
         * Source: <https://opengameart.org/content/walking-skeleton>
@@ -193,18 +116,6 @@ Origin of those models:
 * [Cribbler](https://freesound.org/people/Cribbler/)
     * `mobs_mc_skeleton_hurt.ogg` (CC0)
         * Source: <https://freesound.org/people/Cribbler/sounds/381859/>
-* [GoodListener](https://freesound.org/people/GoodListener/)
-    * `mobs_mc_horse_random.1.ogg` (CC BY 3.0)
-        * Source: <https://freesound.org/people/GoodListener/sounds/322454/>
-    * `mobs_mc_horse_death.ogg` (CC BY 3.0)
-        * Source: <https://freesound.org/people/GoodListener/sounds/322445/>
-* [Garuda1982](https://freesound.org/people/Garuda1982/)
-    * `mobs_mc_donkey_random.1.ogg` (CC BY 3.0)
-    * `mobs_mc_donkey_hurt.ogg` (CC BY 3.0)
-    * `mobs_mc_donkey_death.ogg` (CC BY 3.0)
-        * Source: <https://freesound.org/people/Garuda1982/sounds/539505/>
-* [JarredGibb](https://freesound.org/people/JarredGibb/sounds/233131/)
-    * `mobs_mc_donkey_random.2.ogg` (CC0)
 * [ERH](https://freesound.org/people/ERH/)
     * `mobs_mc_horse_random.2.ogg` (CC BY 3.0)
         * Source: <https://freesound.org/people/ERH/sounds/32043/>

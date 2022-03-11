@@ -20,7 +20,7 @@ local cow_def = {
 	makes_footstep_sound = true,
 	walk_velocity = 1,
 	drops = {
-		{name = mobs_mc.items.leather,
+		{name = "mcl_mobitems:leather",
 		chance = 1,
 		min = 0,
 		max = 2,
@@ -51,23 +51,23 @@ local cow_def = {
 		end
 
 		local item = clicker:get_wielded_item()
-		if item:get_name() == mobs_mc.items.bucket and clicker:get_inventory() then
+		if item:get_name() == "mcl_buckets:bucket_empty" and clicker:get_inventory() then
 			local inv = clicker:get_inventory()
-			inv:remove_item("main", mobs_mc.items.bucket)
+			inv:remove_item("main", "mcl_buckets:bucket_empty")
 			minetest.sound_play("mobs_mc_cow_milk", {pos=self.object:get_pos(), gain=0.6})
 			-- if room add bucket of milk to inventory, otherwise drop as item
-			if inv:room_for_item("main", {name=mobs_mc.items.milk}) then
-				clicker:get_inventory():add_item("main", mobs_mc.items.milk)
+			if inv:room_for_item("main", {name="mcl_mobitems:milk_bucket"}) then
+				clicker:get_inventory():add_item("main", "mcl_mobitems:milk_bucket")
 			else
 				local pos = self.object:get_pos()
 				pos.y = pos.y + 0.5
-				minetest.add_item(pos, {name = mobs_mc.items.milk})
+				minetest.add_item(pos, {name = "mcl_mobitems:milk_bucket"})
 			end
 			return
 		end
 		mobs:capture_mob(self, clicker, 0, 5, 60, false, nil)
 	end,
-	follow = mobs_mc.items.wheat,
+	follow = "mcl_farming:wheat_item",
 	view_range = 10,
 	fear_height = 4,
 }

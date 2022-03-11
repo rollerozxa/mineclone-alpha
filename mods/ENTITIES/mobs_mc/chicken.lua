@@ -29,12 +29,7 @@ mobs:register_mob("mobs_mc:chicken", {
 	makes_footstep_sound = true,
 	walk_velocity = 1,
 	drops = {
-		{name = mobs_mc.items.chicken_raw,
-		chance = 1,
-		min = 1,
-		max = 1,
-		looting = "common",},
-		{name = mobs_mc.items.feather,
+		{name = "mcl_mobitems:feather",
 		chance = 1,
 		min = 0,
 		max = 2,
@@ -88,15 +83,15 @@ mobs:register_mob("mobs_mc:chicken", {
 
 		local pos = self.object:get_pos()
 
-		minetest.add_item(pos, mobs_mc.items.egg)
+		minetest.add_item(pos, "mcl_throwing:egg")
 
 		minetest.sound_play("mobs_mc_chicken_lay_egg", {
 			pos = pos,
 			gain = 1.0,
 			max_hear_distance = 16,
 		}, true)
-	end,	
-	
+	end,
+
 })
 
 --spawn

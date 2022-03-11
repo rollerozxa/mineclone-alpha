@@ -777,14 +777,6 @@ minetest.register_abm({
 				n2 = mcl_core.get_grass_block_type(pos)
 			end
 			minetest.set_node(pos, {name=n2.name})
-
-			-- If this was mycelium, uproot plant above
-			if n2.name == "mcl_core:mycelium" then
-				local tad = minetest.registered_nodes[minetest.get_node(above).name]
-				if tad.groups and tad.groups.non_mycelium_plant then
-					minetest.dig_node(above)
-				end
-			end
 		end
 	end
 })
@@ -1383,9 +1375,6 @@ mcl_core.register_snowed_node = function(itemstring_snowed, itemstring_clear, ti
 		def.groups.grass_block_no_snow = nil
 		def.groups.grass_block_snow = 1
 	end
-
-	-- Enderman must never take this because this block is supposed to be always buried below snow.
-	def.groups.enderman_takable = nil
 
 	-- Snowed blocks never spread
 	def.groups.spreading_dirt_type = nil
