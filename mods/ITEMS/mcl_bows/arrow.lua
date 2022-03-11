@@ -242,8 +242,8 @@ ARROW_ENTITY.on_step = function(self, dtime)
 						end
 					end
 
-					-- Punch target object but avoid hurting enderman.
-					if not lua or lua.name ~= "mobs_mc:enderman" then
+					-- Punch target object
+					if not lua then
 						if obj:is_player() and rawget(_G, "armor") and armor.last_damage_types then
 							armor.last_damage_types[obj:get_player_name()] = "projectile"
 						end

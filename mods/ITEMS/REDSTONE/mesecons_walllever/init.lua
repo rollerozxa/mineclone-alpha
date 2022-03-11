@@ -45,7 +45,7 @@ minetest.register_node("mesecons_walllever:wall_lever_off", {
 		type = "fixed",
 		fixed = { -3/16, -4/16, 2/16, 3/16, 4/16, 8/16 },
 	},
-	groups = {handy=1, dig_by_water=1, destroy_by_lava_flow=1, dig_by_piston=1, attached_node_facedir=1},
+	groups = {handy=1, dig_by_water=1, destroy_by_lava_flow=1,  attached_node_facedir=1},
 	is_ground_content = false,
 	description=S("Lever"),
 	on_rightclick = function (pos, node)
@@ -144,7 +144,7 @@ minetest.register_node("mesecons_walllever:wall_lever_on", {
 		type = "fixed",
 		fixed = { -3/16, -4/16, 2/16, 3/16, 4/16, 8/16 },
 	},
-	groups = {handy=1, not_in_creative_inventory = 1, dig_by_water=1, destroy_by_lava_flow=1, dig_by_piston=1, attached_node_facedir=1},
+	groups = {handy=1, not_in_creative_inventory = 1, dig_by_water=1, destroy_by_lava_flow=1,  attached_node_facedir=1},
 	is_ground_content = false,
 	drop = '"mesecons_walllever:wall_lever_off" 1',
 	on_rightclick = function (pos, node)

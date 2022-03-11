@@ -55,7 +55,7 @@ minetest.register_node("mcl_core:water_flowing", {
 	liquid_viscosity = WATER_VISC,
 	liquid_range = 7,
 	post_effect_color = {a=209, r=0x03, g=0x3C, b=0x5C},
-	groups = { water=3, liquid=3, puts_out_fire=1, not_in_creative_inventory=1, freezes=1, melt_around=1, dig_by_piston=1},
+	groups = { water=3, liquid=3, puts_out_fire=1, not_in_creative_inventory=1, freezes=1, melt_around=1, },
 	_mcl_blast_resistance = 100,
 	-- Hardness intentionally set to infinite instead of 100 (Minecraft value) to avoid problems in creative mode
 	_mcl_hardness = -1,
@@ -93,7 +93,7 @@ minetest.register_node("mcl_core:water_source", {
 	liquid_range = 7,
 	post_effect_color = {a=209, r=0x03, g=0x3C, b=0x5C},
 	stack_max = 64,
-	groups = { water=3, liquid=3, puts_out_fire=1, freezes=1, not_in_creative_inventory=1, dig_by_piston=1},
+	groups = { water=3, liquid=3, puts_out_fire=1, freezes=1, not_in_creative_inventory=1, },
 	_mcl_blast_resistance = 100,
 	-- Hardness intentionally set to infinite instead of 100 (Minecraft value) to avoid problems in creative mode
 	_mcl_hardness = -1,
@@ -139,7 +139,7 @@ minetest.register_node("mcl_core:lava_flowing", {
 	damage_per_second = 4*2,
 	_mcl_node_death_message = lava_death_messages,
 	post_effect_color = {a=245, r=208, g=73, b=10},
-	groups = { lava=3, liquid=2, destroys_items=1, not_in_creative_inventory=1, dig_by_piston=1, set_on_fire=15},
+	groups = { lava=3, liquid=2, destroys_items=1, not_in_creative_inventory=1,  set_on_fire=15},
 	_mcl_blast_resistance = 100,
 	-- Hardness intentionally set to infinite instead of 100 (Minecraft value) to avoid problems in creative mode
 	_mcl_hardness = -1,
@@ -187,7 +187,7 @@ minetest.register_node("mcl_core:lava_source", {
 	_mcl_node_death_message = lava_death_messages,
 	post_effect_color = {a=245, r=208, g=73, b=10},
 	stack_max = 64,
-	groups = { lava=3, lava_source=1, liquid=2, destroys_items=1, not_in_creative_inventory=1, dig_by_piston=1, set_on_fire=15},
+	groups = { lava=3, lava_source=1, liquid=2, destroys_items=1, not_in_creative_inventory=1,  set_on_fire=15},
 	_mcl_blast_resistance = 100,
 	-- Hardness intentionally set to infinite instead of 100 (Minecraft value) to avoid problems in creative mode
 	_mcl_hardness = -1,

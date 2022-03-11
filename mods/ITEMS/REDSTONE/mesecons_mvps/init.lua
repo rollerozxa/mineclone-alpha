@@ -22,9 +22,6 @@ function mesecon.is_mvps_dropper(node, pushdir, stack, stackid)
 	if type (get_dropper) == "function" then
 		get_dropper = get_dropper(node, pushdir, stack, stackid)
 	end
-	if not get_dropper then
-		get_dropper = minetest.get_item_group(node.name, "dig_by_piston") == 1
-	end
 	return get_dropper
 end
 

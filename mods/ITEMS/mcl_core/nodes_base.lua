@@ -149,7 +149,7 @@ minetest.register_node("mcl_core:dirt_with_grass", {
 	color = "#55aa60",
 	is_ground_content = true,
 	stack_max = 64,
-	groups = {handy=1,shovely=1,dirt=2,grass_block=1, grass_block_no_snow=1, soil=1, soil_sapling=2, soil_sugarcane=1, cultivatable=2, spreading_dirt_type=1, enderman_takable=1, building_block=1},
+	groups = {handy=1,shovely=1,dirt=2,grass_block=1, grass_block_no_snow=1, soil=1, soil_sapling=2, soil_sugarcane=1, cultivatable=2, spreading_dirt_type=1, building_block=1},
 	drop = 'mcl_core:dirt',
 	sounds = mcl_sounds.node_sound_dirt_defaults({
 		footstep = {name="default_grass_footstep", gain=0.1},
@@ -176,7 +176,7 @@ minetest.register_node("mcl_core:dirt", {
 	tiles = {"default_dirt.png"},
 	is_ground_content = true,
 	stack_max = 64,
-	groups = {handy=1,shovely=1, dirt=1,soil=1, soil_sapling=2, soil_sugarcane=1, cultivatable=2, enderman_takable=1, building_block=1},
+	groups = {handy=1,shovely=1, dirt=1,soil=1, soil_sapling=2, soil_sugarcane=1, cultivatable=2, building_block=1},
 	sounds = mcl_sounds.node_sound_dirt_defaults(),
 	_mcl_blast_resistance = 0.5,
 	_mcl_hardness = 0.5,
@@ -187,7 +187,7 @@ minetest.register_node("mcl_core:gravel", {
 	tiles = {"default_gravel.png"},
 	is_ground_content = true,
 	stack_max = 64,
-	groups = {handy=1,shovely=1, falling_node=1, enderman_takable=1, building_block=1, material_sand=1},
+	groups = {handy=1,shovely=1, falling_node=1, building_block=1, material_sand=1},
 	drop = {
 		max_items = 1,
 		items = {
@@ -203,13 +203,12 @@ minetest.register_node("mcl_core:gravel", {
 	_mcl_silk_touch_drop = true,
 })
 
--- sandstone --
 minetest.register_node("mcl_core:sand", {
 	description = S("Sand"),
 	tiles = {"default_sand.png"},
 	is_ground_content = true,
 	stack_max = 64,
-	groups = {handy=1,shovely=1, falling_node=1, sand=1, soil_sugarcane=1, enderman_takable=1, building_block=1, material_sand=1},
+	groups = {handy=1,shovely=1, falling_node=1, sand=1, soil_sugarcane=1, building_block=1, material_sand=1},
 	sounds = mcl_sounds.node_sound_sand_defaults(),
 	_mcl_blast_resistance = 0.5,
 	_mcl_hardness = 0.5,
@@ -222,7 +221,7 @@ minetest.register_node("mcl_core:clay", {
 	tiles = {"default_clay.png"},
 	is_ground_content = true,
 	stack_max = 64,
-	groups = {handy=1,shovely=1, enderman_takable=1, building_block=1},
+	groups = {handy=1,shovely=1, building_block=1},
 	drop = 'mcl_core:clay_lump 4',
 	sounds = mcl_sounds.node_sound_dirt_defaults(),
 	_mcl_blast_resistance = 0.6,
@@ -459,7 +458,7 @@ for i=1,8 do
 			mcl_core.clear_snow_dirt(npos, node)
 		end,
 		node_box = node_box,
-		groups = {shovely=1, attached_node=1,deco_block=1, dig_by_piston=1, snow_cover=1, top_snow=i},
+		groups = {shovely=1, attached_node=1,deco_block=1,  snow_cover=1, top_snow=i},
 		sounds = mcl_sounds.node_sound_snow_defaults(),
 		on_construct = mcl_core.on_snow_construct,
 		on_place = on_place,

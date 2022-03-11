@@ -11,7 +11,7 @@ local show_armor = minetest.get_modpath("mcl_armor") ~= nil
 local mod_player = minetest.get_modpath("mcl_player") ~= nil
 
 -- Create tables
-local builtin_filter_ids = {"blocks","deco","redstone","rail","food","tools","combat","mobs","brew","matr","misc","all"}
+local builtin_filter_ids = {"blocks","deco","redstone","rail","food","tools","combat","matr","misc","all"}
 for _, f in pairs(builtin_filter_ids) do
 	inventory_lists[f] = {}
 end
@@ -58,14 +58,6 @@ minetest.register_on_mods_loaded(function()
 			end
 			if is_weapon_or_armor(def) then
 				table.insert(inventory_lists["combat"], name)
-				nonmisc = true
-			end
-			if def.groups.spawn_egg == 1 then
-				table.insert(inventory_lists["mobs"], name)
-				nonmisc = true
-			end
-			if def.groups.brewitem then
-				table.insert(inventory_lists["brew"], name)
 				nonmisc = true
 			end
 			if def.groups.craftitem then
@@ -189,7 +181,6 @@ next_noffset("blocks")
 next_noffset("deco")
 next_noffset("redstone")
 next_noffset("rail")
-next_noffset("brew")
 next_noffset("misc")
 next_noffset("nix", true)
 
@@ -200,7 +191,6 @@ noffset_y = 8.12
 next_noffset("food")
 next_noffset("tools")
 next_noffset("combat")
-next_noffset("mobs")
 next_noffset("matr")
 next_noffset("inv", true)
 
@@ -213,14 +203,12 @@ hoch["blocks"] = ""
 hoch["deco"] = ""
 hoch["redstone"] = ""
 hoch["rail"] = ""
-hoch["brew"] = ""
 hoch["misc"] = ""
 hoch["nix"] = ""
 hoch["default"] = ""
 hoch["food"] = "_down"
 hoch["tools"] = "_down"
 hoch["combat"] = "_down"
-hoch["mobs"] = "_down"
 hoch["matr"] = "_down"
 hoch["inv"] = "_down"
 
@@ -234,8 +222,6 @@ filtername["nix"] = S("Search Items")
 filtername["food"] = S("Foodstuffs")
 filtername["tools"] = S("Tools")
 filtername["combat"] = S("Combat")
-filtername["mobs"] = S("Mobs")
-filtername["brew"] = S("Brewing")
 filtername["matr"] = S("Materials")
 filtername["inv"] = S("Survival Inventory")
 
@@ -251,8 +237,6 @@ local function reset_menu_item_bg()
 	bg["food"] = dark_bg
 	bg["tools"] = dark_bg
 	bg["combat"] = dark_bg
-	bg["mobs"] = dark_bg
-	bg["brew"] = dark_bg
 	bg["matr"] = dark_bg
 	bg["inv"] = dark_bg
 	bg["default"] = dark_bg
@@ -378,8 +362,6 @@ mcl_inventory.set_creative_formspec = function(player, start_i, pagenum, inv_siz
 			food = "mcl_core:apple",
 			tools = "mcl_core:axe_iron",
 			combat = "mcl_core:sword_gold",
-			mobs = "mobs_mc:cow",
-			brew = "mcl_potions:dragon_breath",
 			matr = "mcl_core:stick",
 			inv = "mcl_chests:chest",
 		}
@@ -428,10 +410,6 @@ mcl_inventory.set_creative_formspec = function(player, start_i, pagenum, inv_siz
 			"tooltip[tools;"..F(filtername["tools"]).."]"..
 			tab(name, "combat") ..
 			"tooltip[combat;"..F(filtername["combat"]).."]"..
-			tab(name, "mobs") ..
-			"tooltip[mobs;"..F(filtername["mobs"]).."]"..
-			tab(name, "brew") ..
-			"tooltip[brew;"..F(filtername["brew"]).."]"..
 			tab(name, "matr") ..
 			"tooltip[matr;"..F(filtername["matr"]).."]"..
 			tab(name, "inv") ..
@@ -502,14 +480,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		if players[name].page == "combat" then return end
 		set_inv_page("combat",player)
 		page = "combat"
-	elseif fields.mobs then
-		if players[name].page == "mobs" then return end
-		set_inv_page("mobs",player)
-		page = "mobs"
-	elseif fields.brew then
-		if players[name].page == "brew" then return end
-		set_inv_page("brew",player)
-		page = "brew"
 	elseif fields.matr then
 		if players[name].page == "matr" then return end
 		set_inv_page("matr",player)

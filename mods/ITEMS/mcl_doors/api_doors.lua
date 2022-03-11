@@ -42,7 +42,6 @@ end
 
 function mcl_doors:register_door(name, def)
 	def.groups.not_in_creative_inventory = 1
-	def.groups.dig_by_piston = 1
 	def.groups.door = 1
 	def.groups.mesecon_ignore_opaque_dig = 1
 

@@ -91,7 +91,6 @@ end
 function mesecon.register_pressure_plate(basename, description, textures_off, textures_on, image_w, image_i, recipe, sounds, plusgroups, activated_by, longdesc)
 	local groups_off = table.copy(plusgroups)
 	groups_off.attached_node = 1
-	groups_off.dig_by_piston = 1
 	groups_off.pressure_plate = 1
 	local groups_on = table.copy(groups_off)
 	groups_on.not_in_creative_inventory = 1

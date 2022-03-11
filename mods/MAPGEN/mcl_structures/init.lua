@@ -122,7 +122,7 @@ end
 
 -- Debug command
 minetest.register_chatcommand("spawnstruct", {
-	params = "desert_temple | desert_well | witch_hut | boulder | ice_spike_small | ice_spike_large | fossil | end_exit_portal | end_portal_shrine | test_structure_fireproof",
+	params = "test_structure_fireproof",
 	description = S("Generate a pre-defined structure near your position."),
 	privs = {debug = true},
 	func = function(name, param)

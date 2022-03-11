@@ -75,7 +75,7 @@ minetest.register_craftitem("mcl_core:sugar", {
 	description = S("Sugar"),
 	inventory_image = "mcl_core_sugar.png",
 	stack_max = 64,
-	groups = { craftitem = 1, brewitem=1 },
+	groups = { craftitem = 1 },
 })
 
 minetest.register_craftitem("mcl_core:bowl",{

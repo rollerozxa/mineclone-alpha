@@ -33,7 +33,7 @@ Please read <http://minecraft.gamepedia.com/Breaking> to learn how digging times
 * `falling_node_damage=1`: For falling nodes. Hurts any objects it hits while falling. Damage is based on anvils
 * `dig_by_water=1`: Blocks with this group will drop when they are near flowing water
 * `destroy_by_lava_flow=1`: Blocks with this group will be destroyed by flowing lava
-* `dig_by_piston=1`: Blocks which will drop as an item when pushed by a piston. They also cannot be pulled by sticky pistons
+* ``: Blocks which will drop as an item when pushed by a piston. They also cannot be pulled by sticky pistons
 * `cultivatable=2`: Block will be turned into Farmland by using a hoe on it
 * `cultivatable=1`: Block will be turned into Dirt by using a hoe on it
 * `flammable`: Block spreads fire
@@ -44,32 +44,15 @@ Please read <http://minecraft.gamepedia.com/Breaking> to learn how digging times
 * `spreading_dirt_type=1`: A dirt-type block with a cover (e.g. grass) which may spread to neighbor dirt blocks
 * `dirtifies_below_solid=1`: This node turns into dirt immediately when a solid or dirtifier node is placed on top
 * `dirtifier=1`: This node turns nodes the above group into dirt when placed above
-* `non_mycelium_plant=1`: A plant which can't grow on mycelium. Placing it on mycelium fails and if mycelium spreads below it, it uproots
 * `soil=1`: Saplings and other small plants can grow on it
 * `soil_sapling=2`: Soil for saplings. Intended to be natural soil. All saplings will grow on this
 * `soil_sapling=1`: Artificial soil (such as farmland) for saplings. Some saplings will not grow on this
 * `soil_sugarcane=1`: Sugar canes will grow on this near water
-* `soil_nether_wart=1`: Nether wart will grow on this
-* `enderman_takable=1`: Block can be taken and placed by endermen
 * `disable_suffocation=1`: Disables suffocation for full solid cubes (1)
 * `destroys_items=1`: If an item happens to be *inside* this node, the item will be destroyed
 * `no_eat_delay=1`: Only for foodstuffs. When eating this, all eating delays are ignored.
 * `can_eat_when_full=1`: Only for foodstuffs. This item can be eaten when the user has a full hunger bar
 * `attached_node_facedir=1`: Like `attached_node`, but for facedir nodes
-* `cauldron`: Cauldron. 1: Empty. 2-4: Water height
-* `anvil`: Anvil. 1: No damage. 2-3: Higher damage levels
-* `no_rename=1`: Item cannot be renamed by anvil
-* `comparator_signal=X`: If set, this node outputs a constant (!) comparator signal output of strength X.
-* `piston=X`: Piston (main body) (1 = normal, 2 = sticky)
-* `piston_pusher=X`: Piston pusher (1 = normal, 2 = sticky)
-* `hopper=X`: Hopper (1 = downwards, 2 = sideways)
-* `portal=1`: Portal (node that teleports players and things by standing inside)
-* `end_portal_frame=X`: End portal frame (1 = no eye, 2 = with eye)
-* `coral=X`: Coral (any type) (1 = alive, 2 = dead)
-* `coral_plant=X`: Coral in the "plant" shape (1 = alive, 2 = dead)
-* `coral_fan=X`: Coral fan (1 = alive, 2 = dead)
-* `coral_block=X`: Coral block (1 = alive, 2 = dead)
-* `coral_species=X`: Specifies the species of a coral; equal X means equal species
 * `set_on_fire=X`: Sets any (not fire-resistant) mob or player on fire for X seconds when touching
 
 #### Footnotes
@@ -81,11 +64,6 @@ Please read <http://minecraft.gamepedia.com/Breaking> to learn how digging times
 ### Groups (mostly) used for crafting recipes
 
 * `sand=1`: Sand (any color)
-* `sandstone=1`: Sandstone (any color) and related nodes (chiseled and the like) (only full blocks)
-* `normal_sandstone=1`: “Normal” (yellow) sandstone and related nodes (chiseled and the like) (only full blocks)
-* `red_sandstone=1`: Red sandstone and related nodes (chiseled and the like) (only full blocks)
-* `hardened_clay=1`: Terracotta (any color)
-* `quartz_block=1`: Quartz Block and variants (chiseled, pillar, etc.) (only full blocks)
 * `stonebrick=1`: Stone Bricks and related nodes (only full blocks)
 * `tree=1`: Oak Wood, Birch Wood, etc. (tree trunks)
 * `wood=1`: Oak Wood Planks, Birch Wood Planks, etc. (only full blocks)
@@ -93,7 +71,6 @@ Please read <http://minecraft.gamepedia.com/Breaking> to learn how digging times
 * `wood_stairs=1`: Stairs made out of a kind of wooden planks
 * `coal=1`: Coal of any kind (lumps only, not blocks)
 * `wool=1`: Wool (only full blocks)
-* `carpet=1:` (Wool) carpet
 * `stick=1`: Stick
 * `water_bucket=1`: Bucket containing a liquid of group “water”
 * `enchantability=X`: How good the enchantments are the item gets (1 equals book)

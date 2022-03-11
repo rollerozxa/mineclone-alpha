@@ -1,8 +1,7 @@
 -- Aliases for backwards-compability with 0.21.0
 
 local materials = {
-	"wood", "junglewood", "sprucewood", "acaciawood", "birchwood", "darkwood",
-	"cobble", "brick_block", "sandstone", "redsandstone", "stonebrick"
+	"wood","cobble"
 }
 
 for m=1, #materials do

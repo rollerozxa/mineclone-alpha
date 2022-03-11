@@ -58,7 +58,7 @@ minetest.register_node("mcl_tnt:tnt", {
 	description = S("TNT"),
 	paramtype = "light",
 	sunlight_propagates = true,
-	groups = { dig_immediate = 3, tnt = 1, enderman_takable=1, flammable=-1 },
+	groups = { dig_immediate = 3, tnt = 1, flammable=-1 },
 	mesecons = tnt_mesecons,
 	on_blast = function(pos)
 	        local e = tnt.ignite(pos)

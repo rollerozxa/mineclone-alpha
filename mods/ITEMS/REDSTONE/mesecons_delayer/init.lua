@@ -146,10 +146,10 @@ end
 
 for i = 1, 4 do
 local groups = {}
-if i == 1 then 
-	groups = {dig_immediate=3,dig_by_water=1,destroy_by_lava_flow=1,dig_by_piston=1,attached_node=1,redstone_repeater=i}
+if i == 1 then
+	groups = {dig_immediate=3,dig_by_water=1,destroy_by_lava_flow=1,attached_node=1,redstone_repeater=i}
 else
-	groups = {dig_immediate=3,dig_by_water=1,destroy_by_lava_flow=1,dig_by_piston=1,attached_node=1,redstone_repeater=i,not_in_creative_inventory=1}
+	groups = {dig_immediate=3,dig_by_water=1,destroy_by_lava_flow=1,attached_node=1,redstone_repeater=i,not_in_creative_inventory=1}
 end
 
 local delaytime = DELAYS[i]
@@ -159,25 +159,25 @@ if i == 1 then
 boxes = {
 	{ -8/16, -8/16, -8/16, 8/16, -6/16, 8/16 },		-- the main slab
 	{ -1/16, -6/16, 6/16, 1/16, -1/16, 4/16},     -- still torch
-	{ -1/16, -6/16, 0/16, 1/16, -1/16, 2/16},     -- moved torch 
+	{ -1/16, -6/16, 0/16, 1/16, -1/16, 2/16},     -- moved torch
 }
 elseif i == 2 then
 boxes = {
 	{ -8/16, -8/16, -8/16, 8/16, -6/16, 8/16 },		-- the main slab
 	{ -1/16, -6/16, 6/16, 1/16, -1/16, 4/16},     -- still torch
-	{ -1/16, -6/16, -2/16, 1/16, -1/16, 0/16},     -- moved torch 
+	{ -1/16, -6/16, -2/16, 1/16, -1/16, 0/16},     -- moved torch
 }
 elseif i == 3 then
 boxes = {
 	{ -8/16, -8/16, -8/16, 8/16, -6/16, 8/16 },		-- the main slab
 	{ -1/16, -6/16, 6/16, 1/16, -1/16, 4/16},     -- still torch
-	{ -1/16, -6/16, -4/16, 1/16, -1/16, -2/16},     -- moved torch 
+	{ -1/16, -6/16, -4/16, 1/16, -1/16, -2/16},     -- moved torch
 }
 elseif i == 4 then
 boxes = {
 	{ -8/16, -8/16, -8/16, 8/16, -6/16, 8/16 },		-- the main slab
 	{ -1/16, -6/16, 6/16, 1/16, -1/16, 4/16},     -- still torch
-	{ -1/16, -6/16, -6/16, 1/16, -1/16, -4/16},     -- moved torch 
+	{ -1/16, -6/16, -6/16, 1/16, -1/16, -4/16},     -- moved torch
 }
 end
 
@@ -326,7 +326,7 @@ minetest.register_node("mesecons_delayer:delayer_on_"..tostring(i), {
 		type = "fixed",
 		fixed = boxes
 	},
-	groups = {dig_immediate = 3, dig_by_water=1,destroy_by_lava_flow=1, dig_by_piston=1, attached_node=1, redstone_repeater=i, not_in_creative_inventory = 1},
+	groups = {dig_immediate = 3, dig_by_water=1,destroy_by_lava_flow=1,  attached_node=1, redstone_repeater=i, not_in_creative_inventory = 1},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = false,
@@ -407,7 +407,7 @@ minetest.register_node("mesecons_delayer:delayer_off_locked", {
 			{ -6/16, -6/16, -1/16, 6/16, -4/16, 1/16}, -- lock
 		}
 	},
-	groups = {dig_immediate = 3, dig_by_water=1,destroy_by_lava_flow=1, dig_by_piston=1, attached_node=1, redstone_repeater=5, not_in_creative_inventory = 1},
+	groups = {dig_immediate = 3, dig_by_water=1,destroy_by_lava_flow=1,  attached_node=1, redstone_repeater=5, not_in_creative_inventory = 1},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = false,
@@ -461,7 +461,7 @@ minetest.register_node("mesecons_delayer:delayer_on_locked", {
 	after_dig_node = function(pos, oldnode)
 		check_unlock_repeater(pos, oldnode)
 	end,
-	groups = {dig_immediate = 3, dig_by_water=1,destroy_by_lava_flow=1, dig_by_piston=1, attached_node=1, redstone_repeater=5, not_in_creative_inventory = 1},
+	groups = {dig_immediate = 3, dig_by_water=1,destroy_by_lava_flow=1,  attached_node=1, redstone_repeater=5, not_in_creative_inventory = 1},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = false,

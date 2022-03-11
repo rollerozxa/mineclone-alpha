@@ -81,10 +81,6 @@ minetest.register_alias("mapgen_snowblock", "mcl_core:snowblock")
 minetest.register_alias("mapgen_ice", "mcl_core:ice")
 
 minetest.register_alias("mapgen_stair_cobble", "mcl_stairs:stair_cobble")
-minetest.register_alias("mapgen_sandstonebrick", "mcl_core:sandstonesmooth")
-minetest.register_alias("mapgen_stair_sandstonebrick", "mcl_stairs:stair_sandstone")
-minetest.register_alias("mapgen_stair_sandstone_block", "mcl_stairs:stair_sandstone")
-minetest.register_alias("mapgen_stair_desert_stone", "mcl_stairs:stair_sandstone")
 
 local mg_name = minetest.get_mapgen_setting("mg_name")
 local superflat = mg_name == "flat" and minetest.get_mapgen_setting("mcl_superflat_classic") == "true"

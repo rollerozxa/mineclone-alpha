@@ -117,7 +117,7 @@ minetest.register_node("mcl_fire:fire", {
 	sunlight_propagates = true,
 	damage_per_second = 1,
 	_mcl_node_death_message = fire_death_messages,
-	groups = {fire = 1, dig_immediate = 3, not_in_creative_inventory = 1, dig_by_piston=1, destroys_items=1, set_on_fire=8},
+	groups = {fire = 1, dig_immediate = 3, not_in_creative_inventory = 1,  destroys_items=1, set_on_fire=8},
 	floodable = true,
 	on_flood = function(pos, oldnode, newnode)
 		if minetest.get_item_group(newnode.name, "water") ~= 0 then
@@ -126,7 +126,7 @@ minetest.register_node("mcl_fire:fire", {
 	end,
 	drop = "",
 	sounds = {},
-	-- Turn into eternal fire on special blocks, light Nether portal (if possible), start burning timer
+	-- Turn into eternal fire on special blocks, start burning timer
 	on_construct = function(pos)
 		local bpos = {x=pos.x, y=pos.y-1, z=pos.z}
 		local under = minetest.get_node(bpos).name
@@ -165,7 +165,7 @@ minetest.register_node("mcl_fire:eternal_fire", {
 	sunlight_propagates = true,
 	damage_per_second = 1,
 	_mcl_node_death_message = fire_death_messages,
-	groups = {fire = 1, dig_immediate = 3, not_in_creative_inventory = 1, dig_by_piston = 1, destroys_items = 1, set_on_fire=8},
+	groups = {fire = 1, dig_immediate = 3, not_in_creative_inventory = 1, destroys_items = 1, set_on_fire=8},
 	floodable = true,
 	on_flood = function(pos, oldnode, newnode)
 		if minetest.get_item_group(newnode.name, "water") ~= 0 then

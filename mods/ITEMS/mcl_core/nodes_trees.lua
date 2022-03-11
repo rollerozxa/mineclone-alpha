@@ -72,7 +72,7 @@ local register_leaves = function(subname, description, longdesc, tiles, sapling,
 		tiles = tiles,
 		paramtype = "light",
 		stack_max = 64,
-		groups = {handy=1, shearsy=1, swordy=1, leafdecay=leafdecay_distance, flammable=2, leaves=1, deco_block=1, dig_by_piston=1, fire_encouragement=30, fire_flammability=60},
+		groups = {handy=1, shearsy=1, swordy=1, leafdecay=leafdecay_distance, flammable=2, leaves=1, deco_block=1,  fire_encouragement=30, fire_flammability=60},
 		drop = get_drops(0),
 		_mcl_shears_drop = true,
 		sounds = mcl_sounds.node_sound_leaves_defaults(),
@@ -99,7 +99,7 @@ local function register_sapling(subname, description, longdesc, tt_help, texture
 			fixed = selbox
 		},
 		stack_max = 64,
-		groups = {dig_immediate=3, plant=1, sapling=1, non_mycelium_plant=1, attached_node=1, dig_by_water=1, dig_by_piston=1, destroy_by_lava_flow=1, deco_block=1},
+		groups = {dig_immediate=3, plant=1, sapling=1, attached_node=1, dig_by_water=1,  destroy_by_lava_flow=1, deco_block=1},
 		sounds = mcl_sounds.node_sound_leaves_defaults(),
 		on_construct = function(pos)
 			local meta = minetest.get_meta(pos)

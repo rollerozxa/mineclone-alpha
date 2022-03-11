@@ -213,20 +213,6 @@ minetest.register_craftitem("mcl_buckets:bucket_empty", {
 
 			minetest.add_node(pointed_thing.under, {name="air"})
 			sound_take(nn, pointed_thing.under)
-		elseif nn == "mcl_cauldrons:cauldron_3" then
-			-- Take water out of full cauldron
-			minetest.set_node(pointed_thing.under, {name="mcl_cauldrons:cauldron"})
-			if not minetest.is_creative_enabled(user:get_player_name()) then
-				new_bucket = ItemStack("mcl_buckets:bucket_water")
-			end
-			sound_take("mcl_core:water_source", pointed_thing.under)
-		elseif nn == "mcl_cauldrons:cauldron_3r" then
-			-- Take river water out of full cauldron
-			minetest.set_node(pointed_thing.under, {name="mcl_cauldrons:cauldron"})
-			if not minetest.is_creative_enabled(user:get_player_name()) then
-				new_bucket = ItemStack("mcl_buckets:bucket_river_water")
-			end
-			sound_take("mclx_core:river_water_source", pointed_thing.under)
 		end
 
 		-- Add liquid bucket and put it into inventory, if possible.
@@ -315,22 +301,7 @@ if mod_mcl_core then
 				return false
 			end
 			local nn = minetest.get_node(pos).name
-			-- Pour water into cauldron
-			if minetest.get_item_group(nn, "cauldron") ~= 0 then
-				-- Put water into cauldron
-				if nn ~= "mcl_cauldrons:cauldron_3" then
-					minetest.set_node(pos, {name="mcl_cauldrons:cauldron_3"})
-				end
-				sound_place("mcl_core:water_source", pos)
-				return false
-			-- Evaporate water if used in Nether (except on cauldron)
-			else
-				local dim = mcl_worlds.pos_to_dimension(pos)
-				if dim == "nether" then
-					minetest.sound_play("fire_extinguish_flame", {pos = pos, gain = 0.25, max_hear_distance = 16}, true)
-					return false
-				end
-			end
+
 		end,
 		{ water_bucket = 1 }
 	)
@@ -358,22 +329,7 @@ if mod_mclx_core then
 				return false
 			end
 			local nn = minetest.get_node(pos).name
-			-- Pour into cauldron
-			if minetest.get_item_group(nn, "cauldron") ~= 0 then
-				-- Put water into cauldron
-				if nn ~= "mcl_cauldrons:cauldron_3r" then
-					minetest.set_node(pos, {name="mcl_cauldrons:cauldron_3r"})
-				end
-				sound_place("mcl_core:water_source", pos)
-				return false
-			else
-				-- Evaporate water if used in Nether (except on cauldron)
-				local dim = mcl_worlds.pos_to_dimension(pos)
-				if dim == "nether" then
-					minetest.sound_play("fire_extinguish_flame", {pos = pos, gain = 0.25, max_hear_distance = 16}, true)
-					return false
-				end
-			end
+
 		end,
 		{ water_bucket = 1 }
 	)

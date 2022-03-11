@@ -9,7 +9,7 @@ minetest.register_node("mcl_core:cactus", {
 	tiles = {"mcl_core_cactus_top.png", "mcl_core_cactus_bottom.png", "mcl_core_cactus_side.png"},
 	is_ground_content = true,
 	stack_max = 64,
-	groups = {handy=1, attached_node=1, plant=1, deco_block=1, dig_by_piston=1, enderman_takable=1},
+	groups = {handy=1, attached_node=1, plant=1, deco_block=1, },
 	sounds = mcl_sounds.node_sound_wood_defaults(),
 	paramtype = "light",
 	sunlight_propagates = true,
@@ -70,7 +70,7 @@ minetest.register_node("mcl_core:reeds", {
 		},
 	},
 	stack_max = 64,
-	groups = {dig_immediate=3, craftitem=1, deco_block=1, plant=1, non_mycelium_plant=1, dig_by_piston=1},
+	groups = {dig_immediate=3, craftitem=1, deco_block=1, plant=1 },
 	sounds = mcl_sounds.node_sound_leaves_defaults(),
 	node_placement_prediction = "",
 	on_place = mcl_util.generate_on_place_plant_function(function(place_pos, place_node)
