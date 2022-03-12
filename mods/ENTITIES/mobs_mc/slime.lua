@@ -156,8 +156,8 @@ slime_tiny.on_die = nil
 
 mobs:register_mob("mobs_mc:slime_tiny", slime_tiny)
 
-local smin = mobs_mc.spawn_height.overworld_min
-local smax = mobs_mc.spawn_height.water - 23
+local smin = mcl_vars.mg_overworld_min
+local smax = tonumber(minetest.settings:get("water_level")) or 0 - 23
 
 mobs:spawn_specific("mobs_mc:slime_tiny", mobs_mc.spawn.solid, {"air"}, 0, minetest.LIGHT_MAX+1, 30, 12000, 4, smin, smax)
 mobs:spawn_specific("mobs_mc:slime_small", mobs_mc.spawn.solid, {"air"}, 0, minetest.LIGHT_MAX+1, 30, 8500, 4, smin, smax)

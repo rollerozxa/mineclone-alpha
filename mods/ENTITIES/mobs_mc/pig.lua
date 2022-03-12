@@ -49,7 +49,6 @@ mobs:register_mob("mobs_mc:pig", {
 		run_start = 0,
 		run_end = 40,
 	},
-	follow = mobs_mc.follow.pig,
 	view_range = 8,
 	do_custom = function(self, dtime)
 
@@ -162,7 +161,7 @@ mobs:register_mob("mobs_mc:pig", {
 	end,
 })
 
-mobs:spawn_specific("mobs_mc:pig", mobs_mc.spawn.grassland, {"air"}, 9, minetest.LIGHT_MAX+1, 30, 15000, 8, mobs_mc.spawn_height.overworld_min, mobs_mc.spawn_height.overworld_max)
+mobs:spawn_specific("mobs_mc:pig", mobs_mc.spawn.grassland, {"air"}, 9, minetest.LIGHT_MAX+1, 30, 15000, 8, mcl_vars.mg_overworld_min, mcl_vars.mg_overworld_max)
 
 -- spawn eggs
 mobs:register_egg("mobs_mc:pig", S("Pig"), "mobs_mc_spawn_icon_pig.png", 0)

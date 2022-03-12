@@ -60,12 +60,13 @@ mobs:register_mob("mobs_mc:sheep", {
 		walk_start = 0,		walk_end = 40,
 		run_start = 0,		run_end = 40,
 	},
-	follow = mobs_mc.follow.sheep,
 	view_range = 12,
 
 	-- Eat grass
 	replace_rate = 20,
-	replace_what = mobs_mc.replace.sheep,
+	replace_what = {
+		{ "mcl_core:dirt_with_grass", "mcl_core:dirt", -1 }
+	},
 	-- Properly regrow wool after eating grass
 	on_replace = function(self, pos, oldnode, newnode)
 		if not self.color or not colors[self.color] then
@@ -101,7 +102,7 @@ mobs:register_mob("mobs_mc:sheep", {
 		local child = mobs:spawn_child(pos, parent1.name)
 	end,
 })
-mobs:spawn_specific("mobs_mc:sheep", mobs_mc.spawn.grassland, {"air"}, 0, minetest.LIGHT_MAX+1, 30, 15000, 3, mobs_mc.spawn_height.overworld_min, mobs_mc.spawn_height.overworld_max)
+mobs:spawn_specific("mobs_mc:sheep", mobs_mc.spawn.grassland, {"air"}, 0, minetest.LIGHT_MAX+1, 30, 15000, 3, mcl_vars.mg_overworld_min, mcl_vars.mg_overworld_max)
 
 -- spawn eggs
 mobs:register_egg("mobs_mc:sheep", S("Sheep"), "mobs_mc_spawn_icon_sheep.png", 0)

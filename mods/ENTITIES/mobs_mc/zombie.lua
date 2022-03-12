@@ -68,26 +68,9 @@ local zombie = {
 
 mobs:register_mob("mobs_mc:zombie", zombie)
 
--- Baby zombie.
--- A smaller and more dangerous variant of the zombie
-
-local baby_zombie = table.copy(zombie)
-baby_zombie.collisionbox = {-0.25, -0.01, -0.25, 0.25, 0.94, 0.25}
-baby_zombie.xp_min = 12
-baby_zombie.xp_max = 12
-baby_zombie.visual_size = {x=zombie.visual_size.x/2, y=zombie.visual_size.y/2}
-baby_zombie.walk_velocity = 1.2
-baby_zombie.run_velocity = 2.4
-baby_zombie.child = 1
-
-mobs:register_mob("mobs_mc:baby_zombie", baby_zombie)
-
-
 -- Spawning
 
-mobs:spawn_specific("mobs_mc:zombie", mobs_mc.spawn.solid, {"air"}, 0, 7, 30, 6000, 4, mobs_mc.spawn_height.overworld_min, mobs_mc.spawn_height.overworld_max)
--- Baby zombie is 20 times less likely than regular zombies
-mobs:spawn_specific("mobs_mc:baby_zombie", mobs_mc.spawn.solid, {"air"}, 0, 7, 30, 60000, 4, mobs_mc.spawn_height.overworld_min, mobs_mc.spawn_height.overworld_max)
+mobs:spawn_specific("mobs_mc:zombie", mobs_mc.spawn.solid, {"air"}, 0, 7, 30, 6000, 4, mcl_vars.mg_overworld_min, mcl_vars.mg_overworld_max)
 
 -- Spawn eggs
 mobs:register_egg("mobs_mc:zombie", S("Zombie"), "mobs_mc_spawn_icon_zombie.png", 0)

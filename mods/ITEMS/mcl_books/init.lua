@@ -8,13 +8,11 @@ minetest.register_craftitem("mcl_books:book", {
 	groups = { book=1, craftitem = 1, enchantability = 1 },
 })
 
-if minetest.get_modpath("mcl_core") and minetest.get_modpath("mcl_mobitems") then
-	minetest.register_craft({
-		type = 'shapeless',
-		output = 'mcl_books:book',
-		recipe = { 'mcl_core:paper', 'mcl_core:paper', 'mcl_core:paper', 'mcl_mobitems:leather', }
-	})
-end
+minetest.register_craft({
+	type = 'shapeless',
+	output = 'mcl_books:book',
+	recipe = { 'mcl_core:paper', 'mcl_core:paper', 'mcl_core:paper', 'mcl_mobitems:leather', }
+})
 
 -- Bookshelf
 minetest.register_node("mcl_books:bookshelf", {

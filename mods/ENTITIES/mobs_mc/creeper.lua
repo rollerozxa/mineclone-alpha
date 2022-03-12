@@ -121,7 +121,7 @@ mobs:register_mob("mobs_mc:creeper", {
 	view_range = 16,
 })
 
-mobs:spawn_specific("mobs_mc:creeper", mobs_mc.spawn.solid, {"air"}, 0, 7, 20, 16500, 2, mobs_mc.spawn_height.overworld_min, mobs_mc.spawn_height.overworld_max)
+mobs:spawn_specific("mobs_mc:creeper", mobs_mc.spawn.solid, {"air"}, 0, 7, 20, 16500, 2, mcl_vars.mg_overworld_min, mcl_vars.mg_overworld_max)
 
 -- spawn eggs
 mobs:register_egg("mobs_mc:creeper", S("Creeper"), "mobs_mc_spawn_icon_creeper.png", 0)

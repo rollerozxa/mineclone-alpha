@@ -333,10 +333,7 @@ mcl_inventory.set_creative_formspec = function(player, start_i, pagenum, inv_siz
 				mcl_formspec.get_itemslot_bg(5.5,2.75,1,1)..
 				armor_slot_imgs..
 				-- player preview
-				player_preview..
-				-- skins button
-				"image_button[9,3;1,1;mcl_skins_button.png;__mcl_skins;]"..
-				"tooltip[__mcl_skins;"..F(S("Select player skin")).."]"
+				player_preview
 
 			-- For shortcuts
 			listrings = listrings ..

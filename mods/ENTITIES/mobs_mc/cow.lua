@@ -41,7 +41,6 @@ local cow_def = {
 		walk_end = 40,      run_start = 0,
 		run_end = 40,
 	},
-	follow = mobs_mc.follow.cow,
 	on_rightclick = function(self, clicker)
 		if mobs:feed_tame(self, clicker, 1, true, true) then return end
 		if mobs:protect(self, clicker) then return end
@@ -75,7 +74,7 @@ local cow_def = {
 mobs:register_mob("mobs_mc:cow", cow_def)
 
 -- Spawning
-mobs:spawn_specific("mobs_mc:cow", mobs_mc.spawn.grassland, {"air"}, 9, minetest.LIGHT_MAX+1, 30, 17000, 10, mobs_mc.spawn_height.overworld_min, mobs_mc.spawn_height.overworld_max)
+mobs:spawn_specific("mobs_mc:cow", mobs_mc.spawn.grassland, {"air"}, 9, minetest.LIGHT_MAX+1, 30, 17000, 10, mcl_vars.mg_overworld_min, mcl_vars.mg_overworld_max)
 
 -- spawn egg
 mobs:register_egg("mobs_mc:cow", S("Cow"), "mobs_mc_spawn_icon_cow.png", 0)

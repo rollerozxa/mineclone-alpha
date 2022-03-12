@@ -10,11 +10,12 @@ mobs_mc = {}
 -- For utility functions
 mobs_mc.tools = {}
 
---MOB ITEMS SELECTOR SWITCH
-dofile(path .. "/0_gameconfig.lua")
+-- List of nodes on which mobs can spawn
+mobs_mc.spawn = {
+	solid = { "group:solid", }, -- spawn on "solid" nodes
+	grassland = { "mcl_core:dirt_with_grass" },
+}
 
--- Bow, arrow and throwables
-dofile(path .. "/2_throwing.lua")
 
 -- Shared functions
 dofile(path .. "/3_shared.lua")

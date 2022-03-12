@@ -582,7 +582,7 @@ minetest.register_on_player_hpchange(function(player, hp_change, reason)
 				-- Damage armor
 				local use = stack:get_definition().groups["mcl_armor_uses"] or 0
 				if use > 0 and regular_reduction then
-					local unbreaking_level = enchantments.unbreaking or 0
+					local unbreaking_level = 0
 					if unbreaking_level > 0 then
 						use = use / (0.6 + 0.4 / (unbreaking_level + 1))
 					end

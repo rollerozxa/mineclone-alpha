@@ -71,8 +71,6 @@ for frame = 0, compass_frames-1 do
 	table.insert(images, "mcl_compass_compass_"..s..".png")
 end
 
-local doc_mod = minetest.get_modpath("doc") ~= nil
-
 local stereotype_frame = 18
 for i,img in ipairs(images) do
 	local inv = 1

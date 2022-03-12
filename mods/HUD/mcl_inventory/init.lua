@@ -118,9 +118,6 @@ local function set_inventory(player, armor_change_only)
 	mcl_formspec.get_itemslot_bg(0,7.74,9,1)..
 	mcl_formspec.get_itemslot_bg(4,1,2,2)..
 	mcl_formspec.get_itemslot_bg(7,1.5,1,1)..
-	-- skins button
-	"image_button[3,3;1,1;mcl_skins_button.png;__mcl_skins;]"..
-	"tooltip[__mcl_skins;"..F(S("Select player skin")).."]"..
 	-- for shortcuts
 	"listring[current_player;main]"..
 	"listring[current_player;craft]"..
