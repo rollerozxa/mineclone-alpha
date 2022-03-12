@@ -538,36 +538,35 @@ minetest.register_on_player_hpchange(function(player, hp_change, reason)
 		for i=1, 6 do
 			local stack = player_inv:get_stack("armor", i)
 			if stack:get_count() > 0 then
-				local enchantments = nil
 				local pts = stack:get_definition().groups["mcl_armor_points"] or 0
 				local tough = stack:get_definition().groups["mcl_armor_toughness"] or 0
 				total_points = total_points + pts
 				total_toughness = total_toughness + tough
 
-				local protection_level = enchantments.protection or 0
+				local protection_level = 0
 				if protection_level > 0 then
 					epf = epf + protection_level * 1
 				end
-				local blast_protection_level = enchantments.blast_protection or 0
+				local blast_protection_level = 0
 				if blast_protection_level > 0 and damage_type == "explosion" then
 					epf = epf + blast_protection_level * 2
 				end
-				local fire_protection_level = enchantments.fire_protection or 0
+				local fire_protection_level = 0
 				if fire_protection_level > 0 and (damage_type == "burning" or damage_type == "fireball" or reason.type == "node_damage" and
 					(reason.node == "mcl_fire:fire" or reason.node == "mcl_core:lava_source" or reason.node == "mcl_core:lava_flowing")) then
 					epf = epf + fire_protection_level * 2
 				end
-				local projectile_protection_level = enchantments.projectile_protection or 0
+				local projectile_protection_level = 0
 				if projectile_protection_level and (damage_type == "projectile" or damage_type == "fireball") then
 					epf = epf + projectile_protection_level * 2
 				end
-				local feather_falling_level = enchantments.feather_falling or 0
+				local feather_falling_level = 0
 				if feather_falling_level and reason.type == "fall" then
 					epf = epf + feather_falling_level * 3
 				end
 
 				local did_thorns_damage = false
-				local thorns_level = enchantments.thorns or 0
+				local thorns_level = 0
 				if thorns_level then
 					if thorns_level > 10 then
 						thorns_damage = thorns_damage + thorns_level - 10
