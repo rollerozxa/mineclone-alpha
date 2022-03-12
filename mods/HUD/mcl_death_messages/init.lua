@@ -154,7 +154,6 @@ local msgs = {
 
 local mobkills = {
 	["mobs_mc:zombie"] = N("@1 was slain by Zombie."),
-	["mobs_mc:baby_zombie"] = N("@1 was slain by Baby Zombie."),
 	["mobs_mc:slime"] = N("@1 was slain by Slime."),
 	["mobs_mc:skeleton"] = N("@1 was shot by Skeleton."),
 	["mobs_mc:slime_tiny"] = N("@1 was slain by Slime."),
