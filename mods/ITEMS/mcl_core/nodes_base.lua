@@ -141,12 +141,9 @@ minetest.register_node("mcl_core:stone_with_diamond", {
 -- Grass Block
 minetest.register_node("mcl_core:dirt_with_grass", {
 	description = S("Grass Block"),
-	paramtype2 = "color",
 	tiles = {"mcl_core_grass_block_top.png", { name="default_dirt.png", color="white" }},
 	overlay_tiles = {"mcl_core_grass_block_top.png", "", {name="mcl_core_grass_block_side_overlay.png", tileable_vertical=false}},
-	palette = "mcl_core_palette_grass.png",
-	palette_index = 0,
-	color = "#55aa60",
+	--color = "#91f56b",
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {handy=1,shovely=1,dirt=2,grass_block=1, grass_block_no_snow=1, soil=1, soil_sapling=2, soil_sugarcane=1, cultivatable=2, spreading_dirt_type=1, building_block=1},

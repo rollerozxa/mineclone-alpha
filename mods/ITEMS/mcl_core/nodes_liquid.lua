@@ -22,17 +22,17 @@ local lava_death_messages = {
 
 minetest.register_node("mcl_core:water_flowing", {
 	description = S("Flowing Water"),
-	wield_image = "default_water_flowing_animated.png^[verticalframe:64:0",
+	wield_image = "default_water_source_animated.png^[verticalframe:64:0",
 	drawtype = "flowingliquid",
-	tiles = {"default_water_flowing_animated.png^[verticalframe:64:0"},
+	tiles = {"default_water_source_animated.png^[verticalframe:64:0"},
 	special_tiles = {
 		{
-			image="default_water_flowing_animated.png",
+			image="default_water_source_animated.png",
 			backface_culling=false,
 			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=4.0}
 		},
 		{
-			image="default_water_flowing_animated.png",
+			image="default_water_source_animated.png",
 			backface_culling=false,
 			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=4.0}
 		},
