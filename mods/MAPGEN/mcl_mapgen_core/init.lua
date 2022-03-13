@@ -988,6 +988,8 @@ local function basic(vm, data, data2, emin, emax, area, minp, maxp, blockseed)
 	local lvm_used = false
 	local pr = PseudoRandom(blockseed)
 
+	lvm_used = set_layers(data, area, c_void, nil, mcl_vars.mapgen_edge_min, mcl_vars.mg_bedrock_overworld_min-1, minp, maxp, lvm_used, pr)
+
 	if mg_name ~= "singlenode" then
 		-- Bedrock
 		lvm_used = set_layers(data, area, c_bedrock, bedrock_check, mcl_vars.mg_bedrock_overworld_min, mcl_vars.mg_bedrock_overworld_max, minp, maxp, lvm_used, pr)
