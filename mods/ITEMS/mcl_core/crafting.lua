@@ -187,6 +187,21 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = 'mcl_core:bookshelf',
+	recipe = {
+		{'group:wood', 'group:wood', 'group:wood'},
+		{'mcl_core:book', 'mcl_core:book', 'mcl_core:book'},
+		{'group:wood', 'group:wood', 'group:wood'},
+	}
+})
+
+minetest.register_craft({
+	type = 'shapeless',
+	output = 'mcl_core:book',
+	recipe = { 'mcl_core:paper', 'mcl_core:paper', 'mcl_core:paper', 'mcl_mobitems:leather', }
+})
+
 --
 -- Crafting (tool repair)
 --
@@ -310,7 +325,11 @@ minetest.register_craft({
 	burntime = 5,
 })
 
-
+minetest.register_craft({
+	type = "fuel",
+	recipe = "mcl_books:bookshelf",
+	burntime = 15,
+})
 
 minetest.register_craft({
 	type = "fuel",

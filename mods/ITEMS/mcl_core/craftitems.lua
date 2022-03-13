@@ -124,3 +124,11 @@ minetest.register_craftitem("mcl_core:apple_gold", {
 	groups = { food = 2, eatable = 4, can_eat_when_full = 1 },
 	_mcl_saturation = 9.6,
 })
+
+-- Book
+minetest.register_craftitem("mcl_core:book", {
+	description = S("Book"),
+	inventory_image = "default_book.png",
+	stack_max = 64,
+	groups = { book=1, craftitem = 1 },
+})
