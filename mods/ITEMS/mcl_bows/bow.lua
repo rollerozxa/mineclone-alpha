@@ -142,7 +142,7 @@ minetest.register_tool("mcl_bows:bow", {
 		itemstack:get_meta():set_string("active", "true")
 		return itemstack
 	end,
-	groups = {weapon=1,weapon_ranged=1,bow=1,enchantability=1},
+	groups = {weapon=1,weapon_ranged=1,bow=1},
 	_mcl_uses = 385,
 })
 
@@ -182,7 +182,7 @@ for level=0, 2 do
 		wield_scale = { x = 1.8, y = 1.8, z = 1 },
 		stack_max = 1,
 		range = 0, -- Pointing range to 0 to prevent punching with bow :D
-		groups = {not_in_creative_inventory=1, not_in_craft_guide=1, bow=1, enchantability=1},
+		groups = {not_in_creative_inventory=1, not_in_craft_guide=1, bow=1},
 		-- Trick to disable digging as well
 		on_use = function() return end,
 		on_drop = function(itemstack, dropper, pos)

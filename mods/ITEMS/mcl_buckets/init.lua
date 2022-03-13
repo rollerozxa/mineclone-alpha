@@ -264,14 +264,9 @@ if mod_mcl_core then
 	-- Lava bucket
 	mcl_buckets.register_liquid(
 		function(pos)
-			local dim = mcl_worlds.pos_to_dimension(pos)
-			if dim == "nether" then
-				return "mcl_nether:nether_lava_source"
-			else
-				return "mcl_core:lava_source"
-			end
+			return "mcl_core:lava_source"
 		end,
-		{"mcl_core:lava_source", "mcl_nether:nether_lava_source"},
+		{"mcl_core:lava_source"},
 		"mcl_buckets:bucket_lava",
 		"bucket_lava.png",
 		S("Lava Bucket"),

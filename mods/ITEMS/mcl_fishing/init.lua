@@ -92,9 +92,7 @@ local fish = function(itemstack, player, pointed_thing)
 								-- Treasure
 								items = mcl_loot.get_loot({
 									items = {
-										-- TODO: Enchanted Bow
 										{ itemstring = "mcl_bows:bow", wear_min = 49144, wear_max = 65535 }, -- 75%-100% damage
-										-- TODO: Enchanted Fishing Rod
 										{ itemstring = "mcl_fishing:fishing_rod", wear_min = 49144, wear_max = 65535 }, -- 75%-100% damage
 										{ itemstring = "mcl_mobitems:saddle", },
 									}
@@ -321,7 +319,7 @@ end)
 -- Fishing Rod
 minetest.register_tool("mcl_fishing:fishing_rod", {
 	description = S("Fishing Rod"),
-	groups = { tool=1, fishing_rod=1, enchantability=1 },
+	groups = { tool=1, fishing_rod=1 },
 	inventory_image = "mcl_fishing_fishing_rod.png",
 	wield_image = "mcl_fishing_fishing_rod.png^[transformR270",
 	wield_scale = { x = 1.5, y = 1.5, z = 1 },

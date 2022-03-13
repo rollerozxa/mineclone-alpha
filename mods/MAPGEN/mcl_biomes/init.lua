@@ -430,7 +430,7 @@ local function register_decorations()
 		-- Mushrooms next to trees
 		minetest.register_decoration({
 			deco_type = "simple",
-			place_on = {"group:grass_block_no_snow", "mcl_core:dirt", "mcl_core:podzol", "mcl_core:mycelium", "mcl_core:stone"},
+			place_on = {"group:grass_block_no_snow", "mcl_core:dirt", "mcl_core:stone"},
 			sidelen = 16,
 			noise_params = {
 				offset = 0,

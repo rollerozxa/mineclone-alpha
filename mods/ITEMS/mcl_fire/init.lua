@@ -69,19 +69,6 @@ local fire_enabled = minetest.settings:get_bool("enable_fire", true)
 -- Enable sound
 local flame_sound = minetest.settings:get_bool("flame_sound", true)
 
--- Help texts
-local fire_help, eternal_fire_help
-if fire_enabled then
-	fire_help = S("Fire is a damaging and destructive but short-lived kind of block. It will destroy and spread towards near flammable blocks, but fire will disappear when there is nothing to burn left. It will be extinguished by nearby water and rain. Fire can be destroyed safely by punching it, but it is hurtful if you stand directly in it. If a fire is started above netherrack or a magma block, it will immediately turn into an eternal fire.")
-else
-	fire_help = S("Fire is a damaging but non-destructive short-lived kind of block. It will disappear when there is no flammable block around. Fire does not destroy blocks, at least not in this world. It will be extinguished by nearby water and rain. Fire can be destroyed safely by punching it, but it is hurtful if you stand directly in it. If a fire is started above netherrack or a magma block, it will immediately turn into an eternal fire.")
-end
-
-if fire_enabled then
-	eternal_fire_help = S("Eternal fire is a damaging block that might create more fire. It will create fire around it when flammable blocks are nearby. Eternal fire can be extinguished by punches and nearby water blocks. Other than (normal) fire, eternal fire does not get extinguished on its own and also continues to burn under rain. Punching eternal fire is safe, but it hurts if you stand inside.")
-else
-	eternal_fire_help = S("Eternal fire is a damaging block. Eternal fire can be extinguished by punches and nearby water blocks. Other than (normal) fire, eternal fire does not get extinguished on its own and also continues to burn under rain. Punching eternal fire is safe, but it hurts if you stand inside.")
-end
 
 local fire_death_messages = {
 	N("@1 has been cooked crisp."),
@@ -397,7 +384,7 @@ else -- Fire enabled
 	--lava fire spread
 	minetest.register_abm({
 		label = "Ignite fire by lava",
-		nodenames = {"mcl_core:lava_source","mcl_nether:nether_lava_source"},
+		nodenames = {"mcl_core:lava_source"},
 		neighbors = {"air","group:flammable"},
 		interval = 7,
 		chance = 3,

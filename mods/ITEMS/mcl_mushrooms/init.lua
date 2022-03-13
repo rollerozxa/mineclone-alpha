@@ -14,7 +14,7 @@ local on_place = mcl_util.generate_on_place_plant_function(function(place_pos, p
 	if light and light <= 12 then
 		light_ok = true
 	end
-	return ((snn == "mcl_core:podzol" or snn == "mcl_core:podzol_snow" or snn == "mcl_core:mycelium" or snn == "mcl_core:mycelium_snow") or (light_ok and minetest.get_item_group(snn, "solid") == 1 and minetest.get_item_group(snn, "opaque") == 1))
+	return ((light_ok and minetest.get_item_group(snn, "solid") == 1 and minetest.get_item_group(snn, "opaque") == 1))
 end)
 
 minetest.register_node("mcl_mushrooms:mushroom_brown", {
@@ -85,9 +85,8 @@ minetest.register_abm({
 	chance = 50,
 	action = function(pos, node)
 		local node_soil = minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name
-		-- Mushrooms uproot in light except on podzol or mycelium
-		if node_soil ~= "mcl_core:podzol" and node_soil ~= "mcl_core:mycelium" and
-				node_soil ~= "mcl_core:podzol_snow" and node_soil ~= "mcl_core:mycelium_snow" and minetest.get_node_light(pos, nil) > 12 then
+		-- Mushrooms uproot in light
+		if minetest.get_node_light(pos, nil) > 12 then
 			minetest.dig_node(pos)
 			return
 		end

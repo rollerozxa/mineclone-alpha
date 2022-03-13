@@ -276,26 +276,8 @@ minetest.register_globalstep(function(dtime)
 		-- set defaults
 		def.speed = 1
 
-		-- Standing on soul sand? If so, walk slower (unless player wears Soul Speed boots)
-		if node_stand == "mcl_nether:soul_sand" then
-			-- TODO: Tweak walk speed
-			-- TODO: Also slow down mobs
-			-- Slow down even more when soul sand is above certain block
-			local boots = player:get_inventory():get_stack("armor", 5)
-			local soul_speed = false
-			if soul_speed > 0 then
-				playerphysics.add_physics_factor(player, "speed", "mcl_playerplus:surface", soul_speed * 0.105 + 1.3)
-			else
-				if node_stand_below == "mcl_core:ice" or node_stand_below == "mcl_core:packed_ice" or node_stand_below == "mcl_core:slimeblock" or node_stand_below == "mcl_core:water_source" then
-					playerphysics.add_physics_factor(player, "speed", "mcl_playerplus:surface", 0.1)
-				else
-					playerphysics.add_physics_factor(player, "speed", "mcl_playerplus:surface", 0.4)
-				end
-			end
-		else
-			-- Reset speed decrease
-			playerphysics.remove_physics_factor(player, "speed", "mcl_playerplus:surface")
-		end
+		-- Reset speed decrease
+		playerphysics.remove_physics_factor(player, "speed", "mcl_playerplus:surface")
 
 		-- Is player suffocating inside node? (Only for solid full opaque cube type nodes
 		-- without group disable_suffocation=1)

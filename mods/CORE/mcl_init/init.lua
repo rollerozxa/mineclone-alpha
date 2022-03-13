@@ -84,15 +84,6 @@ end
 
 if not superflat and not singlenode then
 	-- Normal mode
-	--[[ Realm stacking (h is for height)
-	- Overworld (h>=256)
-	- Void (h>=1000)
-	- Realm Barrier (h=11), to allow escaping the End
-	- End (h>=256)
-	- Void (h>=1000)
-	- Nether (h=128)
-	- Void (h>=1000)
-	]]
 
 	-- Overworld
 	mcl_vars.mg_overworld_min = -62

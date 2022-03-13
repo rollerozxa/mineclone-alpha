@@ -73,7 +73,6 @@ Please read <http://minecraft.gamepedia.com/Breaking> to learn how digging times
 * `wool=1`: Wool (only full blocks)
 * `stick=1`: Stick
 * `water_bucket=1`: Bucket containing a liquid of group “water”
-* `enchanted=1`: The item is already enchanted, meaning that it can't be enchanted using an enchanting table
 
 ### Material groups
 
@@ -108,7 +107,6 @@ These groups are used mostly for informational purposes
 * `fence=1`: Fence
 * `fence_gate=1`: Fence gate
 * `fence_wood=1`: Wooden fence
-* `fence_nether_brick=1`: Nether brick fence
 * `flower_pot`: Flower pot
    * `flower_pot=1`: Empty flower pot
    * `flower_pot=2`: Flower pot with a plant or flower

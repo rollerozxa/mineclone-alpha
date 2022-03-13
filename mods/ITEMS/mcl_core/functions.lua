@@ -291,24 +291,6 @@ local function check_tree_growth(pos, tree_id, options)
 		else
 			return check_growth_width(pos, 3, 5)
 		end
-	elseif tree_id == BIRCH_TREE_ID then
-		return check_growth_width(pos, 3, 6)
-	elseif tree_id == SPRUCE_TREE_ID then
-		if two_by_two then
-			return check_growth_width(pos, 6, 20)
-		else
-			return check_growth_width(pos, 5, 11)
-		end
-	elseif tree_id == JUNGLE_TREE_ID then
-		if two_by_two then
-			return check_growth_width(pos, 8, 23)
-		else
-			return check_growth_width(pos, 3, 8)
-		end
-	elseif tree_id == ACACIA_TREE_ID then
-		return check_growth_width(pos, 7, 8)
-	elseif tree_id == DARK_OAK_TREE_ID and two_by_two then
-		return check_growth_width(pos, 4, 7)
 	end
 
 	return false
@@ -446,162 +428,6 @@ function mcl_core.generate_birch_tree(pos)
 	minetest.place_schematic({x = pos.x - 2, y = pos.y - 1, z = pos.z - 2}, path, "random", nil, false)
 end
 
--- BEGIN of spruce tree generation functions --
--- Copied from Minetest Game 0.4.15 from the pine tree (default.generate_pine_tree)
-
--- Pine tree (=spruce tree in MCL2) from mg mapgen mod, design by sfan5, pointy top added by paramat
-local function add_spruce_leaves(data, vi, c_air, c_ignore, c_snow, c_spruce_leaves)
-	local node_id = data[vi]
-	if node_id == c_air or node_id == c_ignore or node_id == c_snow then
-		data[vi] = c_spruce_leaves
-	end
-end
-
-function mcl_core.generate_v6_spruce_tree(pos)
-	local x, y, z = pos.x, pos.y, pos.z
-	local maxy = y + math.random(9, 13) -- Trunk top
-
-	local c_air = minetest.get_content_id("air")
-	local c_ignore = minetest.get_content_id("ignore")
-	local c_spruce_tree = minetest.get_content_id("mcl_core:sprucetree")
-	local c_spruce_leaves  = minetest.get_content_id("mcl_core:spruceleaves")
-	local c_snow = minetest.get_content_id("mcl_core:snow")
-
-	local vm = minetest.get_voxel_manip()
-	local minp, maxp = vm:read_from_map(
-		{x = x - 3, y = y, z = z - 3},
-		{x = x + 3, y = maxy + 3, z = z + 3}
-	)
-	local a = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
-	local data = vm:get_data()
-
-	-- Upper branches layer
-	local dev = 3
-	for yy = maxy - 1, maxy + 1 do
-		for zz = z - dev, z + dev do
-			local vi = a:index(x - dev, yy, zz)
-			local via = a:index(x - dev, yy + 1, zz)
-			for xx = x - dev, x + dev do
-				if math.random() < 0.95 - dev * 0.05 then
-					add_spruce_leaves(data, vi, c_air, c_ignore, c_snow,
-						c_spruce_leaves)
-				end
-				vi  = vi + 1
-				via = via + 1
-			end
-		end
-		dev = dev - 1
-	end
-
-	-- Centre top nodes
-	add_spruce_leaves(data, a:index(x, maxy + 1, z), c_air, c_ignore, c_snow,
-		c_spruce_leaves)
-	add_spruce_leaves(data, a:index(x, maxy + 2, z), c_air, c_ignore, c_snow,
-		c_spruce_leaves) -- Paramat added a pointy top node
-
-	-- Lower branches layer
-	local my = 0
-	for i = 1, 20 do -- Random 2x2 squares of leaves
-		local xi = x + math.random(-3, 2)
-		local yy = maxy + math.random(-6, -5)
-		local zi = z + math.random(-3, 2)
-		if yy > my then
-			my = yy
-		end
-		for zz = zi, zi+1 do
-			local vi = a:index(xi, yy, zz)
-			local via = a:index(xi, yy + 1, zz)
-			for xx = xi, xi + 1 do
-				add_spruce_leaves(data, vi, c_air, c_ignore, c_snow,
-					c_spruce_leaves)
-				vi  = vi + 1
-				via = via + 1
-			end
-		end
-	end
-
-	dev = 2
-	for yy = my + 1, my + 2 do
-		for zz = z - dev, z + dev do
-			local vi = a:index(x - dev, yy, zz)
-			local via = a:index(x - dev, yy + 1, zz)
-			for xx = x - dev, x + dev do
-				if math.random() < 0.95 - dev * 0.05 then
-					add_spruce_leaves(data, vi, c_air, c_ignore, c_snow,
-						c_spruce_leaves)
-				end
-				vi  = vi + 1
-				via = via + 1
-			end
-		end
-		dev = dev - 1
-	end
-
-	-- Trunk
-	-- Force-place lowest trunk node to replace sapling
-	data[a:index(x, y, z)] = c_spruce_tree
-	for yy = y + 1, maxy do
-		local vi = a:index(x, yy, z)
-		local node_id = data[vi]
-		if node_id == c_air or node_id == c_ignore or
-				node_id == c_spruce_leaves or node_id == c_snow then
-			data[vi] = c_spruce_tree
-		end
-	end
-
-	vm:set_data(data)
-	vm:write_to_map()
-end
-
-mcl_core.generate_spruce_tree = function(pos)
-	local r = math.random(1, 3)
-	local path = minetest.get_modpath("mcl_core") .. "/schematics/mcl_core_spruce_"..r..".mts"
-	minetest.place_schematic({ x = pos.x - 3, y = pos.y - 1, z = pos.z - 3 }, path, "0", nil, false)
-end
-
-mcl_core.generate_huge_spruce_tree = function(pos)
-	local r1 = math.random(1, 2)
-	local r2 = math.random(1, 4)
-	local path
-	local offset = { x = -4, y = -1, z = -5 }
-	if r1 <= 2 then
-		-- Mega Spruce Taiga (full canopy)
-		path = minetest.get_modpath("mcl_core") .. "/schematics/mcl_core_spruce_huge_"..r2..".mts"
-	else
-		-- Mega Taiga (leaves only at top)
-		if r2 == 1 or r2 == 3 then
-			offset = { x = -3, y = -1, z = -4}
-		end
-		path = minetest.get_modpath("mcl_core") .. "/schematics/mcl_core_spruce_huge_up_"..r2..".mts"
-	end
-	minetest.place_schematic(vector.add(pos, offset), path, "0", nil, false)
-end
-
--- END of spruce tree functions --
-
--- Acacia tree (multiple variants)
-function mcl_core.generate_acacia_tree(pos)
-	local r = math.random(1, 7)
-	local offset = vector.new()
-	if r == 2 or r == 3 then
-		offset = { x = -4, y = -1, z = -4 }
-	elseif r == 4 or r == 6 or r == 7 then
-		offset = { x = -3, y = -1, z = -3 }
-	elseif r == 1 or r == 5 then
-		offset = { x = -5, y = -1, z = -5 }
-	end
-	local path = minetest.get_modpath("mcl_core") .. "/schematics/mcl_core_acacia_"..r..".mts"
-	minetest.place_schematic(vector.add(pos, offset), path, "random", nil, false)
-end
-
--- Generate dark oak tree with 2×2 trunk.
--- With pos being the lower X and the higher Z value of the trunk
-function mcl_core.generate_dark_oak_tree(pos)
-	local path = minetest.get_modpath("mcl_core") ..
-		"/schematics/mcl_core_dark_oak.mts"
-	minetest.place_schematic({x = pos.x - 3, y = pos.y - 1, z = pos.z - 4}, path, "random", nil, false)
-end
-
 -- Helper function for jungle tree, form Minetest Game 0.4.15
 local function add_trunk_and_leaves(data, a, pos, tree_cid, leaves_cid,
 		height, size, iters)
@@ -651,68 +477,6 @@ local function add_trunk_and_leaves(data, a, pos, tree_cid, leaves_cid,
 	end
 end
 
--- Old jungle tree grow function from Minetest Game 0.4.15, imitating v6 jungle trees
-function mcl_core.generate_v6_jungle_tree(pos)
-	--[[
-		NOTE: Jungletree-placing code is currently duplicated in the engine
-		and in games that have saplings; both are deprecated but not
-		replaced yet
-	--]]
-
-	local x, y, z = pos.x, pos.y, pos.z
-	local height = math.random(8, 12)
-	local c_air = minetest.get_content_id("air")
-	local c_ignore = minetest.get_content_id("ignore")
-	local c_jungletree = minetest.get_content_id("mcl_core:jungletree")
-	local c_jungleleaves = minetest.get_content_id("mcl_core:jungleleaves")
-
-	local vm = minetest.get_voxel_manip()
-	local minp, maxp = vm:read_from_map(
-		{x = x - 3, y = y - 1, z = z - 3},
-		{x = x + 3, y = y + height + 1, z = z + 3}
-	)
-	local a = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
-	local data = vm:get_data()
-
-	add_trunk_and_leaves(data, a, pos, c_jungletree, c_jungleleaves, height, 3, 30)
-
-	-- Roots
-	for z_dist = -1, 1 do
-		local vi_1 = a:index(x - 1, y - 1, z + z_dist)
-		local vi_2 = a:index(x - 1, y, z + z_dist)
-		for x_dist = -1, 1 do
-			if math.random(1, 3) >= 2 then
-				if data[vi_1] == c_air or data[vi_1] == c_ignore then
-					data[vi_1] = c_jungletree
-				elseif data[vi_2] == c_air or data[vi_2] == c_ignore then
-					data[vi_2] = c_jungletree
-				end
-			end
-			vi_1 = vi_1 + 1
-			vi_2 = vi_2 + 1
-		end
-	end
-
-	vm:set_data(data)
-	vm:write_to_map()
-end
-
-function mcl_core.generate_jungle_tree(pos)
-	local path = minetest.get_modpath("mcl_core") ..
-		"/schematics/mcl_core_jungle_tree.mts"
-	minetest.place_schematic({x = pos.x - 2, y = pos.y - 1, z = pos.z - 2}, path, "random", nil, false)
-end
-
--- Generate huge jungle tree with 2×2 trunk.
--- With pos being the lower X and the higher Z value of the trunk.
-function mcl_core.generate_huge_jungle_tree(pos)
-	-- 2 variants
-	local r = math.random(1, 2)
-	local path = minetest.get_modpath("mcl_core") ..
-		"/schematics/mcl_core_jungle_tree_huge_"..r..".mts"
-	minetest.place_schematic({x = pos.x - 6, y = pos.y - 1, z = pos.z - 7}, path, "random", nil, false)
-end
-
 
 local grass_spread_randomizer = PseudoRandom(minetest.get_mapgen_setting("seed"))
 
@@ -732,12 +496,12 @@ function mcl_core.get_grass_block_type(pos)
 end
 
 ------------------------------
--- Spread grass blocks and mycelium on neighbor dirt
+-- Spread grass blocks on neighbor dirt
 ------------------------------
 minetest.register_abm({
-	label = "Grass Block and Mycelium spread",
+	label = "Grass Block spread",
 	nodenames = {"mcl_core:dirt"},
-	neighbors = {"air", "group:grass_block_no_snow", "mcl_core:mycelium"},
+	neighbors = {"air", "group:grass_block_no_snow"},
 	interval = 30,
 	chance = 20,
 	catch_up = false,
@@ -754,7 +518,7 @@ minetest.register_abm({
 		end
 		local light_self = minetest.get_node_light(above)
 		if not light_self then return end
-		--[[ Try to find a spreading dirt-type block (e.g. grass block or mycelium)
+		--[[ Try to find a spreading dirt-type block (e.g. grass block)
 		within a 3×5×3 area, with the source block being on the 2nd-topmost layer. ]]
 		local nodes = minetest.find_nodes_in_area({x=pos.x-1, y=pos.y-1, z=pos.z-1}, {x=pos.x+1, y=pos.y+3, z=pos.z+1}, "group:spreading_dirt_type")
 		local p2
@@ -771,7 +535,7 @@ minetest.register_abm({
 		if not light_source then return end
 
 		if light_self >= 4 and light_source >= 9 then
-			-- All checks passed! Let's spread the grass/mycelium!
+			-- All checks passed! Let's spread the grass!
 			local n2 = minetest.get_node(p2)
 			if minetest.get_item_group(n2.name, "grass_block") ~= 0 then
 				n2 = mcl_core.get_grass_block_type(pos)
@@ -781,9 +545,9 @@ minetest.register_abm({
 	end
 })
 
--- Grass/mycelium death in darkness
+-- Grass death in darkness
 minetest.register_abm({
-	label = "Grass Block / Mycelium in darkness",
+	label = "Grass Block in darkness",
 	nodenames = {"group:spreading_dirt_type"},
 	interval = 8,
 	chance = 50,
@@ -791,7 +555,7 @@ minetest.register_abm({
 	action = function(pos, node)
 		local above = {x = pos.x, y = pos.y + 1, z = pos.z}
 		local name = minetest.get_node(above).name
-		-- Kill grass/mycelium when below opaque block or liquid
+		-- Kill grass when below opaque block or liquid
 		if name ~= "ignore" and (minetest.get_item_group(name, "opaque") == 1 or minetest.get_item_group(name, "liquid") ~= 0) then
 			minetest.set_node(pos, {name = "mcl_core:dirt"})
 		end
@@ -827,36 +591,6 @@ minetest.register_abm({
 })
 
 local SAVANNA_INDEX = 1
-minetest.register_lbm({
-	label = "Replace legacy dry grass",
-	name = "mcl_core:replace_legacy_dry_grass_0_65_0",
-	nodenames = {"mcl_core:dirt_with_dry_grass", "mcl_core:dirt_with_dry_grass_snow"},
-	action = function(pos, node)
-		local biome_data = minetest.get_biome_data(pos)
-		if biome_data then
-			local biome = biome_data.biome
-			local biome_name = minetest.get_biome_name(biome)
-			local reg_biome = minetest.registered_biomes[biome_name]
-			if reg_biome then
-				if node.name == "mcl_core:dirt_with_dry_grass_snow" then
-					node.name = "mcl_core:dirt_with_grass_snow"
-				else
-					node.name = "mcl_core:dirt_with_grass"
-				end
-				node.param2 = reg_biome._mcl_palette_index
-				-- Fall back to savanna palette index
-				if not node.param2 then
-					node.param2 = SAVANNA_INDEX
-				end
-				minetest.set_node(pos, node)
-				return
-			end
-		end
-		node.param2 = SAVANNA_INDEX
-		minetest.set_node(pos, node)
-		return
-	end,
-})
 
 --------------------------
 -- Try generate tree   ---
@@ -1328,7 +1062,7 @@ function mcl_core.melt_ice(pos)
 	local below = {x=pos.x, y=pos.y-1, z=pos.z}
 	local belownode = minetest.get_node(below)
 	local dim = mcl_worlds.pos_to_dimension(below)
-	if dim ~= "nether" and belownode.name ~= "air" and belownode.name ~= "ignore" and belownode.name ~= "mcl_core:void" then
+	if belownode.name ~= "air" and belownode.name ~= "ignore" and belownode.name ~= "mcl_core:void" then
 		minetest.set_node(pos, {name="mcl_core:water_source"})
 	else
 		minetest.remove_node(pos)

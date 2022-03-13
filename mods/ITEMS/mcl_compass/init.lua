@@ -34,24 +34,20 @@ minetest.register_globalstep(function(dtime)
 			local dim = mcl_worlds.pos_to_dimension(pos)
 			local compass_image
 			-- Compasses do not work in certain zones
-			if not mcl_worlds.compass_works(pos) then
-				compass_image = random_frame
-			else
-				local spawn = {x=0,y=0,z=0}
-				local ssp = minetest.setting_get_pos("static_spawnpoint")
-				if ssp then
-					spawn = ssp
-					if type(spawn) ~= "table" or type(spawn.x) ~= "number" or type(spawn.y) ~= "number" or type(spawn.z) ~= "number" then
-						spawn = {x=0,y=0,z=0}
-					end
+			local spawn = {x=0,y=0,z=0}
+			local ssp = minetest.setting_get_pos("static_spawnpoint")
+			if ssp then
+				spawn = ssp
+				if type(spawn) ~= "table" or type(spawn.x) ~= "number" or type(spawn.y) ~= "number" or type(spawn.z) ~= "number" then
+					spawn = {x=0,y=0,z=0}
 				end
-				local dir = player:get_look_horizontal()
-				local angle_north = math.deg(math.atan2(spawn.x - pos.x, spawn.z - pos.z))
-				if angle_north < 0 then angle_north = angle_north + 360 end
-				local angle_dir = -math.deg(dir)
-				local angle_relative = (angle_north - angle_dir + 180) % 360
-				compass_image = math.floor((angle_relative/11.25) + 0.5) % compass_frames
 			end
+			local dir = player:get_look_horizontal()
+			local angle_north = math.deg(math.atan2(spawn.x - pos.x, spawn.z - pos.z))
+			if angle_north < 0 then angle_north = angle_north + 360 end
+			local angle_dir = -math.deg(dir)
+			local angle_relative = (angle_north - angle_dir + 180) % 360
+			compass_image = math.floor((angle_relative/11.25) + 0.5) % compass_frames
 
 			for j,stack in ipairs(player:get_inventory():get_list("main")) do
 				if minetest.get_item_group(stack:get_name(), "compass") ~= 0 and

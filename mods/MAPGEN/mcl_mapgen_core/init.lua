@@ -49,10 +49,6 @@ minetest.register_alias("mapgen_air", "air")
 minetest.register_alias("mapgen_stone", "mcl_core:stone")
 minetest.register_alias("mapgen_tree", "mcl_core:tree")
 minetest.register_alias("mapgen_leaves", "mcl_core:leaves")
-minetest.register_alias("mapgen_jungletree", "mcl_core:jungletree")
-minetest.register_alias("mapgen_jungleleaves", "mcl_core:jungleleaves")
-minetest.register_alias("mapgen_pine_tree", "mcl_core:sprucetree")
-minetest.register_alias("mapgen_pine_needles", "mcl_core:spruceleaves")
 
 minetest.register_alias("mapgen_apple", "mcl_core:leaves")
 minetest.register_alias("mapgen_water_source", "mcl_core:water_source")
@@ -65,7 +61,6 @@ minetest.register_alias("mapgen_clay", "mcl_core:clay")
 minetest.register_alias("mapgen_lava_source", "air") -- Built-in lava generator is too unpredictable, we generate lava on our own
 minetest.register_alias("mapgen_cobble", "mcl_core:cobble")
 minetest.register_alias("mapgen_mossycobble", "mcl_core:mossycobble")
-minetest.register_alias("mapgen_junglegrass", "mcl_flowers:fern")
 minetest.register_alias("mapgen_stone_with_coal", "mcl_core:stone_with_coal")
 minetest.register_alias("mapgen_stone_with_iron", "mcl_core:stone_with_iron")
 minetest.register_alias("mapgen_desert_sand", "mcl_core:sand")
@@ -548,7 +543,7 @@ local function register_mgv6_decorations()
 		-- Mushrooms next to trees
 		minetest.register_decoration({
 			deco_type = "simple",
-			place_on = {"group:grass_block_no_snow", "mcl_core:dirt", "mcl_core:podzol", "mcl_core:mycelium", "mcl_core:stone"},
+			place_on = {"group:grass_block_no_snow", "mcl_core:dirt", "mcl_core:stone"},
 			sidelen = 16,
 			noise_params = {
 				offset = 0.04,
@@ -809,7 +804,7 @@ local generate_underground_mushrooms = function(minp, maxp, seed)
 
 	local pr_shroom = PseudoRandom(seed)
 	local bpos
-	local stone = minetest.find_nodes_in_area_under_air(minp, maxp, {"mcl_core:stone", "mcl_core:dirt", "mcl_core:mycelium", "mcl_core:podzol", "mcl_core:stone_with_coal", "mcl_core:stone_with_iron", "mcl_core:stone_with_gold"})
+	local stone = minetest.find_nodes_in_area_under_air(minp, maxp, {"mcl_core:stone", "mcl_core:dirt", "mcl_core:stone_with_coal", "mcl_core:stone_with_iron", "mcl_core:stone_with_gold"})
 
 	for n = 1, #stone do
 		bpos = {x = stone[n].x, y = stone[n].y + 1, z = stone[n].z }

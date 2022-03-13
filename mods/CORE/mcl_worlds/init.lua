@@ -47,26 +47,6 @@ function mcl_worlds.layer_to_y(layer, mc_dimension)
        end
 end
 
--- Takes a position and returns true if this position can have weather
-function mcl_worlds.has_weather(pos)
-	-- Weather in the Overworld and the high part of the void below
-	return pos.y <= mcl_vars.mg_overworld_max and pos.y >= mcl_vars.mg_overworld_min - 64
-end
-
--- Takes a position and returns true if this position can have Nether dust
-function mcl_worlds.has_dust(pos)
-	-- Weather in the Overworld and the high part of the void below
-	return pos.y <= mcl_vars.mg_nether_max + 64 and pos.y >= mcl_vars.mg_nether_min - 64
-end
-
--- Takes a position (pos) and returns true if compasses are working here
-function mcl_worlds.compass_works(pos)
-	return true
-end
-
--- Takes a position (pos) and returns true if clocks are working here
-mcl_worlds.clock_works = mcl_worlds.compass_works
-
 --------------- CALLBACKS ------------------
 mcl_worlds.registered_on_dimension_change = {}
 
