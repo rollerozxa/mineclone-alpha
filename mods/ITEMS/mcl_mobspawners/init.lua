@@ -267,12 +267,6 @@ minetest.register_node("mcl_mobspawners:spawner", {
 			end
 		end
 
-		local name = placer:get_player_name()
-		local privs = minetest.get_player_privs(name)
-		if not privs.maphack then
-			minetest.chat_send_player(name, "Placement denied. You need the “maphack” privilege to place mob spawners.")
-			return itemstack
-		end
 		local node_under = minetest.get_node(pointed_thing.under)
 		local new_itemstack, success = minetest.item_place(itemstack, placer, pointed_thing)
 		if success then

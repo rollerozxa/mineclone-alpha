@@ -15,9 +15,9 @@ minetest.register_globalstep(function(dtime)
 	    pp.y = math.ceil(pp.y)
             local loc = vector.add(pp, {x=0,y=-1,z=0})
             if loc ~= nil then
-               
+
                 local nodeiamon = minetest.get_node(loc)
-                
+
                 if nodeiamon ~= nil then
                     local def = minetest.registered_nodes[nodeiamon.name]
                     if def ~= nil and def.on_walk_over ~= nil then
@@ -26,10 +26,10 @@ minetest.register_globalstep(function(dtime)
                     for _, func in ipairs(walkover.registered_globals) do
 						func(loc, nodeiamon, player)
                     end
-                end   
+                end
             end
         end
-	 
+
 		timer = 0
 	end
 end)

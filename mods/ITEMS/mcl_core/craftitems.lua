@@ -114,7 +114,6 @@ local function eat_gapple(itemstack, placer, pointed_thing)
 end
 
 minetest.register_craftitem("mcl_core:apple_gold", {
-	-- TODO: Add special highlight color
 	description = S("Golden Apple"),
 	wield_image = "mcl_core_apple_golden.png",
 	inventory_image = "mcl_core_apple_golden.png",

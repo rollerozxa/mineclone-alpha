@@ -353,8 +353,6 @@ function mesecon.mvps_move_objects(pos, dir, nodestack)
 end
 
 -- Unmovable by design
-mesecon.register_mvps_stopper("mcl_core:barrier")
-mesecon.register_mvps_stopper("mcl_core:realm_barrier")
 mesecon.register_mvps_stopper("mcl_core:void")
 mesecon.register_mvps_stopper("mcl_core:bedrock")
 mesecon.register_mvps_stopper("mcl_core:obsidian")

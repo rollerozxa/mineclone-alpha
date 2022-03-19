@@ -673,7 +673,6 @@ end
 
 -- Perlin noise objects
 local perlin_structures
-local perlin_vines, perlin_vines_fine, perlin_vines_upwards, perlin_vines_length, perlin_vines_density
 local perlin_clay
 
 local function generate_clay(minp, maxp, blockseed, voxelmanip_data, voxelmanip_area, lvm_used)
@@ -999,7 +998,7 @@ local function basic(vm, data, data2, emin, emax, area, minp, maxp, blockseed)
 			--lvm_used = set_layers(data, area, c_lava, c_air, mcl_vars.mg_overworld_min, mcl_vars.mg_lava_overworld_max, emin, emax, lvm_used, pr)
 		end
 
-		-- Clay, vines, cocoas
+		-- Clay
 		lvm_used = generate_clay(minp, maxp, blockseed, data, area, lvm_used)
 
 		biomemap = minetest.get_mapgen_object("biomemap")
@@ -1012,40 +1011,8 @@ local function basic(vm, data, data2, emin, emax, area, minp, maxp, blockseed)
 		-- and fixes floating sand and cut plants.
 		-- A snowy grass block must be below a top snow or snow block at all times.
 		if emin.y <= mcl_vars.mg_overworld_max and emax.y >= mcl_vars.mg_overworld_min then
-			-- v6 mapgen:
-			if mg_name == "v6" then
-
-				--[[ Remove broken double plants caused by v6 weirdness.
-				v6 might break the bottom part of double plants because of how it works.
-				There are 3 possibilities:
-				1) Jungle: Top part is placed on top of a jungle tree or fern (=v6 jungle grass).
-					This is because the schematic might be placed even if some nodes of it
-					could not be placed because the destination was already occupied.
-					TODO: A better fix for this would be if schematics could abort placement
-					altogether if ANY of their nodes could not be placed.
-				2) Cavegen: Removes the bottom part, the upper part floats
-				3) Mudflow: Same as 2) ]]
-				local plants = minetest.find_nodes_in_area(emin, emax, "group:double_plant")
-				for n = 1, #plants do
-					local node = vm:get_node_at(plants[n])
-					local is_top = minetest.get_item_group(node.name, "double_plant") == 2
-					if is_top then
-						local p_pos = area:index(plants[n].x, plants[n].y-1, plants[n].z)
-						if p_pos then
-							node = vm:get_node_at({x=plants[n].x, y=plants[n].y-1, z=plants[n].z})
-							local is_bottom = minetest.get_item_group(node.name, "double_plant") == 1
-							if not is_bottom then
-								p_pos = area:index(plants[n].x, plants[n].y, plants[n].z)
-								data[p_pos] = c_air
-								lvm_used = true
-							end
-						end
-					end
-				end
-
-
 			-- Non-v6 mapgens:
-			else
+			if mg_name ~= "v6" then
 				-- Set param2 (=color) of grass blocks.
 				-- Clear snowy grass blocks without snow above to ensure consistency.
 				local nodes = minetest.find_nodes_in_area(minp, maxp, {"mcl_core:dirt_with_grass", "mcl_core:dirt_with_grass_snow"})

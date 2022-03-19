@@ -9,7 +9,6 @@ local DARK_OAK_TREE_ID = 2
 local SPRUCE_TREE_ID = 3
 local ACACIA_TREE_ID = 4
 local JUNGLE_TREE_ID = 5
-local BIRCH_TREE_ID = 6
 
 minetest.register_abm({
 	label = "Lava cooling",
@@ -421,13 +420,6 @@ function mcl_core.generate_oak_tree(pos)
 	minetest.place_schematic(vector.add(pos, offset), path, "random", nil, false)
 end
 
--- Birch
-function mcl_core.generate_birch_tree(pos)
-	local path = minetest.get_modpath("mcl_core") ..
-		"/schematics/mcl_core_birch.mts"
-	minetest.place_schematic({x = pos.x - 2, y = pos.y - 1, z = pos.z - 2}, path, "random", nil, false)
-end
-
 -- Helper function for jungle tree, form Minetest Game 0.4.15
 local function add_trunk_and_leaves(data, a, pos, tree_cid, leaves_cid,
 		height, size, iters)
@@ -774,136 +766,6 @@ local function leafdecay_particles(pos, node)
 	})
 end
 
-local function vinedecay_particles(pos, node)
-	local dir = minetest.wallmounted_to_dir(node.param2)
-	local relpos1, relpos2
-	if dir.x < 0 then
-		relpos1 = { x = -0.45, y = -0.4, z = -0.5 }
-		relpos2 = { x = -0.4, y = 0.4, z = 0.5 }
-	elseif dir.x > 0 then
-		relpos1 = { x = 0.4, y = -0.4, z = -0.5 }
-		relpos2 = { x = 0.45, y = 0.4, z = 0.5 }
-	elseif dir.z < 0 then
-		relpos1 = { x = -0.5, y = -0.4, z = -0.45 }
-		relpos2 = { x = 0.5, y = 0.4, z = -0.4 }
-	elseif dir.z > 0 then
-		relpos1 = { x = -0.5, y = -0.4, z = 0.4 }
-		relpos2 = { x = 0.5, y = 0.4, z = 0.45 }
-	else
-		return
-	end
-
-	minetest.add_particlespawner({
-		amount = math.random(8, 16),
-		time = 0.1,
-		minpos = vector.add(pos, relpos1),
-		maxpos = vector.add(pos, relpos2),
-		minvel = {x=-0.2, y=-0.2, z=-0.2},
-		maxvel = {x=0.2, y=0.1, z=0.2},
-		minacc = {x=0, y=-9.81, z=0},
-		maxacc = {x=0, y=-9.81, z=0},
-		minexptime = 0.1,
-		maxexptime = 0.5,
-		minsize = 0.5,
-		maxsize = 1.0,
-		collisiondetection = true,
-		vertical = false,
-		node = node,
-	})
-end
-
----------------------
--- Vine generating --
----------------------
-minetest.register_abm({
-	label = "Vines growth",
-	nodenames = {"mcl_core:vine"},
-	interval = 47,
-	chance = 4,
-	action = function(pos, node, active_object_count, active_object_count_wider)
-
-		-- First of all, check if we are even supported, otherwise, let's die!
-		if not mcl_core.check_vines_supported(pos, node) then
-			minetest.remove_node(pos)
-			vinedecay_particles(pos, node)
-			core.check_for_falling(pos)
-			return
-		end
-
-		-- Add vines below pos (if empty)
-		local spread_down = function(origin, target, dir, node)
-			if math.random(1, 2) == 1 then
-				if minetest.get_node(target).name == "air" then
-					minetest.add_node(target, {name = "mcl_core:vine", param2 = node.param2})
-				end
-			end
-		end
-
-		-- Add vines above pos if it is backed up
-		local spread_up = function(origin, target, dir, node)
-			local vines_in_area = minetest.find_nodes_in_area({x=origin.x-4, y=origin.y-1, z=origin.z-4}, {x=origin.x+4, y=origin.y+1, z=origin.z+4}, "mcl_core:vine")
-			-- Less then 4 vines blocks around the ticked vines block (remember the ticked block is counted by above function as well)
-			if #vines_in_area < 5 then
-				if math.random(1, 2) == 1 then
-					if minetest.get_node(target).name == "air" then
-						local backup_dir = minetest.wallmounted_to_dir(node.param2)
-						local backup = vector.subtract(target, backup_dir)
-						local backupnodename = minetest.get_node(backup).name
-
-						-- Check if the block above is supported
-						if mcl_core.supports_vines(backupnodename) then
-							minetest.add_node(target, {name = "mcl_core:vine", param2 = node.param2})
-						end
-					end
-				end
-			end
-		end
-
-		local spread_horizontal = function(origin, target, dir, node)
-			local vines_in_area = minetest.find_nodes_in_area({x=origin.x-4, y=origin.y-1, z=origin.z-4}, {x=origin.x+4, y=origin.y+1, z=origin.z+4}, "mcl_core:vine")
-			-- Less then 4 vines blocks around the ticked vines block (remember the ticked block is counted by above function as well)
-			if #vines_in_area < 5 then
-				-- Spread horizontally
-				local backup_dir = minetest.wallmounted_to_dir(node.param2)
-				if not vector.equals(backup_dir, dir) then
-					local target_node = minetest.get_node(target)
-					if target_node.name == "air" then
-						local backup = vector.add(target, backup_dir)
-						local backupnodename = minetest.get_node(backup).name
-						if mcl_core.supports_vines(backupnodename) then
-							minetest.add_node(target, {name = "mcl_core:vine", param2 = node.param2})
-						end
-					end
-				end
-			end
-		end
-
-		local directions = {
-			{ { x= 1, y= 0, z= 0 }, spread_horizontal },
-			{ { x=-1, y= 0, z= 0 }, spread_horizontal },
-			{ { x= 0, y= 1, z= 0 }, spread_up },
-			{ { x= 0, y=-1, z= 0 }, spread_down },
-			{ { x= 0, y= 0, z= 1 }, spread_horizontal },
-			{ { x= 0, y= 0, z=-1 }, spread_horizontal },
-		}
-
-		local d = math.random(1, #directions)
-		local dir = directions[d][1]
-		local spread = directions[d][2]
-
-		spread(pos, vector.add(pos, dir), dir, node)
-	end
-})
-
--- Returns true of the node supports vines
-mcl_core.supports_vines = function(nodename)
-	local def = minetest.registered_nodes[nodename]
-	-- Rules: 1) walkable 2) full cube
-	return def.walkable and
-			(def.node_box == nil or def.node_box.type == "regular") and
-			(def.collision_box == nil or def.collision_box.type == "regular")
-end
-
 -- Leaf Decay
 
 -- To enable leaf decay for a node, add it to the "leafdecay" group.
@@ -990,25 +852,6 @@ minetest.register_abm({
 			minetest.remove_node(p0)
 			leafdecay_particles(p0, n0)
 			core.check_for_falling(p0)
-
-			-- Kill depending vines immediately to skip the vines decay delay
-			local surround = {
-				{ x = 0, y = 0, z = -1 },
-				{ x = 0, y = 0, z = 1 },
-				{ x = -1, y = 0, z = 0 },
-				{ x = 1, y = 0, z = 0 },
-				{ x = 0, y = -1, z = -1 },
-			}
-			for s=1, #surround do
-				local spos = vector.add(p0, surround[s])
-				local maybe_vine = minetest.get_node(spos)
-				local surround_inverse = vector.multiply(surround[s], -1)
-				if maybe_vine.name == "mcl_core:vine" and (not mcl_core.check_vines_supported(spos, maybe_vine)) then
-					minetest.remove_node(spos)
-					vinedecay_particles(spos, maybe_vine)
-					core.check_for_falling(spos)
-				end
-			end
 		end
 	end
 })
@@ -1029,32 +872,6 @@ minetest.register_abm({
 		end
 	end
 })
-
---[[ Call this for vines nodes only.
-Given the pos and node of a vines node, this returns true if the vines are supported
-and false if the vines are currently floating.
-Vines are considered “supported” if they face a walkable+solid block or “hang” from a vines node above. ]]
-function mcl_core.check_vines_supported(pos, node)
-	local supported = false
-	local dir = minetest.wallmounted_to_dir(node.param2)
-	local pos1 = vector.add(pos, dir)
-	local node_neighbor = minetest.get_node(pos1)
-	-- Check if vines are attached to a solid block.
-	-- If ignore, we assume its solid.
-	if node_neighbor.name == "ignore" or mcl_core.supports_vines(node_neighbor.name) then
-		supported = true
-	elseif dir.y == 0 then
-		-- Vines are not attached, now we check if the vines are “hanging” below another vines block
-		-- of equal orientation.
-		local pos2 = vector.add(pos, {x=0, y=1, z=0})
-		local node2 = minetest.get_node(pos2)
-		-- Again, ignore means we assume its supported
-		if node2.name == "ignore" or (node2.name == "mcl_core:vine" and node2.param2 == node.param2) then
-			supported = true
-		end
-	end
-	return supported
-end
 
 -- Melt ice at pos. mcl_core:ice MUST be at pos if you call this!
 function mcl_core.melt_ice(pos)

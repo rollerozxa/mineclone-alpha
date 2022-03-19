@@ -12,23 +12,6 @@ mcl_hbarmor.armor = {}
 -- Stores if player's HUD bar has been initialized so far.
 mcl_hbarmor.player_active = {}
 
--- Time difference in seconds between updates to the HUD armor bar.
--- Increase this number for slow servers.
-mcl_hbarmor.tick = 0.1
-
--- If true, the armor bar is hidden when the player does not wear any armor
-mcl_hbarmor.autohide = true
-
-set = minetest.settings:get("mcl_hbarmor_tick")
-if tonumber(set) ~= nil then
-	mcl_hbarmor.tick = tonumber(set)
-end
-
-
-local must_hide = function(playername, arm)
-	return arm == 0
-end
-
 local arm_printable = function(arm)
 	return math.ceil(math.floor(arm+0.5))
 end
@@ -46,18 +29,12 @@ local function custom_hud(player)
 		if not arm then
 			arm = 0
 		end
-		local hide
-		if mcl_hbarmor.autohide then
-			hide = must_hide(name, arm)
-		else
-			hide = false
-		end
-		hb.init_hudbar(player, "armor", arm_printable(arm), nil, hide)
+		hb.init_hudbar(player, "armor", arm_printable(arm), nil, arm == 0)
 	end
 end
 
 --register and define armor HUD bar
-hb.register_hudbar("armor", 0xFFFFFF, S("Armor"), { icon = "hbarmor_icon.png", bgicon = "hbarmor_bgicon.png", bar = "hbarmor_bar.png" }, 0, 20, mcl_hbarmor.autohide)
+hb.register_hudbar("armor", 0xFFFFFF, S("Armor"), { icon = "hbarmor_icon.png", bgicon = "hbarmor_bgicon.png" }, 0, 20, true)
 
 function mcl_hbarmor.get_armor(player)
 	if not player or not armor.def then
@@ -88,7 +65,7 @@ local function update_hud(player)
 	end
 	if mcl_hbarmor.autohide then
 		-- hide armor bar completely when there is none
-		if must_hide(name, arm) then
+		if arm == 0 then
 			hb.hide_hudbar(player, "armor")
 		else
 			hb.change_hudbar(player, "armor", arm_printable(arm))
@@ -115,9 +92,9 @@ local timer = 0
 minetest.register_globalstep(function(dtime)
 	main_timer = main_timer + dtime
 	timer = timer + dtime
-	if main_timer > mcl_hbarmor.tick or timer > 4 then
+	if main_timer > 0.2 or timer > 4 then
 		if minetest.settings:get_bool("enable_damage") then
-			if main_timer > mcl_hbarmor.tick then main_timer = 0 end
+			if main_timer > 0.2 then main_timer = 0 end
 			for _,player in ipairs(minetest.get_connected_players()) do
 				local name = player:get_player_name()
 				if mcl_hbarmor.player_active[name] == true then

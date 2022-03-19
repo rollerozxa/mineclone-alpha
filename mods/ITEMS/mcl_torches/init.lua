@@ -109,7 +109,7 @@ local function check_placement_allowed(node, wdir)
 	-- * soul sand
 	-- * mob spawner
 	-- * chorus flower
-	-- * glass, barrier, ice
+	-- * glass, ice
 	-- * Fence, wall: Only on top
 	-- * Slab, stairs: Only on top if upside down
 
@@ -122,7 +122,7 @@ local function check_placement_allowed(node, wdir)
 	elseif wdir == 0 then
 		return false
 	elseif not def.buildable_to then
-		if node.name ~= "mcl_core:ice" and node.name ~= "mcl_mobspawners:spawner" and node.name ~= "mcl_core:barrier" and (not def.groups.glass) and
+		if node.name ~= "mcl_core:ice" and node.name ~= "mcl_mobspawners:spawner" and (not def.groups.glass) and
 				((not def.groups.solid) or (not def.groups.opaque)) then
 			-- Only allow top placement on these nodes
 			if def.groups.fence == 1 or def.groups.wall or def.groups.slab_top == 1 or def.groups.pane or (def.groups.stair == 1 and minetest.facedir_to_dir(node.param2).y ~= 0) then
