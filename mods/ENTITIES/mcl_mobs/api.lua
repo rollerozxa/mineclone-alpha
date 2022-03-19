@@ -560,30 +560,6 @@ local effect = function(pos, amount, texture, min_size, max_size, radius, gravit
 	})
 end
 
-local damage_effect = function(self, damage)
-	-- damage particles
-	if (not disable_blood) and damage > 0 then
-
-		local amount_large = math.floor(damage / 2)
-		local amount_small = damage % 2
-
-		local pos = self.object:get_pos()
-
-		pos.y = pos.y + (self.collisionbox[5] - self.collisionbox[2]) * .5
-
-		local texture = "mobs_blood.png"
-		-- full heart damage (one particle for each 2 HP damage)
-		if amount_large > 0 then
-			effect(pos, amount_large, texture, 2, 2, 1.75, 0, nil, true)
-		end
-		-- half heart damage (one additional particle if damage is an odd number)
-		if amount_small > 0 then
-			-- TODO: Use "half heart"
-			effect(pos, amount_small, texture, 1, 1, 1.75, 0, nil, true)
-		end
-	end
-end
-
 mobs.death_effect = function(pos, yaw, collisionbox, rotate)
 	local min, max
 	if collisionbox then
@@ -616,12 +592,6 @@ mobs.death_effect = function(pos, yaw, collisionbox, rotate)
 		vertical = false,
 		texture = "mcl_particles_mob_death.png^[colorize:#000000:255",
 	})
-
-	minetest.sound_play("mcl_mobs_mob_poof", {
-		pos = pos,
-		gain = 1.0,
-		max_hear_distance = 8,
-	}, true)
 end
 
 local update_tag = function(self)
@@ -1181,7 +1151,6 @@ local do_env_damage = function(self)
 				else
 					dmg = 4
 				end
-				damage_effect(self, dmg)
 				self.health = self.health - dmg
 			end
 			if check_for_death(self, "drowning", {type = "environment",
@@ -3020,14 +2989,7 @@ local mob_punch = function(self, hitter, tflp, tool_capabilities, dir)
 				object = self.object, --hitter,
 				max_hear_distance = 8
 			}, true)
-		else
-			minetest.sound_play("default_punch", {
-				object = self.object,
-				max_hear_distance = 5
-			}, true)
 		end
-
-		damage_effect(self, damage)
 
 		-- do damage
 		self.health = self.health - damage
@@ -4309,10 +4271,6 @@ function mobs:register_egg(mob, desc, background, addegg, no_creative)
 				if mod_mobspawners and under.name == "mcl_mobspawners:spawner" then
 					if minetest.is_protected(pointed_thing.under, name) then
 						minetest.record_protection_violation(pointed_thing.under, name)
-						return itemstack
-					end
-					if not privs.maphack then
-						minetest.chat_send_player(name, S("You need the “maphack” privilege to change the mob spawner."))
 						return itemstack
 					end
 					mcl_mobspawners.setup_spawner(pointed_thing.under, itemstack:get_name())

@@ -22,7 +22,7 @@ mobs:register_mob("mobs_mc:creeper", {
 	mesh = "mobs_mc_creeper.b3d",
 	textures = {
 		{"mobs_mc_creeper.png",
-		"mobs_mc_empty.png"},
+		"blank.png"},
 	},
 	visual_size = {x=3, y=3},
 	sounds = {

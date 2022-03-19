@@ -9,57 +9,6 @@ local get_falling_depth = function(self)
 	return self._startpos.y - vector.round(self.object:get_pos()).y
 end
 
-local deal_falling_damage = function(self, dtime)
-	if minetest.get_item_group(self.node.name, "falling_node_damage") == 0 then
-		return
-	end
-	-- Cause damage to any player it hits.
-	-- Algorithm based on MC anvils.
-	-- TODO: Support smashing other objects, too.
-	local pos = self.object:get_pos()
-	if not self._startpos then
-		-- Fallback
-		self._startpos = pos
-	end
-	local objs = minetest.get_objects_inside_radius(pos, 1)
-	for _,v in ipairs(objs) do
-		local hp = v:get_hp()
-		if v:is_player() and hp ~= 0 then
-			if not self._hit_players then
-				self._hit_players = {}
-			end
-			local name = v:get_player_name()
-			local hit = false
-			for _,v in ipairs(self._hit_players) do
-				if name == v then
-					hit = true
-				end
-			end
-			if not hit then
-				table.insert(self._hit_players, name)
-				local way = self._startpos.y - pos.y
-				local damage = (way - 1) * 2
-				damage = math.min(40, math.max(0, damage))
-				if damage >= 1 then
-					hp = hp - damage
-					if hp < 0 then
-						hp = 0
-					end
-					if v:is_player() then
-						-- TODO: Reduce damage if wearing a helmet
-						local msg
-						msg = S("@1 was smashed by a falling block.", v:get_player_name())
-						if dmes then
-							mcl_death_messages.player_damage(v, msg)
-						end
-					end
-					v:set_hp(hp, { type = "punch", from = "mod" })
-				end
-			end
-		end
-	end
-end
-
 minetest.register_entity(":__builtin:falling_node", {
 	initial_properties = {
 		visual = "wielditem",
@@ -176,7 +125,6 @@ minetest.register_entity(":__builtin:falling_node", {
 					if minetest.registered_nodes[self.node.name]._mcl_after_falling then
 						minetest.registered_nodes[self.node.name]._mcl_after_falling(bcp, get_falling_depth(self))
 					end
-					deal_falling_damage(self, dtime)
 					self.object:remove()
 					return
 				end
@@ -215,7 +163,6 @@ minetest.register_entity(":__builtin:falling_node", {
 					minetest.add_item(np, dropped_item)
 				end
 			end
-			deal_falling_damage(self, dtime)
 			self.object:remove()
 			minetest.check_for_falling(np)
 			return
@@ -245,7 +192,6 @@ minetest.register_entity(":__builtin:falling_node", {
 						minetest.sound_play(def.sounds.place, {pos = np}, true)
 					end
 				end
-				deal_falling_damage(self, dtime)
 				self.object:remove()
 				minetest.check_for_falling(npos3)
 				return
@@ -254,7 +200,5 @@ minetest.register_entity(":__builtin:falling_node", {
 				self.object:set_pos(npos)
 			end
 		end
-
-		deal_falling_damage(self, dtime)
 	end
 })

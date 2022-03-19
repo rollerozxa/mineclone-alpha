@@ -11,13 +11,6 @@ This mod contains the API only for adding your own mobs into the world, so pleas
 https://forum.minetest.net/viewtopic.php?f=11&t=9917
 
 ------------
-Credits:
-
-mcl_mobs_mob_poof.ogg:
-- by Planman (license: Creative Commons Zero)
-- Source: <https://freesound.org/people/Planman/sounds/208111/>
-
-------------
 
 Changelog from original Mobs Redo mod:
 - 1.41- Mob pathfinding has been updated thanks to Elkien3
@@ -51,7 +44,7 @@ Changelog from original Mobs Redo mod:
 - 1.13- Added capture function (thanks blert2112) chance of picking up mob with hand; net; magic lasso, replaced some .x models with newer .b3d one's
 - 1.12- Added animal ownership so that players cannot steal your tamed animals
 - 1.11- Added flying mobs (and swimming), fly=true and fly_in="air" or "deafult:water_source" for fishy
-- 1,10- Footstep removed (use replace), explosion routine added for exploding mobs. 
+- 1,10- Footstep removed (use replace), explosion routine added for exploding mobs.
 - 1.09- reworked breeding routine, added mob rotation value, added footstep feature, added jumping mobs with sounds feature, added magic lasso for picking up animals
 - 1.08- Mob throwing attack has been rehauled so that they can damage one another, also drops and on_die function added
 - 1.07- Npc's can now be set to follow player or stand by using self.order and self.owner variables

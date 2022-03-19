@@ -315,11 +315,6 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 
 			if entity.lava_counter > 1 then
 
-				minetest.sound_play("default_punch", {
-					object = entity.object,
-					max_hear_distance = 5
-				}, true)
-
 				entity.object:punch(entity.object, 1.0, {
 					full_punch_interval = 1.0,
 					damage_groups = {fleshy = entity.lava_damage}

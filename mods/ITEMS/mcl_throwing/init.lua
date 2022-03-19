@@ -1,10 +1,8 @@
 mcl_throwing = {}
 
 local S = minetest.get_translator("mcl_throwing")
-local mod_death_messages = minetest.get_modpath("mcl_death_messages")
-local mod_fishing = minetest.get_modpath("mcl_fishing")
 
--- 
+--
 -- Snowballs and other throwable items
 --
 
@@ -13,13 +11,11 @@ local GRAVITY = tonumber(minetest.settings:get("movement_gravity"))
 local entity_mapping = {
 	["mcl_throwing:flying_bobber"] = "mcl_throwing:flying_bobber_entity",
 	["mcl_throwing:snowball"] = "mcl_throwing:snowball_entity",
-	["mcl_throwing:egg"] = "mcl_throwing:egg_entity",
 }
 
 local velocities = {
 	["mcl_throwing:flying_bobber_entity"] = 5,
 	["mcl_throwing:snowball_entity"] = 22,
-	["mcl_throwing:egg_entity"] = 22,
 }
 
 mcl_throwing.throw = function(throw_item, pos, dir, velocity, thrower)
@@ -89,20 +85,6 @@ local snowball_ENTITY={
 	timer=0,
 	textures = {"mcl_throwing_snowball.png"},
 	visual_size = {x=0.5, y=0.5},
-	collisionbox = {0,0,0,0,0,0},
-	pointable = false,
-
-	get_staticdata = get_staticdata,
-	on_activate = on_activate,
-	_thrower = nil,
-
-	_lastpos={},
-}
-local egg_ENTITY={
-	physical = false,
-	timer=0,
-	textures = {"mcl_throwing_egg.png"},
-	visual_size = {x=0.45, y=0.45},
 	collisionbox = {0,0,0,0,0,0},
 	pointable = false,
 
@@ -183,12 +165,11 @@ local snowball_on_step = function(self, dtime)
 	local vel = self.object:get_velocity()
 	local node = minetest.get_node(pos)
 	local def = minetest.registered_nodes[node.name]
-	
+
 
 	-- Destroy when hitting a solid node
 	if self._lastpos.x~=nil then
 		if (def and def.walkable) or not def then
-			minetest.sound_play("mcl_throwing_snowball_impact_hard", { pos = pos, max_hear_distance=16, gain=0.7 }, true)
 			snowball_particles(self._lastpos, vel)
 			self.object:remove()
 			return
@@ -196,76 +177,12 @@ local snowball_on_step = function(self, dtime)
 	end
 
 	if check_object_hit(self, pos, {snowball_vulnerable = 3}) then
-		minetest.sound_play("mcl_throwing_snowball_impact_soft", { pos = pos, max_hear_distance=16, gain=0.7 }, true)
 		snowball_particles(pos, vel)
 		self.object:remove()
 		return
 	end
 
 	self._lastpos={x=pos.x, y=pos.y, z=pos.z} -- Set _lastpos-->Node will be added at last pos outside the node
-end
-
--- Movement function of egg
-local egg_on_step = function(self, dtime)
-	self.timer=self.timer+dtime
-	local pos = self.object:get_pos()
-	local node = minetest.get_node(pos)
-	local def = minetest.registered_nodes[node.name]
-
-	-- Destroy when hitting a solid node with chance to spawn chicks
-	if self._lastpos.x~=nil then
-		if (def and def.walkable) or not def then
-			-- 1/8 chance to spawn a chick
-			-- FIXME: Chicks have a quite good chance to spawn in walls
-			local r = math.random(1,8)
-
-			-- Turn given object into a child
-			local make_child= function(object)
-				local ent = object:get_luaentity()
-				object:set_properties({
-					visual_size = { x = ent.base_size.x/2, y = ent.base_size.y/2 },
-					collisionbox = {
-						ent.base_colbox[1]/2,
-						ent.base_colbox[2]/2,
-						ent.base_colbox[3]/2,
-						ent.base_colbox[4]/2,
-						ent.base_colbox[5]/2,
-						ent.base_colbox[6]/2,
-					}
-				})
-				ent.child = true
-			end
-			if r == 1 then
-				make_child(minetest.add_entity(self._lastpos, "mobs_mc:chicken"))
-
-				-- BONUS ROUND: 1/32 chance to spawn 3 additional chicks
-				local r = math.random(1,32)
-				if r == 1 then
-					local offsets = {
-						{ x=0.7, y=0, z=0 },
-						{ x=-0.7, y=0, z=-0.7 },
-						{ x=-0.7, y=0, z=0.7 },
-					}
-					for o=1, 3 do
-						local pos = vector.add(self._lastpos, offsets[o])
-						make_child(minetest.add_entity(pos, "mobs_mc:chicken"))
-					end
-				end
-			end
-			minetest.sound_play("mcl_throwing_egg_impact", { pos = self.object:get_pos(), max_hear_distance=10, gain=0.5 }, true)
-			self.object:remove()
-			return
-		end
-	end
-
-	-- Destroy when hitting a mob or player (no chick spawning)
-	if check_object_hit(self, pos) then
-		minetest.sound_play("mcl_throwing_egg_impact", { pos = self.object:get_pos(), max_hear_distance=10, gain=0.5 }, true)
-		self.object:remove()
-		return
-	end
-
-	self._lastpos={x=pos.x, y=pos.y, z=pos.z} -- Set lastpos-->Node will be added at last pos outside the node
 end
 
 -- Movement function of flying bobber
@@ -293,14 +210,10 @@ local flying_bobber_on_step = function(self, dtime)
 end
 
 snowball_ENTITY.on_step = snowball_on_step
-egg_ENTITY.on_step = egg_on_step
 flying_bobber_ENTITY.on_step = flying_bobber_on_step
 
 minetest.register_entity("mcl_throwing:snowball_entity", snowball_ENTITY)
-minetest.register_entity("mcl_throwing:egg_entity", egg_ENTITY)
 minetest.register_entity("mcl_throwing:flying_bobber_entity", flying_bobber_ENTITY)
-
-local how_to_throw = S("Use the punch key to throw.")
 
 -- Snowball
 minetest.register_craftitem("mcl_throwing:snowball", {
@@ -317,7 +230,5 @@ minetest.register_craftitem("mcl_throwing:egg", {
 	description = S("Egg"),
 	inventory_image = "mcl_throwing_egg.png",
 	stack_max = 16,
-	on_use = player_throw_function("mcl_throwing:egg_entity"),
-	_on_dispense = dispense_function,
 	groups = { craftitem = 1 },
 })
