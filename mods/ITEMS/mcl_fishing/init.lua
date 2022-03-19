@@ -1,7 +1,6 @@
 --Fishing Rod, Bobber, and Flying Bobber mechanics and Bobber artwork by Rootyjr.
 
 local S = minetest.get_translator("mcl_fishing")
-local mod_throwing = minetest.get_modpath("mcl_throwing")
 
 local entity_mapping = {
 	["mcl_fishing:bobber"] = "mcl_fishing:bobber_entity",

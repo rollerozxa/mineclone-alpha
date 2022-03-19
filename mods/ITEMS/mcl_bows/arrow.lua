@@ -15,8 +15,6 @@ local dir_to_pitch = function(dir)
 	return -math.atan2(-dir.y, xz)
 end
 
-local mod_button = minetest.get_modpath("mesecons_button")
-
 minetest.register_craftitem("mcl_bows:arrow", {
 	description = S("Arrow"),
 	inventory_image = "mcl_bows_arrow_inv.png",
@@ -325,7 +323,7 @@ ARROW_ENTITY.on_step = function(self, dtime)
 				end
 
 				-- Push the button! Push, push, push the button!
-				if mod_button and minetest.get_item_group(node.name, "button") > 0 and minetest.get_item_group(node.name, "button_push_by_arrow") == 1 then
+				if minetest.get_item_group(node.name, "button") > 0 and minetest.get_item_group(node.name, "button_push_by_arrow") == 1 then
 					local bdir = minetest.wallmounted_to_dir(node.param2)
 					-- Check the button orientation
 					if vector.equals(vector.add(dpos, bdir), self._stuckin) then
@@ -434,13 +432,11 @@ end
 
 minetest.register_entity("mcl_bows:arrow_entity", ARROW_ENTITY)
 
-if minetest.get_modpath("mcl_core") and minetest.get_modpath("mcl_mobitems") then
-	minetest.register_craft({
-		output = 'mcl_bows:arrow 4',
-		recipe = {
-			{'mcl_core:flint'},
-			{'mcl_core:stick'},
-			{'mcl_mobitems:feather'}
-		}
-	})
-end
+minetest.register_craft({
+	output = 'mcl_bows:arrow 4',
+	recipe = {
+		{'mcl_core:flint'},
+		{'mcl_core:stick'},
+		{'mcl_mobitems:feather'}
+	}
+})

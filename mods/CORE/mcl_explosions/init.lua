@@ -12,8 +12,6 @@ under the LGPLv2.1 license.
 
 mcl_explosions = {}
 
-local mod_death_messages = minetest.get_modpath("mcl_death_messages") ~= nil
-local mod_fire = minetest.get_modpath("mcl_fire") ~= nil
 local CONTENT_FIRE = minetest.get_content_id("mcl_fire:fire")
 
 local S = minetest.get_translator("mcl_explosions")
@@ -324,9 +322,7 @@ local function trace_explode(pos, strength, raydirs, radius, info, puncher)
 							sleep_formspec_doesnt_close_mt53 = true
 						end
 					end
-					if mod_death_messages then
-						mcl_death_messages.player_damage(obj, S("@1 was caught in an explosion.", name))
-					end
+					mcl_death_messages.player_damage(obj, S("@1 was caught in an explosion.", name))
 					if rawget(_G, "armor") and armor.last_damage_types then
 						armor.last_damage_types[name] = "explosion"
 					end
@@ -377,7 +373,7 @@ local function trace_explode(pos, strength, raydirs, radius, info, puncher)
 			end
 		end
 		if remove then
-			if mod_fire and fire and math.random(1, 3) == 1 then
+			if fire and math.random(1, 3) == 1 then
 				table.insert(fires, minetest.get_position_from_hash(hash))
 			else
 				table.insert(airs, minetest.get_position_from_hash(hash))

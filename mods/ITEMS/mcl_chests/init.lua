@@ -1,5 +1,4 @@
 local S = minetest.get_translator("mcl_chests")
-local mod_doc = minetest.get_modpath("doc")
 
 -- Christmas chest setup
 local it_is_christmas = false

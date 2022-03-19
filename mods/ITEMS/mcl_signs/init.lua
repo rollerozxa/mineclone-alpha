@@ -273,10 +273,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 end)
 
-local node_sounds
-if minetest.get_modpath("mcl_sounds") then
-	node_sounds = mcl_sounds.node_sound_wood_defaults()
-end
+local node_sounds = mcl_sounds.node_sound_wood_defaults()
 
 minetest.register_node("mcl_signs:wall_sign", {
 	description = S("Sign"),
@@ -540,16 +537,14 @@ minetest.register_craft({
 	burntime = 10,
 })
 
-if minetest.get_modpath("mcl_core") then
-	minetest.register_craft({
-		output = 'mcl_signs:wall_sign 3',
-		recipe = {
-			{'group:wood', 'group:wood', 'group:wood'},
-			{'group:wood', 'group:wood', 'group:wood'},
-			{'', 'mcl_core:stick', ''},
-		}
-	})
-end
+minetest.register_craft({
+	output = 'mcl_signs:wall_sign 3',
+	recipe = {
+		{'group:wood', 'group:wood', 'group:wood'},
+		{'group:wood', 'group:wood', 'group:wood'},
+		{'', 'mcl_core:stick', ''},
+	}
+})
 
 minetest.register_alias("signs:sign_wall", "mcl_signs:wall_sign")
 minetest.register_alias("signs:sign_yard", "mcl_signs:standing_sign")

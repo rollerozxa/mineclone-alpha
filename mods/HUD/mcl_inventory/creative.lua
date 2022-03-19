@@ -7,9 +7,6 @@ local players = {}
 -- Containing all the items for each Creative Mode tab
 local inventory_lists = {}
 
-local show_armor = minetest.get_modpath("mcl_armor") ~= nil
-local mod_player = minetest.get_modpath("mcl_player") ~= nil
-
 -- Create tables
 local builtin_filter_ids = {"blocks","deco","redstone","rail","food","tools","combat","matr","misc","all"}
 for _, f in pairs(builtin_filter_ids) do
@@ -284,15 +281,10 @@ mcl_inventory.set_creative_formspec = function(player, start_i, pagenum, inv_siz
 			if minetest.settings:get_bool("3d_player_preview", true) then
 				player_preview = mcl_player.get_player_formspec_model(player, 3.9, 1.4, 1.2333, 2.4666, "")
 			else
-				local img, img_player
-				if mod_player then
-					img_player = mcl_player.player_get_preview(player)
-				else
-					img_player = "player.png"
-				end
-				img = img_player
+				local img_player = mcl_player.player_get_preview(player)
+				local img = img_player
 				player_preview = "image[3.9,1.4;1.2333,2.4666;"..img.."]"
-				if show_armor and armor.textures[playername] and armor.textures[playername].preview then
+				if armor.textures[playername] and armor.textures[playername].preview then
 					img = armor.textures[playername].preview
 					local s1 = img:find("character_preview")
 					if s1 ~= nil then

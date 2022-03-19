@@ -7,18 +7,13 @@ minetest.register_alias("bucket:bucket_empty", "mcl_buckets:bucket_empty")
 minetest.register_alias("bucket:bucket_water", "mcl_buckets:bucket_water")
 minetest.register_alias("bucket:bucket_lava", "mcl_buckets:bucket_lava")
 
-local mod_mcl_core = minetest.get_modpath("mcl_core")
-local mod_mclx_core = minetest.get_modpath("mclx_core")
-
-if mod_mcl_core then
-	minetest.register_craft({
-		output = 'mcl_buckets:bucket_empty 1',
-		recipe = {
-			{'mcl_core:iron_ingot', '', 'mcl_core:iron_ingot'},
-			{'', 'mcl_core:iron_ingot', ''},
-		}
-	})
-end
+minetest.register_craft({
+	output = 'mcl_buckets:bucket_empty 1',
+	recipe = {
+		{'mcl_core:iron_ingot', '', 'mcl_core:iron_ingot'},
+		{'', 'mcl_core:iron_ingot', ''},
+	}
+})
 
 mcl_buckets = {}
 mcl_buckets.liquids = {}
@@ -260,75 +255,71 @@ minetest.register_craftitem("mcl_buckets:bucket_empty", {
 	end,
 })
 
-if mod_mcl_core then
-	-- Lava bucket
-	mcl_buckets.register_liquid(
-		function(pos)
-			return "mcl_core:lava_source"
-		end,
-		{"mcl_core:lava_source"},
-		"mcl_buckets:bucket_lava",
-		"bucket_lava.png",
-		S("Lava Bucket"),
-		S("A bucket can be used to collect and release liquids. This one is filled with hot lava, safely contained inside. Use with caution."),
-		S("Get in a safe distance and place the bucket to empty it and create a lava source at this spot. Don't burn yourself!"),
-		S("Places a lava source")
-	)
+-- Lava bucket
+mcl_buckets.register_liquid(
+	function(pos)
+		return "mcl_core:lava_source"
+	end,
+	{"mcl_core:lava_source"},
+	"mcl_buckets:bucket_lava",
+	"bucket_lava.png",
+	S("Lava Bucket"),
+	S("A bucket can be used to collect and release liquids. This one is filled with hot lava, safely contained inside. Use with caution."),
+	S("Get in a safe distance and place the bucket to empty it and create a lava source at this spot. Don't burn yourself!"),
+	S("Places a lava source")
+)
 
-	-- Water bucket
-	mcl_buckets.register_liquid(
-		"mcl_core:water_source",
-		{"mcl_core:water_source"},
-		"mcl_buckets:bucket_water",
-		"bucket_water.png",
-		S("Water Bucket"),
-		S("A bucket can be used to collect and release liquids. This one is filled with water."),
-		S("Place it to empty the bucket and create a water source."),
-		S("Places a water source"),
-		function(pos, placer)
-			-- Check protection
-			local placer_name = ""
-			if placer ~= nil then
-				placer_name = placer:get_player_name()
-			end
-			if placer and minetest.is_protected(pos, placer_name) then
-				minetest.record_protection_violation(pos, placer_name)
-				return false
-			end
-			local nn = minetest.get_node(pos).name
+-- Water bucket
+mcl_buckets.register_liquid(
+	"mcl_core:water_source",
+	{"mcl_core:water_source"},
+	"mcl_buckets:bucket_water",
+	"bucket_water.png",
+	S("Water Bucket"),
+	S("A bucket can be used to collect and release liquids. This one is filled with water."),
+	S("Place it to empty the bucket and create a water source."),
+	S("Places a water source"),
+	function(pos, placer)
+		-- Check protection
+		local placer_name = ""
+		if placer ~= nil then
+			placer_name = placer:get_player_name()
+		end
+		if placer and minetest.is_protected(pos, placer_name) then
+			minetest.record_protection_violation(pos, placer_name)
+			return false
+		end
+		local nn = minetest.get_node(pos).name
 
-		end,
-		{ water_bucket = 1 }
-	)
-end
+	end,
+	{ water_bucket = 1 }
+)
 
-if mod_mclx_core then
-	-- River water bucket
-	mcl_buckets.register_liquid(
-		"mclx_core:river_water_source",
-		{"mclx_core:river_water_source"},
-		"mcl_buckets:bucket_river_water",
-		"bucket_river_water.png",
-		S("River Water Bucket"),
-		S("A bucket can be used to collect and release liquids. This one is filled with river water."),
-		S("Place it to empty the bucket and create a river water source."),
-		S("Places a river water source"),
-		function(pos, placer)
-			-- Check protection
-			local placer_name = ""
-			if placer ~= nil then
-				placer_name = placer:get_player_name()
-			end
-			if placer and minetest.is_protected(pos, placer_name) then
-				minetest.record_protection_violation(pos, placer_name)
-				return false
-			end
-			local nn = minetest.get_node(pos).name
+-- River water bucket
+mcl_buckets.register_liquid(
+	"mclx_core:river_water_source",
+	{"mclx_core:river_water_source"},
+	"mcl_buckets:bucket_river_water",
+	"bucket_river_water.png",
+	S("River Water Bucket"),
+	S("A bucket can be used to collect and release liquids. This one is filled with river water."),
+	S("Place it to empty the bucket and create a river water source."),
+	S("Places a river water source"),
+	function(pos, placer)
+		-- Check protection
+		local placer_name = ""
+		if placer ~= nil then
+			placer_name = placer:get_player_name()
+		end
+		if placer and minetest.is_protected(pos, placer_name) then
+			minetest.record_protection_violation(pos, placer_name)
+			return false
+		end
+		local nn = minetest.get_node(pos).name
 
-		end,
-		{ water_bucket = 1 }
-	)
-end
+	end,
+	{ water_bucket = 1 }
+)
 
 minetest.register_craft({
 	type = "fuel",

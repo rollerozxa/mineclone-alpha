@@ -25,12 +25,6 @@ if minetest.get_modpath("mcl_skins") then
 	skin_mod = "mcl_skins"
 elseif minetest.get_modpath("skins") then
 	skin_mod = "skins"
-elseif minetest.get_modpath("simple_skins") then
-	skin_mod = "simple_skins"
-elseif minetest.get_modpath("u_skins") then
-	skin_mod = "u_skins"
-elseif minetest.get_modpath("wardrobe") then
-	skin_mod = "wardrobe"
 end
 
 function armor.on_armor_use(itemstack, user, pointed_thing)
@@ -175,9 +169,6 @@ armor.set_player_armor = function(self, player)
 		end
 	end
 	preview = (armor:get_preview(name) or "character_preview.png")..(preview and "^"..preview or "")
-	if minetest.get_modpath("shields") then
-		armor_level = armor_level * 0.9
-	end
 	if material.type and material.count == #self.elements then
 		armor_level = armor_level * 1.1
 	end
@@ -258,12 +249,6 @@ armor.get_player_skin = function(self, name)
 	local skin = nil
 	if skin_mod == "mcl_skins" then
 		skin = mcl_skins.skins[name]
-	elseif skin_mod == "skins" or skin_mod == "simple_skins" then
-		skin = skins.skins[name]
-	elseif skin_mod == "u_skins" then
-		skin = u_skins.u_skins[name]
-	elseif skin_mod == "wardrobe" then
-		skin = string.gsub(wardrobe.playerSkins[name], "%.png$","")
 	end
 	return skin or armor.default_skin
 end
@@ -478,30 +463,8 @@ minetest.register_on_joinplayer(function(player)
 		if skin and skins.get_type(skin) == skins.type.MODEL then
 			armor.textures[name].skin = skin..".png"
 		end
-	elseif skin_mod == "simple_skins" then
-		local skin = skins.skins[name]
-		if skin then
-			armor.textures[name].skin = skin..".png"
-		end
-	elseif skin_mod == "u_skins" then
-		local skin = u_skins.u_skins[name]
-		if skin and u_skins.get_type(skin) == u_skins.type.MODEL then
-			armor.textures[name].skin = skin..".png"
-		end
-	elseif skin_mod == "wardrobe" then
-		local skin = wardrobe.playerSkins[name]
-		if skin then
-			armor.textures[name].skin = skin
-		end
 	end
-	if minetest.get_modpath("player_textures") then
-		local filename = minetest.get_modpath("player_textures").."/textures/player_"..name
-		local f = io.open(filename..".png")
-		if f then
-			f:close()
-			armor.textures[name].skin = "player_"..name..".png"
-		end
-	end
+
 	for i=1, ARMOR_INIT_TIMES do
 		minetest.after(ARMOR_INIT_DELAY * i, function(name)
 			local player = minetest.get_player_by_name(name)

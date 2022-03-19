@@ -65,7 +65,6 @@ end
 local damage_enabled = minetest.settings:get_bool("enable_damage")
 local mobs_spawn = minetest.settings:get_bool("mobs_spawn", true) ~= false
 
-local disable_blood = minetest.settings:get_bool("mobs_disable_blood")
 local mobs_drop_items = minetest.settings:get_bool("mobs_drop_items") ~= false
 local mobs_griefing = minetest.settings:get_bool("mobs_griefing") ~= false
 local spawn_protected = minetest.settings:get_bool("mobs_spawn_protected") ~= false
@@ -97,17 +96,9 @@ local stuck_timeout = 3 -- how long before mob gets stuck in place and starts se
 local stuck_path_timeout = 10 -- how long will mob follow path before giving up
 
 -- default nodes
-local node_ice = "mcl_core:ice"
-local node_snowblock = "mcl_core:snowblock"
-local node_snow = "mcl_core:snow"
 mobs.fallback_node = minetest.registered_aliases["mapgen_dirt"] or "mcl_core:dirt"
 
-local mod_weather = minetest.get_modpath("mcl_weather") ~= nil
-local mod_explosions = minetest.get_modpath("mcl_explosions") ~= nil
-local mod_mobspawners = minetest.get_modpath("mcl_mobspawners") ~= nil
-local mod_hunger = minetest.get_modpath("mcl_hunger") ~= nil
-local mod_worlds = minetest.get_modpath("mcl_worlds") ~= nil
-local mod_armor = minetest.get_modpath("mcl_armor") ~= nil
+local mod_weather = false
 
 ----For Water Flowing:
 local enable_physics = function(object, luaentity, ignore_check)
@@ -184,7 +175,7 @@ local function object_in_range(self, object)
 	end
 	local factor
 	-- Apply view range reduction for special player armor
-	if object:is_player() and mod_armor then
+	if object:is_player() then
 		factor = armor:get_mob_view_range_factor(object, self.name)
 	end
 	-- Distance check
@@ -1022,9 +1013,7 @@ local do_env_damage = function(self)
 		end
 	end
 	local _, dim = nil, "overworld"
-	if mod_worlds then
-		_, dim = mcl_worlds.y_to_layer(pos.y)
-	end
+	_, dim = mcl_worlds.y_to_layer(pos.y)
 	if (self.sunlight_damage ~= 0 or self.ignited_by_sunlight) and (minetest.get_node_light(pos) or 0) == LIGHT_SUN and dim == "overworld" then
 		if self.ignited_by_sunlight then
 			mcl_burning.set_on_fire(self.object, 10)
@@ -1253,7 +1242,7 @@ local do_jump = function(self)
 	end
 
 	-- thin blocks that do not need to be jumped
-	if nod.name == node_snow then
+	if nod.name == "mcl_core:snow" then
 		return false
 	end
 
@@ -2507,7 +2496,6 @@ local do_states = function(self, dtime)
 
 					local pos = self.object:get_pos()
 
-					if mod_explosions then
 					if mobs_griefing and not minetest.is_protected(pos, "") then
 						mcl_explosions.explode(mcl_util.get_object_center(self.object), self.explosion_strength, { drop_chance = 1.0 }, self.object)
 					else
@@ -2519,7 +2507,6 @@ local do_states = function(self, dtime)
 
 						entity_physics(pos, entity_damage_radius)
 						effect(pos, 32, "mcl_particles_smoke.png", nil, nil, node_break_radius, 1, 0)
-					end
 					end
 					mcl_burning.extinguish(self.object)
 					self.object:remove()
@@ -2893,11 +2880,6 @@ local mob_punch = function(self, hitter, tflp, tool_capabilities, dir)
 	-- punch interval
 	local weapon = hitter:get_wielded_item()
 	local punch_interval = 1.4
-
-	-- exhaust attacker
-	if mod_hunger and is_player then
-		mcl_hunger.exhaust(hitter:get_player_name(), mcl_hunger.EXHAUST_ATTACK)
-	end
 
 	-- calculate mob damage
 	local damage = 0
@@ -4209,13 +4191,8 @@ end
 
 -- make explosion with protection and tnt mod check
 function mobs:boom(self, pos, strength, fire)
-
-	if mod_explosions then
-		if mobs_griefing and not minetest.is_protected(pos, "") then
-			mcl_explosions.explode(pos, strength, { drop_chance = 1.0, fire = fire }, self.object)
-		else
-			mobs:safe_boom(self, pos, strength)
-		end
+	if mobs_griefing and not minetest.is_protected(pos, "") then
+		mcl_explosions.explode(pos, strength, { drop_chance = 1.0, fire = fire }, self.object)
 	else
 		mobs:safe_boom(self, pos, strength)
 	end
@@ -4268,7 +4245,7 @@ function mobs:register_egg(mob, desc, background, addegg, no_creative)
 
 				local name = placer:get_player_name()
 				local privs = minetest.get_player_privs(name)
-				if mod_mobspawners and under.name == "mcl_mobspawners:spawner" then
+				if under.name == "mcl_mobspawners:spawner" then
 					if minetest.is_protected(pointed_thing.under, name) then
 						minetest.record_protection_violation(pointed_thing.under, name)
 						return itemstack

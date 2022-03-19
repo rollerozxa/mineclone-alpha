@@ -1,8 +1,6 @@
 local S = minetest.get_translator("mcl_tnt")
 local tnt_griefing = minetest.settings:get_bool("mcl_tnt_griefing", true)
 
-local mod_death_messages = minetest.get_modpath("mcl_death_messages")
-
 local function spawn_tnt(pos, entname)
 	minetest.sound_play("tnt_ignite", {pos = pos,gain = 1.0,max_hear_distance = 15,}, true)
 	local tnt = minetest.add_entity(pos, entname)
@@ -37,17 +35,11 @@ tnt.BLINKTIMER = 0.25
 
 local TNT_RANGE = 3
 
-local sounds
-if minetest.get_modpath("mcl_sounds") then
-	sounds = mcl_sounds.node_sound_wood_defaults()
-end
-local tnt_mesecons
-if minetest.get_modpath("mesecons") then
-	tnt_mesecons = {effector = {
+local sounds = mcl_sounds.node_sound_wood_defaults()
+local tnt_mesecons = {effector = {
 		action_on = tnt.ignite,
 		rules = mesecon.rules.alldirs,
 	}}
-end
 
 minetest.register_node("mcl_tnt:tnt", {
 	tiles = {"default_tnt_top.png", "default_tnt_bottom.png",
@@ -177,13 +169,11 @@ end
 
 minetest.register_entity("mcl_tnt:tnt", TNT)
 
-if minetest.get_modpath("mcl_mobitems") then
-	minetest.register_craft({
-		output = "mcl_tnt:tnt",
-		recipe = {
-			{'mcl_mobitems:gunpowder','group:sand','mcl_mobitems:gunpowder'},
-			{'group:sand','mcl_mobitems:gunpowder','group:sand'},
-			{'mcl_mobitems:gunpowder','group:sand','mcl_mobitems:gunpowder'}
-		}
-	})
-end
+minetest.register_craft({
+	output = "mcl_tnt:tnt",
+	recipe = {
+		{'mcl_mobitems:gunpowder','group:sand','mcl_mobitems:gunpowder'},
+		{'group:sand','mcl_mobitems:gunpowder','group:sand'},
+		{'mcl_mobitems:gunpowder','group:sand','mcl_mobitems:gunpowder'}
+	}
+})

@@ -166,9 +166,7 @@ end
 local reset_bow_state = function(player, also_reset_bows)
 	bow_load[player:get_player_name()] = nil
 	bow_index[player:get_player_name()] = nil
-	if minetest.get_modpath("playerphysics") then
-		playerphysics.remove_physics_factor(player, "speed", "mcl_bows:use_bow")
-	end
+	playerphysics.remove_physics_factor(player, "speed", "mcl_bows:use_bow")
 	if also_reset_bows then
 		reset_bows(player)
 	end
@@ -271,10 +269,8 @@ controls.register_on_hold(function(player, key, time)
 	if bow_load[name] == nil and (wielditem:get_name()=="mcl_bows:bow") and wielditem:get_meta():get("active") and (creative or get_arrow(player)) then
 		wielditem:set_name("mcl_bows:bow_0")
 		player:set_wielded_item(wielditem)
-		if minetest.get_modpath("playerphysics") then
-			-- Slow player down when using bow
-			playerphysics.add_physics_factor(player, "speed", "mcl_bows:use_bow", PLAYER_USE_BOW_SPEED)
-		end
+		-- Slow player down when using bow
+		playerphysics.add_physics_factor(player, "speed", "mcl_bows:use_bow", PLAYER_USE_BOW_SPEED)
 		bow_load[name] = minetest.get_us_time()
 		bow_index[name] = player:get_wield_index()
 	else
@@ -317,24 +313,22 @@ minetest.register_on_leaveplayer(function(player)
 	reset_bow_state(player, true)
 end)
 
-if minetest.get_modpath("mcl_core") and minetest.get_modpath("mcl_mobitems") then
-	minetest.register_craft({
-		output = 'mcl_bows:bow',
-		recipe = {
-			{'', 'mcl_core:stick', 'mcl_mobitems:string'},
-			{'mcl_core:stick', '', 'mcl_mobitems:string'},
-			{'', 'mcl_core:stick', 'mcl_mobitems:string'},
-		}
-	})
-	minetest.register_craft({
-		output = 'mcl_bows:bow',
-		recipe = {
-			{'mcl_mobitems:string', 'mcl_core:stick', ''},
-			{'mcl_mobitems:string', '', 'mcl_core:stick'},
-			{'mcl_mobitems:string', 'mcl_core:stick', ''},
-		}
-	})
-end
+minetest.register_craft({
+	output = 'mcl_bows:bow',
+	recipe = {
+		{'', 'mcl_core:stick', 'mcl_mobitems:string'},
+		{'mcl_core:stick', '', 'mcl_mobitems:string'},
+		{'', 'mcl_core:stick', 'mcl_mobitems:string'},
+	}
+})
+minetest.register_craft({
+	output = 'mcl_bows:bow',
+	recipe = {
+		{'mcl_mobitems:string', 'mcl_core:stick', ''},
+		{'mcl_mobitems:string', '', 'mcl_core:stick'},
+		{'mcl_mobitems:string', 'mcl_core:stick', ''},
+	}
+})
 
 minetest.register_craft({
 	type = "fuel",

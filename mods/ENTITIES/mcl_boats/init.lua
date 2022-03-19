@@ -377,10 +377,7 @@ minetest.register_entity("mcl_boats:boat", boat)
 
 local boat_ids = { "boat" }
 local names = { S("Boat") }
-local craftstuffs = {}
-if minetest.get_modpath("mcl_core") then
-	craftstuffs = { "mcl_core:wood" }
-end
+local craftstuffs = { "mcl_core:wood" }
 local images = { "oak" }
 
 for b=1, #boat_ids do

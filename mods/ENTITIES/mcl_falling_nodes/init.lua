@@ -1,5 +1,4 @@
 local S = minetest.get_translator("mcl_falling_nodes")
-local dmes = minetest.get_modpath("mcl_death_messages") ~= nil
 
 local get_falling_depth = function(self)
 	if not self._startpos then

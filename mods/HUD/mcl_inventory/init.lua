@@ -3,9 +3,6 @@ local F = minetest.formspec_escape
 
 mcl_inventory = {}
 
-local show_armor = minetest.get_modpath("mcl_armor") ~= nil
-local mod_player = minetest.get_modpath("mcl_player") ~= nil
-
 -- Returns a single itemstack in the given inventory to the main inventory, or drop it when there's no space left
 function return_item(itemstack, dropper, pos, inv)
 	if dropper:is_player() then
@@ -67,15 +64,10 @@ local function set_inventory(player, armor_change_only)
 	if minetest.settings:get_bool("3d_player_preview", true) then
 		player_preview = mcl_player.get_player_formspec_model(player, 1.0, 0.0, 2.25, 4.5, "")
 	else
-		local img, img_player
-		if mod_player then
-			img_player = mcl_player.player_get_preview(player)
-		else
-			img_player = "player.png"
-		end
-		img = img_player
+		local img_player = mcl_player.player_get_preview(player)
+		local img = img_player
 		player_preview = "image[0.6,0.2;2,4;"..img.."]"
-		if show_armor and armor.textures[player_name] and armor.textures[player_name].preview then
+		if armor.textures[player_name] and armor.textures[player_name].preview then
 			img = armor.textures[player_name].preview
 			local s1 = img:find("character_preview")
 			if s1 ~= nil then
@@ -159,19 +151,17 @@ minetest.register_on_joinplayer(function(player)
 	player:hud_set_hotbar_image("mcl_inventory_hotbar.png")
 	player:hud_set_hotbar_selected_image("mcl_inventory_hotbar_selected.png")
 
-	if show_armor then
-		local set_player_armor_original = armor.set_player_armor
-		local update_inventory_original = armor.update_inventory
-		armor.set_player_armor = function(self, player)
-			set_player_armor_original(self, player)
-		end
-		armor.update_inventory = function(self, player)
-			update_inventory_original(self, player)
-			set_inventory(player, true)
-		end
-		armor:set_player_armor(player)
-		armor:update_inventory(player)
+	local set_player_armor_original = armor.set_player_armor
+	local update_inventory_original = armor.update_inventory
+	armor.set_player_armor = function(self, player)
+		set_player_armor_original(self, player)
 	end
+	armor.update_inventory = function(self, player)
+		update_inventory_original(self, player)
+		set_inventory(player, true)
+	end
+	armor:set_player_armor(player)
+	armor:update_inventory(player)
 
 	-- In Creative Mode, the initial inventory setup is handled in creative.lua
 	if not minetest.is_creative_enabled(player:get_player_name()) then
