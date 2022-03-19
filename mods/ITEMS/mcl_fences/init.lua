@@ -32,7 +32,6 @@ mcl_fences.register_fence = function(id, fence_name, texture, groups, hardness, 
 	end
 	local fence_id = minetest.get_current_modname()..":"..id
 	table.insert(connects_to, "group:solid")
-	table.insert(connects_to, "group:fence_gate")
 	table.insert(connects_to, fence_id)
 	minetest.register_node(fence_id, {
 		description = fence_name,
@@ -71,43 +70,32 @@ mcl_fences.register_fence = function(id, fence_name, texture, groups, hardness, 
 	return fence_id
 end
 
-mcl_fences.register_fence_and_fence_gate = function(id, fence_name, fence_gate_name, texture_fence, groups, hardness, blast_resistance, connects_to, sounds, sound_open, sound_close, sound_gain_open, sound_gain_close, texture_fence_gate)
-	if texture_fence_gate == nil then
-		texture_fence_gate = texture_fence
-	end
-	local fence_id = mcl_fences.register_fence(id, fence_name, texture_fence, groups, hardness, blast_resistance, connects_to, sounds)
-	return fence_id, gate_id, open_gate_id
-end
-
 local wood_groups = {handy=1,axey=1, flammable=2,fence_wood=1, fire_encouragement=5, fire_flammability=20}
 local wood_connect = {"group:fence_wood"}
 local wood_sounds = mcl_sounds.node_sound_wood_defaults()
 
 local woods = {
-	{"", S("Fence"), S("Fence Gate"), "mcl_fences_fence_oak.png", "mcl_fences_fence_gate_oak.png", "mcl_core:wood"},
+	{"", S("Fence"), "default_wood.png", "mcl_core:wood"},
 }
 
 for w=1, #woods do
 	local wood = woods[w]
-	local id, id_gate
+	local id
 	if wood[1] == "" then
 		id = "fence"
-		id_gate = "fence_gate"
 	else
 		id = wood[1].."_fence"
-		id_gate = wood[1].."_fence_gate"
 	end
-	mcl_fences.register_fence_and_fence_gate(id, wood[2], wood[3], wood[4], wood_groups, 2, 15, wood_connect, wood_sounds)
+	mcl_fences.register_fence(id, wood[2], wood[3], wood_groups, 2, 15, wood_connect, wood_sounds)
 
 	minetest.register_craft({
 		output = 'mcl_fences:'..id..' 3',
 		recipe = {
-			{wood[6], 'mcl_core:stick', wood[6]},
-			{wood[6], 'mcl_core:stick', wood[6]},
+			{wood[4], 'mcl_core:stick', wood[4]},
+			{wood[4], 'mcl_core:stick', wood[4]},
 		}
 	})
 end
-
 
 minetest.register_craft({
 	type = "fuel",
