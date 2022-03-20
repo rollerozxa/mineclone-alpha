@@ -89,18 +89,14 @@ function mcl_burning.damage(obj)
 	local do_damage = true
 
 	if obj:is_player() then
-		if mcl_potions.player_has_effect(obj, "fire_proof") then
-			do_damage = false
-		else
-			local name = obj:get_player_name()
-			armor.last_damage_types[name] = "fire"
-			local deathmsg = S("@1 burned to death.", name)
-			local reason = mcl_burning.get(obj, "string", "reason")
-			if reason ~= "" then
-				deathmsg = S("@1 was burned by @2.", name, reason)
-			end
-			mcl_death_messages.player_damage(obj, deathmsg)
+		local name = obj:get_player_name()
+		armor.last_damage_types[name] = "fire"
+		local deathmsg = S("@1 burned to death.", name)
+		local reason = mcl_burning.get(obj, "string", "reason")
+		if reason ~= "" then
+			deathmsg = S("@1 was burned by @2.", name, reason)
 		end
+		mcl_death_messages.player_damage(obj, deathmsg)
 	else
 		if luaentity.fire_damage_resistant then
 			do_damage = false
