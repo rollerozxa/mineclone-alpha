@@ -106,9 +106,7 @@ end
 local function check_placement_allowed(node, wdir)
 	-- Torch placement rules: Disallow placement on some nodes. General rule: Solid, opaque, full cube collision box nodes are allowed.
 	-- Special allowed nodes:
-	-- * soul sand
 	-- * mob spawner
-	-- * chorus flower
 	-- * glass, ice
 	-- * Fence, wall: Only on top
 	-- * Slab, stairs: Only on top if upside down
