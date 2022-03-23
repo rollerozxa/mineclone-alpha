@@ -88,8 +88,7 @@ minetest.register_craft({
 minetest.register_craftitem("mcl_farming:bread", {
 	description = S("Bread"),
 	inventory_image = "farming_bread.png",
-	groups = {food=2, eatable=5},
-	_mcl_saturation = 6.0,
+	groups = {food=2},
 	on_place = minetest.item_eat(5),
 	on_secondary_use = minetest.item_eat(5),
 })

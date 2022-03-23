@@ -45,7 +45,7 @@ minetest.register_on_mods_loaded(function()
 				table.insert(inventory_lists["rail"], name)
 				nonmisc = true
 			end
-			if (def.groups.food and not def.groups.brewitem) or def.groups.eatable then
+			if (def.groups.food and not def.groups.brewitem) or def.groups.food then
 				table.insert(inventory_lists["food"], name)
 				nonmisc = true
 			end

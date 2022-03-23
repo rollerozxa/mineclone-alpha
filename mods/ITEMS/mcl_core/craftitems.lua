@@ -92,8 +92,7 @@ minetest.register_craftitem("mcl_core:apple", {
 	stack_max = 64,
 	on_place = minetest.item_eat(4),
 	on_secondary_use = minetest.item_eat(4),
-	groups = { food = 2, eatable = 4 },
-	_mcl_saturation = 2.4,
+	groups = { food = 2 }
 })
 
 local gapple_hunger_restore = minetest.item_eat(4)
@@ -120,8 +119,7 @@ minetest.register_craftitem("mcl_core:apple_gold", {
 	stack_max = 64,
 	on_place = eat_gapple,
 	on_secondary_use = eat_gapple,
-	groups = { food = 2, eatable = 4, can_eat_when_full = 1 },
-	_mcl_saturation = 9.6,
+	groups = { food = 2, can_eat_when_full = 1 }
 })
 
 -- Book

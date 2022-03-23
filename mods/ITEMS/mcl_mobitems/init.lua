@@ -6,8 +6,7 @@ minetest.register_craftitem("mcl_mobitems:porkchop", {
 	wield_image = "mcl_mobitems_porkchop_raw.png",
 	on_place = minetest.item_eat(3),
 	on_secondary_use = minetest.item_eat(3),
-	groups = { food = 2, eatable = 3 },
-	_mcl_saturation = 1.8,
+	groups = { food = 2 },
 	stack_max = 64,
 })
 
@@ -17,8 +16,7 @@ minetest.register_craftitem("mcl_mobitems:cooked_porkchop", {
 	wield_image = "mcl_mobitems_porkchop_cooked.png",
 	on_place = minetest.item_eat(8),
 	on_secondary_use = minetest.item_eat(8),
-	groups = { food = 2, eatable = 8 },
-	_mcl_saturation = 12.8,
+	groups = { food = 2 },
 	stack_max = 64,
 })
 
