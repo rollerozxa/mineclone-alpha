@@ -6,7 +6,7 @@
 local S = minetest.get_translator("mcl_stairs")
 
 local woods = {
-	{ "wood", "default_wood.png", S("Wood Stairs"), S("Wood Slab"), S("Double Wood Slab") }
+	{ "wood", "mcl_core_wood.png", S("Wood Stairs"), S("Wood Slab"), S("Double Wood Slab") }
 }
 
 for w=1, #woods do

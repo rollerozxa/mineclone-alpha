@@ -8,7 +8,7 @@ local S = minetest.get_translator("mcl_core")
 
 minetest.register_craftitem("mcl_core:stick", {
 	description = S("Stick"),
-	inventory_image = "default_stick.png",
+	inventory_image = "mcl_core_stick.png",
 	stack_max = 64,
 	groups = { craftitem=1, stick=1 },
 	_mcl_toollike_wield = true,
@@ -16,7 +16,7 @@ minetest.register_craftitem("mcl_core:stick", {
 
 minetest.register_craftitem("mcl_core:paper", {
 	description = S("Paper"),
-	inventory_image = "default_paper.png",
+	inventory_image = "mcl_core_paper.png",
 	stack_max = 64,
 	groups = { craftitem=1 },
 })
@@ -24,49 +24,49 @@ minetest.register_craftitem("mcl_core:paper", {
 minetest.register_craftitem("mcl_core:coal_lump", {
 	description = S("Coal"),
 	groups = { coal=1 },
-	inventory_image = "default_coal_lump.png",
+	inventory_image = "mcl_core_coal_lump.png",
 	stack_max = 64,
 	groups = { craftitem=1, coal=1 },
 })
 
 minetest.register_craftitem("mcl_core:diamond", {
 	description = S("Diamond"),
-	inventory_image = "default_diamond.png",
+	inventory_image = "mcl_core_diamond.png",
 	stack_max = 64,
 	groups = { craftitem=1 },
 })
 
 minetest.register_craftitem("mcl_core:clay_lump", {
 	description = S("Clay Ball"),
-	inventory_image = "default_clay_lump.png",
+	inventory_image = "mcl_core_clay_lump.png",
 	stack_max = 64,
 	groups = { craftitem=1 },
 })
 
 minetest.register_craftitem("mcl_core:iron_ingot", {
 	description = S("Iron Ingot"),
-	inventory_image = "default_steel_ingot.png",
+	inventory_image = "mcl_core_steel_ingot.png",
 	stack_max = 64,
 	groups = { craftitem=1 },
 })
 
 minetest.register_craftitem("mcl_core:gold_ingot", {
 	description = S("Gold Ingot"),
-	inventory_image = "default_gold_ingot.png",
+	inventory_image = "mcl_core_gold_ingot.png",
 	stack_max = 64,
 	groups = { craftitem=1 },
 })
 
 minetest.register_craftitem("mcl_core:brick", {
 	description = S("Brick"),
-	inventory_image = "default_clay_brick.png",
+	inventory_image = "mcl_core_clay_brick.png",
 	stack_max = 64,
 	groups = { craftitem=1 },
 })
 
 minetest.register_craftitem("mcl_core:flint", {
 	description = S("Flint"),
-	inventory_image = "default_flint.png",
+	inventory_image = "mcl_core_flint.png",
 	stack_max = 64,
 	groups = { craftitem=1 },
 })
@@ -87,8 +87,8 @@ minetest.register_craftitem("mcl_core:bowl",{
 
 minetest.register_craftitem("mcl_core:apple", {
 	description = S("Apple"),
-	wield_image = "default_apple.png",
-	inventory_image = "default_apple.png",
+	wield_image = "mcl_core_apple.png",
+	inventory_image = "mcl_core_apple.png",
 	stack_max = 64,
 	on_place = minetest.item_eat(4),
 	on_secondary_use = minetest.item_eat(4),
@@ -125,7 +125,7 @@ minetest.register_craftitem("mcl_core:apple_gold", {
 -- Book
 minetest.register_craftitem("mcl_core:book", {
 	description = S("Book"),
-	inventory_image = "default_book.png",
+	inventory_image = "mcl_core_book.png",
 	stack_max = 64,
 	groups = { book=1, craftitem = 1 },
 })

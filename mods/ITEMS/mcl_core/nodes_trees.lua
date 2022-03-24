@@ -121,15 +121,15 @@ end
 
 ---------------------
 
-register_tree_trunk("tree", S("Wood"), S("Bark"), S("The trunk of an oak tree."), "default_tree_top.png", "default_tree.png", "mcl_core:stripped_oak")
+register_tree_trunk("tree", S("Wood"), S("Bark"), S("The trunk of an oak tree."), "mcl_core_tree_top.png", "mcl_core_tree.png", "mcl_core:stripped_oak")
 
-register_wooden_planks("wood", S("Wood Planks"), {"default_wood.png"})
+register_wooden_planks("wood", S("Wood Planks"), {"mcl_core_wood.png"})
 
 
 register_sapling("sapling", S("Sapling"),
 	S("When placed on soil (such as dirt) and exposed to light, an oak sapling will grow into an oak after some time."),
 	S("Needs soil and light to grow"),
-	"default_sapling.png", {-5/16, -0.5, -5/16, 5/16, 0.5, 5/16})
+	"mcl_core_sapling.png", {-5/16, -0.5, -5/16, 5/16, 0.5, 5/16})
 
 
-register_leaves("leaves", S("Leaves"), S("Oak leaves are grown from oak trees."), {"default_leaves.png"}, "mcl_core:sapling", true, {20, 16, 12, 10})
+register_leaves("leaves", S("Leaves"), S("Oak leaves are grown from oak trees."), {"mcl_core_leaves.png"}, "mcl_core:sapling", true, {20, 16, 12, 10})

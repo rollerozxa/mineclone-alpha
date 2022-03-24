@@ -47,7 +47,7 @@ minetest.register_node("mcl_core:cactus", {
 minetest.register_node("mcl_core:reeds", {
 	description = S("Sugar Canes"),
 	drawtype = "plantlike",
-	tiles = {"default_papyrus.png"},
+	tiles = {"mcl_core_papyrus.png"},
 	inventory_image = "mcl_core_reeds.png",
 	wield_image = "mcl_core_reeds.png",
 	paramtype = "light",

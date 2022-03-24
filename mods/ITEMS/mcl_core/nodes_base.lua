@@ -4,7 +4,7 @@ local S = minetest.get_translator("mcl_core")
 
 minetest.register_node("mcl_core:stone", {
 	description = S("Stone"),
-	tiles = {"default_stone.png"},
+	tiles = {"mcl_core_stone.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {pickaxey=1, stone=1, building_block=1, material_stone=1},
@@ -141,7 +141,7 @@ minetest.register_node("mcl_core:stone_with_diamond", {
 -- Grass Block
 minetest.register_node("mcl_core:dirt_with_grass", {
 	description = S("Grass Block"),
-	tiles = {"mcl_core_grass_block_top.png", { name="default_dirt.png", color="white" }},
+	tiles = {"mcl_core_grass_block_top.png", { name="mcl_core_dirt.png", color="white" }},
 	overlay_tiles = {"mcl_core_grass_block_top.png", "", {name="mcl_core_grass_block_side_overlay.png", tileable_vertical=false}},
 	--color = "#91f56b",
 	is_ground_content = true,
@@ -149,7 +149,7 @@ minetest.register_node("mcl_core:dirt_with_grass", {
 	groups = {handy=1,shovely=1,dirt=2,grass_block=1, grass_block_no_snow=1, soil=1, soil_sapling=2, soil_sugarcane=1, cultivatable=2, spreading_dirt_type=1, building_block=1},
 	drop = 'mcl_core:dirt',
 	sounds = mcl_sounds.node_sound_dirt_defaults({
-		footstep = {name="default_grass_footstep", gain=0.1},
+		footstep = {name="mcl_core_grass_footstep", gain=0.1},
 	}),
 	on_construct = function(pos)
 		local node = minetest.get_node(pos)
@@ -170,7 +170,7 @@ mcl_core.register_snowed_node("mcl_core:dirt_with_grass_snow", "mcl_core:dirt_wi
 
 minetest.register_node("mcl_core:dirt", {
 	description = S("Dirt"),
-	tiles = {"default_dirt.png"},
+	tiles = {"mcl_core_dirt.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {handy=1,shovely=1, dirt=1,soil=1, soil_sapling=2, soil_sugarcane=1, cultivatable=2, building_block=1},
@@ -181,7 +181,7 @@ minetest.register_node("mcl_core:dirt", {
 
 minetest.register_node("mcl_core:gravel", {
 	description = S("Gravel"),
-	tiles = {"default_gravel.png"},
+	tiles = {"mcl_core_gravel.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {handy=1,shovely=1, falling_node=1, building_block=1, material_sand=1},
@@ -193,7 +193,7 @@ minetest.register_node("mcl_core:gravel", {
 		}
 	},
 	sounds = mcl_sounds.node_sound_dirt_defaults({
-		footstep = {name="default_gravel_footstep", gain=0.45},
+		footstep = {name="mcl_core_gravel_footstep", gain=0.45},
 	}),
 	_mcl_blast_resistance = 0.6,
 	_mcl_hardness = 0.6,
@@ -202,7 +202,7 @@ minetest.register_node("mcl_core:gravel", {
 
 minetest.register_node("mcl_core:sand", {
 	description = S("Sand"),
-	tiles = {"default_sand.png"},
+	tiles = {"mcl_core_sand.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {handy=1,shovely=1, falling_node=1, sand=1, soil_sugarcane=1, building_block=1, material_sand=1},
@@ -215,7 +215,7 @@ minetest.register_node("mcl_core:sand", {
 
 minetest.register_node("mcl_core:clay", {
 	description = S("Clay"),
-	tiles = {"default_clay.png"},
+	tiles = {"mcl_core_clay.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {handy=1,shovely=1, building_block=1},
@@ -229,7 +229,7 @@ minetest.register_node("mcl_core:clay", {
 minetest.register_node("mcl_core:brick_block", {
 	-- Original name: “Bricks”
 	description = S("Brick Block"),
-	tiles = {"default_brick.png"},
+	tiles = {"mcl_core_brick.png"},
 	is_ground_content = false,
 	stack_max = 64,
 	groups = {pickaxey=1, building_block=1, material_stone=1},
@@ -278,7 +278,7 @@ minetest.register_node("mcl_core:bedrock", {
 
 minetest.register_node("mcl_core:cobble", {
 	description = S("Cobblestone"),
-	tiles = {"default_cobble.png"},
+	tiles = {"mcl_core_cobble.png"},
 	is_ground_content = false,
 	stack_max = 64,
 	groups = {pickaxey=1, building_block=1, material_stone=1},
@@ -289,7 +289,7 @@ minetest.register_node("mcl_core:cobble", {
 
 minetest.register_node("mcl_core:mossycobble", {
 	description = S("Mossy Cobblestone"),
-	tiles = {"default_mossycobble.png"},
+	tiles = {"mcl_core_mossycobble.png"},
 	is_ground_content = false,
 	stack_max = 64,
 	groups = {pickaxey=1, building_block=1, material_stone=1},
@@ -300,7 +300,7 @@ minetest.register_node("mcl_core:mossycobble", {
 
 minetest.register_node("mcl_core:ironblock", {
 	description = S("Block of Iron"),
-	tiles = {"default_steel_block.png"},
+	tiles = {"mcl_core_steel_block.png"},
 	is_ground_content = false,
 	stack_max = 64,
 	groups = {pickaxey=2, building_block=1},
@@ -311,7 +311,7 @@ minetest.register_node("mcl_core:ironblock", {
 
 minetest.register_node("mcl_core:goldblock", {
 	description = S("Block of Gold"),
-	tiles = {"default_gold_block.png"},
+	tiles = {"mcl_core_gold_block.png"},
 	is_ground_content = false,
 	stack_max = 64,
 	groups = {pickaxey=4, building_block=1},
@@ -322,7 +322,7 @@ minetest.register_node("mcl_core:goldblock", {
 
 minetest.register_node("mcl_core:diamondblock", {
 	description = S("Block of Diamond"),
-	tiles = {"default_diamond_block.png"},
+	tiles = {"mcl_core_diamond_block.png"},
 	is_ground_content = false,
 	stack_max = 64,
 	groups = {pickaxey=4, building_block=1},
@@ -333,7 +333,7 @@ minetest.register_node("mcl_core:diamondblock", {
 
 minetest.register_node("mcl_core:obsidian", {
 	description = S("Obsidian"),
-	tiles = {"default_obsidian.png"},
+	tiles = {"mcl_core_obsidian.png"},
 	is_ground_content = true,
 	sounds = mcl_sounds.node_sound_stone_defaults(),
 	stack_max = 64,
@@ -344,7 +344,7 @@ minetest.register_node("mcl_core:obsidian", {
 
 minetest.register_node("mcl_core:ice", {
 	description = S("Ice"),
-	tiles = {"default_ice.png"},
+	tiles = {"mcl_core_ice.png"},
 	is_ground_content = true,
 	paramtype = "light",
 	stack_max = 64,
@@ -434,8 +434,8 @@ for i=1,8 do
 
 	minetest.register_node(id, {
 		description = desc,
-		tiles = {"default_snow.png"},
-		wield_image = "default_snow.png",
+		tiles = {"mcl_core_snow.png"},
+		wield_image = "mcl_core_snow.png",
 		wield_scale = { x=1, y=1, z=i },
 		is_ground_content = true,
 		paramtype = "light",
@@ -466,7 +466,7 @@ end
 
 minetest.register_node("mcl_core:snowblock", {
 	description = S("Snow"),
-	tiles = {"default_snow.png"},
+	tiles = {"mcl_core_snow.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {shovely=1, building_block=1, snow_cover=1},
@@ -498,7 +498,7 @@ minetest.register_node("mcl_core:sponge", {
 -- Bookshelf
 minetest.register_node("mcl_core:bookshelf", {
 	description = S("Bookshelf"),
-	tiles = {"default_wood.png", "default_wood.png", "default_bookshelf.png"},
+	tiles = {"mcl_core_wood.png", "mcl_core_wood.png", "mcl_core_bookshelf.png"},
 	stack_max = 64,
 	is_ground_content = false,
 	groups = {handy=1,axey=1, flammable=3,building_block=1, material_wood=1, fire_encouragement=30, fire_flammability=20},

@@ -282,10 +282,10 @@ mcl_torches.register_torch("torch",
 	S("Torch"),
 	S("Torches are light sources which can be placed at the side or on the top of most blocks."),
 	nil,
-	"default_torch_on_floor.png",
+	"mcl_torches_on_floor.png",
 	"mcl_torches_torch_floor.obj", "mcl_torches_torch_wall.obj",
 	{{
-		name = "default_torch_on_floor_animated.png",
+		name = "mcl_torches_on_floor_animated.png",
 		animation = {type = "vertical_frames", aspect_w = 16, aspect_h = 16, length = 3.3}
 	}},
 	LIGHT_TORCH,

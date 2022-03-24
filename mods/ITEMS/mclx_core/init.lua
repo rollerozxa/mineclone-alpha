@@ -10,12 +10,12 @@ source.liquid_alternative_source = "mclx_core:river_water_source"
 source.liquid_renewable = false
 source.post_effect_color = {a=192, r=0x2c, g=0x88, b=0x8c}
 source.tiles = {
-	{name="default_river_water_source_animated.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=5.0}}
+	{name="mclx_core_river_water_source_animated.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=5.0}}
 }
 source.special_tiles = {
 	-- New-style water source material (mostly unused)
 	{
-		name="default_river_water_source_animated.png",
+		name="mclx_core_river_water_source_animated.png",
 		animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=5.0},
 		backface_culling = false,
 	}
@@ -27,16 +27,16 @@ flowing.liquid_range = 2
 flowing.liquid_alternative_flowing = "mclx_core:river_water_flowing"
 flowing.liquid_alternative_source = "mclx_core:river_water_source"
 flowing.liquid_renewable = false
-flowing.tiles = {"default_river_water_flowing_animated.png^[verticalframe:64:0"}
+flowing.tiles = {"mclx_core_river_water_flowing_animated.png^[verticalframe:64:0"}
 flowing.post_effect_color = {a=192, r=0x2c, g=0x88, b=0x8c}
 flowing.special_tiles = {
 	{
-		image="default_river_water_flowing_animated.png",
+		image="mclx_core_river_water_flowing_animated.png",
 		backface_culling=false,
 		animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=4.0}
 	},
 	{
-		image="default_river_water_flowing_animated.png",
+		image="mclx_core_river_water_flowing_animated.png",
 		backface_culling=false,
 		animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=4.0}
 	},

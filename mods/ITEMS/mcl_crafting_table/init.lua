@@ -3,8 +3,8 @@ local S = minetest.get_translator("mcl_crafting_table")
 minetest.register_node("mcl_crafting_table:crafting_table", {
 	description = S("Crafting Table"),
 	is_ground_content = false,
-	tiles = {"crafting_workbench_top.png", "default_wood.png", "crafting_workbench_side.png",
-		"crafting_workbench_side.png", "crafting_workbench_front.png", "crafting_workbench_front.png"},
+	tiles = {"mcl_crafting_table_top.png", "mcl_core_wood.png", "mcl_crafting_table_side.png",
+		"mcl_crafting_table_side.png", "mcl_crafting_table_front.png", "mcl_crafting_table_front.png"},
 	paramtype2 = "facedir",
 	groups = {handy=1,axey=1, deco_block=1, material_wood=1,flammable=-1},
 	on_rightclick = function(pos, node, player, itemstack)
@@ -12,7 +12,7 @@ minetest.register_node("mcl_crafting_table:crafting_table", {
 		player:get_inventory():set_size("craft", 9)
 
 		local form = "size[9,8.75]"..
-		"image[4.7,1.5;1.5,1;gui_crafting_arrow.png]"..
+		"image[4.7,1.5;1.5,1;mcl_crafting_table_arrow.png]"..
 		"label[0,4;"..minetest.formspec_escape(minetest.colorize("#313131", S("Inventory"))).."]"..
 		"list[current_player;main;0,4.5;9,3;9]"..
 		mcl_formspec.get_itemslot_bg(0,4.5,9,3)..

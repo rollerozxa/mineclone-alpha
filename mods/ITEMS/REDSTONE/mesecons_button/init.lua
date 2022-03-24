@@ -196,7 +196,7 @@ end
 mesecon.register_button(
 	"stone",
 	S("Stone Button"),
-	"default_stone.png",
+	"mcl_core_stone.png",
 	"mcl_core:stone",
 	mcl_sounds.node_sound_stone_defaults(),
 	{material_stone=1,handy=1,pickaxey=1},

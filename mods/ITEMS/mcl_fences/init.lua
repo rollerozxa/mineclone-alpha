@@ -75,7 +75,7 @@ local wood_connect = {"group:fence_wood"}
 local wood_sounds = mcl_sounds.node_sound_wood_defaults()
 
 local woods = {
-	{"", S("Fence"), "default_wood.png", "mcl_core:wood"},
+	{"", S("Fence"), "mcl_core_wood.png", "mcl_core:wood"},
 }
 
 for w=1, #woods do

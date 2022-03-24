@@ -21,10 +21,10 @@ local function active_formspec(fuel_percent, item_percent)
 	mcl_formspec.get_itemslot_bg(2.75,2.5,1,1)..
 	"list[current_name;dst;5.75,1.5;1,1;]"..
 	mcl_formspec.get_itemslot_bg(5.75,1.5,1,1)..
-	"image[2.75,1.5;1,1;default_furnace_fire_bg.png^[lowpart:"..
-	(100-fuel_percent)..":default_furnace_fire_fg.png]"..
-	"image[4.1,1.5;1.5,1;gui_furnace_arrow_bg.png^[lowpart:"..
-	(item_percent)..":gui_furnace_arrow_fg.png^[transformR270]"..
+	"image[2.75,1.5;1,1;mcl_furnaces_fire_bg.png^[lowpart:"..
+	(100-fuel_percent)..":mcl_furnaces_fire_fg.png]"..
+	"image[4.1,1.5;1.5,1;mcl_furnaces_arrow_bg.png^[lowpart:"..
+	(item_percent)..":mcl_furnaces_arrow_fg.png^[transformR270]"..
 	-- Craft guide button temporarily removed due to Minetest bug.
 	-- TODO: Add it back when the Minetest bug is fixed.
 	--"image_button[8,0;1,1;craftguide_book.png;craftguide;]"..
@@ -50,8 +50,8 @@ local inactive_formspec = "size[9,8.75]"..
 	mcl_formspec.get_itemslot_bg(2.75,2.5,1,1)..
 	"list[current_name;dst;5.75,1.5;1,1;]"..
 	mcl_formspec.get_itemslot_bg(5.75,1.5,1,1)..
-	"image[2.75,1.5;1,1;default_furnace_fire_bg.png]"..
-	"image[4.1,1.5;1.5,1;gui_furnace_arrow_bg.png^[transformR270]"..
+	"image[2.75,1.5;1,1;mcl_furnaces_fire_bg.png]"..
+	"image[4.1,1.5;1.5,1;mcl_furnaces_arrow_bg.png^[transformR270]"..
 	"listring[current_name;dst]"..
 	"listring[current_player;main]"..
 	"listring[current_name;src]"..
@@ -403,9 +403,9 @@ end
 minetest.register_node("mcl_furnaces:furnace", {
 	description = S("Furnace"),
 	tiles = {
-		"default_furnace_top.png", "default_furnace_bottom.png",
-		"default_furnace_side.png", "default_furnace_side.png",
-		"default_furnace_side.png", "default_furnace_front.png"
+		"mcl_core_stone.png", "mcl_core_stone.png",
+		"mcl_furnaces_side.png", "mcl_furnaces_side.png",
+		"mcl_furnaces_side.png", "mcl_furnaces_front.png"
 	},
 	paramtype2 = "facedir",
 	groups = {pickaxey=1, container=4, deco_block=1, material_stone=1},
@@ -469,9 +469,9 @@ minetest.register_node("mcl_furnaces:furnace", {
 minetest.register_node("mcl_furnaces:furnace_active", {
 	description = S("Burning Furnace"),
 	tiles = {
-		"default_furnace_top.png", "default_furnace_bottom.png",
-		"default_furnace_side.png", "default_furnace_side.png",
-		"default_furnace_side.png", "default_furnace_front_active.png",
+		"mcl_core_stone.png", "mcl_core_stone.png",
+		"mcl_furnaces_side.png", "mcl_furnaces_side.png",
+		"mcl_furnaces_side.png", "mcl_furnaces_front_active.png",
 	},
 	paramtype2 = "facedir",
 	paramtype = "light",
@@ -532,18 +532,5 @@ minetest.register_lbm({
 	run_at_every_load = true,
 	action = function(pos, node)
 		spawn_flames(pos, node.param2)
-	end,
-})
-
--- Legacy
-minetest.register_lbm({
-	label = "Update furnace formspecs (0.60.0)",
-	name = "mcl_furnaces:update_formspecs_0_60_0",
-	-- Only update inactive furnaces because active ones should update themselves
-	nodenames = { "mcl_furnaces:furnace" },
-	run_at_every_load = false,
-	action = function(pos, node)
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", inactive_formspec)
 	end,
 })

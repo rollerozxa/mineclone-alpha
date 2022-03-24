@@ -277,10 +277,10 @@ local node_sounds = mcl_sounds.node_sound_wood_defaults()
 
 minetest.register_node("mcl_signs:wall_sign", {
 	description = S("Sign"),
-	inventory_image = "default_sign.png",
+	inventory_image = "mcl_signs_icon.png",
 	walkable = false,
 	is_ground_content = false,
-	wield_image = "default_sign.png",
+	wield_image = "mcl_signs_icon.png",
 	node_placement_prediction = "",
 	paramtype = "light",
 	sunlight_propagates = true,

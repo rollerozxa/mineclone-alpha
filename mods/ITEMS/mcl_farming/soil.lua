@@ -1,7 +1,7 @@
 local S = minetest.get_translator("mcl_farming")
 
 minetest.register_node("mcl_farming:soil", {
-	tiles = {"mcl_farming_farmland_dry.png", "default_dirt.png"},
+	tiles = {"mcl_farming_farmland_dry.png", "mcl_core_dirt.png"},
 	description = S("Farmland"),
 	drop = "mcl_core:dirt",
 	drawtype = "nodebox",
@@ -24,7 +24,7 @@ minetest.register_node("mcl_farming:soil", {
 })
 
 minetest.register_node("mcl_farming:soil_wet", {
-	tiles = {"mcl_farming_farmland_wet.png", "default_dirt.png"},
+	tiles = {"mcl_farming_farmland_wet.png", "mcl_core_dirt.png"},
 	description = S("Hydrated Farmland"),
 	drop = "mcl_core:dirt",
 	drawtype = "nodebox",

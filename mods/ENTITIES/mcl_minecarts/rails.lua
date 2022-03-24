@@ -68,7 +68,7 @@ local rail_rules_short = mesecon.rules.pplate
 
 -- Normal rail
 register_rail("mcl_minecarts:rail",
-	{"default_rail.png", "default_rail_curved.png", "default_rail_t_junction.png", "default_rail_crossing.png"},
+	{"mcl_minecarts_rail.png", "mcl_minecarts_rail_curved.png", "mcl_minecarts_rail_t_junction.png", "mcl_minecarts_rail_crossing.png"},
 	{
 		description = S("Rail"),
 	}

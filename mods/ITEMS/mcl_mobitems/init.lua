@@ -75,7 +75,7 @@ minetest.register_craftitem("mcl_mobitems:slimeball", {
 
 minetest.register_craftitem("mcl_mobitems:gunpowder", {
 	description = S("Gunpowder"),
-	inventory_image = "default_gunpowder.png",
+	inventory_image = "mcl_mobitems_gunpowder.png",
 	stack_max = 64,
 	groups = { craftitem=1 },
 })

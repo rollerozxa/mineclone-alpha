@@ -936,7 +936,7 @@ mcl_core.register_snowed_node = function(itemstring_snowed, itemstring_clear, ti
 	-- Note: _mcl_snowed must be added to the clear node manually!
 
 	if not tiles then
-		def.tiles = {"default_snow.png", "default_dirt.png", {name="mcl_core_grass_side_snowed.png", tileable_vertical=false}}
+		def.tiles = {"mcl_core_snow.png", "mcl_core_dirt.png", {name="mcl_core_grass_side_snowed.png", tileable_vertical=false}}
 	else
 		def.tiles = tiles
 	end

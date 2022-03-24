@@ -243,12 +243,12 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 			if self._fueltime <= 0 then
 				self.object:set_properties({textures =
 					{
-					"default_furnace_top.png",
-					"default_furnace_top.png",
-					"default_furnace_front.png",
-					"default_furnace_side.png",
-					"default_furnace_side.png",
-					"default_furnace_side.png",
+					"mcl_furnaces_top.png",
+					"mcl_furnaces_top.png",
+					"mcl_furnaces_front.png",
+					"mcl_furnaces_side.png",
+					"mcl_furnaces_side.png",
+					"mcl_furnaces_side.png",
 					"mcl_minecarts_minecart.png",
 				}})
 				self._fueltime = 0
@@ -276,12 +276,12 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 				if self._blink then
 					self.object:set_properties({textures =
 					{
-					"default_tnt_top.png",
-					"default_tnt_bottom.png",
-					"default_tnt_side.png",
-					"default_tnt_side.png",
-					"default_tnt_side.png",
-					"default_tnt_side.png",
+					"mcl_tnt_top.png",
+					"mcl_tnt_bottom.png",
+					"mcl_tnt_side.png",
+					"mcl_tnt_side.png",
+					"mcl_tnt_side.png",
+					"mcl_tnt_side.png",
 					"mcl_minecarts_minecart.png",
 					}})
 				else
@@ -651,12 +651,12 @@ register_minecart(
 	S("Minecart with Furnace"),
 	"mcl_minecarts_minecart_block.b3d",
 	{
-		"default_furnace_top.png",
-		"default_furnace_top.png",
-		"default_furnace_front.png",
-		"default_furnace_side.png",
-		"default_furnace_side.png",
-		"default_furnace_side.png",
+		"mcl_furnaces_top.png",
+		"mcl_furnaces_top.png",
+		"mcl_furnaces_front.png",
+		"mcl_furnaces_side.png",
+		"mcl_furnaces_side.png",
+		"mcl_furnaces_side.png",
 		"mcl_minecarts_minecart.png",
 	},
 	"mcl_minecarts_minecart_furnace.png",
@@ -681,12 +681,12 @@ register_minecart(
 			end
 			self.object:set_properties({textures =
 			{
-				"default_furnace_top.png",
-				"default_furnace_top.png",
-				"default_furnace_front_active.png",
-				"default_furnace_side.png",
-				"default_furnace_side.png",
-				"default_furnace_side.png",
+				"mcl_furnaces_top.png",
+				"mcl_furnaces_top.png",
+				"mcl_furnaces_front_active.png",
+				"mcl_furnaces_side.png",
+				"mcl_furnaces_side.png",
+				"mcl_furnaces_side.png",
 				"mcl_minecarts_minecart.png",
 			}})
 		end
