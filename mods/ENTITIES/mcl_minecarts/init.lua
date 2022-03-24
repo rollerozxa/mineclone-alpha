@@ -583,8 +583,6 @@ Register a minecart
 * itemstring: Itemstring of minecart item
 * entity_id: ID of minecart entity
 * description: Item name / description
-* longdesc: Long help text
-* usagehelp: Usage help text
 * mesh: Minecart mesh
 * textures: Minecart textures table
 * icon: Item icon

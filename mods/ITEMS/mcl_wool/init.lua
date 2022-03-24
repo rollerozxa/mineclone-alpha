@@ -32,7 +32,6 @@ for _, row in ipairs(wool.dyes) do
 	local texture = row[2]
 	local desc_wool = row[3]
 	local color_group = row[4]
-	local longdesc_wool, name_wool
 
 	-- Node Definition
 	minetest.register_node("mcl_wool:"..name, {

@@ -139,7 +139,7 @@ end
 
 mcl_torches = {}
 
-mcl_torches.register_torch = function(substring, description, doc_items_longdesc, doc_items_usagehelp, icon, mesh_floor, mesh_wall, tiles, light, groups, sounds, moredef, moredef_floor, moredef_wall)
+mcl_torches.register_torch = function(substring, description, icon, mesh_floor, mesh_wall, tiles, light, groups, sounds, moredef, moredef_floor, moredef_wall)
 	local itemstring = minetest.get_current_modname()..":"..substring
 	local itemstring_wall = minetest.get_current_modname()..":"..substring.."_wall"
 
@@ -280,8 +280,6 @@ end
 
 mcl_torches.register_torch("torch",
 	S("Torch"),
-	S("Torches are light sources which can be placed at the side or on the top of most blocks."),
-	nil,
 	"mcl_torches_on_floor.png",
 	"mcl_torches_torch_floor.obj", "mcl_torches_torch_wall.obj",
 	{{

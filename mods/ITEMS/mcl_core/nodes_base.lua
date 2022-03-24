@@ -361,14 +361,13 @@ minetest.register_node("mcl_core:ice", {
 })
 
 for i=1,8 do
-	local id, desc, help, walkable, drawtype, node_box
+	local id, desc, walkable, drawtype, node_box
 	if i == 1 then
 		id = "mcl_core:snow"
 		desc = S("Top Snow")
 		walkable = false
 	else
 		id = "mcl_core:snow_"..i
-		help = false
 		walkable = true
 	end
 	if i ~= 8 then

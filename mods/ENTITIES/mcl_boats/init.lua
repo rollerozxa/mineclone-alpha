@@ -383,9 +383,6 @@ local images = { "oak" }
 for b=1, #boat_ids do
 	local itemstring = "mcl_boats:"..boat_ids[b]
 
-	local longdesc, usagehelp, tt_help, help, helpname
-	help = false
-
 	minetest.register_craftitem(itemstring, {
 		description = names[b],
 		inventory_image = "mcl_boats_"..images[b].."_boat.png",

@@ -8,7 +8,7 @@ if mod_screwdriver then
 end
 
 -- Register tree trunk (wood) and bark
-local function register_tree_trunk(subname, description_trunk, description_bark, longdesc, tile_inner, tile_bark, stripped_variant)
+local function register_tree_trunk(subname, description_trunk, description_bark, tile_inner, tile_bark, stripped_variant)
 	minetest.register_node("mcl_core:"..subname, {
 		description = description_trunk,
 		tiles = {tile_inner, tile_inner, tile_bark},
@@ -37,7 +37,7 @@ local function register_wooden_planks(subname, description, tiles)
 	})
 end
 
-local register_leaves = function(subname, description, longdesc, tiles, sapling, drop_apples, sapling_chances, leafdecay_distance)
+local register_leaves = function(subname, description, tiles, sapling, drop_apples, sapling_chances, leafdecay_distance)
 	local drop
 	if leafdecay_distance == nil then
 		leafdecay_distance = 4
@@ -82,7 +82,7 @@ local register_leaves = function(subname, description, longdesc, tiles, sapling,
 	})
 end
 
-local function register_sapling(subname, description, longdesc, tt_help, texture, selbox)
+local function register_sapling(subname, description, texture, selbox)
 	minetest.register_node("mcl_core:"..subname, {
 		description = description,
 		drawtype = "plantlike",
@@ -121,15 +121,12 @@ end
 
 ---------------------
 
-register_tree_trunk("tree", S("Wood"), S("Bark"), S("The trunk of an oak tree."), "mcl_core_tree_top.png", "mcl_core_tree.png", "mcl_core:stripped_oak")
+register_tree_trunk("tree", S("Wood"), S("Bark"), "mcl_core_tree_top.png", "mcl_core_tree.png", "mcl_core:stripped_oak")
 
 register_wooden_planks("wood", S("Wood Planks"), {"mcl_core_wood.png"})
 
 
-register_sapling("sapling", S("Sapling"),
-	S("When placed on soil (such as dirt) and exposed to light, an oak sapling will grow into an oak after some time."),
-	S("Needs soil and light to grow"),
-	"mcl_core_sapling.png", {-5/16, -0.5, -5/16, 5/16, 0.5, 5/16})
+register_sapling("sapling", S("Sapling"), "mcl_core_sapling.png", {-5/16, -0.5, -5/16, 5/16, 0.5, 5/16})
 
 
-register_leaves("leaves", S("Leaves"), S("Oak leaves are grown from oak trees."), {"mcl_core_leaves.png"}, "mcl_core:sapling", true, {20, 16, 12, 10})
+register_leaves("leaves", S("Leaves"), {"mcl_core_leaves.png"}, "mcl_core:sapling", true, {20, 16, 12, 10})

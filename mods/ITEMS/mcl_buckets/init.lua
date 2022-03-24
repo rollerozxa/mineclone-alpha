@@ -47,15 +47,12 @@ end
 --   itemname = itemstring of the new bucket item (or nil if liquid is not takeable)
 --   inventory_image = texture of the new bucket item (ignored if itemname == nil)
 --   name = user-visible bucket description
---   longdesc = long explanatory description (for help)
---   usagehelp = short usage explanation (for help)
---   tt_help = very short tooltip help
 --   extra_check(pos, placer) = optional function(pos) which can returns false to avoid placing the liquid.
 --                              placer is object/player who is placing the liquid, can be nil
 --   groups = optional list of item groups
 --
 -- This function can be called from any mod (which depends on this one)
-function mcl_buckets.register_liquid(source_place, source_take, itemname, inventory_image, name, longdesc, usagehelp, tt_help, extra_check, groups)
+function mcl_buckets.register_liquid(source_place, source_take, itemname, inventory_image, name, extra_check, groups)
 	for i=1, #source_take do
 		mcl_buckets.liquids[source_take[i]] = {
 			source_place = source_place,
@@ -263,10 +260,7 @@ mcl_buckets.register_liquid(
 	{"mcl_core:lava_source"},
 	"mcl_buckets:bucket_lava",
 	"bucket_lava.png",
-	S("Lava Bucket"),
-	S("A bucket can be used to collect and release liquids. This one is filled with hot lava, safely contained inside. Use with caution."),
-	S("Get in a safe distance and place the bucket to empty it and create a lava source at this spot. Don't burn yourself!"),
-	S("Places a lava source")
+	S("Lava Bucket")
 )
 
 -- Water bucket
@@ -276,9 +270,6 @@ mcl_buckets.register_liquid(
 	"mcl_buckets:bucket_water",
 	"bucket_water.png",
 	S("Water Bucket"),
-	S("A bucket can be used to collect and release liquids. This one is filled with water."),
-	S("Place it to empty the bucket and create a water source."),
-	S("Places a water source"),
 	function(pos, placer)
 		-- Check protection
 		local placer_name = ""
@@ -302,9 +293,6 @@ mcl_buckets.register_liquid(
 	"mcl_buckets:bucket_river_water",
 	"bucket_river_water.png",
 	S("River Water Bucket"),
-	S("A bucket can be used to collect and release liquids. This one is filled with river water."),
-	S("Place it to empty the bucket and create a river water source."),
-	S("Places a river water source"),
 	function(pos, placer)
 		-- Check protection
 		local placer_name = ""

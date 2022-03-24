@@ -86,18 +86,14 @@ end
 --		* player=true: Player
 --		* mob=true: Mob
 --		By default, is triggered by all entities
--- longdesc:	Customized long description for the in-game help (if omitted, a dummy text is used)
 
-function mesecon.register_pressure_plate(basename, description, textures_off, textures_on, image_w, image_i, recipe, sounds, plusgroups, activated_by, longdesc)
+function mesecon.register_pressure_plate(basename, description, textures_off, textures_on, image_w, image_i, recipe, sounds, plusgroups, activated_by)
 	local groups_off = table.copy(plusgroups)
 	groups_off.attached_node = 1
 	groups_off.pressure_plate = 1
 	local groups_on = table.copy(groups_off)
 	groups_on.not_in_creative_inventory = 1
 	groups_on.pressure_plate = 2
-	if not longdesc then
-		longdesc = S("A pressure plate is a redstone component which supplies its surrounding blocks with redstone power while someone or something rests on top of it.")
-	end
 
 	mesecon.register_node(basename, {
 		drawtype = "nodebox",
@@ -154,15 +150,13 @@ for w=1, #woods do
 		{{woods[w][2], woods[w][2]}},
 		mcl_sounds.node_sound_wood_defaults(),
 		{axey=1, material_wood=1},
-		nil,
-		S("A wooden pressure plate is a redstone component which supplies its surrounding blocks with redstone power while any movable object (including dropped items, players and mobs) rests on top of it."))
+		nil)
 
 	minetest.register_craft({
 		type = "fuel",
 		recipe = "mesecons_pressureplates:pressure_plate_"..woods[w][1].."_off",
 		burntime = 15
 	})
-
 end
 
 mesecon.register_pressure_plate(
@@ -175,7 +169,5 @@ mesecon.register_pressure_plate(
 	{{"mcl_core:stone", "mcl_core:stone"}},
 	mcl_sounds.node_sound_stone_defaults(),
 	{pickaxey=1, material_stone=1},
-	{ player = true, mob = true },
-	S("A stone pressure plate is a redstone component which supplies its surrounding blocks with redstone power while a player or mob stands on top of it. It is not triggered by anything else."))
-
+	{ player = true, mob = true })
 
