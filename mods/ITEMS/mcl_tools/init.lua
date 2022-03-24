@@ -72,7 +72,6 @@ minetest.register_tool("mcl_tools:pick_wood", {
 		damage_groups = {fleshy=2},
 		punch_attack_uses = 30,
 	},
-	sound = { breaks = "default_tool_breaks" },
 	_repair_material = "group:wood",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
@@ -91,7 +90,6 @@ minetest.register_tool("mcl_tools:pick_stone", {
 		damage_groups = {fleshy=3},
 		punch_attack_uses = 66,
 	},
-	sound = { breaks = "default_tool_breaks" },
 	_repair_material = "mcl_core:cobble",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
@@ -110,7 +108,6 @@ minetest.register_tool("mcl_tools:pick_iron", {
 		damage_groups = {fleshy=4},
 		punch_attack_uses = 126,
 	},
-	sound = { breaks = "default_tool_breaks" },
 	_repair_material = "mcl_core:iron_ingot",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
@@ -129,7 +126,6 @@ minetest.register_tool("mcl_tools:pick_gold", {
 		damage_groups = {fleshy=2},
 		punch_attack_uses = 17,
 	},
-	sound = { breaks = "default_tool_breaks" },
 	_repair_material = "mcl_core:gold_ingot",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
@@ -148,7 +144,6 @@ minetest.register_tool("mcl_tools:pick_diamond", {
 		damage_groups = {fleshy=5},
 		punch_attack_uses = 781,
 	},
-	sound = { breaks = "default_tool_breaks" },
 	_repair_material = "mcl_core:diamond",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
@@ -168,7 +163,6 @@ minetest.register_tool("mcl_tools:shovel_wood", {
 		damage_groups = {fleshy=2},
 		punch_attack_uses = 30,
 	},
-	sound = { breaks = "default_tool_breaks" },
 	_repair_material = "group:wood",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
@@ -186,7 +180,6 @@ minetest.register_tool("mcl_tools:shovel_stone", {
 		damage_groups = {fleshy=3},
 		punch_attack_uses = 66,
 	},
-	sound = { breaks = "default_tool_breaks" },
 	_repair_material = "mcl_core:cobble",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
@@ -204,7 +197,6 @@ minetest.register_tool("mcl_tools:shovel_iron", {
 		damage_groups = {fleshy=4},
 		punch_attack_uses = 126,
 	},
-	sound = { breaks = "default_tool_breaks" },
 	_repair_material = "mcl_core:iron_ingot",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
@@ -222,7 +214,6 @@ minetest.register_tool("mcl_tools:shovel_gold", {
 		damage_groups = {fleshy=2},
 		punch_attack_uses = 17,
 	},
-	sound = { breaks = "default_tool_breaks" },
 	_repair_material = "mcl_core:gold_ingot",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
@@ -240,7 +231,6 @@ minetest.register_tool("mcl_tools:shovel_diamond", {
 		damage_groups = {fleshy=5},
 		punch_attack_uses = 781,
 	},
-	sound = { breaks = "default_tool_breaks" },
 	_repair_material = "mcl_core:diamond",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
@@ -260,7 +250,6 @@ minetest.register_tool("mcl_tools:axe_wood", {
 		damage_groups = {fleshy=7},
 		punch_attack_uses = 30,
 	},
-	sound = { breaks = "default_tool_breaks" },
 	_repair_material = "group:wood",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
@@ -278,7 +267,6 @@ minetest.register_tool("mcl_tools:axe_stone", {
 		damage_groups = {fleshy=9},
 		punch_attack_uses = 66,
 	},
-	sound = { breaks = "default_tool_breaks" },
 	_repair_material = "mcl_core:cobble",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
@@ -297,7 +285,6 @@ minetest.register_tool("mcl_tools:axe_iron", {
 		damage_groups = {fleshy=9},
 		punch_attack_uses = 126,
 	},
-	sound = { breaks = "default_tool_breaks" },
 	_repair_material = "mcl_core:iron_ingot",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
@@ -315,7 +302,6 @@ minetest.register_tool("mcl_tools:axe_gold", {
 		damage_groups = {fleshy=7},
 		punch_attack_uses = 17,
 	},
-	sound = { breaks = "default_tool_breaks" },
 	_repair_material = "mcl_core:gold_ingot",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
@@ -333,7 +319,6 @@ minetest.register_tool("mcl_tools:axe_diamond", {
 		damage_groups = {fleshy=9},
 		punch_attack_uses = 781,
 	},
-	sound = { breaks = "default_tool_breaks" },
 	_repair_material = "mcl_core:diamond",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
@@ -353,7 +338,6 @@ minetest.register_tool("mcl_tools:sword_wood", {
 		damage_groups = {fleshy=4},
 		punch_attack_uses = 60,
 	},
-	sound = { breaks = "default_tool_breaks" },
 	_repair_material = "group:wood",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
@@ -372,7 +356,6 @@ minetest.register_tool("mcl_tools:sword_stone", {
 		damage_groups = {fleshy=5},
 		punch_attack_uses = 132,
 	},
-	sound = { breaks = "default_tool_breaks" },
 	_repair_material = "mcl_core:cobble",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
@@ -391,7 +374,6 @@ minetest.register_tool("mcl_tools:sword_iron", {
 		damage_groups = {fleshy=6},
 		punch_attack_uses = 251,
 	},
-	sound = { breaks = "default_tool_breaks" },
 	_repair_material = "mcl_core:iron_ingot",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
@@ -410,7 +392,6 @@ minetest.register_tool("mcl_tools:sword_gold", {
 		damage_groups = {fleshy=4},
 		punch_attack_uses = 33,
 	},
-	sound = { breaks = "default_tool_breaks" },
 	_repair_material = "mcl_core:gold_ingot",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
@@ -429,7 +410,6 @@ minetest.register_tool("mcl_tools:sword_diamond", {
 		damage_groups = {fleshy=7},
 		punch_attack_uses = 1562,
 	},
-	sound = { breaks = "default_tool_breaks" },
 	_repair_material = "mcl_core:diamond",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {

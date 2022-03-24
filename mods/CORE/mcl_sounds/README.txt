@@ -15,8 +15,6 @@ Glass breaking sounds (CC BY 3.0):
    2: http://www.freesound.org/people/Tomlija/sounds/97669/
    3: http://www.freesound.org/people/lsprice/sounds/88808/
 
-default_tool_breaks.ogg by EdgardEdition (CC BY 3.0), http://www.freesound.org/people/EdgardEdition
-
 Mito551 (sounds) (CC BY-SA 3.0):
   default_dig_choppy.ogg
   default_dig_cracky.ogg

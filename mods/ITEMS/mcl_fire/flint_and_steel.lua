@@ -66,7 +66,6 @@ minetest.register_tool("mcl_fire:flint_and_steel", {
 		end
 		return stack
 	end,
-	sound = { breaks = "default_tool_breaks" },
 	_mcl_uses = 65,
 })
 
