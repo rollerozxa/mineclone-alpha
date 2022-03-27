@@ -2837,14 +2837,6 @@ local falling = function(self, pos)
 	end
 end
 
-local teleport = function(self, target)
-	if self.do_teleport then
-		if self.do_teleport(self, target) == false then
-			return
-		end
-	end
-end
-
 
 -- deal damage and effects when mob punched
 local mob_punch = function(self, hitter, tflp, tool_capabilities, dir)
@@ -2871,9 +2863,6 @@ local mob_punch = function(self, hitter, tflp, tool_capabilities, dir)
 		if self.protected and minetest.is_protected(self.object:get_pos(), hitter:get_player_name()) then
 			return
 		end
-
-		-- set/update 'drop xp' timestamp if hitted by player
-		self.xp_timestamp = minetest.get_us_time()
 	end
 
 
@@ -3632,9 +3621,6 @@ minetest.register_entity(name, {
 	lifetimer = def.lifetimer or 57.73,
 	hp_min = scale_difficulty(def.hp_min, 5, 1),
 	hp_max = scale_difficulty(def.hp_max, 10, 1),
-	xp_min = def.xp_min or 0,
-	xp_max = def.xp_max or 0,
-	xp_timestamp = 0,
 	breath_max = def.breath_max or 15,
         breathes_in_water = def.breathes_in_water or false,
 	physical = true,
@@ -3718,8 +3704,6 @@ minetest.register_entity(name, {
 
 
 	-- MCL2 extensions
-	teleport = teleport,
-	do_teleport = def.do_teleport,
 	spawn_class = def.spawn_class,
 	ignores_nametag = def.ignores_nametag or false,
 	rain_damage = def.rain_damage or 0,

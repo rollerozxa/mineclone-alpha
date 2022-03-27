@@ -23,9 +23,7 @@ local node_ok = function(pos, fallback)
 	return {name = fallback}
 end
 
-
 local function node_is(pos)
-
 	local node = node_ok(pos)
 
 	if node.name == "air" then
@@ -47,9 +45,7 @@ local function node_is(pos)
 	return "other"
 end
 
-
 local function get_sign(i)
-
 	i = i or 0
 
 	if i == 0 then
@@ -59,23 +55,18 @@ local function get_sign(i)
 	end
 end
 
-
 local function get_velocity(v, yaw, y)
-
 	local x = -math.sin(yaw) * v
 	local z =  math.cos(yaw) * v
 
 	return {x = x, y = y, z = z}
 end
 
-
 local function get_v(v)
 	return math.sqrt(v.x * v.x + v.z * v.z)
 end
 
-
 local function force_detach(player)
-
 	local attached_to = player:get_attach()
 
 	if not attached_to then
@@ -100,7 +91,6 @@ end
 
 -------------------------------------------------------------------------------
 
-
 minetest.register_on_leaveplayer(function(player)
 	force_detach(player)
 end)
@@ -120,7 +110,6 @@ end)
 -------------------------------------------------------------------------------
 
 function mobs.attach(entity, player)
-
 	local attach_at, eye_offset
 
 	entity.player_rotation = entity.player_rotation or {x = 0, y = 0, z = 0}
@@ -161,9 +150,7 @@ function mobs.attach(entity, player)
 	player:set_look_horizontal(entity.object:get_yaw() - rot_view)
 end
 
-
 function mobs.detach(player, offset)
-
 	force_detach(player)
 
 	mcl_player.player_set_animation(player, "stand" , 30)
@@ -180,9 +167,7 @@ function mobs.detach(player, offset)
 	end, player:get_player_name(), pos)
 end
 
-
 function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
-
 	local rot_view = 0
 
 	if entity.player_rotation.y == 90 then
@@ -196,17 +181,14 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 
 	-- process controls
 	if entity.driver then
-
 		local ctrl = entity.driver:get_player_control()
 
 		-- move forwards
 		if ctrl.up then
-
 			entity.v = entity.v + entity.accel / 10
 
 		-- move backwards
 		elseif ctrl.down then
-
 			if entity.max_speed_reverse == 0 and entity.v == 0 then
 				return
 			end
@@ -218,7 +200,6 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 		entity.object:set_yaw(entity.driver:get_look_horizontal() - entity.rotate)
 
 		if can_fly then
-
 			-- fly up
 			if ctrl.jump then
 				velo.y = velo.y + 1
@@ -238,9 +219,7 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 				velo.y = velo.y + 0.1
 				if velo.y > 0 then velo.y = 0 end
 			end
-
 		else
-
 			-- jump
 			if ctrl.jump then
 
@@ -255,7 +234,6 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 
 	-- if not moving then set animation and return
 	if entity.v == 0 and velo.x == 0 and velo.y == 0 and velo.z == 0 then
-
 		if stand_anim then
 			mobs:set_animation(entity, stand_anim)
 		end
@@ -274,7 +252,6 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 	entity.v = entity.v - 0.02 * s
 
 	if s ~= get_sign(entity.v) then
-
 		entity.object:set_velocity({x = 0, y = 0, z = 0})
 		entity.v = 0
 		return
@@ -302,15 +279,11 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 	local v = entity.v
 
 	if ni == "air" then
-
 		if can_fly == true then
 			new_acce.y = 0
 		end
-
 	elseif ni == "liquid" or ni == "lava" then
-
 		if ni == "lava" and entity.lava_damage ~= 0 then
-
 			entity.lava_counter = (entity.lava_counter or 0) + dtime
 
 			if entity.lava_counter > 1 then
@@ -331,7 +304,6 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 			p.y = p.y + 1
 
 			if node_is(p) == "liquid" then
-
 				if velo.y >= 5 then
 					velo.y = 5
 				elseif velo.y < 0 then
@@ -360,11 +332,9 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 
 	-- CRASH!
 	if enable_crash then
-
 		local intensity = entity.v2 - v
 
 		if intensity >= crash_threshold then
-
 			entity.object:punch(entity.object, 1.0, {
 				full_punch_interval = 1.0,
 				damage_groups = {fleshy = intensity}
@@ -376,11 +346,9 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 	entity.v2 = v
 end
 
-
 -- directional flying routine by D00Med (edited by TenPlus1)
 
 function mobs.fly(entity, dtime, speed, shoots, arrow, moving_anim, stand_anim)
-
 	local ctrl = entity.driver:get_player_control()
 	local velo = entity.object:get_velocity()
 	local dir = entity.driver:get_look_dir()
@@ -430,7 +398,6 @@ function mobs.fly(entity, dtime, speed, shoots, arrow, moving_anim, stand_anim)
 
 	-- change animation if stopped
 	if velo.x == 0 and velo.y == 0 and velo.z == 0 then
-
 		mobs:set_animation(entity, stand_anim)
 	else
 		-- moving animation
