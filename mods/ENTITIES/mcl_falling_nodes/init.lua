@@ -102,6 +102,9 @@ minetest.register_entity(":__builtin:falling_node", {
 		-- Turn to actual node when colliding with ground, or continue to move
 		local pos = self.object:get_pos()
 
+		local np = {x = pos.x, y = pos.y + 0.3, z = pos.z}
+		local n2 = minetest.get_node(np)
+
 		-- Position of bottom center point
 		local bcp = {x = pos.x, y = pos.y - 0.7, z = pos.z}
 		-- Avoid bugs caused by an unloaded node below
