@@ -88,15 +88,6 @@ function mcl_util.rotate_axis_and_place(itemstack, placer, pointed_thing, infini
 	end
 end
 
--- Wrapper of above function for use as `on_place` callback (Recommended).
--- Similar to minetest.rotate_node.
-function mcl_util.rotate_axis(itemstack, placer, pointed_thing)
-	mcl_util.rotate_axis_and_place(itemstack, placer, pointed_thing,
-		minetest.is_creative_enabled(placer:get_player_name()),
-		placer:get_player_control().sneak)
-	return itemstack
-end
-
 -- Returns position of the neighbor of a double chest node
 -- or nil if node is invalid.
 -- This function assumes that the large chest is actually intact

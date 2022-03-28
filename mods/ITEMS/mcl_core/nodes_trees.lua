@@ -12,12 +12,9 @@ local function register_tree_trunk(subname, description_trunk, description_bark,
 	minetest.register_node("mcl_core:"..subname, {
 		description = description_trunk,
 		tiles = {tile_inner, tile_inner, tile_bark},
-		paramtype2 = "facedir",
-		on_place = mcl_util.rotate_axis,
 		stack_max = 64,
 		groups = {handy=1, axey=1, tree=1, flammable=2, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
 		sounds = mcl_sounds.node_sound_wood_defaults(),
-		on_rotate = on_rotate,
 		_mcl_blast_resistance = 2,
 		_mcl_hardness = 2,
 		_mcl_stripped_variant = stripped_variant,
@@ -109,9 +106,7 @@ local function register_sapling(subname, description, texture, selbox)
 			local node_below = minetest.get_node_or_nil({x=pos.x,y=pos.y-1,z=pos.z})
 			if not node_below then return false end
 			local nn = node_below.name
-			return ((minetest.get_item_group(nn, "grass_block") == 1) or
-					nn=="mcl_core:podzol" or nn=="mcl_core:podzol_snow" or
-					nn=="mcl_core:dirt")
+			return ((minetest.get_item_group(nn, "grass_block") == 1) or nn=="mcl_core:dirt")
 		end),
 		node_placement_prediction = "",
 		_mcl_blast_resistance = 0,
