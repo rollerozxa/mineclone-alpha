@@ -523,15 +523,18 @@ end
 register_chest("chest",
 	S("Chest"),
 	{
-		inv = {"mcl_chests_top.png", "mcl_chests_bottom.png",
-		"mcl_chests_right.png", "mcl_chests_left.png",
-		"mcl_chests_back.png", "mcl_chests_front.png"},
-		left = {"mcl_chests_top_big.png", "mcl_chests_top_big.png",
-		"mcl_chests_right.png", "mcl_chests_left.png",
-		"mcl_chests_side_big.png^[transformFX", "mcl_chests_front_big.png"},
-		right = {"mcl_chests_top_big.png^[transformFX", "mcl_chests_top_big.png^[transformFX",
-		"mcl_chests_right.png", "mcl_chests_left.png",
-		"mcl_chests_side_big.png", "mcl_chests_front_big.png^[transformFX"},
+		inv = {
+			"mcl_chests_top.png", "mcl_chests_top.png",
+			"mcl_chests_side.png", "mcl_chests_side.png",
+			"mcl_chests_side.png", "mcl_chests_front.png"},
+		left = {
+			"mcl_chests_top.png", "mcl_chests_top.png",
+			"mcl_chests_side.png", "mcl_chests_side.png",
+			"mcl_chests_back_big.png^[transformFX", "mcl_chests_front_big.png"},
+		right = {
+			"mcl_chests_top.png", "mcl_chests_top.png",
+			"mcl_chests_side.png", "mcl_chests_side.png",
+			"mcl_chests_back_big.png", "mcl_chests_front_big.png^[transformFX"},
 	}
 )
 
