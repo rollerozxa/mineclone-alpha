@@ -43,6 +43,17 @@ function return_fields(player, name)
 	end
 end
 
+-- Simple formspec wrapper that does variable substitution.
+function formspec_wrapper(formspec, variables)
+	local retval = formspec
+
+	for k,v in pairs(variables) do
+		retval = retval:gsub("${"..k.."}", v)
+	end
+
+	return retval
+end
+
 local function set_inventory(player, armor_change_only)
 	if minetest.is_creative_enabled(player:get_player_name()) then
 		if armor_change_only then
@@ -82,39 +93,38 @@ local function set_inventory(player, armor_change_only)
 	local armor_slot_imgs = ""
 	for a=1,4 do
 		if inv:get_stack("armor", a+1):is_empty() then
-			armor_slot_imgs = armor_slot_imgs .. "image[0,"..(a-1)..";1,1;mcl_inventory_empty_armor_slot_"..armor_slots[a]..".png]"
+			armor_slot_imgs = armor_slot_imgs .. "image[0.425,"..((a-0.6))..";0.9,0.9;mcl_inventory_empty_armor_slot_"..armor_slots[a]..".png]"
 		end
 	end
 
-	local form = "size[9,8.75]"..
-	"background[-0.19,-0.25;9.41,9.49;crafting_formspec_bg.png]"..
-	player_preview..
-	--armor
-	"list[detached:"..player_name.."_armor;armor;0,0;1,1;1]"..
-	"list[detached:"..player_name.."_armor;armor;0,1;1,1;2]"..
-	"list[detached:"..player_name.."_armor;armor;0,2;1,1;3]"..
-	"list[detached:"..player_name.."_armor;armor;0,3;1,1;4]"..
-	mcl_formspec.get_itemslot_bg(0,0,1,1)..
-	mcl_formspec.get_itemslot_bg(0,1,1,1)..
-	mcl_formspec.get_itemslot_bg(0,2,1,1)..
-	mcl_formspec.get_itemslot_bg(0,3,1,1)..
-	armor_slot_imgs..
-	-- craft and inventory
-	"label[0,4;"..F(minetest.colorize("#313131", S("Inventory"))).."]"..
-	"list[current_player;main;0,4.5;9,3;9]"..
-	"list[current_player;main;0,7.74;9,1;]"..
-	"label[4,0.5;"..F(minetest.colorize("#313131", S("Crafting"))).."]"..
-	"list[current_player;craft;4,1;2,2]"..
-	"list[current_player;craftpreview;7,1.5;1,1;]"..
-	mcl_formspec.get_itemslot_bg(0,4.5,9,3)..
-	mcl_formspec.get_itemslot_bg(0,7.74,9,1)..
-	mcl_formspec.get_itemslot_bg(4,1,2,2)..
-	mcl_formspec.get_itemslot_bg(7,1.5,1,1)..
-	-- for shortcuts
-	"listring[current_player;main]"..
-	"listring[current_player;craft]"..
-	"listring[current_player;main]"..
-	"listring[detached:"..player_name.."_armor;armor]"
+	local form = formspec_wrapper([[
+		size[9.5,9,true]
+		no_prepend[]
+		real_coordinates[true]
+		bgcolor[blue;true]
+		listcolors[#ffffff00;#ffffff80]
+		style_type[list;spacing=0.125,0.125;size=0.85,0.85]
+		image[0,0;9.5,9;inventory.png]
+		box[1.25,0.25;3,4;black]
+		model[1.30,0.75;3,3.5;playermodel;character.b3d;character.png;0,180;false;false;0,79;30]
+		${armor_slot_imgs}
+		list[detached:${player_name}_armor;armor;0.45,0.45;1,1;1]
+		list[detached:${player_name}_armor;armor;0.45,1.45;1,1;2]
+		list[detached:${player_name}_armor;armor;0.45,2.45;1,1;3]
+		list[detached:${player_name}_armor;armor;0.45,3.45;1,1;4]
+		list[current_player;craft;4.77,1.43;2,2;0]
+		list[current_player;craftpreview;7.80,1.98;1,1;0]
+		list[current_player;main;0.45,7.70;9,1;0]
+		list[current_player;main;0.45,4.57;9,3;9]
+
+		listring[current_player;main]
+		listring[current_player;craft]
+		listring[current_player;main]
+		listring[detached:${player_name}_armor;armor]
+	]], {
+		player_name = player_name,
+		armor_slot_imgs = armor_slot_imgs
+	})
 
 	player:set_inventory_formspec(form)
 end
