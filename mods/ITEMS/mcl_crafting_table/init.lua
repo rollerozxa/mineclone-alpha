@@ -11,20 +11,21 @@ minetest.register_node("mcl_crafting_table:crafting_table", {
 		player:get_inventory():set_width("craft", 3)
 		player:get_inventory():set_size("craft", 9)
 
-		local form = "size[9,8.75]"..
-		"image[4.7,1.5;1.5,1;mcl_crafting_table_arrow.png]"..
-		"label[0,4;"..minetest.formspec_escape(minetest.colorize("#313131", S("Inventory"))).."]"..
-		"list[current_player;main;0,4.5;9,3;9]"..
-		mcl_formspec.get_itemslot_bg(0,4.5,9,3)..
-		"list[current_player;main;0,7.74;9,1;]"..
-		mcl_formspec.get_itemslot_bg(0,7.74,9,1)..
-		"label[1.75,0;"..minetest.formspec_escape(minetest.colorize("#313131", S("Crafting"))).."]"..
-		"list[current_player;craft;1.75,0.5;3,3;]"..
-		mcl_formspec.get_itemslot_bg(1.75,0.5,3,3)..
-		"list[current_player;craftpreview;6.1,1.5;1,1;]"..
-		mcl_formspec.get_itemslot_bg(6.1,1.5,1,1)..
-		"listring[current_player;main]"..
-		"listring[current_player;craft]"
+		local form = [[
+			size[10,9.4,true]
+			no_prepend[]
+			real_coordinates[true]
+			bgcolor[blue;true]
+			listcolors[#ffffff00;#ffffff80]
+			style_type[list;spacing=0.07,0.07;size=0.95,0.95]
+			image[0,0;10,9.4;mcl_crafting_table_gui.png]
+			list[current_player;craft;1.7,0.95;3,3;0]
+			list[current_player;craftpreview;7.05,1.97;1,1;0]
+			list[current_player;main;0.46,8;9,1;0]
+			list[current_player;main;0.46,4.72;9,3;9]
+			listring[current_player;main]
+			listring[current_player;craft]
+		]]
 
 		minetest.show_formspec(player:get_player_name(), "main", form)
 	end,
