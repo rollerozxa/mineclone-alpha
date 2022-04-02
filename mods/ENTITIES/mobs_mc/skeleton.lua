@@ -49,12 +49,7 @@ local skeleton = {
 		chance = 100 / 8.5,
 		min = 1,
 		max = 1,
-		looting = "rare",},
-		{name = "mcl_mobitems:bone",
-		chance = 1,
-		min = 0,
-		max = 2,
-		looting = "common",},
+		looting = "rare",}
 	},
 	animation = {
 		stand_speed = 15,

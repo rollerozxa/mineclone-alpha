@@ -28,14 +28,6 @@ minetest.register_craftitem("mcl_mobitems:milk_bucket", {
 	groups = { food = 3, can_eat_when_full = 1 },
 })
 
-minetest.register_craftitem("mcl_mobitems:bone", {
-	description = S("Bone"),
-	inventory_image = "mcl_mobitems_bone.png",
-	stack_max = 64,
-	groups = { craftitem=1 },
-	_mcl_toollike_wield = true,
-})
-
 minetest.register_craftitem("mcl_mobitems:string",{
 	description = S("String"),
 	inventory_image = "mcl_mobitems_string.png",

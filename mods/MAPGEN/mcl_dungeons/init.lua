@@ -60,7 +60,6 @@ local loottable =
 		stacks_min = 3,
 		stacks_max = 3,
 		items = {
-			{ itemstring = "mcl_mobitems:bone", weight = 10, amount_min = 1, amount_max = 8 },
 			{ itemstring = "mcl_mobitems:gunpowder", weight = 10, amount_min = 1, amount_max = 8 },
 			{ itemstring = "mcl_mobitems:string", weight = 10, amount_min = 1, amount_max = 8 },
 		},

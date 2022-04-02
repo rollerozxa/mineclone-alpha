@@ -83,7 +83,6 @@ local fish = function(itemstack, player, pointed_thing)
 										{ itemstring = "mcl_armor:boots_leather", weight = 10, wear_min = 6554, wear_max = 65535 }, -- 10%-100% damage
 										{ itemstring = "mcl_core:stick", weight = 5 },
 										{ itemstring = "mcl_mobitems:string", weight = 5 },
-										{ itemstring = "mcl_mobitems:bone", weight = 10 },
 										{ itemstring = "mcl_mobitems:string", weight = 10 }, -- TODO: Tripwire Hook
 									}
 								}, pr)
