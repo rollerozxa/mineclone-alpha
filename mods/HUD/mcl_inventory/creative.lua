@@ -349,8 +349,8 @@ mcl_inventory.set_creative_formspec = function(player, start_i, pagenum, inv_siz
 			misc = "mcl_buckets:bucket_lava",
 			nix = "mcl_compass:compass",
 			food = "mcl_core:apple",
-			tools = "mcl_core:axe_iron",
-			combat = "mcl_core:sword_gold",
+			tools = "mcl_tool:iron_axe",
+			combat = "mcl_tool:gold_sword",
 			matr = "mcl_core:stick",
 			inv = "mcl_chests:chest",
 		}

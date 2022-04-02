@@ -1,7 +1,6 @@
 local S = minetest.get_translator("mcl_armor")
 
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/armor.lua")
-dofile(minetest.get_modpath(minetest.get_current_modname()).."/alias.lua")
 
 -- Regisiter Head Armor
 

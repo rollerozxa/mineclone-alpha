@@ -117,7 +117,7 @@ local boat = {
 	collisionbox = {-0.5, -0.35, -0.5, 0.5, 0.3, 0.5},
 	visual = "mesh",
 	mesh = "mcl_boats_boat.b3d",
-	textures = {"mcl_boats_texture_oak_boat.png"},
+	textures = {"mcl_boats_boat_texture.png"},
 	visual_size = boat_visual_size,
 	hp_max = boat_max_hp,
 	damage_texture_modifier = "^[colorize:white:0",
@@ -375,73 +375,64 @@ end
 -- Register one entity for all boat types
 minetest.register_entity("mcl_boats:boat", boat)
 
-local boat_ids = { "boat" }
-local names = { S("Boat") }
-local craftstuffs = { "mcl_core:wood" }
-local images = { "oak" }
-
-for b=1, #boat_ids do
-	local itemstring = "mcl_boats:"..boat_ids[b]
-
-	minetest.register_craftitem(itemstring, {
-		description = names[b],
-		inventory_image = "mcl_boats_"..images[b].."_boat.png",
-		liquids_pointable = true,
-		groups = { boat = 1, transport = 1},
-		stack_max = 1,
-		on_place = function(itemstack, placer, pointed_thing)
-			if pointed_thing.type ~= "node" then
-				return itemstack
-			end
-
-			-- Call on_rightclick if the pointed node defines it
-			local node = minetest.get_node(pointed_thing.under)
-			if placer and not placer:get_player_control().sneak then
-				if minetest.registered_nodes[node.name] and minetest.registered_nodes[node.name].on_rightclick then
-					return minetest.registered_nodes[node.name].on_rightclick(pointed_thing.under, node, placer, itemstack) or itemstack
-				end
-			end
-
-			local pos = table.copy(pointed_thing.under)
-			local dir = vector.subtract(pointed_thing.above, pointed_thing.under)
-
-			if math.abs(dir.x) > 0.9 or math.abs(dir.z) > 0.9 then
-				pos = vector.add(pos, vector.multiply(dir, boat_side_offset))
-			elseif is_water(pos) then
-				pos = vector.add(pos, vector.multiply(dir, boat_y_offset))
-			else
-				pos = vector.add(pos, vector.multiply(dir, boat_y_offset_ground))
-			end
-			local boat = minetest.add_entity(pos, "mcl_boats:boat")
-			boat:get_luaentity()._itemstring = itemstring
-			boat:set_properties({textures = { "mcl_boats_texture_"..images[b].."_boat.png" }})
-			boat:set_yaw(placer:get_look_horizontal())
-			if not minetest.is_creative_enabled(placer:get_player_name()) then
-				itemstack:take_item()
-			end
+minetest.register_craftitem("mcl_boats:boat", {
+	description = S("Boat"),
+	inventory_image = "mcl_boats_boat.png",
+	liquids_pointable = true,
+	groups = { boat = 1, transport = 1},
+	stack_max = 1,
+	on_place = function(itemstack, placer, pointed_thing)
+		if pointed_thing.type ~= "node" then
 			return itemstack
-		end,
-		_on_dispense = function(stack, pos, droppos, dropnode, dropdir)
-			local below = {x=droppos.x, y=droppos.y-1, z=droppos.z}
-			local belownode = minetest.get_node(below)
-			-- Place boat as entity on or in water
-			if minetest.get_item_group(dropnode.name, "water") ~= 0 or (dropnode.name == "air" and minetest.get_item_group(belownode.name, "water") ~= 0) then
-				minetest.add_entity(droppos, "mcl_boats:boat")
-			else
-				minetest.add_item(droppos, stack)
-			end
-		end,
-	})
+		end
 
-	local c = craftstuffs[b]
-	minetest.register_craft({
-		output = itemstring,
-		recipe = {
-			{c, "", c},
-			{c, c, c},
-		},
-	})
-end
+		-- Call on_rightclick if the pointed node defines it
+		local node = minetest.get_node(pointed_thing.under)
+		if placer and not placer:get_player_control().sneak then
+			if minetest.registered_nodes[node.name] and minetest.registered_nodes[node.name].on_rightclick then
+				return minetest.registered_nodes[node.name].on_rightclick(pointed_thing.under, node, placer, itemstack) or itemstack
+			end
+		end
+
+		local pos = table.copy(pointed_thing.under)
+		local dir = vector.subtract(pointed_thing.above, pointed_thing.under)
+
+		if math.abs(dir.x) > 0.9 or math.abs(dir.z) > 0.9 then
+			pos = vector.add(pos, vector.multiply(dir, boat_side_offset))
+		elseif is_water(pos) then
+			pos = vector.add(pos, vector.multiply(dir, boat_y_offset))
+		else
+			pos = vector.add(pos, vector.multiply(dir, boat_y_offset_ground))
+		end
+		local boat = minetest.add_entity(pos, "mcl_boats:boat")
+		boat:get_luaentity()._itemstring = "mcl_boats:boat"
+		boat:set_properties({textures = { "mcl_boats_boat_texture.png" }})
+		boat:set_yaw(placer:get_look_horizontal())
+		if not minetest.is_creative_enabled(placer:get_player_name()) then
+			itemstack:take_item()
+		end
+		return itemstack
+	end,
+	_on_dispense = function(stack, pos, droppos, dropnode, dropdir)
+		local below = {x=droppos.x, y=droppos.y-1, z=droppos.z}
+		local belownode = minetest.get_node(below)
+		-- Place boat as entity on or in water
+		if minetest.get_item_group(dropnode.name, "water") ~= 0 or (dropnode.name == "air" and minetest.get_item_group(belownode.name, "water") ~= 0) then
+			minetest.add_entity(droppos, "mcl_boats:boat")
+		else
+			minetest.add_item(droppos, stack)
+		end
+	end,
+})
+
+local c = "mcl_core:wood"
+minetest.register_craft({
+	output = "mcl_boats:boat",
+	recipe = {
+		{c, "", c},
+		{c, c, c},
+	},
+})
 
 minetest.register_craft({
 	type = "fuel",

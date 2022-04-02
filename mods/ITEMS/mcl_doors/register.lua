@@ -5,7 +5,7 @@ local S = minetest.get_translator("mcl_doors")
 --- Oak Door ---
 mcl_doors:register_door("mcl_doors:wooden_door", {
 	description = S("Door"),
-	inventory_image = "doors_item_wood.png",
+	inventory_image = "mcl_doors_item_wood.png",
 	groups = {handy=1,axey=1, material_wood=1, flammable=-1},
 	_mcl_hardness = 3,
 	_mcl_blast_resistance = 3,
@@ -32,7 +32,7 @@ minetest.register_craft({
 --- Iron Door ---
 mcl_doors:register_door("mcl_doors:iron_door", {
 	description = S("Iron Door"),
-	inventory_image = "doors_item_steel.png",
+	inventory_image = "mcl_doors_item_steel.png",
 	groups = {pickaxey=1, mesecon_effector_on=1},
 	_mcl_hardness = 5,
 	_mcl_blast_resistance = 5,
