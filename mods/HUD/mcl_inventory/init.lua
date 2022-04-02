@@ -43,17 +43,6 @@ function return_fields(player, name)
 	end
 end
 
--- Simple formspec wrapper that does variable substitution.
-function formspec_wrapper(formspec, variables)
-	local retval = formspec
-
-	for k,v in pairs(variables) do
-		retval = retval:gsub("${"..k.."}", v)
-	end
-
-	return retval
-end
-
 local function set_inventory(player, armor_change_only)
 	if minetest.is_creative_enabled(player:get_player_name()) then
 		if armor_change_only then
@@ -97,7 +86,7 @@ local function set_inventory(player, armor_change_only)
 		end
 	end
 
-	local form = formspec_wrapper([[
+	local form = mcl_formspec.formspec_wrapper([[
 		size[9.5,9,true]
 		no_prepend[]
 		real_coordinates[true]

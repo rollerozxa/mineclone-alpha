@@ -13,3 +13,14 @@ end
 minetest.register_on_joinplayer(function(player)
 	player:set_formspec_prepend(mcl_vars.gui_nonbg .. mcl_vars.gui_bg_color .. mcl_vars.gui_bg_img)
 end)
+
+-- Simple formspec wrapper that does variable substitution.
+function mcl_formspec.formspec_wrapper(formspec, variables)
+	local retval = formspec
+
+	for k,v in pairs(variables) do
+		retval = retval:gsub("${"..k.."}", v)
+	end
+
+	return retval
+end

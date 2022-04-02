@@ -247,19 +247,26 @@ minetest.register_node(small_name, {
 			return false
 		end
 
-		minetest.show_formspec(clicker:get_player_name(),
-		"mcl_chests:"..canonical_basename.."_"..pos.x.."_"..pos.y.."_"..pos.z,
-		"size[9,8.75]"..
-		"label[0,0;"..minetest.formspec_escape(minetest.colorize("#313131", S("Chest"))).."]"..
-		"list[nodemeta:"..pos.x..","..pos.y..","..pos.z..";main;0,0.5;9,3;]"..
-		mcl_formspec.get_itemslot_bg(0,0.5,9,3)..
-		"label[0,4.0;"..minetest.formspec_escape(minetest.colorize("#313131", S("Inventory"))).."]"..
-		"list[current_player;main;0,4.5;9,3;9]"..
-		mcl_formspec.get_itemslot_bg(0,4.5,9,3)..
-		"list[current_player;main;0,7.74;9,1;]"..
-		mcl_formspec.get_itemslot_bg(0,7.74,9,1)..
-		"listring[nodemeta:"..pos.x..","..pos.y..","..pos.z..";main]"..
-		"listring[current_player;main]")
+		local chest_formspec = mcl_formspec.formspec_wrapper([[
+			size[10,9.4,true]
+			no_prepend[]
+			real_coordinates[true]
+			bgcolor[blue;true]
+			listcolors[#0000ff00;#ffffff80]
+			style_type[list;spacing=0.07,0.07;size=0.95,0.95]
+			image[0,0;10,9.4;mcl_chests_gui.png]
+			list[nodemeta:${chestpos};main;0.46,0.95;9,3;0]
+			list[current_player;main;0.46,8;9,1;0]
+			list[current_player;main;0.46,4.72;9,3;9]
+			listring[nodemeta:${chestpos};main]
+			listring[current_player;main]
+		]], {
+			chestpos = pos.x..","..pos.y..","..pos.z
+		})
+
+		print(chest_formspec)
+
+		minetest.show_formspec(clicker:get_player_name(), "mcl_chests:"..canonical_basename.."_"..pos.x.."_"..pos.y.."_"..pos.z, chest_formspec)
 	end,
 
 	on_destruct = function(pos)
