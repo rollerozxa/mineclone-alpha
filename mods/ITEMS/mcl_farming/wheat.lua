@@ -74,7 +74,7 @@ mcl_farming:add_plant("plant_wheat", "mcl_farming:wheat", {"mcl_farming:wheat_1"
 
 minetest.register_craftitem("mcl_farming:wheat_item", {
 	description = S("Wheat"),
-	inventory_image = "farming_wheat_harvested.png",
+	inventory_image = "mcl_farming_wheat_harvested.png",
 	groups = { craftitem = 1 },
 })
 
@@ -87,7 +87,7 @@ minetest.register_craft({
 
 minetest.register_craftitem("mcl_farming:bread", {
 	description = S("Bread"),
-	inventory_image = "farming_bread.png",
+	inventory_image = "mcl_farming_bread.png",
 	groups = {food=2},
 	on_place = minetest.item_eat(5),
 	on_secondary_use = minetest.item_eat(5),

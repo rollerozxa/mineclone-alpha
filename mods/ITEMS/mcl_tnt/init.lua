@@ -172,8 +172,8 @@ minetest.register_entity("mcl_tnt:tnt", TNT)
 minetest.register_craft({
 	output = "mcl_tnt:tnt",
 	recipe = {
-		{'mcl_mobitems:gunpowder','group:sand','mcl_mobitems:gunpowder'},
-		{'group:sand','mcl_mobitems:gunpowder','group:sand'},
-		{'mcl_mobitems:gunpowder','group:sand','mcl_mobitems:gunpowder'}
+		{'mcl_core:gunpowder','group:sand','mcl_core:gunpowder'},
+		{'group:sand','mcl_core:gunpowder','group:sand'},
+		{'mcl_core:gunpowder','group:sand','mcl_core:gunpowder'}
 	}
 })

@@ -316,17 +316,17 @@ end)
 minetest.register_craft({
 	output = 'mcl_bows:bow',
 	recipe = {
-		{'', 'mcl_core:stick', 'mcl_mobitems:string'},
-		{'mcl_core:stick', '', 'mcl_mobitems:string'},
-		{'', 'mcl_core:stick', 'mcl_mobitems:string'},
+		{'', 'mcl_core:stick', 'mcl_core:string'},
+		{'mcl_core:stick', '', 'mcl_core:string'},
+		{'', 'mcl_core:stick', 'mcl_core:string'},
 	}
 })
 minetest.register_craft({
 	output = 'mcl_bows:bow',
 	recipe = {
-		{'mcl_mobitems:string', 'mcl_core:stick', ''},
-		{'mcl_mobitems:string', '', 'mcl_core:stick'},
-		{'mcl_mobitems:string', 'mcl_core:stick', ''},
+		{'mcl_core:string', 'mcl_core:stick', ''},
+		{'mcl_core:string', '', 'mcl_core:stick'},
+		{'mcl_core:string', 'mcl_core:stick', ''},
 	}
 })
 

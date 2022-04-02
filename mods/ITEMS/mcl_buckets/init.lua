@@ -1,12 +1,5 @@
 local S = minetest.get_translator("mcl_buckets")
 
--- Minetest 0.4 mod: bucket
--- See README.txt for licensing and other information.
-
-minetest.register_alias("bucket:bucket_empty", "mcl_buckets:bucket_empty")
-minetest.register_alias("bucket:bucket_water", "mcl_buckets:bucket_water")
-minetest.register_alias("bucket:bucket_lava", "mcl_buckets:bucket_lava")
-
 minetest.register_craft({
 	output = 'mcl_buckets:bucket_empty 1',
 	recipe = {
@@ -170,7 +163,7 @@ minetest.register_craftitem("mcl_buckets:bucket_empty", {
 	description = S("Empty Bucket"),
 
 	liquids_pointable = true,
-	inventory_image = "bucket.png",
+	inventory_image = "mcl_buckets_empty.png",
 	stack_max = 16,
 	on_place = function(itemstack, user, pointed_thing)
 		-- Must be pointing to node
@@ -259,7 +252,7 @@ mcl_buckets.register_liquid(
 	end,
 	{"mcl_core:lava_source"},
 	"mcl_buckets:bucket_lava",
-	"bucket_lava.png",
+	"mcl_buckets_lava.png",
 	S("Lava Bucket")
 )
 
@@ -268,7 +261,7 @@ mcl_buckets.register_liquid(
 	"mcl_core:water_source",
 	{"mcl_core:water_source"},
 	"mcl_buckets:bucket_water",
-	"bucket_water.png",
+	"mcl_buckets_water.png",
 	S("Water Bucket"),
 	function(pos, placer)
 		-- Check protection
@@ -291,7 +284,7 @@ mcl_buckets.register_liquid(
 	"mclx_core:river_water_source",
 	{"mclx_core:river_water_source"},
 	"mcl_buckets:bucket_river_water",
-	"bucket_river_water.png",
+	"mcl_buckets_river_water.png",
 	S("River Water Bucket"),
 	function(pos, placer)
 		-- Check protection

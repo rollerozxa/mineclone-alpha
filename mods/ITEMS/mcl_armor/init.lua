@@ -9,7 +9,7 @@ minetest.register_tool("mcl_armor:helmet_leather", {
 	description = S("Leather Cap"),
 	inventory_image = "mcl_armor_inv_helmet_leather.png",
 	groups = { armor_head=1, mcl_armor_points=1, mcl_armor_uses=56 },
-	_repair_material = "mcl_mobitems:leather",
+	_repair_material = "mcl_core:leather",
 
 	on_place = armor.on_armor_use,
 	on_secondary_use = armor.on_armor_use,
@@ -61,7 +61,7 @@ minetest.register_tool("mcl_armor:chestplate_leather", {
 	description = S("Leather Tunic"),
 	inventory_image = "mcl_armor_inv_chestplate_leather.png",
 	groups = { armor_torso=1, mcl_armor_points=3, mcl_armor_uses=81 },
-	_repair_material = "mcl_mobitems:leather",
+	_repair_material = "mcl_core:leather",
 
 	on_place = armor.on_armor_use,
 	on_secondary_use = armor.on_armor_use,
@@ -113,7 +113,7 @@ minetest.register_tool("mcl_armor:leggings_leather", {
 	description = S("Leather Pants"),
 	inventory_image = "mcl_armor_inv_leggings_leather.png",
 	groups = { armor_legs=1, mcl_armor_points=2, mcl_armor_uses=76 },
-	_repair_material = "mcl_mobitems:leather",
+	_repair_material = "mcl_core:leather",
 
 	on_place = armor.on_armor_use,
 	on_secondary_use = armor.on_armor_use,
@@ -164,7 +164,7 @@ minetest.register_tool("mcl_armor:boots_leather", {
 	description = S("Leather Boots"),
 	inventory_image = "mcl_armor_inv_boots_leather.png",
 	groups = {armor_feet=1, mcl_armor_points=1, mcl_armor_uses=66 },
-	_repair_material = "mcl_mobitems:leather",
+	_repair_material = "mcl_core:leather",
 
 	on_place = armor.on_armor_use,
 	on_secondary_use = armor.on_armor_use,
@@ -213,7 +213,7 @@ minetest.register_tool("mcl_armor:boots_chain", {
 -- Register Craft Recipies
 
 local craft_ingreds = {
-	leather = "mcl_mobitems:leather",
+	leather = "mcl_core:leather",
 	iron = "mcl_core:iron_ingot",
 	gold = "mcl_core:gold_ingot",
 	diamond = "mcl_core:diamond",

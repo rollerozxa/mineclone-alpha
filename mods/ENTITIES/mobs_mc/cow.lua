@@ -18,7 +18,7 @@ local cow_def = {
 	makes_footstep_sound = true,
 	walk_velocity = 1,
 	drops = {
-		{name = "mcl_mobitems:leather",
+		{name = "mcl_core:leather",
 		chance = 1,
 		min = 0,
 		max = 2,
@@ -53,12 +53,12 @@ local cow_def = {
 			inv:remove_item("main", "mcl_buckets:bucket_empty")
 			minetest.sound_play("mobs_mc_cow_milk", {pos=self.object:get_pos(), gain=0.6})
 			-- if room add bucket of milk to inventory, otherwise drop as item
-			if inv:room_for_item("main", {name="mcl_mobitems:milk_bucket"}) then
-				clicker:get_inventory():add_item("main", "mcl_mobitems:milk_bucket")
+			if inv:room_for_item("main", {name="mcl_core:milk_bucket"}) then
+				clicker:get_inventory():add_item("main", "mcl_core:milk_bucket")
 			else
 				local pos = self.object:get_pos()
 				pos.y = pos.y + 0.5
-				minetest.add_item(pos, {name = "mcl_mobitems:milk_bucket"})
+				minetest.add_item(pos, {name = "mcl_core:milk_bucket"})
 			end
 			return
 		end

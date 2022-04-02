@@ -71,13 +71,6 @@ minetest.register_craftitem("mcl_core:flint", {
 	groups = { craftitem=1 },
 })
 
-minetest.register_craftitem("mcl_core:sugar", {
-	description = S("Sugar"),
-	inventory_image = "mcl_core_sugar.png",
-	stack_max = 64,
-	groups = { craftitem = 1 },
-})
-
 minetest.register_craftitem("mcl_core:bowl",{
 	description = S("Bowl"),
 	inventory_image = "mcl_core_bowl.png",
@@ -129,3 +122,89 @@ minetest.register_craftitem("mcl_core:book", {
 	stack_max = 64,
 	groups = { book=1, craftitem = 1 },
 })
+
+-- from mcl_mobiterms
+
+minetest.register_craftitem("mcl_core:porkchop", {
+	description = S("Raw Porkchop"),
+	inventory_image = "mcl_core_porkchop_raw.png",
+	wield_image = "mcl_core_porkchop_raw.png",
+	on_place = minetest.item_eat(3),
+	on_secondary_use = minetest.item_eat(3),
+	groups = { food = 2 },
+	stack_max = 64,
+})
+
+minetest.register_craftitem("mcl_core:cooked_porkchop", {
+	description = S("Cooked Porkchop"),
+	inventory_image = "mcl_core_porkchop_cooked.png",
+	wield_image = "mcl_core_porkchop_cooked.png",
+	on_place = minetest.item_eat(8),
+	on_secondary_use = minetest.item_eat(8),
+	groups = { food = 2 },
+	stack_max = 64,
+})
+
+minetest.register_craftitem("mcl_core:milk_bucket", {
+	description = S("Milk"),
+	inventory_image = "mcl_core_bucket_milk.png",
+	wield_image = "mcl_core_bucket_milk.png",
+	stack_max = 1,
+	groups = { food = 3, can_eat_when_full = 1 },
+})
+
+minetest.register_craftitem("mcl_core:string",{
+	description = S("String"),
+	inventory_image = "mcl_core_string.png",
+	stack_max = 64,
+	groups = { craftitem = 1 },
+})
+
+minetest.register_craftitem("mcl_core:leather", {
+	description = S("Leather"),
+	wield_image = "mcl_core_leather.png",
+	inventory_image = "mcl_core_leather.png",
+	groups = { craftitem = 1 },
+	stack_max = 64,
+})
+
+minetest.register_craftitem("mcl_core:feather", {
+	description = S("Feather"),
+	wield_image = "mcl_core_feather.png",
+	inventory_image = "mcl_core_feather.png",
+	groups = { craftitem = 1 },
+	stack_max = 64,
+})
+
+minetest.register_craftitem("mcl_core:saddle", {
+	description = S("Saddle"),
+	wield_image = "mcl_core_saddle.png",
+	inventory_image = "mcl_core_saddle.png",
+	groups = { transport = 1 },
+	stack_max = 1,
+})
+
+minetest.register_craftitem("mcl_core:slimeball", {
+	description = S("Slimeball"),
+	inventory_image = "mcl_core_slimeball.png",
+	groups = { craftitem = 1 },
+})
+
+minetest.register_craftitem("mcl_core:gunpowder", {
+	description = S("Gunpowder"),
+	inventory_image = "mcl_core_gunpowder.png",
+	stack_max = 64,
+	groups = { craftitem=1 },
+})
+
+-----------
+-- Crafting
+-----------
+
+minetest.register_craft({
+	type = "cooking",
+	output = "mcl_core:cooked_porkchop",
+	recipe = "mcl_core:porkchop",
+	cooktime = 10,
+})
+

@@ -437,6 +437,6 @@ minetest.register_craft({
 	recipe = {
 		{'mcl_core:flint'},
 		{'mcl_core:stick'},
-		{'mcl_mobitems:feather'}
+		{'mcl_core:feather'}
 	}
 })

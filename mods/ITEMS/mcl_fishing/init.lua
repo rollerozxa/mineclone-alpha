@@ -79,11 +79,11 @@ local fish = function(itemstack, player, pointed_thing)
 									items = {
 										{ itemstring = "mcl_core:bowl", weight = 10 },
 										{ itemstring = "mcl_fishing:fishing_rod", weight = 2, wear_min = 6554, wear_max = 65535 }, -- 10%-100% damage
-										{ itemstring = "mcl_mobitems:leather", weight = 10 },
+										{ itemstring = "mcl_core:leather", weight = 10 },
 										{ itemstring = "mcl_armor:boots_leather", weight = 10, wear_min = 6554, wear_max = 65535 }, -- 10%-100% damage
 										{ itemstring = "mcl_core:stick", weight = 5 },
-										{ itemstring = "mcl_mobitems:string", weight = 5 },
-										{ itemstring = "mcl_mobitems:string", weight = 10 }, -- TODO: Tripwire Hook
+										{ itemstring = "mcl_core:string", weight = 5 },
+										{ itemstring = "mcl_core:string", weight = 10 }, -- TODO: Tripwire Hook
 									}
 								}, pr)
 							else
@@ -92,7 +92,7 @@ local fish = function(itemstack, player, pointed_thing)
 									items = {
 										{ itemstring = "mcl_bows:bow", wear_min = 49144, wear_max = 65535 }, -- 75%-100% damage
 										{ itemstring = "mcl_fishing:fishing_rod", wear_min = 49144, wear_max = 65535 }, -- 75%-100% damage
-										{ itemstring = "mcl_mobitems:saddle", },
+										{ itemstring = "mcl_core:saddle", },
 									}
 								}, pr)
 							end
@@ -332,16 +332,16 @@ minetest.register_craft({
 	output = "mcl_fishing:fishing_rod",
 	recipe = {
 		{'','','mcl_core:stick'},
-		{'','mcl_core:stick','mcl_mobitems:string'},
-		{'mcl_core:stick','','mcl_mobitems:string'},
+		{'','mcl_core:stick','mcl_core:string'},
+		{'mcl_core:stick','','mcl_core:string'},
 	}
 })
 minetest.register_craft({
 	output = "mcl_fishing:fishing_rod",
 	recipe = {
 		{'mcl_core:stick', '', ''},
-		{'mcl_mobitems:string', 'mcl_core:stick', ''},
-		{'mcl_mobitems:string','','mcl_core:stick'},
+		{'mcl_core:string', 'mcl_core:stick', ''},
+		{'mcl_core:string','','mcl_core:stick'},
 	}
 })
 minetest.register_craft({

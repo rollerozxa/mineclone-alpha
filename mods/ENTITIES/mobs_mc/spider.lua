@@ -47,7 +47,7 @@ local spider = {
 	view_range = 16,
 	floats = 1,
 	drops = {
-		{name = "mcl_mobitems:string", chance = 1, min = 0, max = 2, looting = "common"}
+		{name = "mcl_core:string", chance = 1, min = 0, max = 2, looting = "common"}
 	},
 	specific_attack = { "player", "mobs_mc:iron_golem" },
 	fear_height = 4,

@@ -60,9 +60,9 @@ minetest.register_tool(":", {
 local wield_scale = { x = 1.8, y = 1.8, z = 1 }
 
 -- Picks
-minetest.register_tool("mcl_tools:pick_wood", {
+minetest.register_tool("mcl_tools:wood_pickaxe", {
 	description = S("Wooden Pickaxe"),
-	inventory_image = "mcl_tools_woodpick.png",
+	inventory_image = "mcl_tools_wood_pickaxe.png",
 	wield_scale = wield_scale,
 	groups = { tool=1, pickaxe=1, dig_speed_class=2 },
 	tool_capabilities = {
@@ -78,9 +78,9 @@ minetest.register_tool("mcl_tools:pick_wood", {
 		pickaxey = { speed = 2, level = 1, uses = 60 }
 	},
 })
-minetest.register_tool("mcl_tools:pick_stone", {
+minetest.register_tool("mcl_tools:stone_pickaxe", {
 	description = S("Stone Pickaxe"),
-	inventory_image = "mcl_tools_stonepick.png",
+	inventory_image = "mcl_tools_stone_pickaxe.png",
 	wield_scale = wield_scale,
 	groups = { tool=1, pickaxe=1, dig_speed_class=3 },
 	tool_capabilities = {
@@ -96,9 +96,9 @@ minetest.register_tool("mcl_tools:pick_stone", {
 		pickaxey = { speed = 4, level = 3, uses = 132 }
 	},
 })
-minetest.register_tool("mcl_tools:pick_iron", {
+minetest.register_tool("mcl_tools:iron_pickaxe", {
 	description = S("Iron Pickaxe"),
-	inventory_image = "mcl_tools_steelpick.png",
+	inventory_image = "mcl_tools_iron_pickaxe.png",
 	wield_scale = wield_scale,
 	groups = { tool=1, pickaxe=1, dig_speed_class=4 },
 	tool_capabilities = {
@@ -114,9 +114,9 @@ minetest.register_tool("mcl_tools:pick_iron", {
 		pickaxey = { speed = 6, level = 4, uses = 251 }
 	},
 })
-minetest.register_tool("mcl_tools:pick_gold", {
+minetest.register_tool("mcl_tools:gold_pickaxe", {
 	description = S("Golden Pickaxe"),
-	inventory_image = "mcl_tools_goldpick.png",
+	inventory_image = "mcl_tools_gold_pickaxe.png",
 	wield_scale = wield_scale,
 	groups = { tool=1, pickaxe=1, dig_speed_class=6 },
 	tool_capabilities = {
@@ -132,9 +132,9 @@ minetest.register_tool("mcl_tools:pick_gold", {
 		pickaxey = { speed = 12, level = 2, uses = 33 }
 	},
 })
-minetest.register_tool("mcl_tools:pick_diamond", {
+minetest.register_tool("mcl_tools:diamond_pickaxe", {
 	description = S("Diamond Pickaxe"),
-	inventory_image = "mcl_tools_diamondpick.png",
+	inventory_image = "mcl_tools_diamond_pickaxe.png",
 	wield_scale = wield_scale,
 	groups = { tool=1, pickaxe=1, dig_speed_class=5 },
 	tool_capabilities = {
@@ -152,9 +152,9 @@ minetest.register_tool("mcl_tools:pick_diamond", {
 })
 
 -- Shovels
-minetest.register_tool("mcl_tools:shovel_wood", {
+minetest.register_tool("mcl_tools:wood_shovel", {
 	description = S("Wooden Shovel"),
-	inventory_image = "mcl_tools_woodshovel.png",
+	inventory_image = "mcl_tools_wood_shovel.png",
 	wield_scale = wield_scale,
 	groups = { tool=1, shovel=1, dig_speed_class=2 },
 	tool_capabilities = {
@@ -169,9 +169,9 @@ minetest.register_tool("mcl_tools:shovel_wood", {
 		shovely = { speed = 2, level = 1, uses = 60 }
 	},
 })
-minetest.register_tool("mcl_tools:shovel_stone", {
+minetest.register_tool("mcl_tools:stone_shovel", {
 	description = S("Stone Shovel"),
-	inventory_image = "mcl_tools_stoneshovel.png",
+	inventory_image = "mcl_tools_stone_shovel.png",
 	wield_scale = wield_scale,
 	groups = { tool=1, shovel=1, dig_speed_class=3 },
 	tool_capabilities = {
@@ -186,9 +186,9 @@ minetest.register_tool("mcl_tools:shovel_stone", {
 		shovely = { speed = 4, level = 3, uses = 132 }
 	},
 })
-minetest.register_tool("mcl_tools:shovel_iron", {
+minetest.register_tool("mcl_tools:iron_shovel", {
 	description = S("Iron Shovel"),
-	inventory_image = "mcl_tools_steelshovel.png",
+	inventory_image = "mcl_tools_iron_shovel.png",
 	wield_scale = wield_scale,
 	groups = { tool=1, shovel=1, dig_speed_class=4 },
 	tool_capabilities = {
@@ -203,9 +203,9 @@ minetest.register_tool("mcl_tools:shovel_iron", {
 		shovely = { speed = 6, level = 4, uses = 251 }
 	},
 })
-minetest.register_tool("mcl_tools:shovel_gold", {
+minetest.register_tool("mcl_tools:gold_shovel", {
 	description = S("Golden Shovel"),
-	inventory_image = "mcl_tools_goldshovel.png",
+	inventory_image = "mcl_tools_gold_shovel.png",
 	wield_scale = wield_scale,
 	groups = { tool=1, shovel=1, dig_speed_class=6 },
 	tool_capabilities = {
@@ -220,9 +220,9 @@ minetest.register_tool("mcl_tools:shovel_gold", {
 		shovely = { speed = 12, level = 2, uses = 33 }
 	},
 })
-minetest.register_tool("mcl_tools:shovel_diamond", {
+minetest.register_tool("mcl_tools:diamond_shovel", {
 	description = S("Diamond Shovel"),
-	inventory_image = "mcl_tools_diamondshovel.png",
+	inventory_image = "mcl_tools_diamond_shovel.png",
 	wield_scale = wield_scale,
 	groups = { tool=1, shovel=1, dig_speed_class=5 },
 	tool_capabilities = {
@@ -239,9 +239,9 @@ minetest.register_tool("mcl_tools:shovel_diamond", {
 })
 
 -- Axes
-minetest.register_tool("mcl_tools:axe_wood", {
+minetest.register_tool("mcl_tools:wood_axe", {
 	description = S("Wooden Axe"),
-	inventory_image = "mcl_tools_woodaxe.png",
+	inventory_image = "mcl_tools_wood_axe.png",
 	wield_scale = wield_scale,
 	groups = { tool=1, axe=1, dig_speed_class=2 },
 	tool_capabilities = {
@@ -256,9 +256,9 @@ minetest.register_tool("mcl_tools:axe_wood", {
 		axey = { speed = 2, level = 1, uses = 60 }
 	},
 })
-minetest.register_tool("mcl_tools:axe_stone", {
+minetest.register_tool("mcl_tools:stone_axe", {
 	description = S("Stone Axe"),
-	inventory_image = "mcl_tools_stoneaxe.png",
+	inventory_image = "mcl_tools_stone_axe.png",
 	wield_scale = wield_scale,
 	groups = { tool=1, axe=1, dig_speed_class=3 },
 	tool_capabilities = {
@@ -273,9 +273,9 @@ minetest.register_tool("mcl_tools:axe_stone", {
 		axey = { speed = 4, level = 3, uses = 132 }
 	},
 })
-minetest.register_tool("mcl_tools:axe_iron", {
+minetest.register_tool("mcl_tools:iron_axe", {
 	description = S("Iron Axe"),
-	inventory_image = "mcl_tools_steelaxe.png",
+	inventory_image = "mcl_tools_iron_axe.png",
 	wield_scale = wield_scale,
 	groups = { tool=1, axe=1, dig_speed_class=4 },
 	tool_capabilities = {
@@ -291,9 +291,9 @@ minetest.register_tool("mcl_tools:axe_iron", {
 		axey = { speed = 6, level = 4, uses = 251 }
 	},
 })
-minetest.register_tool("mcl_tools:axe_gold", {
+minetest.register_tool("mcl_tools:gold_axe", {
 	description = S("Golden Axe"),
-	inventory_image = "mcl_tools_goldaxe.png",
+	inventory_image = "mcl_tools_gold_axe.png",
 	wield_scale = wield_scale,
 	groups = { tool=1, axe=1, dig_speed_class=6 },
 	tool_capabilities = {
@@ -308,9 +308,9 @@ minetest.register_tool("mcl_tools:axe_gold", {
 		axey = { speed = 12, level = 2, uses = 33 }
 	},
 })
-minetest.register_tool("mcl_tools:axe_diamond", {
+minetest.register_tool("mcl_tools:diamond_axe", {
 	description = S("Diamond Axe"),
-	inventory_image = "mcl_tools_diamondaxe.png",
+	inventory_image = "mcl_tools_diamond_axe.png",
 	wield_scale = wield_scale,
 	groups = { tool=1, axe=1, dig_speed_class=5 },
 	tool_capabilities = {
@@ -327,9 +327,9 @@ minetest.register_tool("mcl_tools:axe_diamond", {
 })
 
 -- Swords
-minetest.register_tool("mcl_tools:sword_wood", {
+minetest.register_tool("mcl_tools:wood_sword", {
 	description = S("Wooden Sword"),
-	inventory_image = "mcl_tools_woodsword.png",
+	inventory_image = "mcl_tools_wood_sword.png",
 	wield_scale = wield_scale,
 	groups = { weapon=1, sword=1, dig_speed_class=2 },
 	tool_capabilities = {
@@ -345,9 +345,9 @@ minetest.register_tool("mcl_tools:sword_wood", {
 		swordy_cobweb = { speed = 2, level = 1, uses = 60 }
 	},
 })
-minetest.register_tool("mcl_tools:sword_stone", {
+minetest.register_tool("mcl_tools:stone_sword", {
 	description = S("Stone Sword"),
-	inventory_image = "mcl_tools_stonesword.png",
+	inventory_image = "mcl_tools_stone_sword.png",
 	wield_scale = wield_scale,
 	groups = { weapon=1, sword=1, dig_speed_class=3 },
 	tool_capabilities = {
@@ -363,9 +363,9 @@ minetest.register_tool("mcl_tools:sword_stone", {
 		swordy_cobweb = { speed = 4, level = 3, uses = 132 }
 	},
 })
-minetest.register_tool("mcl_tools:sword_iron", {
+minetest.register_tool("mcl_tools:iron_sword", {
 	description = S("Iron Sword"),
-	inventory_image = "mcl_tools_steelsword.png",
+	inventory_image = "mcl_tools_iron_sword.png",
 	wield_scale = wield_scale,
 	groups = { weapon=1, sword=1, dig_speed_class=4 },
 	tool_capabilities = {
@@ -381,9 +381,9 @@ minetest.register_tool("mcl_tools:sword_iron", {
 		swordy_cobweb = { speed = 6, level = 4, uses = 251 }
 	},
 })
-minetest.register_tool("mcl_tools:sword_gold", {
+minetest.register_tool("mcl_tools:gold_sword", {
 	description = S("Golden Sword"),
-	inventory_image = "mcl_tools_goldsword.png",
+	inventory_image = "mcl_tools_gold_sword.png",
 	wield_scale = wield_scale,
 	groups = { weapon=1, sword=1, dig_speed_class=6 },
 	tool_capabilities = {
@@ -399,9 +399,9 @@ minetest.register_tool("mcl_tools:sword_gold", {
 		swordy_cobweb = { speed = 12, level = 2, uses = 33 }
 	},
 })
-minetest.register_tool("mcl_tools:sword_diamond", {
+minetest.register_tool("mcl_tools:diamond_sword", {
 	description = S("Diamond Sword"),
-	inventory_image = "mcl_tools_diamondsword.png",
+	inventory_image = "mcl_tools_diamond_sword.png",
 	wield_scale = wield_scale,
 	groups = { weapon=1, sword=1, dig_speed_class=5 },
 	tool_capabilities = {
@@ -420,4 +420,3 @@ minetest.register_tool("mcl_tools:sword_diamond", {
 
 
 dofile(minetest.get_modpath("mcl_tools").."/crafting.lua")
-dofile(minetest.get_modpath("mcl_tools").."/aliases.lua")

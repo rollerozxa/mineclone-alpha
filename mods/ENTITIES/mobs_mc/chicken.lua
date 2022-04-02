@@ -27,7 +27,7 @@ mobs:register_mob("mobs_mc:chicken", {
 	makes_footstep_sound = true,
 	walk_velocity = 1,
 	drops = {
-		{name = "mcl_mobitems:feather",
+		{name = "mcl_core:feather",
 		chance = 1,
 		min = 0,
 		max = 2,

@@ -10,7 +10,7 @@ wieldview.transform = {
 	["mcl_buckets:bucket_water"]="R270",
 	["mcl_buckets:bucket_river_water"]="R270",
 	["mcl_buckets:bucket_lava"]="R270",
-	["mcl_mobitems:milk_bucket"]="R270",
+	["mcl_core:milk_bucket"]="R270",
 
 	["screwdriver:screwdriver"]="R270",
 	["screwdriver:screwdriver1"]="R270",

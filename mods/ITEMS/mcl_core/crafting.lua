@@ -149,13 +149,6 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = "mcl_core:sugar",
-	recipe = {
-		{"mcl_core:reeds"},
-	}
-})
-
-minetest.register_craft({
 	output = "mcl_core:bowl 4",
 	recipe = {
 		{"group:wood", "", "group:wood"},
@@ -179,15 +172,6 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'mcl_core:packed_ice 1',
-	recipe = {
-		{'mcl_core:ice', 'mcl_core:ice', 'mcl_core:ice'},
-		{'mcl_core:ice', 'mcl_core:ice', 'mcl_core:ice'},
-		{'mcl_core:ice', 'mcl_core:ice', 'mcl_core:ice'},
-	}
-})
-
-minetest.register_craft({
 	output = 'mcl_core:bookshelf',
 	recipe = {
 		{'group:wood', 'group:wood', 'group:wood'},
@@ -199,7 +183,7 @@ minetest.register_craft({
 minetest.register_craft({
 	type = 'shapeless',
 	output = 'mcl_core:book',
-	recipe = { 'mcl_core:paper', 'mcl_core:paper', 'mcl_core:paper', 'mcl_mobitems:leather', }
+	recipe = { 'mcl_core:paper', 'mcl_core:paper', 'mcl_core:paper', 'mcl_core:leather', }
 })
 
 --
@@ -225,20 +209,6 @@ minetest.register_craft({
 	type = "cooking",
 	output = "mcl_core:stone",
 	recipe = "mcl_core:cobble",
-	cooktime = 10,
-})
-
-minetest.register_craft({
-	type = "cooking",
-	output = "mcl_core:stone_smooth",
-	recipe = "mcl_core:stone",
-	cooktime = 10,
-})
-
-minetest.register_craft({
-	type = "cooking",
-	output = "mcl_core:stonebrickcracked",
-	recipe = "mcl_core:stonebrick",
 	cooktime = 10,
 })
 

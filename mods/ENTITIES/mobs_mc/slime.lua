@@ -137,7 +137,7 @@ slime_tiny.damage = 0
 slime_tiny.reach = 2.5
 slime_tiny.drops = {
 	-- slimeball
-	{name = "mcl_mobitems:slimeball",
+	{name = "mcl_core:slimeball",
 	chance = 1,
 	min = 0,
 	max = 2,},

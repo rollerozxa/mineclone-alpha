@@ -37,7 +37,7 @@ local loottable =
 		stacks_min = 1,
 		stacks_max = 3,
 		items = {
-			{ itemstring = "mcl_mobitems:saddle", weight = 20 },
+			{ itemstring = "mcl_core:saddle", weight = 20 },
 			{ itemstring = "mcl_jukebox:record_1", weight = 15 },
 			{ itemstring = "mcl_jukebox:record_4", weight = 15 },
 			{ itemstring = "mcl_core:apple_gold", weight = 15 },
@@ -60,8 +60,8 @@ local loottable =
 		stacks_min = 3,
 		stacks_max = 3,
 		items = {
-			{ itemstring = "mcl_mobitems:gunpowder", weight = 10, amount_min = 1, amount_max = 8 },
-			{ itemstring = "mcl_mobitems:string", weight = 10, amount_min = 1, amount_max = 8 },
+			{ itemstring = "mcl_core:gunpowder", weight = 10, amount_min = 1, amount_max = 8 },
+			{ itemstring = "mcl_core:string", weight = 10, amount_min = 1, amount_max = 8 },
 		},
 	}
 }

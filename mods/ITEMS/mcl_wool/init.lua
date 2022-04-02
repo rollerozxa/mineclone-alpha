@@ -49,8 +49,8 @@ end
 minetest.register_craft({
 	output = "mcl_wool:white",
 	recipe = {
-		{ "mcl_mobitems:string", "mcl_mobitems:string" },
-		{ "mcl_mobitems:string", "mcl_mobitems:string" },
+		{ "mcl_core:string", "mcl_core:string" },
+		{ "mcl_core:string", "mcl_core:string" },
 	},
 })
 

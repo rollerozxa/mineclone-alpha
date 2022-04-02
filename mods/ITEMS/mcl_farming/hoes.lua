@@ -57,9 +57,9 @@ local uses = {
 	diamond = 1562,
 }
 
-minetest.register_tool("mcl_farming:hoe_wood", {
+minetest.register_tool("mcl_farming:wood_hoe", {
 	description = S("Wood Hoe"),
-	inventory_image = "farming_tool_woodhoe.png",
+	inventory_image = "mcl_farming_wood_hoe.png",
 	wield_scale = { x = 1.8, y = 1.8, z = 1 },
 	on_place = hoe_on_place_function(uses.wood),
 	groups = { tool=1, hoe=1, },
@@ -73,7 +73,7 @@ minetest.register_tool("mcl_farming:hoe_wood", {
 })
 
 minetest.register_craft({
-	output = "mcl_farming:hoe_wood",
+	output = "mcl_farming:wood_hoe",
 	recipe = {
 		{"group:wood", "group:wood"},
 		{"", "mcl_core:stick"},
@@ -81,7 +81,7 @@ minetest.register_craft({
 	}
 })
 minetest.register_craft({
-	output = "mcl_farming:hoe_wood",
+	output = "mcl_farming:wood_hoe",
 	recipe = {
 		{"group:wood", "group:wood"},
 		{"mcl_core:stick", ""},
@@ -90,13 +90,13 @@ minetest.register_craft({
 })
 minetest.register_craft({
 	type = "fuel",
-	recipe = "mcl_farming:hoe_wood",
+	recipe = "mcl_farming:wood_hoe",
 	burntime = 10,
 })
 
-minetest.register_tool("mcl_farming:hoe_stone", {
+minetest.register_tool("mcl_farming:stone_hoe", {
 	description = S("Stone Hoe"),
-	inventory_image = "farming_tool_stonehoe.png",
+	inventory_image = "mcl_farming_stone_hoe.png",
 	wield_scale = { x = 1.8, y = 1.8, z = 1 },
 	on_place = hoe_on_place_function(uses.stone),
 	groups = { tool=1, hoe=1 },
@@ -110,7 +110,7 @@ minetest.register_tool("mcl_farming:hoe_stone", {
 })
 
 minetest.register_craft({
-	output = "mcl_farming:hoe_stone",
+	output = "mcl_farming:stone_hoe",
 	recipe = {
 		{"mcl_core:cobble", "mcl_core:cobble"},
 		{"", "mcl_core:stick"},
@@ -118,7 +118,7 @@ minetest.register_craft({
 	}
 })
 minetest.register_craft({
-	output = "mcl_farming:hoe_stone",
+	output = "mcl_farming:stone_hoe",
 	recipe = {
 		{"mcl_core:cobble", "mcl_core:cobble"},
 		{"mcl_core:stick", ""},
@@ -126,9 +126,9 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_tool("mcl_farming:hoe_iron", {
+minetest.register_tool("mcl_farming:iron_hoe", {
 	description = S("Iron Hoe"),
-	inventory_image = "farming_tool_steelhoe.png",
+	inventory_image = "mcl_farming_iron_hoe.png",
 	wield_scale = { x = 1.8, y = 1.8, z = 1 },
 	on_place = hoe_on_place_function(uses.iron),
 	groups = { tool=1, hoe=1 },
@@ -143,7 +143,7 @@ minetest.register_tool("mcl_farming:hoe_iron", {
 })
 
 minetest.register_craft({
-	output = "mcl_farming:hoe_iron",
+	output = "mcl_farming:iron_hoe",
 	recipe = {
 		{"mcl_core:iron_ingot", "mcl_core:iron_ingot"},
 		{"", "mcl_core:stick"},
@@ -151,7 +151,7 @@ minetest.register_craft({
 	}
 })
 minetest.register_craft({
-	output = "mcl_farming:hoe_iron",
+	output = "mcl_farming:iron_hoe",
 	recipe = {
 		{"mcl_core:iron_ingot", "mcl_core:iron_ingot"},
 		{"mcl_core:stick", ""},
@@ -159,9 +159,9 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_tool("mcl_farming:hoe_gold", {
+minetest.register_tool("mcl_farming:gold_hoe", {
 	description = S("Golden Hoe"),
-	inventory_image = "farming_tool_goldhoe.png",
+	inventory_image = "mcl_farming_gold_hoe.png",
 	wield_scale = { x = 1.8, y = 1.8, z = 1 },
 	on_place = hoe_on_place_function(uses.gold),
 	groups = { tool=1, hoe=1 },
@@ -175,7 +175,7 @@ minetest.register_tool("mcl_farming:hoe_gold", {
 })
 
 minetest.register_craft({
-	output = "mcl_farming:hoe_gold",
+	output = "mcl_farming:gold_hoe",
 	recipe = {
 		{"mcl_core:gold_ingot", "mcl_core:gold_ingot"},
 		{"", "mcl_core:stick"},
@@ -183,7 +183,7 @@ minetest.register_craft({
 	}
 })
 minetest.register_craft({
-	output = "mcl_farming:hoe_gold",
+	output = "mcl_farming:gold_hoe",
 	recipe = {
 		{"mcl_core:gold_ingot", "mcl_core:gold_ingot"},
 		{"mcl_core:stick", ""},
@@ -193,9 +193,9 @@ minetest.register_craft({
 
 
 
-minetest.register_tool("mcl_farming:hoe_diamond", {
+minetest.register_tool("mcl_farming:diamond_hoe", {
 	description = S("Diamond Hoe"),
-	inventory_image = "farming_tool_diamondhoe.png",
+	inventory_image = "mcl_farming_diamond_hoe.png",
 	wield_scale = { x = 1.8, y = 1.8, z = 1 },
 	on_place = hoe_on_place_function(uses.diamond),
 	groups = { tool=1, hoe=1 },
@@ -209,7 +209,7 @@ minetest.register_tool("mcl_farming:hoe_diamond", {
 })
 
 minetest.register_craft({
-	output = "mcl_farming:hoe_diamond",
+	output = "mcl_farming:diamond_hoe",
 	recipe = {
 		{"mcl_core:diamond", "mcl_core:diamond"},
 		{"", "mcl_core:stick"},
@@ -217,7 +217,7 @@ minetest.register_craft({
 	}
 })
 minetest.register_craft({
-	output = "mcl_farming:hoe_diamond",
+	output = "mcl_farming:diamond_hoe",
 	recipe = {
 		{"mcl_core:diamond", "mcl_core:diamond"},
 		{"mcl_core:stick", ""},
