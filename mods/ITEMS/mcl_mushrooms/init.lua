@@ -20,9 +20,9 @@ end)
 minetest.register_node("mcl_mushrooms:mushroom_brown", {
 	description = S("Brown Mushroom"),
 	drawtype = "plantlike",
-	tiles = { "farming_mushroom_brown.png" },
-	inventory_image = "farming_mushroom_brown.png",
-	wield_image = "farming_mushroom_brown.png",
+	tiles = { "mcl_mushrooms_brown.png" },
+	inventory_image = "mcl_mushrooms_brown.png",
+	wield_image = "mcl_mushrooms_brown.png",
 	sunlight_propagates = true,
 	paramtype = "light",
 	walkable = false,
@@ -41,9 +41,9 @@ minetest.register_node("mcl_mushrooms:mushroom_brown", {
 minetest.register_node("mcl_mushrooms:mushroom_red", {
 	description = S("Red Mushroom"),
 	drawtype = "plantlike",
-	tiles = { "farming_mushroom_red.png" },
-	inventory_image = "farming_mushroom_red.png",
-	wield_image = "farming_mushroom_red.png",
+	tiles = { "mcl_mushrooms_red.png" },
+	inventory_image = "mcl_mushrooms_red.png",
+	wield_image = "mcl_mushrooms_red.png",
 	sunlight_propagates = true,
 	paramtype = "light",
 	walkable = false,
@@ -60,7 +60,7 @@ minetest.register_node("mcl_mushrooms:mushroom_red", {
 
 minetest.register_craftitem("mcl_mushrooms:mushroom_stew", {
 	description = S("Mushroom Stew"),
-	inventory_image = "farming_mushroom_stew.png",
+	inventory_image = "mcl_mushrooms_stew.png",
 	on_place = minetest.item_eat(6, "mcl_core:bowl"),
 	on_secondary_use = minetest.item_eat(6, "mcl_core:bowl"),
 	groups = { food = 3 },
