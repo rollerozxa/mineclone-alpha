@@ -8,8 +8,6 @@ item_drop_settings.radius_collect        = 0.2 --radius of collection
 item_drop_settings.player_collect_height = 1.0 --added to their pos y value
 item_drop_settings.collection_safety     = false --do this to prevent items from flying away on laggy servers
 item_drop_settings.random_item_velocity  = true --this sets random item velocity if velocity is 0
-item_drop_settings.drop_single_item      = false --if true, the drop control drops 1 item instead of the entire stack, and sneak+drop drops the stack
--- drop_single_item is disabled by default because it is annoying to throw away items from the intentory screen
 
 item_drop_settings.magnet_time           = 0.75 -- how many seconds an item follows the player before giving up
 
@@ -367,27 +365,24 @@ minetest.register_entity(":__builtin:item", {
 			glow = glow,
 		}
 		self.object:set_properties(prop)
-		if item_drop_settings.random_item_velocity == true then
-			minetest.after(0, function(self)
-				if not self or not self.object or not self.object:get_luaentity() then
-					return
+		minetest.after(0, function(self)
+			if not self or not self.object or not self.object:get_luaentity() then
+				return
+			end
+			local vel = self.object:get_velocity()
+			if vel and vel.x == 0 and vel.z == 0 then
+				local x = math.random(1, 5)
+				if math.random(1,2) == 1 then
+					x = -x
 				end
-				local vel = self.object:get_velocity()
-				if vel and vel.x == 0 and vel.z == 0 then
-					local x = math.random(1, 5)
-					if math.random(1,2) == 1 then
-						x = -x
-					end
-					local z = math.random(1, 5)
-					if math.random(1,2) == 1 then
-						z = -z
-					end
-					local y = math.random(2,4)
-					self.object:set_velocity({x=1/x, y=y, z=1/z})
+				local z = math.random(1, 5)
+				if math.random(1,2) == 1 then
+					z = -z
 				end
-			end, self)
-		end
-
+				local y = math.random(2,4)
+				self.object:set_velocity({x=1/x, y=y, z=1/z})
+			end
+		end, self)
 	end,
 
 	get_staticdata = function(self)
@@ -723,30 +718,4 @@ minetest.register_entity(":__builtin:item", {
 	end,
 
 	-- Note: on_punch intentionally left out. The player should *not* be able to collect items by punching
-})
-
--- The “getwrittenbook” command was added as a debug aid. It can help
--- reproducing situations in which items with lots of metadata trigger
--- issues like heavy lag or server crashes. Do not remove this command
--- unless another easy way of getting items with overlong meta exists!
---
--- “/getwrittenbook 65323” creates an item that creates the largest
--- possible serializable written book item entity when dropped.
---
--- “/getwrittenbook 65324” creates an item that creates the smallest
--- possible non-serializable written book item entity when dropped.
-minetest.register_chatcommand("getwrittenbook", {
-	params = S("<Count>"),
-	description = S("Get a written book with a configurable amount of characters."),
-	privs = {debug=true},
-	func = function(name, param)
-		local count = tonumber(param)
-		local itemstack = ItemStack("mcl_books:written_book")
-		local meta = itemstack:get_meta()
-		meta:set_string("description", "")
-		meta:set_string("text", string.rep("x", count))
-		local player = minetest.get_player_by_name(name)
-		local inv = player:get_inventory()
-		inv:add_item("main", itemstack)
-	end
 })

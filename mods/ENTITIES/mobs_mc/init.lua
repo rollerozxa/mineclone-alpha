@@ -18,8 +18,6 @@ mobs_mc.spawn = {
 
 
 -- Shared functions
-dofile(path .. "/3_shared.lua")
-
 dofile(path .. "/5_spawn_abm_check.lua")
 
 -- Animals
