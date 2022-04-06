@@ -10,21 +10,6 @@ local wool = {}
 wool.dyes = {
 	-- name,       texture,               wool desc.,           color_group
 	{"white",      "wool_white",          S("White Wool"),      "unicolor_white"},
-	{"grey",       "wool_dark_grey",      S("Grey Wool"),       "unicolor_darkgrey"},
-	{"silver",     "wool_grey",           S("Light Grey Wool"), "unicolor_grey"},
-	{"black",      "wool_black",          S("Black Wool"),      "unicolor_black"},
-	{"red",        "wool_red",            S("Red Wool"),        "unicolor_red"},
-	{"yellow",     "wool_yellow",         S("Yellow Wool"),     "unicolor_yellow"},
-	{"green",      "wool_dark_green",     S("Green Wool"),      "unicolor_dark_green"},
-	{"cyan",       "wool_cyan",           S("Cyan Wool"),       "unicolor_cyan"},
-	{"blue",       "wool_blue",           S("Blue Wool"),       "unicolor_blue"},
-	{"magenta",    "wool_magenta",        S("Magenta Wool"),    "unicolor_red_violet"},
-	{"orange",     "wool_orange",         S("Orange Wool"),     "unicolor_orange"},
-	{"purple",     "wool_violet",         S("Purple Wool"),     "unicolor_violet"},
-	{"brown",      "wool_brown",          S("Brown Wool"),      "unicolor_dark_orange"},
-	{"pink",       "wool_pink",           S("Pink Wool"),       "unicolor_light_red"},
-	{"lime",       "mcl_wool_lime",       S("Lime Wool"),       "unicolor_green"},
-	{"light_blue", "mcl_wool_light_blue", S("Light Blue Wool"), "unicolor_light_blue"},
 }
 
 for _, row in ipairs(wool.dyes) do
