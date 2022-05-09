@@ -82,29 +82,29 @@ local function set_inventory(player, armor_change_only)
 	local armor_slot_imgs = ""
 	for a=1,4 do
 		if inv:get_stack("armor", a+1):is_empty() then
-			armor_slot_imgs = armor_slot_imgs .. "image[0.425,"..((a-0.6))..";0.9,0.9;mcl_inventory_empty_armor_slot_"..armor_slots[a]..".png]"
+			armor_slot_imgs = armor_slot_imgs .. "image[0.46,"..((a-0.6))..";0.9,0.9;mcl_inventory_empty_armor_slot_"..armor_slots[a]..".png]"
 		end
 	end
 
 	local form = mcl_formspec.formspec_wrapper([[
-		size[9.5,9,true]
+		size[10,9.4,true]
 		no_prepend[]
 		real_coordinates[true]
 		bgcolor[blue;true]
-		listcolors[#ffffff00;#ffffff80]
-		style_type[list;spacing=0.125,0.125;size=0.85,0.85]
-		image[0,0;9.5,9;inventory.png]
-		box[1.25,0.25;3,4;black]
-		model[1.30,0.75;3,3.5;playermodel;character.b3d;character.png;0,180;false;false;0,79;30]
+		listcolors[#0000ff00;#ffffff80]
+		style_type[list;spacing=0.07,0.07;size=0.95,0.95]
+		image[0,0;10,9.4;inventory.png]
+		box[1.44,0.25;3,4.2;black]
+		model[1.45,0.85;3,3.5;playermodel;character.b3d;character.png;0,180;false;false;0,79;30]
 		${armor_slot_imgs}
-		list[detached:${player_name}_armor;armor;0.45,0.45;1,1;1]
-		list[detached:${player_name}_armor;armor;0.45,1.45;1,1;2]
-		list[detached:${player_name}_armor;armor;0.45,2.45;1,1;3]
-		list[detached:${player_name}_armor;armor;0.45,3.45;1,1;4]
-		list[current_player;craft;4.77,1.43;2,2;0]
-		list[current_player;craftpreview;7.80,1.98;1,1;0]
-		list[current_player;main;0.45,7.70;9,1;0]
-		list[current_player;main;0.45,4.57;9,3;9]
+		list[detached:${player_name}_armor;armor;0.46,0.46;1,1;1]
+		list[detached:${player_name}_armor;armor;0.46,1.46;1,1;2]
+		list[detached:${player_name}_armor;armor;0.46,2.46;1,1;3]
+		list[detached:${player_name}_armor;armor;0.46,3.46;1,1;4]
+		list[current_player;craft;4.989,1.45;2,2;0]
+		list[current_player;craftpreview;8.18,2.03;1,1;0]
+		list[current_player;main;0.46,8;9,1;0]
+		list[current_player;main;0.46,4.72;9,3;9]
 
 		listring[current_player;main]
 		listring[current_player;craft]
