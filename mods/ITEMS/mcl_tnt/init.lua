@@ -52,6 +52,10 @@ minetest.register_node("mcl_tnt:tnt", {
 	sunlight_propagates = true,
 	groups = { dig_immediate = 3, tnt = 1, flammable=-1 },
 	mesecons = tnt_mesecons,
+	drop = '',
+	after_destruct = function(pos)
+		tnt.ignite(pos)
+	end,
 	on_blast = function(pos)
 	        local e = tnt.ignite(pos)
 		e:get_luaentity().timer = tnt.BOOMTIMER - (0.5 + math.random())
