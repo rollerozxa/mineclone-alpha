@@ -39,7 +39,6 @@ local loottable =
 		items = {
 			{ itemstring = "mcl_core:saddle", weight = 20 },
 			{ itemstring = "mcl_jukebox:record_1", weight = 15 },
-			{ itemstring = "mcl_jukebox:record_4", weight = 15 },
 			{ itemstring = "mcl_core:apple_gold", weight = 15 },
 		}
 	},

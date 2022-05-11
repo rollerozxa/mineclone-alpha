@@ -9,12 +9,10 @@ local S = minetest.get_translator("mcl_throwing")
 local GRAVITY = tonumber(minetest.settings:get("movement_gravity"))
 
 local entity_mapping = {
-	["mcl_throwing:flying_bobber"] = "mcl_throwing:flying_bobber_entity",
 	["mcl_throwing:snowball"] = "mcl_throwing:snowball_entity",
 }
 
 local velocities = {
-	["mcl_throwing:flying_bobber_entity"] = 5,
 	["mcl_throwing:snowball_entity"] = 22,
 }
 
@@ -95,22 +93,6 @@ local snowball_ENTITY={
 	_lastpos={},
 }
 
-local flying_bobber_ENTITY={
-	physical = false,
-	timer=0,
-	textures = {"mcl_fishing_bobber.png"}, --FIXME: Replace with correct texture.
-	visual_size = {x=0.5, y=0.5},
-	collisionbox = {0,0,0,0,0,0},
-	pointable = false,
-
-	get_staticdata = get_staticdata,
-	on_activate = on_activate,
-
-	_lastpos={},
-	_thrower = nil,
-	objtype="fishing",
-}
-
 local check_object_hit = function(self, pos, dmg)
 	for _,object in pairs(minetest.get_objects_inside_radius(pos, 1.5)) do
 
@@ -185,35 +167,9 @@ local snowball_on_step = function(self, dtime)
 	self._lastpos={x=pos.x, y=pos.y, z=pos.z} -- Set _lastpos-->Node will be added at last pos outside the node
 end
 
--- Movement function of flying bobber
-local flying_bobber_on_step = function(self, dtime)
-	self.timer=self.timer+dtime
-	local pos = self.object:get_pos()
-	local node = minetest.get_node(pos)
-	local def = minetest.registered_nodes[node.name]
-	--local player = minetest.get_player_by_name(self._thrower)
-
-	-- Destroy when hitting a solid node
-	if self._lastpos.x~=nil then
-		if (def and (def.walkable or def.liquidtype == "flowing" or def.liquidtype == "source")) or not def then
-			local make_child= function(object)
-				local ent = object:get_luaentity()
-				ent.player = self._thrower
-				ent.child = true
-			end
-			make_child(minetest.add_entity(self._lastpos, "mcl_fishing:bobber_entity"))
-			self.object:remove()
-			return
-		end
-	end
-	self._lastpos={x=pos.x, y=pos.y, z=pos.z} -- Set lastpos-->Node will be added at last pos outside the node
-end
-
 snowball_ENTITY.on_step = snowball_on_step
-flying_bobber_ENTITY.on_step = flying_bobber_on_step
 
 minetest.register_entity("mcl_throwing:snowball_entity", snowball_ENTITY)
-minetest.register_entity("mcl_throwing:flying_bobber_entity", flying_bobber_ENTITY)
 
 -- Snowball
 minetest.register_craftitem("mcl_throwing:snowball", {

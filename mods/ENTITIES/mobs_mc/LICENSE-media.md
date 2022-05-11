@@ -49,9 +49,6 @@ Origin of those models:
 * [evsecrets](https://freesound.org/people/evsecrets/sounds/) (CC0)
     * `mobs_mc_chicken_*.ogg`
         * Source: <https://freesound.org/people/evsecrets/sounds/346961/>
-* [contramundum](https://freesound.org/people/contramundum/sounds/)
-    * `mobs_mc_parrot_*.ogg`
-        * Source: <https://freesound.org/people/contramundum/sounds/388417/>
 * Randomation (CC0)
     * `green_slime_damage.ogg`
     * `green_slime_attack.ogg`
@@ -71,15 +68,6 @@ Origin of those models:
     * `mobs_mc_cow_milk.ogg` (CC0)
         * shortened
         * Source: <https://freesound.org/people/Klaraschick/sounds/415312/>
-* [Hitrison](https://freesound.org/people/Hitrison/)
-    * `mobs_mc_cow_mushroom_stew.ogg` (CC BY 3.0)
-        * sound was modified
-        * Source: <https://freesound.org/people/Hitrison/sounds/251411/>
-* [NPXcoot](https://github.com/NPXcoot1) (CC BY-SA 4.0)
-    * `mobs_mc_ender_dragon_*`
-* [bevibeldesign](https://freesound.org/people/bevibeldesign/)
-    * `mobs_mc_wither_spawn.ogg` (CC0)
-        * Source: <https://freesound.org/people/bevibeldesign/sounds/366095/>
 * Blender Foundation (CC BY 3.0)
     * `mobs_sheep.ogg`,
 * TenPlus1, from `mobs_monster` or `mobs_animal` mod (MIT License)
@@ -88,7 +76,6 @@ Origin of those models:
     * `mobs_mc_llama.ogg`
     * `mobs_pig.ogg`
     * `mobs_pig_angry.ogg`
-    * `mobs_sandmonster.ogg`
 * [Daysycho](https://freesound.org/people/Darsycho/)
     * `mobs_mc_spider_hurt.*.ogg` (CC0)
         * Source: <https://freesound.org/people/Darsycho/sounds/505185/>
@@ -116,59 +103,12 @@ Origin of those models:
 * [Cribbler](https://freesound.org/people/Cribbler/)
     * `mobs_mc_skeleton_hurt.ogg` (CC0)
         * Source: <https://freesound.org/people/Cribbler/sounds/381859/>
-* [ERH](https://freesound.org/people/ERH/)
-    * `mobs_mc_horse_random.2.ogg` (CC BY 3.0)
-        * Source: <https://freesound.org/people/ERH/sounds/32043/>
 * [j1987](https://freesound.org/people/j1987/)
     * `mobs_mc_creeper_death.ogg` (CC0)
         * Source: <https://freesound.org/people/j1987/sounds/111325>
 * [themightyglider](https://opengameart.org/users/themightyglider)
     * `mobs_mc_creeper_hurt.ogg` (CC0)
         * Source: <https://opengameart.org/content/simple-fuse-sound>
-* [pauliw](https://opengameart.org/users/pauliw)
-    * `mobs_mc_vex_hurt.ogg` (CC0)
-        * Source: <https://opengameart.org/content/some-kind-of-beings-soundsx>
-    * `mobs_mc_vex_death.ogg` (CC0)
-        * Source: <https://opengameart.org/content/some-kind-of-beings-sounds7>
-* [suonho](https://freesound.org/people/suonho/)
-    * `mobs_mc_bat_idle.ogg` (CC BY 3.0)
-        * Source: <https://freesound.org/people/suonho/sounds/59344/>
-* [toefur](https://freesound.org/people/toefur/)
-    * `mobs_mc_bat_hurt.*.ogg` (CC0)
-    * `mobs_mc_bat_death.ogg` (CC0)
-        * Source: <https://freesound.org/people/toefur/sounds/288941/>
-* [cmusounddesign](https://freesound.org/people/cmusounddesign/)
-    * `mobs_mc_cat_hiss.ogg` (CC BY 3.0)
-        * Source: <https://freesound.org/people/cmusounddesign/sounds/71899/>
-* [SelsRoyalNavy](https://freesound.org/people/SelsRoyalNavy/)
-    * `mobs_mc_cat_idle.2.ogg` (CC0)
-        * Source: <https://freesound.org/people/SelsRoyalNavy/sounds/427081/>
-* [ebcrosby](https://freesound.org/people/ebcrosby/)
-    * `mobs_mc_ocelot_hurt.ogg` (CC BY 3.0)
-        * Source: <https://freesound.org/people/ebcrosby/sounds/332979/>
-* Hybrid Dog (forum.minetest.net)
-    * `mobs_mc_wolf_hurt.*.ogg` (CC0)
-    * `mobs_mc_wolf_bark.*.ogg` (CC0)
-    * `mobs_mc_wolf_death.*.ogg` (CC0)
-    * `mobs_mc_wolf_growl.*.ogg` (CC0)
-        * Sounds modified and simplified
-        * Source: "dogblocks" mod by Hybrid Dog <https://github.com/HybridDog/dogblocks/>
-* [cliftoncarlson](https://freesound.org/people/cliftonmcarlson/)
-    * `mobs_mc_wolf_take_bone.ogg` (CC0)
-        * Source: <https://freesound.org/people/cliftonmcarlson/sounds/392883/>
-* [Inocodum](https://forum.minetest.net/memberlist.php?mode=viewprofile&u=3115)
-    * `mobs_mc_silverfish_hurt.ogg` (CC BY-SA 4.0)
-    * `mobs_mc_silverfish_death.ogg` (CC BY-SA 4.0)
-    * `mobs_mc_silverfish_idle.ogg` (CC BY-SA 4.0)
-        * Source: <https://forum.minetest.net/viewtopic.php?f=17&t=10013>
-* [LukeIRL](https://freesound.org/people/LukeIRL/)
-    * `mobs_mc_magma_cube_small.ogg` (CC BY 4.0)
-        * Derived from: <https://freesound.org/people/LukeIRL/sounds/176123/>
-    * `mobs_mc_magma_cube_big.ogg` (CC BY 4.0)
-        * Derived from: <https://freesound.org/people/LukeIRL/sounds/176123/>
-* [kbnevel](https://freesound.org/people/kbnevel/)
-    * `mobs_mc_magma_cube_attack.ogg` (CC0)
-        * Derived from: <https://freesound.org/people/kbnevel/sounds/119863/>
 * [InspectorJ](https://freesound.org/people/InspectorJ/sounds/429591/)
     * `mobs_mc_animal_eat_generic.ogg` (CC BY 3.0)
         * Source: <https://freesound.org/people/InspectorJ/>
