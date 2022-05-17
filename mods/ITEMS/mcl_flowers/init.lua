@@ -73,7 +73,7 @@ local function add_simple_flower(name, desc, image, simple_selection_box)
 end
 
 add_simple_flower("red", S("Red flower"), "mcl_flowers_red", { -5/16, -0.5, -5/16, 5/16, 5/16, 5/16 })
-add_simple_flower("yellow", S("Dandelion"), "mcl_flowers_yellow", { -4/16, -0.5, -4/16, 4/16, 3/16, 4/16 })
+add_simple_flower("yellow", S("Yellow flower"), "mcl_flowers_yellow", { -4/16, -0.5, -4/16, 4/16, 3/16, 4/16 })
 
 local wheat_seed_drop = {
 	max_items = 1,
