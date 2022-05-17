@@ -39,7 +39,7 @@ local function register_biomes()
 	-- List of Overworld biomes without modifiers.
 	local overworld_biomes = {
 		"Plains",
-		--"Forest",
+		"Forest",
 	}
 
 	-- Plains
@@ -88,7 +88,7 @@ local function register_biomes()
 	})
 
 	-- Forest
-	--[[minetest.register_biome({
+	minetest.register_biome({
 		name = "Forest",
 		node_top = "mcl_core:dirt_with_grass",
 		depth_top = 1,
@@ -96,7 +96,7 @@ local function register_biomes()
 		depth_filler = 3,
 		node_riverbed = "mcl_core:sand",
 		depth_riverbed = 2,
-		y_min = 1,
+		y_min = 4,
 		y_max = mcl_vars.mg_overworld_max,
 		humidity_point = 61,
 		heat_point = 45,
@@ -109,8 +109,8 @@ local function register_biomes()
 		depth_filler = 3,
 		node_riverbed = "mcl_core:sand",
 		depth_riverbed = 2,
-		y_min = -1,
-		y_max = 0,
+		y_min = -2,
+		y_max = 4,
 		humidity_point = 61,
 		heat_point = 45,
 		_mcl_biome_type = "medium",
@@ -130,7 +130,7 @@ local function register_biomes()
 		heat_point = 45,
 		_mcl_biome_type = "medium",
 		_mcl_palette_index = 13,
-	})]]
+	})
 
 	-- Add deep ocean and underground biomes automatically.
 	for i=1, #overworld_biomes do
@@ -190,15 +190,21 @@ local function register_decorations()
 			deco_type = "schematic",
 			place_on = {"group:grass_block_no_snow", "mcl_core:dirt"},
 			sidelen = 80,
-			noise_params = {
-				offset = 0.000545,
-				scale = 0.0011,
-				spread = {x = 250, y = 250, z = 250},
-				seed = 3 + 5 * i,
-				octaves = 3,
-				persist = 0.66
-			},
+			fill_ratio = 0.00005,
 			biomes = {"Forest"},
+			y_min = 1,
+			y_max = mcl_vars.mg_overworld_max,
+			schematic = minetest.get_modpath("mcl_core").."/schematics/mcl_core_oak_large_"..i..".mts",
+			flags = "place_center_x, place_center_z",
+			rotation = "random",
+		})
+
+		minetest.register_decoration({
+			deco_type = "schematic",
+			place_on = {"group:grass_block_no_snow", "mcl_core:dirt"},
+			sidelen = 80,
+			fill_ratio = 0.00001,
+			biomes = {"Plains"},
 			y_min = 1,
 			y_max = mcl_vars.mg_overworld_max,
 			schematic = minetest.get_modpath("mcl_core").."/schematics/mcl_core_oak_large_"..i..".mts",
@@ -220,6 +226,20 @@ local function register_decorations()
 			persist = 0.66
 		},
 		biomes = {"Forest"},
+		y_min = 1,
+		y_max = mcl_vars.mg_overworld_max,
+		schematic = minetest.get_modpath("mcl_core").."/schematics/mcl_core_oak_classic.mts",
+		flags = "place_center_x, place_center_z",
+		rotation = "random",
+	})
+
+	-- Small “classic” oak (Plains)
+	minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"group:grass_block_no_snow", "mcl_core:dirt"},
+		sidelen = 16,
+		fill_ratio = 0.001,
+		biomes = {"Plains", "Plains_shore"},
 		y_min = 1,
 		y_max = mcl_vars.mg_overworld_max,
 		schematic = minetest.get_modpath("mcl_core").."/schematics/mcl_core_oak_classic.mts",
@@ -264,36 +284,12 @@ local function register_decorations()
 		y_min = 1,
 		y_max = mcl_vars.mg_overworld_max,
 		decoration = "mcl_core:reeds",
-		height = 1,
+		height = 2,
 		height_max = 3,
 		spawn_by = { "mcl_core:water_source", "group:frosted_ice" },
 		num_spawn_by = 1,
 	})
 
-	-- Mushrooms next to trees
-	local mushrooms = {"mcl_mushrooms:mushroom_red", "mcl_mushrooms:mushroom_brown"}
-	local mseeds = { 7133, 8244 }
-	for m=1, #mushrooms do
-		-- Mushrooms next to trees
-		minetest.register_decoration({
-			deco_type = "simple",
-			place_on = {"group:grass_block_no_snow", "mcl_core:dirt", "mcl_core:stone"},
-			sidelen = 16,
-			noise_params = {
-				offset = 0,
-				scale = 0.003,
-				spread = {x = 250, y = 250, z = 250},
-				seed = mseeds[m],
-				octaves = 3,
-				persist = 0.66,
-			},
-			y_min = 1,
-			y_max = mcl_vars.mg_overworld_max,
-			decoration = mushrooms[m],
-			spawn_by = { "mcl_core:tree" },
-			num_spawn_by = 1,
-		})
-	end
 	local function register_flower(name, biomes, seed)
 		minetest.register_decoration({
 			deco_type = "simple",
@@ -316,9 +312,8 @@ local function register_decorations()
 
 	local flower_biomes1 = {"Plains", "Forest" }
 
-	register_flower("dandelion", flower_biomes1, 8)
-	register_flower("poppy", flower_biomes1, 9439)
-
+	register_flower("yellow", flower_biomes1, 8)
+	register_flower("red", flower_biomes1, 9439)
 end
 
 --
