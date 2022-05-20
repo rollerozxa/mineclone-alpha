@@ -2,8 +2,8 @@ local S = minetest.get_translator("mcl_burning")
 local modpath = minetest.get_modpath("mcl_burning")
 
 mcl_burning = {
-	animation_frames = tonumber(minetest.settings:get("fire_animation_frames")) or 8,
-	animation_fps = tonumber(minetest.settings:get("fire_animation_fps")) or 30
+	animation_frames = 8,
+	animation_fps = 30
 }
 
 dofile(modpath .. "/api.lua")
@@ -16,7 +16,7 @@ minetest.register_entity("mcl_burning:fire", {
 		pointable = false,
 		glow = -1,
 	},
-	
+
 	animation_frame = 0,
 	animation_timer = 0,
 	on_step = mcl_burning.fire_entity_step,

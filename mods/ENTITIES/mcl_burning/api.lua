@@ -185,7 +185,6 @@ function mcl_burning.set_on_fire(obj, burn_time, reason)
 
 		fire_entity:set_properties({visual_size = size})
 		fire_entity:set_attach(obj, "", offset, {x = 0, y = 0, z = 0})
-		mcl_burning.update_animation_frame(obj, fire_entity, 0)
 	end
 end
 
@@ -240,16 +239,6 @@ function mcl_burning.tick(obj, dtime)
 	mcl_burning.catch_fire_tick(obj, dtime)
 end
 
-function mcl_burning.update_animation_frame(obj, fire_entity, animation_frame)
-	local fire_texture = "mcl_burning_entity_flame_animated.png^[opacity:180^[verticalframe:" .. mcl_burning.animation_frames .. ":" .. animation_frame
-	local fire_HUD_texture = "mcl_burning_hud_flame_animated.png^[opacity:180^[verticalframe:" .. mcl_burning.animation_frames .. ":" .. animation_frame
-	fire_entity:set_properties({textures = {"blank.png", "blank.png", fire_texture, fire_texture, fire_texture, fire_texture}})
-	if obj:is_player() then
-		local hud_id = mcl_burning.get(obj, "int", "hud_id") - 1
-		obj:hud_change(hud_id, "text", fire_HUD_texture)
-	end
-end
-
 function mcl_burning.fire_entity_step(self, dtime)
 	if self.removed then
 		return
@@ -280,18 +269,6 @@ function mcl_burning.fire_entity_step(self, dtime)
 		obj:remove()
 		return
 	end
-
-	local animation_timer = self.animation_timer + dtime
-	if animation_timer >= ( 1 / mcl_burning.animation_fps ) then
-		animation_timer = 0
-		local animation_frame = self.animation_frame + 1
-		if animation_frame > mcl_burning.animation_frames - 1 then
-			animation_frame = 0
-		end
-		mcl_burning.update_animation_frame(parent, obj, animation_frame)
-		self.animation_frame = animation_frame
-	end
-	self.animation_timer = animation_timer
 end
 
 minetest.register_chatcommand("burn", {

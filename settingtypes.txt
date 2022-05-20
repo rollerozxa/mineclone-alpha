@@ -2,15 +2,6 @@
 # minetest.conf
 
 [World]
-# In creative mode, players are able to dig all kind of blocks
-# instantly, and have access to unlimited resources.
-# Items are not used up, and blocks do not drop.
-# Some of the functionality is only available if this setting is present
-# at startup.
-# This setting may be removed in later version in favor of
-# per-player Creative Mode.
-creative_mode (Creative mode) bool false
-
 # Fire spreads and flammable blocks might be destroyed by nearby fire.
 # Destructive fire may cause severe destruction.
 # Fire blocks will be non-destructive and stops spreading when this
@@ -28,11 +19,6 @@ mcl_doTileDrops (Blocks have drops) bool true
 mcl_tnt_griefing (TNT destroys blocks) bool true
 
 [Players]
-# If enabled, players respawn at the bed they last lay on instead of normal
-# spawn.
-# This setting is only read at startup.
-enable_bed_respawn (Respawn at bed) bool true
-
 # If enabled, the night can be skipped if all players are in bed.
 # This setting is only read at startup.
 enable_bed_night_skip (Skip night when sleeping) bool true
@@ -72,27 +58,6 @@ mobs_drop_items (Mobs drop items) bool true
 
 # If enabled, mobs can take, place, change and destroy blocks around them.
 mobs_griefing (Mobs change blocks) bool true
-
-[Audio]
-# Enable flame sound.
-flame_sound (Flame sound) bool true
-
-[Graphics]
-# How many vertical animation frames the fire texture (fire_basic_flame_animated.png) has.
-# This may vary depending on the texture pack you use.
-# Form: Image height / Image width
-fire_animation_frames (Fire Animation Frames) int 8
-
-# How long to wait between frames of the fire animation in frames per second.
-# A higher number means it looks better but also results in a lot of additional network traffic. A low single digit value is recommended for multiplayer.
-#(default: 30)
-fire_animation_fps (Fire Animation FPS) int 30 0 60
-
-# Whether to animate chests when open / close
-animated_chests (Animated chests) bool true
-
-# Whether to preview the player in inventory in 3D (requires Minetest 5.4)
-3d_player_preview (3D Player preview) bool true
 
 [Experimental]
 
