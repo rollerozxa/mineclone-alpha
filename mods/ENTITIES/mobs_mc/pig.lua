@@ -22,7 +22,7 @@ mobs:register_mob("mobs_mc:pig", {
 	run_velocity = 3,
 	follow_velocity = 3.4,
 	drops = {
-		{name = "mcl_core:porkchop",
+		{name = "mcla:porkchop",
 		chance = 1,
 		min = 1,
 		max = 3,
@@ -97,7 +97,7 @@ mobs:register_mob("mobs_mc:pig", {
 
 		-- Put saddle on pig
 		local item = clicker:get_wielded_item()
-		if item:get_name() == "mcl_core:saddle" and self.saddle ~= "yes" then
+		if item:get_name() == "mcla:saddle" and self.saddle ~= "yes" then
 			self.base_texture = {
 				"blank.png", -- baby
 				"mobs_mc_pig.png", -- base
@@ -109,11 +109,11 @@ mobs:register_mob("mobs_mc:pig", {
 			self.saddle = "yes"
 			self.tamed = true
 			self.drops = {
-				{name = "mcl_core:porkchop",
+				{name = "mcla:porkchop",
 				chance = 1,
 				min = 1,
 				max = 3,},
-				{name = "mcl_core:saddle",
+				{name = "mcla:saddle",
 				chance = 1,
 				min = 1,
 				max = 1,},

@@ -288,7 +288,7 @@ function mesecon.mvps_push_or_pull(pos, stackdir, movedir, maximum, player_name,
 		if n.node_timer then
 			minetest.get_node_timer(np):set(unpack(n.node_timer))
 		end
-		if string.find(n.node.name, "mcl_observers:observer") then
+		if string.find(n.node.name, "mcla:observer") then
 			-- It also counts as a block update when the observer itself is moved by a piston (Wiki):
 			mcl_observers.observer_activate(np)
 		end
@@ -353,24 +353,23 @@ function mesecon.mvps_move_objects(pos, dir, nodestack)
 end
 
 -- Unmovable by design
-mesecon.register_mvps_stopper("mcl_core:void")
-mesecon.register_mvps_stopper("mcl_core:bedrock")
-mesecon.register_mvps_stopper("mcl_core:obsidian")
-mesecon.register_mvps_stopper("mcl_chests:ender_chest")
-mesecon.register_mvps_stopper("mcl_mobspawners:spawner")
+mesecon.register_mvps_stopper("mcla:void")
+mesecon.register_mvps_stopper("mcla:bedrock")
+mesecon.register_mvps_stopper("mcla:obsidian")
+mesecon.register_mvps_stopper("mcla:spawner")
 
 -- Unmovable by technical restrictions.
 -- Open formspec would screw up if node is destroyed (minor problem)
-mesecon.register_mvps_stopper("mcl_furnaces:furnace")
-mesecon.register_mvps_stopper("mcl_furnaces:furnace_active")
-mesecon.register_mvps_stopper("mcl_hoppers:hopper")
-mesecon.register_mvps_stopper("mcl_hoppers:hopper_side")
-mesecon.register_mvps_stopper("mcl_droppers:dropper")
-mesecon.register_mvps_stopper("mcl_droppers:dropper_up")
-mesecon.register_mvps_stopper("mcl_droppers:dropper_down")
-mesecon.register_mvps_stopper("mcl_dispensers:dispenser")
-mesecon.register_mvps_stopper("mcl_dispensers:dispenser_up")
-mesecon.register_mvps_stopper("mcl_dispensers:dispenser_down")
+mesecon.register_mvps_stopper("mcla:furnace")
+mesecon.register_mvps_stopper("mcla:furnace_active")
+mesecon.register_mvps_stopper("mcla:hopper")
+mesecon.register_mvps_stopper("mcla:hopper_side")
+mesecon.register_mvps_stopper("mcla:dropper")
+mesecon.register_mvps_stopper("mcla:dropper_up")
+mesecon.register_mvps_stopper("mcla:dropper_down")
+mesecon.register_mvps_stopper("mcla:dispenser")
+mesecon.register_mvps_stopper("mcla:dispenser_up")
+mesecon.register_mvps_stopper("mcla:dispenser_down")
 -- Would screw up on/off state of trapped chest (big problem)
 
 mesecon.register_on_mvps_move(mesecon.move_hot_nodes)

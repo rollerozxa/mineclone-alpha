@@ -2,7 +2,7 @@
 
 local S = minetest.get_translator("mcl_core")
 
-minetest.register_node("mcl_core:cactus", {
+minetest.register_node(":mcla:cactus", {
 	description = S("Cactus"),
 	drawtype = "nodebox",
 	use_texture_alpha = minetest.features.use_texture_alpha_string_modes and "clip" or true,
@@ -38,13 +38,13 @@ minetest.register_node("mcl_core:cactus", {
 	on_place = mcl_util.generate_on_place_plant_function(function(pos, node)
 		local node_below = minetest.get_node_or_nil({x=pos.x,y=pos.y-1,z=pos.z})
 		if not node_below then return false end
-		return (node_below.name == "mcl_core:cactus" or minetest.get_item_group(node_below.name, "sand") == 1)
+		return (node_below.name == "mcla:cactus" or minetest.get_item_group(node_below.name, "sand") == 1)
 	end),
 	_mcl_blast_resistance = 0.4,
 	_mcl_hardness = 0.4,
 })
 
-minetest.register_node("mcl_core:reeds", {
+minetest.register_node(":mcla:reeds", {
 	description = S("Sugar Canes"),
 	drawtype = "plantlike",
 	tiles = {"mcl_core_papyrus.png"},
@@ -83,7 +83,7 @@ minetest.register_node("mcl_core:reeds", {
 		-- * On top of group:soil_sugarcane AND next to water or frosted ice. OR
 		-- * On top of sugar canes
 		-- * Not inside liquid
-		if snn == "mcl_core:reeds" then
+		if snn == "mcla:reeds" then
 			return true
 		elseif minetest.get_item_group(snn, "soil_sugarcane") == 0 then
 			return false

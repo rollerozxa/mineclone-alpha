@@ -37,30 +37,30 @@ local loottable =
 		stacks_min = 1,
 		stacks_max = 3,
 		items = {
-			{ itemstring = "mcl_core:saddle", weight = 20 },
-			{ itemstring = "mcl_jukebox:record_1", weight = 15 },
-			{ itemstring = "mcl_core:apple_gold", weight = 15 },
+			{ itemstring = "mcla:saddle", weight = 20 },
+			{ itemstring = "mcla:record_1", weight = 15 },
+			{ itemstring = "mcla:apple_gold", weight = 15 },
 		}
 	},
 	{
 		stacks_min = 1,
 		stacks_max = 4,
 		items = {
-			{ itemstring = "mcl_farming:wheat_item", weight = 20, amount_min = 1, amount_max = 4 },
-			{ itemstring = "mcl_farming:bread", weight = 20 },
-			{ itemstring = "mcl_core:coal_lump", weight = 15, amount_min = 1, amount_max = 4 },
+			{ itemstring = "mcla:wheat_item", weight = 20, amount_min = 1, amount_max = 4 },
+			{ itemstring = "mcla:bread", weight = 20 },
+			{ itemstring = "mcla:coal_lump", weight = 15, amount_min = 1, amount_max = 4 },
 			{ itemstring = "mesecons:redstone", weight = 15, amount_min = 1, amount_max = 4 },
-			{ itemstring = "mcl_core:iron_ingot", weight = 10, amount_min = 1, amount_max = 4 },
-			{ itemstring = "mcl_buckets:bucket_empty", weight = 10 },
-			{ itemstring = "mcl_core:gold_ingot", weight = 5, amount_min = 1, amount_max = 4 },
+			{ itemstring = "mcla:iron_ingot", weight = 10, amount_min = 1, amount_max = 4 },
+			{ itemstring = "mcla:bucket_empty", weight = 10 },
+			{ itemstring = "mcla:gold_ingot", weight = 5, amount_min = 1, amount_max = 4 },
 		},
 	},
 	{
 		stacks_min = 3,
 		stacks_max = 3,
 		items = {
-			{ itemstring = "mcl_core:gunpowder", weight = 10, amount_min = 1, amount_max = 8 },
-			{ itemstring = "mcl_core:string", weight = 10, amount_min = 1, amount_max = 8 },
+			{ itemstring = "mcla:gunpowder", weight = 10, amount_min = 1, amount_max = 8 },
+			{ itemstring = "mcla:string", weight = 10, amount_min = 1, amount_max = 8 },
 		},
 	}
 }
@@ -209,13 +209,13 @@ local function ecb_spawn_dungeon(blockpos, action, calls_remaining, param)
 		-- Do not overwrite nodes with is_ground_content == false (e.g. bedrock)
 		-- Exceptions: cobblestone and mossy cobblestone so neighborings dungeons nicely connect to each other
 		local name = mcl_mapgen_core.get_node(p).name
-		if name == "mcl_core:cobble" or name == "mcl_core:mossycobble" or minetest.registered_nodes[name].is_ground_content then
+		if name == "mcla:cobble" or name == "mcla:mossycobble" or minetest.registered_nodes[name].is_ground_content then
 			-- Floor
 			if ty == y then
 				if pr:next(1,4) == 1 then
-					minetest.swap_node(p, {name = "mcl_core:cobble"})
+					minetest.swap_node(p, {name = "mcla:cobble"})
 				else
-					minetest.swap_node(p, {name = "mcl_core:mossycobble"})
+					minetest.swap_node(p, {name = "mcla:mossycobble"})
 				end
 
 				-- Generate walls
@@ -227,14 +227,14 @@ local function ecb_spawn_dungeon(blockpos, action, calls_remaining, param)
 				-- Check if it's an opening first
 				if (not openings[tx][tz]) or ty == maxy then
 					-- Place wall or ceiling
-					minetest.swap_node(p, {name = "mcl_core:cobble"})
+					minetest.swap_node(p, {name = "mcla:cobble"})
 				elseif ty < maxy - 1 then
 					-- Normally the openings are already clear, but not if it is a corner
 					-- widening. Make sure to clear at least the bottom 2 nodes of an opening.
 					minetest.swap_node(p, {name = "air"})
 				elseif ty == maxy - 1 and mcl_mapgen_core.get_node(p).name ~= "air" then
 					-- This allows for variation between 2-node and 3-node high openings.
-					minetest.swap_node(p, {name = "mcl_core:cobble"})
+					minetest.swap_node(p, {name = "mcla:cobble"})
 				end
 				-- If it was an opening, the lower 3 blocks are not touched at all
 
@@ -269,7 +269,7 @@ local function ecb_spawn_dungeon(blockpos, action, calls_remaining, param)
 			local nodedef = minetest.registered_nodes[nodename]
 			local nodedef2 = minetest.registered_nodes[nodename2]
 			-- The chest needs an open space in front of it and a walkable node (except chest) behind it
-			if nodedef and nodedef.walkable == false and nodedef2 and nodedef2.walkable == true and nodename2 ~= "mcl_chests:chest" then
+			if nodedef and nodedef.walkable == false and nodedef2 and nodedef2.walkable == true and nodename2 ~= "mcla:chest" then
 				table.insert(surroundings, spos)
 			end
 		end
@@ -284,7 +284,7 @@ local function ecb_spawn_dungeon(blockpos, action, calls_remaining, param)
 			facedir = minetest.dir_to_facedir(vector.subtract(pos, face_to))
 		end
 
-		minetest.set_node(pos, {name="mcl_chests:chest", param2=facedir})
+		minetest.set_node(pos, {name="mcla:chest", param2=facedir})
 		local meta = minetest.get_meta(pos)
 		mcl_loot.fill_inventory(meta:get_inventory(), "main", mcl_loot.get_multi_loot(loottable, pr), pr)
 	end
@@ -294,7 +294,7 @@ local function ecb_spawn_dungeon(blockpos, action, calls_remaining, param)
 	for s=#spawner_posses, 1, -1 do
 		local sp = spawner_posses[s]
 		-- ... and place it and select a random mob
-		minetest.set_node(sp, {name = "mcl_mobspawners:spawner"})
+		minetest.set_node(sp, {name = "mcla:spawner"})
 		local mobs = {
 			"mobs_mc:zombie",
 			"mobs_mc:zombie",

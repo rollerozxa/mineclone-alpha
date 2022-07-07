@@ -9,11 +9,11 @@ local S = minetest.get_translator("mcl_throwing")
 local GRAVITY = tonumber(minetest.settings:get("movement_gravity"))
 
 local entity_mapping = {
-	["mcl_throwing:snowball"] = "mcl_throwing:snowball_entity",
+	["mcla:snowball"] = "mcla:snowball_entity",
 }
 
 local velocities = {
-	["mcl_throwing:snowball_entity"] = 22,
+	["mcla:snowball_entity"] = 22,
 }
 
 mcl_throwing.throw = function(throw_item, pos, dir, velocity, thrower)
@@ -169,20 +169,20 @@ end
 
 snowball_ENTITY.on_step = snowball_on_step
 
-minetest.register_entity("mcl_throwing:snowball_entity", snowball_ENTITY)
+minetest.register_entity("mcla_throwing:snowball_entity", snowball_ENTITY)
 
 -- Snowball
-minetest.register_craftitem("mcl_throwing:snowball", {
+minetest.register_craftitem(":mcla:snowball", {
 	description = S("Snowball"),
 	inventory_image = "mcl_throwing_snowball.png",
 	stack_max = 16,
 	groups = { weapon_ranged = 1 },
-	on_use = player_throw_function("mcl_throwing:snowball_entity"),
+	on_use = player_throw_function("mcla:snowball_entity"),
 	_on_dispense = dispense_function,
 })
 
 -- Egg
-minetest.register_craftitem("mcl_throwing:egg", {
+minetest.register_craftitem(":mcla:egg", {
 	description = S("Egg"),
 	inventory_image = "mcl_throwing_egg.png",
 	stack_max = 16,

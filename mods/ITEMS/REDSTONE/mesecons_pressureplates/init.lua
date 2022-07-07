@@ -136,7 +136,7 @@ function mesecon.register_pressure_plate(basename, description, textures_off, te
 end
 
 local woods = {
-	{ "wood", "mcl_core:wood", "mcl_core_wood.png", S("Oak Pressure Plate") }
+	{ "wood", "mcla:wood", "mcl_core_wood.png", S("Oak Pressure Plate") }
 }
 
 for w=1, #woods do
@@ -166,7 +166,7 @@ mesecon.register_pressure_plate(
 	{"mcl_core_stone.png"},
 	"mcl_core_stone.png",
 	nil,
-	{{"mcl_core:stone", "mcl_core:stone"}},
+	{{"mcla:stone", "mcla:stone"}},
 	mcl_sounds.node_sound_stone_defaults(),
 	{pickaxey=1, material_stone=1},
 	{ player = true, mob = true })

@@ -19,7 +19,7 @@ end
 local function find_doll(pos)
 	for  _,obj in ipairs(minetest.get_objects_inside_radius(pos, 0.5)) do
 		if not obj:is_player() then
-			if obj ~= nil and obj:get_luaentity().name == "mcl_mobspawners:doll" then
+			if obj ~= nil and obj:get_luaentity().name == "mcla_mobspawners:doll" then
 				return obj
 			end
 		end
@@ -28,7 +28,7 @@ local function find_doll(pos)
 end
 
 local function spawn_doll(pos)
-	return minetest.add_entity({x=pos.x, y=pos.y-0.3, z=pos.z}, "mcl_mobspawners:doll")
+	return minetest.add_entity({x=pos.x, y=pos.y-0.3, z=pos.z}, "mcla_mobspawners:doll")
 end
 
 -- Manually set the doll sizes for large mobs
@@ -243,7 +243,7 @@ end
 -- automatially.
 -- IF this node is placed by ANY other method (e.g. minetest.set_node, LuaVoxelManip), you
 -- MUST call mcl_mobspawners.setup_spawner right after the spawner has been placed.
-minetest.register_node("mcl_mobspawners:spawner", {
+minetest.register_node(":mcla:spawner", {
 	tiles = {"mob_spawner.png"},
 	drawtype = "glasslike",
 	paramtype = "light",
@@ -336,7 +336,7 @@ doll_def.on_step = function(self, dtime)
 	self.timer = self.timer + dtime
 	local n = minetest.get_node_or_nil(self.object:get_pos())
 	if self.timer > 1 then
-		if n and n.name and n.name ~= "mcl_mobspawners:spawner" then
+		if n and n.name and n.name ~= "mcla_mobspawners:spawner" then
 			self.object:remove()
 		end
 	end
@@ -344,13 +344,13 @@ end
 
 doll_def.on_punch = function(self, hitter) end
 
-minetest.register_entity("mcl_mobspawners:doll", doll_def)
+minetest.register_entity("mcla_mobspawners:doll", doll_def)
 
 -- FIXME: Doll can get destroyed by /clearobjects
 minetest.register_lbm({
 	label = "Respawn mob spawner dolls",
-	name = "mcl_mobspawners:respawn_entities",
-	nodenames = { "mcl_mobspawners:spawner" },
+	name = "mcla_mobspawners:respawn_entities",
+	nodenames = { "mcla:spawner" },
 	run_at_every_load = true,
 	action = function(pos, node)
 		respawn_doll(pos)

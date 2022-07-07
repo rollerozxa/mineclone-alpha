@@ -120,7 +120,7 @@ local function check_placement_allowed(node, wdir)
 	elseif wdir == 0 then
 		return false
 	elseif not def.buildable_to then
-		if node.name ~= "mcl_core:ice" and node.name ~= "mcl_mobspawners:spawner" and (not def.groups.glass) and
+		if node.name ~= "mcla:ice" and node.name ~= "mcla:spawner" and (not def.groups.glass) and
 				((not def.groups.solid) or (not def.groups.opaque)) then
 			-- Only allow top placement on these nodes
 			if def.groups.fence == 1 or def.groups.wall or def.groups.slab_top == 1 or def.groups.pane or (def.groups.stair == 1 and minetest.facedir_to_dir(node.param2).y ~= 0) then
@@ -302,22 +302,22 @@ mcl_torches.register_torch("torch",
 	end})
 
 minetest.register_craft({
-	output = "mcl_torches:torch 4",
+	output = "mcla:torch 4",
 	recipe = {
 		{ "group:coal" },
-		{ "mcl_core:stick" },
+		{ "mcla:stick" },
 	}
 })
 
 minetest.register_lbm({
 	label = "Torch flame particles",
-	name = "mcl_torches:flames",
-	nodenames = {"mcl_torches:torch", "mcl_torches:torch_wall"},
+	name = "mcla_torches:flames",
+	nodenames = {"mcla:torch", "mcla:torch_wall"},
 	run_at_every_load = true,
 	action = function(pos, node)
-		if node.name == "mcl_torches:torch" then
+		if node.name == "mcla:torch" then
 			spawn_flames_floor(pos)
-		elseif node.name == "mcl_torches:torch_wall" then
+		elseif node.name == "mcla:torch_wall" then
 			spawn_flames_wall(pos, node.param2)
 		end
 	end,

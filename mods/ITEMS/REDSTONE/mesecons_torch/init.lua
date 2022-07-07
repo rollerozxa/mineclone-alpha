@@ -114,7 +114,7 @@ minetest.register_craft({
 	output = 'mesecons_torch:mesecon_torch_on',
 	recipe = {
 	{"mesecons:redstone"},
-	{"mcl_core:stick"},}
+	{"mcla:stick"},}
 })
 
 mcl_torches.register_torch("mesecon_torch_off", S("Redstone Torch (off)"),

@@ -274,7 +274,7 @@ minetest.register_alias("mesecons:redstone", "mesecons:wire_00000000_off")
 minetest.register_craft({
 	type = "cooking",
 	output = "mesecons:redstone",
-	recipe = "mcl_core:stone_with_redstone",
+	recipe = "mcla:stone_with_redstone",
 	cooktime = 10,
 })
 

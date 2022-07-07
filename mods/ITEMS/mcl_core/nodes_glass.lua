@@ -1,7 +1,7 @@
 -- Glass nodes
 local S = minetest.get_translator("mcl_core")
 
-minetest.register_node("mcl_core:glass", {
+minetest.register_node(":mcla:glass", {
 	description = S("Glass"),
 	drawtype = "glasslike",
 	is_ground_content = false,

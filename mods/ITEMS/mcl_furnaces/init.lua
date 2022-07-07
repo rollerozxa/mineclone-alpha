@@ -75,7 +75,7 @@ local function allow_metadata_inventory_put(pos, listname, index, stack, player)
 	local inv = meta:get_inventory()
 	if listname == "fuel" then
 		-- Special case: empty bucket (not a fuel, but used for sponge drying)
-		if stack:get_name() == "mcl_buckets:bucket_empty" then
+		if stack:get_name() == "mcla:bucket_empty" then
 			if inv:get_stack(listname, index):get_count() == 0 then
 				return 1
 			else
@@ -172,7 +172,7 @@ local function swap_node(pos, name)
 	end
 	node.name = name
 	minetest.swap_node(pos, node)
-	if name == "mcl_furnaces:furnace_active" then
+	if name == "mcla:furnace_active" then
 		spawn_flames(pos, node.param2)
 	else
 		mcl_particles.delete_node_particlespawners(pos)
@@ -316,13 +316,13 @@ local function furnace_node_timer(pos, elapsed)
 				inv:set_stack("src", 1, aftercooked.items[1])
 
 				-- Unique recipe: Pour water into empty bucket after cooking wet sponge successfully
-				if inv:get_stack("fuel", 1):get_name() == "mcl_buckets:bucket_empty" then
-					if srclist[1]:get_name() == "mcl_sponges:sponge_wet" then
-						inv:set_stack("fuel", 1, "mcl_buckets:bucket_water")
+				if inv:get_stack("fuel", 1):get_name() == "mcla:bucket_empty" then
+					if srclist[1]:get_name() == "mcla:sponge_wet" then
+						inv:set_stack("fuel", 1, "mcla:bucket_water")
 						fuellist = inv:get_list("fuel")
 					-- Also for river water
-					elseif srclist[1]:get_name() == "mcl_sponges:sponge_wet_river_water" then
-						inv:set_stack("fuel", 1, "mcl_buckets:bucket_river_water")
+					elseif srclist[1]:get_name() == "mcla:sponge_wet_river_water" then
+						inv:set_stack("fuel", 1, "mcla:bucket_river_water")
 						fuellist = inv:get_list("fuel")
 					end
 				end
@@ -362,11 +362,11 @@ local function furnace_node_timer(pos, elapsed)
 			fuel_percent = math.floor(fuel_time / fuel_totaltime * 100)
 		end
 		formspec = active_formspec(fuel_percent, item_percent)
-		swap_node(pos, "mcl_furnaces:furnace_active")
+		swap_node(pos, "mcla:furnace_active")
 		-- make sure timer restarts automatically
 		result = true
 	else
-		swap_node(pos, "mcl_furnaces:furnace")
+		swap_node(pos, "mcla:furnace")
 		-- stop timer on the inactive furnace
 		minetest.get_node_timer(pos):stop()
 	end
@@ -393,14 +393,14 @@ if minetest.get_modpath("screwdriver") then
 	after_rotate_active = function(pos)
 		local node = minetest.get_node(pos)
 		mcl_particles.delete_node_particlespawners(pos)
-		if node.name == "mcl_furnaces:furnace" then
+		if node.name == "mcla:furnace" then
 			return
 		end
 		spawn_flames(pos, node.param2)
 	end
 end
 
-minetest.register_node("mcl_furnaces:furnace", {
+minetest.register_node(":mcla:furnace", {
 	description = S("Furnace"),
 	tiles = {
 		"mcl_core_stone.png", "mcl_core_stone.png",
@@ -466,7 +466,7 @@ minetest.register_node("mcl_furnaces:furnace", {
 	on_rotate = on_rotate,
 })
 
-minetest.register_node("mcl_furnaces:furnace_active", {
+minetest.register_node(":mcla:furnace_active", {
 	description = S("Burning Furnace"),
 	tiles = {
 		"mcl_core_stone.png", "mcl_core_stone.png",
@@ -476,7 +476,7 @@ minetest.register_node("mcl_furnaces:furnace_active", {
 	paramtype2 = "facedir",
 	paramtype = "light",
 	light_source = LIGHT_ACTIVE_FURNACE,
-	drop = "mcl_furnaces:furnace",
+	drop = "mcla:furnace",
 	groups = {pickaxey=1, container=4, deco_block=1, not_in_creative_inventory=1, material_stone=1},
 	is_ground_content = false,
 	sounds = mcl_sounds.node_sound_stone_defaults(),
@@ -516,19 +516,19 @@ minetest.register_node("mcl_furnaces:furnace_active", {
 })
 
 minetest.register_craft({
-	output = "mcl_furnaces:furnace",
+	output = "mcla:furnace",
 	recipe = {
-		{ "mcl_core:cobble", "mcl_core:cobble", "mcl_core:cobble" },
-		{ "mcl_core:cobble", "", "mcl_core:cobble" },
-		{ "mcl_core:cobble", "mcl_core:cobble", "mcl_core:cobble" },
+		{ "mcla:cobble", "mcla:cobble", "mcla:cobble" },
+		{ "mcla:cobble", "", "mcla:cobble" },
+		{ "mcla:cobble", "mcla:cobble", "mcla:cobble" },
 	}
 })
 
 
 minetest.register_lbm({
 	label = "Active furnace flame particles",
-	name = "mcl_furnaces:flames",
-	nodenames = {"mcl_furnaces:furnace_active"},
+	name = "mcla_furnaces:flames",
+	nodenames = {"mcla:furnace_active"},
 	run_at_every_load = true,
 	action = function(pos, node)
 		spawn_flames(pos, node.param2)

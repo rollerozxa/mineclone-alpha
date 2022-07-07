@@ -11,7 +11,7 @@ end
 tnt = {}
 tnt.ignite = function(pos)
 	minetest.remove_node(pos)
-	local e = spawn_tnt(pos, "mcl_tnt:tnt")
+	local e = spawn_tnt(pos, "mcla:tnt")
 	minetest.check_for_falling(pos)
 	return e
 end
@@ -41,7 +41,7 @@ local tnt_mesecons = {effector = {
 		rules = mesecon.rules.alldirs,
 	}}
 
-minetest.register_node("mcl_tnt:tnt", {
+minetest.register_node(":mcla:tnt", {
 	tiles = {"mcl_tnt_top.png", "mcl_tnt_bottom.png",
 			"mcl_tnt_side.png", "mcl_tnt_side.png",
 			"mcl_tnt_side.png", "mcl_tnt_side.png"},
@@ -171,13 +171,13 @@ function TNT:on_step(dtime)
 	end
 end
 
-minetest.register_entity("mcl_tnt:tnt", TNT)
+minetest.register_entity("mcla_tnt:tnt", TNT)
 
 minetest.register_craft({
-	output = "mcl_tnt:tnt",
+	output = "mcla:tnt",
 	recipe = {
-		{'mcl_core:gunpowder','group:sand','mcl_core:gunpowder'},
-		{'group:sand','mcl_core:gunpowder','group:sand'},
-		{'mcl_core:gunpowder','group:sand','mcl_core:gunpowder'}
+		{'mcla:gunpowder','group:sand','mcla:gunpowder'},
+		{'group:sand','mcla:gunpowder','group:sand'},
+		{'mcla:gunpowder','group:sand','mcla:gunpowder'}
 	}
 })

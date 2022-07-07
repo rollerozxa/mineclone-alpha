@@ -68,7 +68,7 @@ local function place_stair(itemstack, placer, pointed_thing)
 end
 
 -- Register stairs.
--- Node will be called mcl_stairs:stair_<subname>
+-- Node will be called mcla:stair_<subname>
 
 function mcl_stairs.register_stair(subname, recipeitem, groups, images, description, sounds, blast_resistance, hardness, corner_stair_texture_override)
 	groups.stair = 1
@@ -92,7 +92,7 @@ function mcl_stairs.register_stair(subname, recipeitem, groups, images, descript
 		end
 	end
 
-	minetest.register_node(":mcl_stairs:stair_" .. subname, {
+	minetest.register_node(":mcla:stair_" .. subname, {
 		description = description,
 		drawtype = "mesh",
 		mesh = "stairs_stair.obj",
@@ -154,7 +154,7 @@ function mcl_stairs.register_stair(subname, recipeitem, groups, images, descript
 
 	if recipeitem then
 		minetest.register_craft({
-			output = 'mcl_stairs:stair_' .. subname .. ' 4',
+			output = 'mcla:stair_' .. subname .. ' 4',
 			recipe = {
 				{recipeitem, "", ""},
 				{recipeitem, recipeitem, ""},
@@ -164,7 +164,7 @@ function mcl_stairs.register_stair(subname, recipeitem, groups, images, descript
 
 		-- Flipped recipe
 		minetest.register_craft({
-			output = 'mcl_stairs:stair_' .. subname .. ' 4',
+			output = 'mcla:stair_' .. subname .. ' 4',
 			recipe = {
 				{"", "", recipeitem},
 				{"", recipeitem, recipeitem},
@@ -173,7 +173,7 @@ function mcl_stairs.register_stair(subname, recipeitem, groups, images, descript
 		})
 	end
 
-	mcl_stairs.cornerstair.add("mcl_stairs:stair_"..subname, corner_stair_texture_override)
+	mcl_stairs.cornerstair.add("mcla:stair_"..subname, corner_stair_texture_override)
 end
 
 
@@ -181,12 +181,12 @@ end
 local slab_trans_dir = {[0] = 8, 0, 2, 1, 3, 4}
 
 -- Register slabs.
--- Node will be called mcl_stairs:slab_<subname>
+-- Node will be called mcla:slab_<subname>
 
 -- double_description: NEW argument, not supported in Minetest Game
 -- double_description: Description of double slab
 function mcl_stairs.register_slab(subname, recipeitem, groups, images, description, sounds, blast_resistance, hardness, double_description)
-	local lower_slab = "mcl_stairs:slab_"..subname
+	local lower_slab = "mcla:slab_"..subname
 	local upper_slab = lower_slab.."_top"
 	local double_slab = lower_slab.."_double"
 

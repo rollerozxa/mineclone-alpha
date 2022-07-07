@@ -46,65 +46,62 @@ end
 --
 
 minetest.register_alias("mapgen_air", "air")
-minetest.register_alias("mapgen_stone", "mcl_core:stone")
-minetest.register_alias("mapgen_tree", "mcl_core:tree")
-minetest.register_alias("mapgen_leaves", "mcl_core:leaves")
+minetest.register_alias("mapgen_stone", "mcla:stone")
+minetest.register_alias("mapgen_tree", "mcla:tree")
+minetest.register_alias("mapgen_leaves", "mcla:leaves")
 
-minetest.register_alias("mapgen_apple", "mcl_core:leaves")
-minetest.register_alias("mapgen_water_source", "mcl_core:water_source")
-minetest.register_alias("mapgen_dirt", "mcl_core:dirt")
-minetest.register_alias("mapgen_dirt_with_grass", "mcl_core:dirt_with_grass")
-minetest.register_alias("mapgen_dirt_with_snow", "mcl_core:dirt_with_grass_snow")
-minetest.register_alias("mapgen_sand", "mcl_core:sand")
-minetest.register_alias("mapgen_gravel", "mcl_core:gravel")
-minetest.register_alias("mapgen_clay", "mcl_core:clay")
+minetest.register_alias("mapgen_apple", "mcla:leaves")
+minetest.register_alias("mapgen_water_source", "mcla:water_source")
+minetest.register_alias("mapgen_dirt", "mcla:dirt")
+minetest.register_alias("mapgen_dirt_with_grass", "mcla:dirt_with_grass")
+minetest.register_alias("mapgen_dirt_with_snow", "mcla:dirt_with_grass_snow")
+minetest.register_alias("mapgen_sand", "mcla:sand")
+minetest.register_alias("mapgen_gravel", "mcla:gravel")
+minetest.register_alias("mapgen_clay", "mcla:clay")
 minetest.register_alias("mapgen_lava_source", "air") -- Built-in lava generator is too unpredictable, we generate lava on our own
-minetest.register_alias("mapgen_cobble", "mcl_core:cobble")
-minetest.register_alias("mapgen_mossycobble", "mcl_core:mossycobble")
-minetest.register_alias("mapgen_stone_with_coal", "mcl_core:stone_with_coal")
-minetest.register_alias("mapgen_stone_with_iron", "mcl_core:stone_with_iron")
-minetest.register_alias("mapgen_desert_sand", "mcl_core:sand")
-minetest.register_alias("mapgen_desert_stone", "mcl_core:sandstone")
-minetest.register_alias("mapgen_sandstone", "mcl_core:sandstone")
+minetest.register_alias("mapgen_cobble", "mcla:cobble")
+minetest.register_alias("mapgen_mossycobble", "mcla:mossycobble")
+minetest.register_alias("mapgen_stone_with_coal", "mcla:stone_with_coal")
+minetest.register_alias("mapgen_stone_with_iron", "mcla:stone_with_iron")
+minetest.register_alias("mapgen_desert_sand", "mcla:sand")
+minetest.register_alias("mapgen_desert_stone", "mcla:sandstone")
+minetest.register_alias("mapgen_sandstone", "mcla:sandstone")
 minetest.register_alias("mapgen_river_water_source", "mclx_core:river_water_source")
-minetest.register_alias("mapgen_snow", "mcl_core:snow")
-minetest.register_alias("mapgen_snowblock", "mcl_core:snowblock")
-minetest.register_alias("mapgen_ice", "mcl_core:ice")
+minetest.register_alias("mapgen_snow", "mcla:snow")
+minetest.register_alias("mapgen_snowblock", "mcla:snowblock")
+minetest.register_alias("mapgen_ice", "mcla:ice")
 
-minetest.register_alias("mapgen_stair_cobble", "mcl_stairs:stair_cobble")
+minetest.register_alias("mapgen_stair_cobble", "mcla:stair_cobble")
 
 local mg_name = minetest.get_mapgen_setting("mg_name")
-local superflat = mg_name == "flat" and minetest.get_mapgen_setting("mcl_superflat_classic") == "true"
-
-local WITCH_HUT_HEIGHT = 3 -- Exact Y level to spawn witch huts at. This height refers to the height of the floor
 
 -- Content IDs
-local c_bedrock = minetest.get_content_id("mcl_core:bedrock")
-local c_obsidian = minetest.get_content_id("mcl_core:obsidian")
-local c_stone = minetest.get_content_id("mcl_core:stone")
-local c_dirt = minetest.get_content_id("mcl_core:dirt")
-local c_dirt_with_grass = minetest.get_content_id("mcl_core:dirt_with_grass")
-local c_dirt_with_grass_snow = minetest.get_content_id("mcl_core:dirt_with_grass_snow")
-local c_sand = minetest.get_content_id("mcl_core:sand")
-local c_void = minetest.get_content_id("mcl_core:void")
-local c_lava = minetest.get_content_id("mcl_core:lava_source")
-local c_water = minetest.get_content_id("mcl_core:water_source")
-local c_top_snow = minetest.get_content_id("mcl_core:snow")
-local c_snow_block = minetest.get_content_id("mcl_core:snowblock")
-local c_clay = minetest.get_content_id("mcl_core:clay")
-local c_leaves = minetest.get_content_id("mcl_core:leaves")
+local c_bedrock = minetest.get_content_id("mcla:bedrock")
+local c_obsidian = minetest.get_content_id("mcla:obsidian")
+local c_stone = minetest.get_content_id("mcla:stone")
+local c_dirt = minetest.get_content_id("mcla:dirt")
+local c_dirt_with_grass = minetest.get_content_id("mcla:dirt_with_grass")
+local c_dirt_with_grass_snow = minetest.get_content_id("mcla:dirt_with_grass_snow")
+local c_sand = minetest.get_content_id("mcla:sand")
+local c_void = minetest.get_content_id("mcla:void")
+local c_lava = minetest.get_content_id("mcla:lava_source")
+local c_water = minetest.get_content_id("mcla:water_source")
+local c_top_snow = minetest.get_content_id("mcla:snow")
+local c_snow_block = minetest.get_content_id("mcla:snowblock")
+local c_clay = minetest.get_content_id("mcla:clay")
+local c_leaves = minetest.get_content_id("mcla:leaves")
 local c_air = minetest.CONTENT_AIR
 
 --
 -- Ore generation
 --
 
-local stonelike = {"mcl_core:stone"}
+local stonelike = {"mcla:stone"}
 
 -- Dirt
 minetest.register_ore({
 	ore_type       = "blob",
-	ore            = "mcl_core:dirt",
+	ore            = "mcla:dirt",
 	wherein        = stonelike,
 	clust_scarcity = 15*15*15,
 	clust_num_ores = 33,
@@ -126,7 +123,7 @@ minetest.register_ore({
 -- Gravel
 minetest.register_ore({
 	ore_type       = "blob",
-	ore            = "mcl_core:gravel",
+	ore            = "mcla:gravel",
 	wherein        = stonelike,
 	clust_scarcity = 14*14*14,
 	clust_num_ores = 33,
@@ -145,284 +142,282 @@ minetest.register_ore({
 	}
 })
 
-if minetest.settings:get_bool("mcl_generate_ores", true) then
-	--
-	-- Coal
-	--
 
-	-- Common spawn
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_coal",
-		wherein        = stonelike,
-		clust_scarcity = 525*3,
-		clust_num_ores = 5,
-		clust_size     = 3,
-		y_min          = mcl_vars.mg_overworld_min,
-		y_max          = mcl_worlds.layer_to_y(50),
-	})
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_coal",
-		wherein        = stonelike,
-		clust_scarcity = 510*3,
-		clust_num_ores = 8,
-		clust_size     = 3,
-		y_min          = mcl_vars.mg_overworld_min,
-		y_max          = mcl_worlds.layer_to_y(50),
-	})
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_coal",
-		wherein        = stonelike,
-		clust_scarcity = 500*3,
-		clust_num_ores = 12,
-		clust_size     = 3,
-		y_min          = mcl_vars.mg_overworld_min,
-		y_max          = mcl_worlds.layer_to_y(50),
-	})
+--
+-- Coal
+--
 
-	-- Medium-rare spawn
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_coal",
-		wherein        = stonelike,
-		clust_scarcity = 550*3,
-		clust_num_ores = 4,
-		clust_size     = 2,
-		y_min          = mcl_worlds.layer_to_y(51),
-		y_max          = mcl_worlds.layer_to_y(80),
-	})
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_coal",
-		wherein        = stonelike,
-		clust_scarcity = 525*3,
-		clust_num_ores = 6,
-		clust_size     = 3,
-		y_min          = mcl_worlds.layer_to_y(51),
-		y_max          = mcl_worlds.layer_to_y(80),
-	})
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_coal",
-		wherein        = stonelike,
-		clust_scarcity = 500*3,
-		clust_num_ores = 8,
-		clust_size     = 3,
-		y_min          = mcl_worlds.layer_to_y(51),
-		y_max          = mcl_worlds.layer_to_y(80),
-	})
+-- Common spawn
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_coal",
+	wherein        = stonelike,
+	clust_scarcity = 525*3,
+	clust_num_ores = 5,
+	clust_size     = 3,
+	y_min          = mcl_vars.mg_overworld_min,
+	y_max          = mcl_worlds.layer_to_y(50),
+})
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_coal",
+	wherein        = stonelike,
+	clust_scarcity = 510*3,
+	clust_num_ores = 8,
+	clust_size     = 3,
+	y_min          = mcl_vars.mg_overworld_min,
+	y_max          = mcl_worlds.layer_to_y(50),
+})
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_coal",
+	wherein        = stonelike,
+	clust_scarcity = 500*3,
+	clust_num_ores = 12,
+	clust_size     = 3,
+	y_min          = mcl_vars.mg_overworld_min,
+	y_max          = mcl_worlds.layer_to_y(50),
+})
 
-	-- Rare spawn
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_coal",
-		wherein         = stonelike,
-		clust_scarcity = 600*3,
-		clust_num_ores = 3,
-		clust_size     = 2,
-		y_min          = mcl_worlds.layer_to_y(81),
-		y_max          = mcl_worlds.layer_to_y(128),
-	})
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_coal",
-		wherein         = stonelike,
-		clust_scarcity = 550*3,
-		clust_num_ores = 4,
-		clust_size     = 3,
-		y_min          = mcl_worlds.layer_to_y(81),
-		y_max          = mcl_worlds.layer_to_y(128),
-	})
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_coal",
-		wherein         = stonelike,
-		clust_scarcity = 500*3,
-		clust_num_ores = 5,
-		clust_size     = 3,
-		y_min          = mcl_worlds.layer_to_y(81),
-		y_max          = mcl_worlds.layer_to_y(128),
-	})
+-- Medium-rare spawn
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_coal",
+	wherein        = stonelike,
+	clust_scarcity = 550*3,
+	clust_num_ores = 4,
+	clust_size     = 2,
+	y_min          = mcl_worlds.layer_to_y(51),
+	y_max          = mcl_worlds.layer_to_y(80),
+})
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_coal",
+	wherein        = stonelike,
+	clust_scarcity = 525*3,
+	clust_num_ores = 6,
+	clust_size     = 3,
+	y_min          = mcl_worlds.layer_to_y(51),
+	y_max          = mcl_worlds.layer_to_y(80),
+})
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_coal",
+	wherein        = stonelike,
+	clust_scarcity = 500*3,
+	clust_num_ores = 8,
+	clust_size     = 3,
+	y_min          = mcl_worlds.layer_to_y(51),
+	y_max          = mcl_worlds.layer_to_y(80),
+})
 
-	--
-	-- Iron
-	--
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_iron",
-		wherein         = stonelike,
-		clust_scarcity = 830,
-		clust_num_ores = 5,
-		clust_size     = 3,
-		y_min          = mcl_vars.mg_overworld_min,
-		y_max          = mcl_worlds.layer_to_y(39),
-	})
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_iron",
-		wherein         = stonelike,
-		clust_scarcity = 1660,
-		clust_num_ores = 4,
-		clust_size     = 2,
-		y_min          = mcl_worlds.layer_to_y(40),
-		y_max          = mcl_worlds.layer_to_y(63),
-	})
+-- Rare spawn
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_coal",
+	wherein         = stonelike,
+	clust_scarcity = 600*3,
+	clust_num_ores = 3,
+	clust_size     = 2,
+	y_min          = mcl_worlds.layer_to_y(81),
+	y_max          = mcl_worlds.layer_to_y(128),
+})
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_coal",
+	wherein         = stonelike,
+	clust_scarcity = 550*3,
+	clust_num_ores = 4,
+	clust_size     = 3,
+	y_min          = mcl_worlds.layer_to_y(81),
+	y_max          = mcl_worlds.layer_to_y(128),
+})
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_coal",
+	wherein         = stonelike,
+	clust_scarcity = 500*3,
+	clust_num_ores = 5,
+	clust_size     = 3,
+	y_min          = mcl_worlds.layer_to_y(81),
+	y_max          = mcl_worlds.layer_to_y(128),
+})
 
-	--
-	-- Gold
-	--
+--
+-- Iron
+--
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_iron",
+	wherein         = stonelike,
+	clust_scarcity = 830,
+	clust_num_ores = 5,
+	clust_size     = 3,
+	y_min          = mcl_vars.mg_overworld_min,
+	y_max          = mcl_worlds.layer_to_y(39),
+})
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_iron",
+	wherein         = stonelike,
+	clust_scarcity = 1660,
+	clust_num_ores = 4,
+	clust_size     = 2,
+	y_min          = mcl_worlds.layer_to_y(40),
+	y_max          = mcl_worlds.layer_to_y(63),
+})
 
-	-- Common spawn
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_gold",
-		wherein         = stonelike,
-		clust_scarcity = 4775,
-		clust_num_ores = 5,
-		clust_size     = 3,
-		y_min          = mcl_vars.mg_overworld_min,
-		y_max          = mcl_worlds.layer_to_y(30),
-	})
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_gold",
-		wherein         = stonelike,
-		clust_scarcity = 6560,
-		clust_num_ores = 7,
-		clust_size     = 3,
-		y_min          = mcl_vars.mg_overworld_min,
-		y_max          = mcl_worlds.layer_to_y(30),
-	})
+--
+-- Gold
+--
 
-	-- Rare spawn
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_gold",
-		wherein         = stonelike,
-		clust_scarcity = 13000,
-		clust_num_ores = 4,
-		clust_size     = 2,
-		y_min          = mcl_worlds.layer_to_y(31),
-		y_max          = mcl_worlds.layer_to_y(33),
-	})
+-- Common spawn
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_gold",
+	wherein         = stonelike,
+	clust_scarcity = 4775,
+	clust_num_ores = 5,
+	clust_size     = 3,
+	y_min          = mcl_vars.mg_overworld_min,
+	y_max          = mcl_worlds.layer_to_y(30),
+})
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_gold",
+	wherein         = stonelike,
+	clust_scarcity = 6560,
+	clust_num_ores = 7,
+	clust_size     = 3,
+	y_min          = mcl_vars.mg_overworld_min,
+	y_max          = mcl_worlds.layer_to_y(30),
+})
 
-	--
-	-- Diamond
-	--
+-- Rare spawn
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_gold",
+	wherein         = stonelike,
+	clust_scarcity = 13000,
+	clust_num_ores = 4,
+	clust_size     = 2,
+	y_min          = mcl_worlds.layer_to_y(31),
+	y_max          = mcl_worlds.layer_to_y(33),
+})
 
-	-- Common spawn
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_diamond",
-		wherein         = stonelike,
-		clust_scarcity = 10000,
-		clust_num_ores = 4,
-		clust_size     = 3,
-		y_min          = mcl_vars.mg_overworld_min,
-		y_max          = mcl_worlds.layer_to_y(12),
-	})
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_diamond",
-		wherein         = stonelike,
-		clust_scarcity = 5000,
-		clust_num_ores = 2,
-		clust_size     = 2,
-		y_min          = mcl_vars.mg_overworld_min,
-		y_max          = mcl_worlds.layer_to_y(12),
-	})
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_diamond",
-		wherein         = stonelike,
-		clust_scarcity = 10000,
-		clust_num_ores = 8,
-		clust_size     = 3,
-		y_min          = mcl_vars.mg_overworld_min,
-		y_max          = mcl_worlds.layer_to_y(12),
-	})
+--
+-- Diamond
+--
 
-	-- Rare spawn
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_diamond",
-		wherein         = stonelike,
-		clust_scarcity = 20000,
-		clust_num_ores = 1,
-		clust_size     = 1,
-		y_min          = mcl_worlds.layer_to_y(13),
-		y_max          = mcl_worlds.layer_to_y(15),
-	})
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_diamond",
-		wherein         = stonelike,
-		clust_scarcity = 20000,
-		clust_num_ores = 2,
-		clust_size     = 2,
-		y_min          = mcl_worlds.layer_to_y(13),
-		y_max          = mcl_worlds.layer_to_y(15),
-	})
+-- Common spawn
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_diamond",
+	wherein         = stonelike,
+	clust_scarcity = 10000,
+	clust_num_ores = 4,
+	clust_size     = 3,
+	y_min          = mcl_vars.mg_overworld_min,
+	y_max          = mcl_worlds.layer_to_y(12),
+})
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_diamond",
+	wherein         = stonelike,
+	clust_scarcity = 5000,
+	clust_num_ores = 2,
+	clust_size     = 2,
+	y_min          = mcl_vars.mg_overworld_min,
+	y_max          = mcl_worlds.layer_to_y(12),
+})
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_diamond",
+	wherein         = stonelike,
+	clust_scarcity = 10000,
+	clust_num_ores = 8,
+	clust_size     = 3,
+	y_min          = mcl_vars.mg_overworld_min,
+	y_max          = mcl_worlds.layer_to_y(12),
+})
 
-	--
-	-- Redstone
-	--
+-- Rare spawn
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_diamond",
+	wherein         = stonelike,
+	clust_scarcity = 20000,
+	clust_num_ores = 1,
+	clust_size     = 1,
+	y_min          = mcl_worlds.layer_to_y(13),
+	y_max          = mcl_worlds.layer_to_y(15),
+})
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_diamond",
+	wherein         = stonelike,
+	clust_scarcity = 20000,
+	clust_num_ores = 2,
+	clust_size     = 2,
+	y_min          = mcl_worlds.layer_to_y(13),
+	y_max          = mcl_worlds.layer_to_y(15),
+})
 
-	-- Common spawn
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_redstone",
-		wherein         = stonelike,
-		clust_scarcity = 500,
-		clust_num_ores = 4,
-		clust_size     = 3,
-		y_min          = mcl_vars.mg_overworld_min,
-		y_max          = mcl_worlds.layer_to_y(13),
-	})
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_redstone",
-		wherein         = stonelike,
-		clust_scarcity = 800,
-		clust_num_ores = 7,
-		clust_size     = 4,
-		y_min          = mcl_vars.mg_overworld_min,
-		y_max          = mcl_worlds.layer_to_y(13),
-	})
+--
+-- Redstone
+--
 
-	-- Rare spawn
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_redstone",
-		wherein         = stonelike,
-		clust_scarcity = 1000,
-		clust_num_ores = 4,
-		clust_size     = 3,
-		y_min          = mcl_worlds.layer_to_y(13),
-		y_max          = mcl_worlds.layer_to_y(15),
-	})
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_redstone",
-		wherein         = stonelike,
-		clust_scarcity = 1600,
-		clust_num_ores = 7,
-		clust_size     = 4,
-		y_min          = mcl_worlds.layer_to_y(13),
-		y_max          = mcl_worlds.layer_to_y(15),
-	})
+-- Common spawn
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_redstone",
+	wherein         = stonelike,
+	clust_scarcity = 500,
+	clust_num_ores = 4,
+	clust_size     = 3,
+	y_min          = mcl_vars.mg_overworld_min,
+	y_max          = mcl_worlds.layer_to_y(13),
+})
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_redstone",
+	wherein         = stonelike,
+	clust_scarcity = 800,
+	clust_num_ores = 7,
+	clust_size     = 4,
+	y_min          = mcl_vars.mg_overworld_min,
+	y_max          = mcl_worlds.layer_to_y(13),
+})
 
-end
+-- Rare spawn
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_redstone",
+	wherein         = stonelike,
+	clust_scarcity = 1000,
+	clust_num_ores = 4,
+	clust_size     = 3,
+	y_min          = mcl_worlds.layer_to_y(13),
+	y_max          = mcl_worlds.layer_to_y(15),
+})
+minetest.register_ore({
+	ore_type       = "scatter",
+	ore            = "mcla:stone_with_redstone",
+	wherein         = stonelike,
+	clust_scarcity = 1600,
+	clust_num_ores = 7,
+	clust_size     = 4,
+	y_min          = mcl_worlds.layer_to_y(13),
+	y_max          = mcl_worlds.layer_to_y(15),
+})
 
-if not superflat then
+
 -- Water and lava springs (single blocks of lava/water source)
 -- Water appears at nearly every height, but not near the bottom
 minetest.register_ore({
 	ore_type       = "scatter",
-	ore            = "mcl_core:water_source",
-	wherein         = {"mcl_core:stone", "mcl_core:dirt"},
+	ore            = "mcla:water_source",
+	wherein         = {"mcla:stone", "mcla:dirt"},
 	clust_scarcity = 9000,
 	clust_num_ores = 1,
 	clust_size     = 1,
@@ -433,7 +428,7 @@ minetest.register_ore({
 -- Lava springs are rather common at -31 and below
 minetest.register_ore({
 	ore_type       = "scatter",
-	ore            = "mcl_core:lava_source",
+	ore            = "mcla:lava_source",
 	wherein         = stonelike,
 	clust_scarcity = 2000,
 	clust_num_ores = 1,
@@ -444,7 +439,7 @@ minetest.register_ore({
 
 minetest.register_ore({
 	ore_type       = "scatter",
-	ore            = "mcl_core:lava_source",
+	ore            = "mcla:lava_source",
 	wherein         = stonelike,
 	clust_scarcity = 9000,
 	clust_num_ores = 1,
@@ -456,7 +451,7 @@ minetest.register_ore({
 -- Lava springs will become gradually rarer with increasing height
 minetest.register_ore({
 	ore_type       = "scatter",
-	ore            = "mcl_core:lava_source",
+	ore            = "mcla:lava_source",
 	wherein         = stonelike,
 	clust_scarcity = 32000,
 	clust_num_ores = 1,
@@ -467,7 +462,7 @@ minetest.register_ore({
 
 minetest.register_ore({
 	ore_type       = "scatter",
-	ore            = "mcl_core:lava_source",
+	ore            = "mcla:lava_source",
 	wherein         = stonelike,
 	clust_scarcity = 72000,
 	clust_num_ores = 1,
@@ -479,7 +474,7 @@ minetest.register_ore({
 -- Lava may even appear above surface, but this is very rare
 minetest.register_ore({
 	ore_type       = "scatter",
-	ore            = "mcl_core:lava_source",
+	ore            = "mcla:lava_source",
 	wherein         = stonelike,
 	clust_scarcity = 96000,
 	clust_num_ores = 1,
@@ -487,7 +482,6 @@ minetest.register_ore({
 	y_min          = mcl_worlds.layer_to_y(62),
 	y_max          = mcl_worlds.layer_to_y(127),
 })
-end
 
 local function register_mgv6_decorations()
 
@@ -506,7 +500,7 @@ local function register_mgv6_decorations()
 		},
 		y_min = 4,
 		y_max = mcl_vars.mg_overworld_max,
-		decoration = "mcl_core:cactus",
+		decoration = "mcla:cactus",
 		height = 1,
 		height_max = 3,
 	})
@@ -514,7 +508,7 @@ local function register_mgv6_decorations()
 	-- Sugar canes
 	minetest.register_decoration({
 		deco_type = "simple",
-		place_on = {"mcl_core:dirt", "group:grass_block_no_snow", "group:sand", "mcl_core:reeds"},
+		place_on = {"mcla:dirt", "group:grass_block_no_snow", "group:sand", "mcla:reeds"},
 		sidelen = 16,
 		noise_params = {
 			offset = -0.3,
@@ -526,20 +520,20 @@ local function register_mgv6_decorations()
 		},
 		y_min = 1,
 		y_max = mcl_vars.mg_overworld_max,
-		decoration = "mcl_core:reeds",
+		decoration = "mcla:reeds",
 		height = 1,
 		height_max = 3,
-		spawn_by = { "mcl_core:water_source", "group:frosted_ice" },
+		spawn_by = { "mcla:water_source" },
 		num_spawn_by = 1,
 	})
 
-	local mushrooms = {"mcl_mushrooms:mushroom_red", "mcl_mushrooms:mushroom_brown"}
+	local mushrooms = {"mcla:mushroom_red", "mcla:mushroom_brown"}
 	local mseeds = { 7133, 8244 }
 	for m=1, #mushrooms do
 		-- Mushrooms next to trees
 		minetest.register_decoration({
 			deco_type = "simple",
-			place_on = {"group:grass_block_no_snow", "mcl_core:dirt", "mcl_core:stone"},
+			place_on = {"group:grass_block_no_snow", "mcla:dirt", "mcla:stone"},
 			sidelen = 16,
 			noise_params = {
 				offset = 0.04,
@@ -552,7 +546,7 @@ local function register_mgv6_decorations()
 			y_min = 1,
 			y_max = mcl_vars.mg_overworld_max,
 			decoration = mushrooms[m],
-			spawn_by = { "mcl_core:tree" },
+			spawn_by = { "mcla:tree" },
 			num_spawn_by = 1,
 		})
 	end
@@ -594,7 +588,7 @@ local function register_mgv6_decorations()
 		fill_ratio = 11.0, -- complete coverage
 		y_min = 1,
 		y_max = mcl_vars.mg_overworld_max,
-		decoration = "mcl_core:snow",
+		decoration = "mcla:snow",
 	})
 
 end
@@ -602,7 +596,7 @@ end
 local mg_flags = minetest.settings:get_flags("mg_flags")
 
 -- Inform other mods of dungeon setting for MCL2-style dungeons
-mcl_vars.mg_dungeons = mg_flags.dungeons and not superflat
+mcl_vars.mg_dungeons = mg_flags.dungeons
 
 -- Disable builtin dungeons, we provide our own dungeons
 mg_flags.dungeons = false
@@ -610,11 +604,6 @@ mg_flags.dungeons = false
 -- Apply mapgen-specific mapgen code
 if mg_name == "v6" then
 	register_mgv6_decorations()
-elseif superflat then
-	-- Enforce superflat-like mapgen: no caves, decor, lakes and hills
-	mg_flags.caves = false
-	mg_flags.decorations = false
-	minetest.set_mapgen_setting("mgflat_spflags", "nolakes,nohills", true)
 end
 
 local mg_flags_str = ""
@@ -799,7 +788,7 @@ local generate_underground_mushrooms = function(minp, maxp, seed)
 
 	local pr_shroom = PseudoRandom(seed)
 	local bpos
-	local stone = minetest.find_nodes_in_area_under_air(minp, maxp, {"mcl_core:stone", "mcl_core:dirt", "mcl_core:stone_with_coal", "mcl_core:stone_with_iron", "mcl_core:stone_with_gold"})
+	local stone = minetest.find_nodes_in_area_under_air(minp, maxp, {"mcla:stone", "mcla:dirt", "mcla:stone_with_coal", "mcla:stone_with_iron", "mcla:stone_with_gold"})
 
 	for n = 1, #stone do
 		bpos = {x = stone[n].x, y = stone[n].y + 1, z = stone[n].z }
@@ -807,9 +796,9 @@ local generate_underground_mushrooms = function(minp, maxp, seed)
 		local l = minetest.get_node_light(bpos, 0.5)
 		if bpos.y >= min and bpos.y <= max and l ~= nil and l <= 12 and pr_shroom:next(1,1000) < 4 then
 			if pr_shroom:next(1,2) == 1 then
-				minetest.set_node(bpos, {name = "mcl_mushrooms:mushroom_brown"})
+				minetest.set_node(bpos, {name = "mcla:mushroom_brown"})
 			else
-				minetest.set_node(bpos, {name = "mcl_mushrooms:mushroom_red"})
+				minetest.set_node(bpos, {name = "mcla:mushroom_red"})
 			end
 		end
 	end
@@ -1011,7 +1000,7 @@ local function basic(vm, data, data2, emin, emax, area, minp, maxp, blockseed)
 			if mg_name ~= "v6" then
 				-- Set param2 (=color) of grass blocks.
 				-- Clear snowy grass blocks without snow above to ensure consistency.
-				local nodes = minetest.find_nodes_in_area(minp, maxp, {"mcl_core:dirt_with_grass", "mcl_core:dirt_with_grass_snow"})
+				local nodes = minetest.find_nodes_in_area(minp, maxp, {"mcla:dirt_with_grass", "mcla:dirt_with_grass_snow"})
 
 				-- Flat area at y=0 to read biome 3 times faster than 5.3.0.get_biome_data(pos).biome: 43us vs 125us per iteration:
 				local aream = VoxelArea:new({MinEdge={x=minp.x, y=0, z=minp.z}, MaxEdge={x=maxp.x, y=0, z=maxp.z}})

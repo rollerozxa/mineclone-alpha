@@ -38,7 +38,7 @@ mcl_structures.place_schematic = function(pos, schematic, rotation, replacements
 end
 
 mcl_structures.get_struct = function(file)
-	local localfile = minetest.get_modpath("mcl_structures").."/schematics/"..file
+	local localfile = minetest.get_modpath("mcla_structures").."/schematics/"..file
 	local file, errorload = io.open(localfile, "rb")
 	if errorload ~= nil then
 		minetest.log("error", '[mcl_structures] Could not open this struct: ' .. localfile)
@@ -116,7 +116,7 @@ local function dir_to_rotation(dir)
 end
 
 mcl_structures.generate_test_structure_fireproof = function(pos, rotation, pr)
-	local path = minetest.get_modpath("mcl_structures").."/schematics/mcl_structures_test_structure_fireproof.mts"
+	local path = minetest.get_modpath("mcla_structures").."/schematics/mcl_structures_test_structure_fireproof.mts"
 	mcl_structures.place_schematic(pos, path, rotation, nil, true, nil, nil, pr)
 end
 

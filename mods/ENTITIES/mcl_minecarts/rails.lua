@@ -31,7 +31,7 @@ local register_rail = function(itemstring, tiles, def_extras, creative)
 				local le = objs[o]:get_luaentity()
 				if le then
 					-- All entities in this mod are minecarts, so this works
-					if string.sub(le.name, 1, 14) == "mcl_minecarts:" then
+					if string.sub(le.name, 1, 14) == "mcla:" then
 						le._last_float_check = mcl_minecarts.check_float_time
 					end
 				end
@@ -67,7 +67,7 @@ local rail_rules_long =
 local rail_rules_short = mesecon.rules.pplate
 
 -- Normal rail
-register_rail("mcl_minecarts:rail",
+register_rail(":mcla:rail",
 	{"mcl_minecarts_rail.png", "mcl_minecarts_rail_curved.png", "mcl_minecarts_rail_t_junction.png", "mcl_minecarts_rail_crossing.png"},
 	{
 		description = S("Rail"),
@@ -76,10 +76,10 @@ register_rail("mcl_minecarts:rail",
 
 -- Crafting
 minetest.register_craft({
-	output = 'mcl_minecarts:rail 16',
+	output = 'mcla:rail 16',
 	recipe = {
-		{'mcl_core:iron_ingot', '', 'mcl_core:iron_ingot'},
-		{'mcl_core:iron_ingot', 'mcl_core:stick', 'mcl_core:iron_ingot'},
-		{'mcl_core:iron_ingot', '', 'mcl_core:iron_ingot'},
+		{'mcla:iron_ingot', '', 'mcla:iron_ingot'},
+		{'mcla:iron_ingot', 'mcla:stick', 'mcla:iron_ingot'},
+		{'mcla:iron_ingot', '', 'mcla:iron_ingot'},
 	}
 })

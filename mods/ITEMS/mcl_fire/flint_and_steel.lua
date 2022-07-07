@@ -1,7 +1,7 @@
 local S = minetest.get_translator("mcl_fire")
 
 -- Flint and Steel
-minetest.register_tool("mcl_fire:flint_and_steel", {
+minetest.register_tool(":mcla:flint_and_steel", {
 	description = S("Flint and Steel"),
 	inventory_image = "mcl_fire_flint_and_steel.png",
 	liquids_pointable = false,
@@ -53,12 +53,12 @@ minetest.register_tool("mcl_fire:flint_and_steel", {
 	_on_dispense = function(stack, pos, droppos, dropnode, dropdir)
 		-- Ignite air
 		if dropnode.name == "air" then
-			minetest.add_node(droppos, {name="mcl_fire:fire"})
+			minetest.add_node(droppos, {name="mcla:fire"})
 			if not minetest.is_creative_enabled("") then
 				stack:add_wear(65535/65) -- 65 uses
 			end
 		-- Ignite TNT
-		elseif dropnode.name == "mcl_tnt:tnt" then
+		elseif dropnode.name == "mcla:tnt" then
 			tnt.ignite(droppos)
 			if not minetest.is_creative_enabled("") then
 				stack:add_wear(65535/65) -- 65 uses
@@ -71,6 +71,6 @@ minetest.register_tool("mcl_fire:flint_and_steel", {
 
 minetest.register_craft({
 	type = 'shapeless',
-	output = 'mcl_fire:flint_and_steel',
-	recipe = { 'mcl_core:iron_ingot', 'mcl_core:flint'},
+	output = 'mcla:flint_and_steel',
+	recipe = { 'mcla:iron_ingot', 'mcla:flint'},
 })

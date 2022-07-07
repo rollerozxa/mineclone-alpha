@@ -74,11 +74,11 @@ local fire_death_messages = {
 }
 
 local spawn_fire = function(pos, age)
-	minetest.set_node(pos, {name="mcl_fire:fire", param2 = age})
+	minetest.set_node(pos, {name="mcla:fire", param2 = age})
 	minetest.check_single_for_falling({x=pos.x, y=pos.y+1, z=pos.z})
 end
 
-minetest.register_node("mcl_fire:fire", {
+minetest.register_node(":mcla:fire", {
 	description = S("Fire"),
 	drawtype = "firelike",
 	tiles = {
@@ -109,60 +109,15 @@ minetest.register_node("mcl_fire:fire", {
 	end,
 	drop = "",
 	sounds = {},
-	-- Turn into eternal fire on special blocks, start burning timer
 	on_construct = function(pos)
 		local bpos = {x=pos.x, y=pos.y-1, z=pos.z}
 		local under = minetest.get_node(bpos).name
 
-		local dim = mcl_worlds.pos_to_dimension(bpos)
-		if false then
-			minetest.set_node(pos, {name="mcl_fire:eternal_fire"})
-		end
 		spawn_smoke(pos)
 	end,
 	on_destruct = function(pos)
 		mcl_particles.delete_node_particlespawners(pos)
 	end,
-	_mcl_blast_resistance = 0,
-})
-
-minetest.register_node("mcl_fire:eternal_fire", {
-	description = S("Eternal Fire"),
-	drawtype = "firelike",
-	tiles = {
-		{
-			name = "fire_basic_flame_animated.png",
-			animation = {
-				type = "vertical_frames",
-				aspect_w = 16,
-				aspect_h = 16,
-				length = 1
-			},
-		},
-	},
-	inventory_image = "fire_basic_flame.png",
-	paramtype = "light",
-	light_source = minetest.LIGHT_MAX,
-	walkable = false,
-	buildable_to = true,
-	sunlight_propagates = true,
-	damage_per_second = 1,
-	_mcl_node_death_message = fire_death_messages,
-	groups = {fire = 1, dig_immediate = 3, not_in_creative_inventory = 1, destroys_items = 1, set_on_fire=8},
-	floodable = true,
-	on_flood = function(pos, oldnode, newnode)
-		if minetest.get_item_group(newnode.name, "water") ~= 0 then
-			minetest.sound_play("fire_extinguish_flame", {pos = pos, gain = 0.25, max_hear_distance = 16}, true)
-		end
-	end,
-	on_construct = function(pos)
-		spawn_smoke(pos)
-	end,
-	on_destruct = function(pos)
-		mcl_particles.delete_node_particlespawners(pos)
-	end,
-	sounds = {},
-	drop = "",
 	_mcl_blast_resistance = 0,
 })
 
@@ -189,11 +144,10 @@ function mcl_fire.update_player_sound(player)
 	local fpos, num = minetest.find_nodes_in_area(
 		areamin,
 		areamax,
-		{"mcl_fire:fire", "mcl_fire:eternal_fire"}
+		{"mcla:fire"}
 	)
 	-- Total number of flames in radius
-	local flames = (num["mcl_fire:fire"] or 0) +
-		(num["mcl_fire:eternal_fire"] or 0)
+	local flames = (num["mcla:fire"] or 0)
 	-- Stop previous sound
 	if handles[player_name] then
 		minetest.sound_fade(handles[player_name], -0.4, 0.0)
@@ -296,7 +250,7 @@ mcl_fire.set_fire = function(pointed_thing, player, allow_on_fire)
 		return
 	end
 	if n.name == "air" then
-		minetest.add_node(pointed_thing.above, {name="mcl_fire:fire"})
+		minetest.add_node(pointed_thing.above, {name="mcla:fire"})
 	end
 end
 
@@ -308,7 +262,7 @@ end
 
 minetest.register_abm({
 	label = "Extinguish fire",
-	nodenames = {"mcl_fire:fire", "mcl_fire:eternal_fire"},
+	nodenames = {"mcla:fire"},
 	neighbors = {"group:puts_out_fire"},
 	interval = 3,
 	chance = 1,
@@ -350,7 +304,7 @@ if not fire_enabled then
 	-- NOTE: Fire is normally extinguished in timer function
 	minetest.register_abm({
 		label = "Remove disabled fire",
-		nodenames = {"mcl_fire:fire"},
+		nodenames = {"mcla:fire"},
 		interval = 10,
 		chance = 10,
 		catch_up = false,
@@ -362,7 +316,7 @@ else -- Fire enabled
 	-- Fire Spread
 	minetest.register_abm({
 		label = "Ignite flame",
-		nodenames ={"mcl_fire:fire","mcl_fire:eternal_fire"},
+		nodenames ={"mcla:fire"},
 		interval = 7,
 		chance = 12,
 		catch_up = false,
@@ -378,7 +332,7 @@ else -- Fire enabled
 	--lava fire spread
 	minetest.register_abm({
 		label = "Ignite fire by lava",
-		nodenames = {"mcl_core:lava_source"},
+		nodenames = {"mcla:lava_source"},
 		neighbors = {"air","group:flammable"},
 		interval = 7,
 		chance = 3,
@@ -393,7 +347,7 @@ else -- Fire enabled
 
 	minetest.register_abm({
 		label = "Remove fires",
-		nodenames = {"mcl_fire:fire"},
+		nodenames = {"mcla:fire"},
 		interval = 7,
 		chance = 3,
 		catch_up = false,
@@ -413,7 +367,7 @@ else -- Fire enabled
 	-- Remove flammable nodes around basic flame
 	minetest.register_abm({
 		label = "Remove flammable nodes",
-		nodenames = {"mcl_fire:fire","mcl_fire:eternal_fire"},
+		nodenames = {"mcla:fire"},
 		neighbors = {"group:flammable"},
 		interval = 5,
 		chance = 18,
@@ -440,16 +394,12 @@ end
 
 minetest.register_lbm({
 	label = "Smoke particles from fire",
-	name = "mcl_fire:smoke",
+	name = "mcla_fire:smoke",
 	nodenames = {"group:fire"},
 	run_at_every_load = true,
 	action = function(pos, node)
 		spawn_smoke(pos)
 	end,
 })
-
-minetest.register_alias("mcl_fire:basic_flame", "mcl_fire:fire")
-minetest.register_alias("fire:basic_flame", "mcl_fire:fire")
-minetest.register_alias("fire:permanent_flame", "mcl_fire:eternal_fire")
 
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/flint_and_steel.lua")

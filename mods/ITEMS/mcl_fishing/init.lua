@@ -3,7 +3,7 @@
 local S = minetest.get_translator("mcl_fishing")
 
 -- Fishing Rod
-minetest.register_tool("mcl_fishing:fishing_rod", {
+minetest.register_tool(":mcla:fishing_rod", {
 	description = S("Fishing Rod"),
 	groups = { tool=1, fishing_rod=1 },
 	inventory_image = "mcl_fishing_fishing_rod.png",
@@ -15,19 +15,19 @@ minetest.register_tool("mcl_fishing:fishing_rod", {
 })
 
 minetest.register_craft({
-	output = "mcl_fishing:fishing_rod",
+	output = "mcla:fishing_rod",
 	recipe = {
-		{'','','mcl_core:stick'},
-		{'','mcl_core:stick','mcl_core:string'},
-		{'mcl_core:stick','','mcl_core:string'},
+		{'','','mcla:stick'},
+		{'','mcla:stick','mcla:string'},
+		{'mcla:stick','','mcla:string'},
 	}
 })
 minetest.register_craft({
-	output = "mcl_fishing:fishing_rod",
+	output = "mcla:fishing_rod",
 	recipe = {
-		{'mcl_core:stick', '', ''},
-		{'mcl_core:string', 'mcl_core:stick', ''},
-		{'mcl_core:string','','mcl_core:stick'},
+		{'mcla:stick', '', ''},
+		{'mcla:string', 'mcla:stick', ''},
+		{'mcla:string','','mcla:stick'},
 	}
 })
 minetest.register_craft({

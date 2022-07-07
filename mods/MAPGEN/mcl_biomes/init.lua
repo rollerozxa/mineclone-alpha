@@ -1,9 +1,6 @@
 local mg_name = minetest.get_mapgen_setting("mg_name")
 local mg_seed = minetest.get_mapgen_setting("seed")
 
--- Some mapgen settings
-local superflat = mg_name == "flat" and minetest.get_mapgen_setting("mcl_superflat_classic") == "true"
-
 --
 -- Register biomes
 --
@@ -16,24 +13,6 @@ local DEEP_OCEAN_MIN = -31
 Rough categorization of biomes: One of "snowy", "cold", "medium" and "hot"
 Based off <https://minecraft.gamepedia.com/Biomes> ]]
 
-local function register_classic_superflat_biome()
-	-- Classic Superflat: bedrock (not part of biome), 2 dirt, 1 grass block
-	minetest.register_biome({
-		name = "flat",
-		node_top = "mcl_core:dirt_with_grass",
-		depth_top = 1,
-		node_filler = "mcl_core:dirt",
-		depth_filler = 3,
-		node_stone = "mcl_core:dirt",
-		y_min = mcl_vars.mg_overworld_min - 512,
-		y_max = mcl_vars.mg_overworld_max,
-		humidity_point = 50,
-		heat_point = 50,
-		_mcl_biome_type = "medium",
-		_mcl_palette_index = 0,
-	})
-end
-
 -- All mapgens except mgv6, flat and singlenode
 local function register_biomes()
 	-- List of Overworld biomes without modifiers.
@@ -45,11 +24,11 @@ local function register_biomes()
 	-- Plains
 	minetest.register_biome({
 		name = "Plains",
-		node_top = "mcl_core:dirt_with_grass",
+		node_top = "mcla:dirt_with_grass",
 		depth_top = 1,
-		node_filler = "mcl_core:dirt",
+		node_filler = "mcla:dirt",
 		depth_filler = 2,
-		node_riverbed = "mcl_core:sand",
+		node_riverbed = "mcla:sand",
 		depth_riverbed = 2,
 		y_min = 4,
 		y_max = mcl_vars.mg_overworld_max,
@@ -60,9 +39,9 @@ local function register_biomes()
 	})
 	minetest.register_biome({
 		name = "Plains_beach",
-		node_filler = "mcl_core:sand",
+		node_filler = "mcla:sand",
 		depth_filler = 3,
-		node_riverbed = "mcl_core:sand",
+		node_riverbed = "mcla:sand",
 		depth_riverbed = 2,
 		y_min = -2,
 		y_max = 4,
@@ -73,11 +52,11 @@ local function register_biomes()
 	})
 	minetest.register_biome({
 		name = "Plains_ocean",
-		node_top = "mcl_core:sand",
+		node_top = "mcla:sand",
 		depth_top = 1,
-		node_filler = "mcl_core:sand",
+		node_filler = "mcla:sand",
 		depth_filler = 3,
-		node_riverbed = "mcl_core:sand",
+		node_riverbed = "mcla:sand",
 		depth_riverbed = 2,
 		y_min = OCEAN_MIN,
 		y_max = -2,
@@ -90,11 +69,11 @@ local function register_biomes()
 	-- Forest
 	minetest.register_biome({
 		name = "Forest",
-		node_top = "mcl_core:dirt_with_grass",
+		node_top = "mcla:dirt_with_grass",
 		depth_top = 1,
-		node_filler = "mcl_core:dirt",
+		node_filler = "mcla:dirt",
 		depth_filler = 3,
-		node_riverbed = "mcl_core:sand",
+		node_riverbed = "mcla:sand",
 		depth_riverbed = 2,
 		y_min = 4,
 		y_max = mcl_vars.mg_overworld_max,
@@ -105,9 +84,9 @@ local function register_biomes()
 	})
 	minetest.register_biome({
 		name = "Forest_beach",
-		node_filler = "mcl_core:sand",
+		node_filler = "mcla:sand",
 		depth_filler = 3,
-		node_riverbed = "mcl_core:sand",
+		node_riverbed = "mcla:sand",
 		depth_riverbed = 2,
 		y_min = -2,
 		y_max = 4,
@@ -118,11 +97,11 @@ local function register_biomes()
 	})
 	minetest.register_biome({
 		name = "Forest_ocean",
-		node_top = "mcl_core:sand",
+		node_top = "mcla:sand",
 		depth_top = 1,
-		node_filler = "mcl_core:sand",
+		node_filler = "mcla:sand",
 		depth_filler = 3,
-		node_riverbed = "mcl_core:sand",
+		node_riverbed = "mcla:sand",
 		depth_riverbed = 2,
 		y_min = OCEAN_MIN,
 		y_max = -2,
@@ -171,7 +150,7 @@ end
 
 -- Register ores which are limited by biomes. For all mapgens except flat and singlenode.
 local function register_biome_ores()
-	local stonelike = {"mcl_core:stone"}
+	local stonelike = {"mcla:stone"}
 
 end
 
@@ -188,26 +167,26 @@ local function register_decorations()
 	for i=1, 4 do
 		minetest.register_decoration({
 			deco_type = "schematic",
-			place_on = {"group:grass_block_no_snow", "mcl_core:dirt"},
+			place_on = {"group:grass_block_no_snow", "mcla:dirt"},
 			sidelen = 80,
 			fill_ratio = 0.00005,
 			biomes = {"Forest"},
 			y_min = 1,
 			y_max = mcl_vars.mg_overworld_max,
-			schematic = minetest.get_modpath("mcl_core").."/schematics/mcl_core_oak_large_"..i..".mts",
+			schematic = minetest.get_modpath("mcla_core").."/schematics/mcl_core_oak_large_"..i..".mts",
 			flags = "place_center_x, place_center_z",
 			rotation = "random",
 		})
 
 		minetest.register_decoration({
 			deco_type = "schematic",
-			place_on = {"group:grass_block_no_snow", "mcl_core:dirt"},
+			place_on = {"group:grass_block_no_snow", "mcla:dirt"},
 			sidelen = 80,
 			fill_ratio = 0.00001,
 			biomes = {"Plains"},
 			y_min = 1,
 			y_max = mcl_vars.mg_overworld_max,
-			schematic = minetest.get_modpath("mcl_core").."/schematics/mcl_core_oak_large_"..i..".mts",
+			schematic = minetest.get_modpath("mcla_core").."/schematics/mcl_core_oak_large_"..i..".mts",
 			flags = "place_center_x, place_center_z",
 			rotation = "random",
 		})
@@ -215,7 +194,7 @@ local function register_decorations()
 	-- Small “classic” oak
 	minetest.register_decoration({
 		deco_type = "schematic",
-		place_on = {"group:grass_block_no_snow", "mcl_core:dirt"},
+		place_on = {"group:grass_block_no_snow", "mcla:dirt"},
 		sidelen = 16,
 		noise_params = {
 			offset = 0.025,
@@ -228,7 +207,7 @@ local function register_decorations()
 		biomes = {"Forest"},
 		y_min = 1,
 		y_max = mcl_vars.mg_overworld_max,
-		schematic = minetest.get_modpath("mcl_core").."/schematics/mcl_core_oak_classic.mts",
+		schematic = minetest.get_modpath("mcla_core").."/schematics/mcl_core_oak_classic.mts",
 		flags = "place_center_x, place_center_z",
 		rotation = "random",
 	})
@@ -236,13 +215,13 @@ local function register_decorations()
 	-- Small “classic” oak (Plains)
 	minetest.register_decoration({
 		deco_type = "schematic",
-		place_on = {"group:grass_block_no_snow", "mcl_core:dirt"},
+		place_on = {"group:grass_block_no_snow", "mcla:dirt"},
 		sidelen = 16,
 		fill_ratio = 0.001,
 		biomes = {"Plains", "Plains_shore"},
 		y_min = 1,
 		y_max = mcl_vars.mg_overworld_max,
-		schematic = minetest.get_modpath("mcl_core").."/schematics/mcl_core_oak_classic.mts",
+		schematic = minetest.get_modpath("mcla_core").."/schematics/mcl_core_oak_classic.mts",
 		flags = "place_center_x, place_center_z",
 		rotation = "random",
 	})
@@ -250,7 +229,7 @@ local function register_decorations()
 	-- Rare balloon oak
 	minetest.register_decoration({
 		deco_type = "schematic",
-		place_on = {"group:grass_block_no_snow", "mcl_core:dirt"},
+		place_on = {"group:grass_block_no_snow", "mcla:dirt"},
 		sidelen = 16,
 		noise_params = {
 			offset = 0.002083,
@@ -263,7 +242,7 @@ local function register_decorations()
 		biomes = {"Forest"},
 		y_min = 1,
 		y_max = mcl_vars.mg_overworld_max,
-		schematic = minetest.get_modpath("mcl_core").."/schematics/mcl_core_oak_balloon.mts",
+		schematic = minetest.get_modpath("mcla_core").."/schematics/mcl_core_oak_balloon.mts",
 		flags = "place_center_x, place_center_z",
 		rotation = "random",
 	})
@@ -271,7 +250,7 @@ local function register_decorations()
 	-- Sugar canes
 	minetest.register_decoration({
 		deco_type = "simple",
-		place_on = {"mcl_core:dirt", "group:grass_block_no_snow", "group:sand", "mcl_core:reeds"},
+		place_on = {"mcla:dirt", "group:grass_block_no_snow", "group:sand", "mcla:reeds"},
 		sidelen = 16,
 		noise_params = {
 			offset = -0.3,
@@ -283,17 +262,17 @@ local function register_decorations()
 		},
 		y_min = 1,
 		y_max = mcl_vars.mg_overworld_max,
-		decoration = "mcl_core:reeds",
+		decoration = "mcla:reeds",
 		height = 2,
 		height_max = 3,
-		spawn_by = { "mcl_core:water_source", "group:frosted_ice" },
+		spawn_by = { "mcla:water_source", "group:frosted_ice" },
 		num_spawn_by = 1,
 	})
 
 	local function register_flower(name, biomes, seed)
 		minetest.register_decoration({
 			deco_type = "simple",
-			place_on = {"group:grass_block_no_snow", "mcl_core:dirt"},
+			place_on = {"group:grass_block_no_snow", "mcla:dirt"},
 			sidelen = 16,
 			noise_params = {
 				offset = 0.0008,
@@ -320,22 +299,12 @@ end
 -- Detect mapgen to select functions
 --
 if mg_name ~= "singlenode" then
-	if not superflat then
-		if mg_name ~= "v6" then
-			register_biomes()
-		end
-		register_biome_ores()
-		if mg_name ~= "v6" then
-			register_decorations()
-		end
-	else
-		-- Implementation of Minecraft's Superflat mapgen, classic style:
-		-- * Perfectly flat land, 1 grass biome, no decorations, no caves
-		-- * 4 layers, from top to bottom: grass block, dirt, dirt, bedrock
-		minetest.clear_registered_biomes()
-		minetest.clear_registered_decorations()
-		minetest.clear_registered_schematics()
-		register_classic_superflat_biome()
+	if mg_name ~= "v6" then
+		register_biomes()
+	end
+	register_biome_ores()
+	if mg_name ~= "v6" then
+		register_decorations()
 	end
 
 	-- Overworld decorations for v6 are handled in mcl_mapgen_core

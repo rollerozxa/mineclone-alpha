@@ -1,12 +1,12 @@
 local S = minetest.get_translator("mcl_farming")
 
-minetest.register_craftitem("mcl_farming:wheat_seeds", {
+minetest.register_craftitem(":mcla:wheat_seeds", {
 	-- Original Minecraft name: “Seeds”
 	description = S("Seeds"),
 	groups = { craftitem=1 },
 	inventory_image = "mcl_farming_wheat_seeds.png",
 	on_place = function(itemstack, placer, pointed_thing)
-		return mcl_farming:place_seed(itemstack, placer, pointed_thing, "mcl_farming:wheat_1")
+		return mcla:place_seed(itemstack, placer, pointed_thing, "mcla:wheat_1")
 	end
 })
 
@@ -21,7 +21,7 @@ local sel_heights = {
 }
 
 for i=1,7 do
-	minetest.register_node("mcl_farming:wheat_"..i, {
+	minetest.register_node(":mcla:wheat_"..i, {
 		description = S("Premature Wheat Plant (Stage @1)", i),
 		paramtype = "light",
 		paramtype2 = "meshoptions",
@@ -29,7 +29,7 @@ for i=1,7 do
 		sunlight_propagates = true,
 		walkable = false,
 		drawtype = "plantlike",
-		drop = "mcl_farming:wheat_seeds",
+		drop = "mcla:wheat_seeds",
 		tiles = {"mcl_farming_wheat_stage_"..(i-1)..".png"},
 		inventory_image = "mcl_farming_wheat_stage_"..(i-1)..".png",
 		wield_image = "mcl_farming_wheat_stage_"..(i-1)..".png",
@@ -45,7 +45,7 @@ for i=1,7 do
 	})
 end
 
-minetest.register_node("mcl_farming:wheat", {
+minetest.register_node(":mcla:wheat", {
 	description = S("Mature Wheat Plant"),
 	sunlight_propagates = true,
 	paramtype = "light",
@@ -59,10 +59,10 @@ minetest.register_node("mcl_farming:wheat", {
 	drop = {
 		max_items = 4,
 		items = {
-			{ items = {'mcl_farming:wheat_seeds'} },
-			{ items = {'mcl_farming:wheat_seeds'}, rarity = 2},
-			{ items = {'mcl_farming:wheat_seeds'}, rarity = 5},
-			{ items = {'mcl_farming:wheat_item'} }
+			{ items = {'mcla:wheat_seeds'} },
+			{ items = {'mcla:wheat_seeds'}, rarity = 2},
+			{ items = {'mcla:wheat_seeds'}, rarity = 5},
+			{ items = {'mcla:wheat_item'} }
 		}
 	},
 	groups = {dig_immediate=3, not_in_creative_inventory=1, plant=1,attached_node=1, dig_by_water=1,destroy_by_lava_flow=1, },
@@ -70,22 +70,22 @@ minetest.register_node("mcl_farming:wheat", {
 	_mcl_blast_resistance = 0,
 })
 
-mcl_farming:add_plant("plant_wheat", "mcl_farming:wheat", {"mcl_farming:wheat_1", "mcl_farming:wheat_2", "mcl_farming:wheat_3", "mcl_farming:wheat_4", "mcl_farming:wheat_5", "mcl_farming:wheat_6", "mcl_farming:wheat_7"}, 25, 20)
+mcl_farming:add_plant("plant_wheat", "mcla:wheat", {"mcla:wheat_1", "mcla:wheat_2", "mcla:wheat_3", "mcla:wheat_4", "mcla:wheat_5", "mcla:wheat_6", "mcla:wheat_7"}, 25, 20)
 
-minetest.register_craftitem("mcl_farming:wheat_item", {
+minetest.register_craftitem(":mcla:wheat_item", {
 	description = S("Wheat"),
 	inventory_image = "mcl_farming_wheat_harvested.png",
 	groups = { craftitem = 1 },
 })
 
 minetest.register_craft({
-	output = "mcl_farming:bread",
+	output = "mcla:bread",
 	recipe = {
-		{'mcl_farming:wheat_item', 'mcl_farming:wheat_item', 'mcl_farming:wheat_item'},
+		{'mcla:wheat_item', 'mcla:wheat_item', 'mcla:wheat_item'},
 	}
 })
 
-minetest.register_craftitem("mcl_farming:bread", {
+minetest.register_craftitem(":mcla:bread", {
 	description = S("Bread"),
 	inventory_image = "mcl_farming_bread.png",
 	groups = {food=2},

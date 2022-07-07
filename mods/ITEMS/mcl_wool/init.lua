@@ -19,7 +19,7 @@ for _, row in ipairs(wool.dyes) do
 	local color_group = row[4]
 
 	-- Node Definition
-	minetest.register_node("mcl_wool:"..name, {
+	minetest.register_node(":mcla:"..name, {
 		description = desc_wool,
 					stack_max = 64,
 		is_ground_content = false,
@@ -32,10 +32,10 @@ for _, row in ipairs(wool.dyes) do
 end
 
 minetest.register_craft({
-	output = "mcl_wool:white",
+	output = "mcla:white",
 	recipe = {
-		{ "mcl_core:string", "mcl_core:string" },
-		{ "mcl_core:string", "mcl_core:string" },
+		{ "mcla:string", "mcla:string" },
+		{ "mcla:string", "mcla:string" },
 	},
 })
 

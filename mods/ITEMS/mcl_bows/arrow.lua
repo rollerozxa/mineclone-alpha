@@ -15,7 +15,7 @@ local dir_to_pitch = function(dir)
 	return -math.atan2(-dir.y, xz)
 end
 
-minetest.register_craftitem("mcl_bows:arrow", {
+minetest.register_craftitem(":mcla:arrow", {
 	description = S("Arrow"),
 	inventory_image = "mcl_bows_arrow_inv.png",
 	groups = { ammo=1, ammo_bow=1, ammo_bow_regular=1 },
@@ -30,7 +30,7 @@ minetest.register_craftitem("mcl_bows:arrow", {
 -- This is a fake node, used as model for the arrow entity.
 -- It's not supposed to be usable as item or real node.
 -- TODO: Use a proper mesh for the arrow entity
-minetest.register_node("mcl_bows:arrow_box", {
+minetest.register_node(":mcla:arrow_box", {
 	drawtype = "nodebox",
 	is_ground_content = false,
 	node_box = {
@@ -64,7 +64,7 @@ minetest.register_node("mcl_bows:arrow_box", {
 	drop = "",
 	node_placement_prediction = "",
 	on_construct = function(pos)
-		minetest.log("error", "[mcl_bows] Trying to construct mcl_bows:arrow_box at "..minetest.pos_to_string(pos))
+		minetest.log("error", "[mcl_bows] Trying to construct mcla:arrow_box at "..minetest.pos_to_string(pos))
 		minetest.remove_node(pos)
 	end,
 })
@@ -73,7 +73,7 @@ local ARROW_ENTITY={
 	physical = true,
 	visual = "wielditem",
 	visual_size = {x=0.4, y=0.4},
-	textures = {"mcl_bows:arrow_box"},
+	textures = {"mcla:arrow_box"},
 	collisionbox = {-0.19, -0.125, -0.19, 0.19, 0.125, 0.19},
 	collide_with_objects = false,
 	_fire_damage_resistant = true,
@@ -95,7 +95,7 @@ local ARROW_ENTITY={
 -- Destroy arrow entity self at pos and drops it as an item
 local spawn_item = function(self, pos)
 	if not minetest.is_creative_enabled("") then
-		local item = minetest.add_item(pos, "mcl_bows:arrow")
+		local item = minetest.add_item(pos, "mcla:arrow")
 		item:set_velocity({x=0, y=0, z=0})
 		item:set_yaw(self.object:get_yaw())
 	end
@@ -162,8 +162,8 @@ ARROW_ENTITY.on_step = function(self, dtime)
 		for _,obj in ipairs(objects) do
 			if obj:is_player() then
 				if self._collectable and not minetest.is_creative_enabled(obj:get_player_name()) then
-					if obj:get_inventory():room_for_item("main", "mcl_bows:arrow") then
-						obj:get_inventory():add_item("main", "mcl_bows:arrow")
+					if obj:get_inventory():room_for_item("main", "mcla:arrow") then
+						obj:get_inventory():add_item("main", "mcla:arrow")
 						minetest.sound_play("item_drop_pickup", {
 							pos = pos,
 							max_hear_distance = 16,
@@ -318,7 +318,7 @@ ARROW_ENTITY.on_step = function(self, dtime)
 
 				minetest.sound_play({name="mcl_bows_hit_other", gain=0.3}, {pos=self.object:get_pos(), max_hear_distance=16}, true)
 
-				if mcl_burning.is_burning(self.object) and snode.name == "mcl_tnt:tnt" then
+				if mcl_burning.is_burning(self.object) and snode.name == "mcla:tnt" then
 					tnt.ignite(self._stuckin)
 				end
 
@@ -430,13 +430,13 @@ ARROW_ENTITY.on_activate = function(self, staticdata, dtime_s)
 	self.object:set_armor_groups({ immortal = 1 })
 end
 
-minetest.register_entity("mcl_bows:arrow_entity", ARROW_ENTITY)
+minetest.register_entity("mcla_bows:arrow_entity", ARROW_ENTITY)
 
 minetest.register_craft({
-	output = 'mcl_bows:arrow 4',
+	output = 'mcla:arrow 4',
 	recipe = {
-		{'mcl_core:flint'},
-		{'mcl_core:stick'},
-		{'mcl_core:feather'}
+		{'mcla:flint'},
+		{'mcla:stick'},
+		{'mcla:feather'}
 	}
 })

@@ -9,14 +9,14 @@ local function create_soil(pos, inv)
 	local above = minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z})
 	if minetest.get_item_group(name, "cultivatable") == 2 then
 		if above.name == "air" then
-			node.name = "mcl_farming:soil"
+			node.name = "mcla:soil"
 			minetest.set_node(pos, node)
 			minetest.sound_play("default_dig_crumbly", { pos = pos, gain = 0.5 }, true)
 			return true
 		end
 	elseif minetest.get_item_group(name, "cultivatable") == 1 then
 		if above.name == "air" then
-			node.name = "mcl_core:dirt"
+			node.name = "mcla:dirt"
 			minetest.set_node(pos, node)
 			minetest.sound_play("default_dig_crumbly", { pos = pos, gain = 0.6 }, true)
 			return true
@@ -57,7 +57,7 @@ local uses = {
 	diamond = 1562,
 }
 
-minetest.register_tool("mcl_farming:wood_hoe", {
+minetest.register_tool(":mcla:wood_hoe", {
 	description = S("Wood Hoe"),
 	inventory_image = "mcl_farming_wood_hoe.png",
 	wield_scale = { x = 1.8, y = 1.8, z = 1 },
@@ -68,33 +68,32 @@ minetest.register_tool("mcl_farming:wood_hoe", {
 		damage_groups = { fleshy = 1, },
 		punch_attack_uses = uses.wood,
 	},
-	_repair_material = "group:wood",
 	_mcl_toollike_wield = true,
 })
 
 minetest.register_craft({
-	output = "mcl_farming:wood_hoe",
+	output = "mcla:wood_hoe",
 	recipe = {
 		{"group:wood", "group:wood"},
-		{"", "mcl_core:stick"},
-		{"", "mcl_core:stick"}
+		{"", "mcla:stick"},
+		{"", "mcla:stick"}
 	}
 })
 minetest.register_craft({
-	output = "mcl_farming:wood_hoe",
+	output = "mcla:wood_hoe",
 	recipe = {
 		{"group:wood", "group:wood"},
-		{"mcl_core:stick", ""},
-		{"mcl_core:stick", ""}
+		{"mcla:stick", ""},
+		{"mcla:stick", ""}
 	}
 })
 minetest.register_craft({
 	type = "fuel",
-	recipe = "mcl_farming:wood_hoe",
+	recipe = "mcla:wood_hoe",
 	burntime = 10,
 })
 
-minetest.register_tool("mcl_farming:stone_hoe", {
+minetest.register_tool(":mcla:stone_hoe", {
 	description = S("Stone Hoe"),
 	inventory_image = "mcl_farming_stone_hoe.png",
 	wield_scale = { x = 1.8, y = 1.8, z = 1 },
@@ -105,28 +104,27 @@ minetest.register_tool("mcl_farming:stone_hoe", {
 		damage_groups = { fleshy = 1, },
 		punch_attack_uses = uses.stone,
 	},
-	_repair_material = "mcl_core:cobble",
 	_mcl_toollike_wield = true,
 })
 
 minetest.register_craft({
-	output = "mcl_farming:stone_hoe",
+	output = "mcla:stone_hoe",
 	recipe = {
-		{"mcl_core:cobble", "mcl_core:cobble"},
-		{"", "mcl_core:stick"},
-		{"", "mcl_core:stick"}
+		{"mcla:cobble", "mcla:cobble"},
+		{"", "mcla:stick"},
+		{"", "mcla:stick"}
 	}
 })
 minetest.register_craft({
-	output = "mcl_farming:stone_hoe",
+	output = "mcla:stone_hoe",
 	recipe = {
-		{"mcl_core:cobble", "mcl_core:cobble"},
-		{"mcl_core:stick", ""},
-		{"mcl_core:stick", ""}
+		{"mcla:cobble", "mcla:cobble"},
+		{"mcla:stick", ""},
+		{"mcla:stick", ""}
 	}
 })
 
-minetest.register_tool("mcl_farming:iron_hoe", {
+minetest.register_tool(":mcla:iron_hoe", {
 	description = S("Iron Hoe"),
 	inventory_image = "mcl_farming_iron_hoe.png",
 	wield_scale = { x = 1.8, y = 1.8, z = 1 },
@@ -138,28 +136,27 @@ minetest.register_tool("mcl_farming:iron_hoe", {
 		damage_groups = { fleshy = 1, },
 		punch_attack_uses = uses.iron,
 	},
-	_repair_material = "mcl_core:iron_ingot",
 	_mcl_toollike_wield = true,
 })
 
 minetest.register_craft({
-	output = "mcl_farming:iron_hoe",
+	output = "mcla:iron_hoe",
 	recipe = {
-		{"mcl_core:iron_ingot", "mcl_core:iron_ingot"},
-		{"", "mcl_core:stick"},
-		{"", "mcl_core:stick"}
+		{"mcla:iron_ingot", "mcla:iron_ingot"},
+		{"", "mcla:stick"},
+		{"", "mcla:stick"}
 	}
 })
 minetest.register_craft({
-	output = "mcl_farming:iron_hoe",
+	output = "mcla:iron_hoe",
 	recipe = {
-		{"mcl_core:iron_ingot", "mcl_core:iron_ingot"},
-		{"mcl_core:stick", ""},
-		{"mcl_core:stick", ""}
+		{"mcla:iron_ingot", "mcla:iron_ingot"},
+		{"mcla:stick", ""},
+		{"mcla:stick", ""}
 	}
 })
 
-minetest.register_tool("mcl_farming:gold_hoe", {
+minetest.register_tool(":mcla:gold_hoe", {
 	description = S("Golden Hoe"),
 	inventory_image = "mcl_farming_gold_hoe.png",
 	wield_scale = { x = 1.8, y = 1.8, z = 1 },
@@ -170,30 +167,29 @@ minetest.register_tool("mcl_farming:gold_hoe", {
 		damage_groups = { fleshy = 1, },
 		punch_attack_uses = uses.gold,
 	},
-	_repair_material = "mcl_core:gold_ingot",
 	_mcl_toollike_wield = true,
 })
 
 minetest.register_craft({
-	output = "mcl_farming:gold_hoe",
+	output = "mcla:gold_hoe",
 	recipe = {
-		{"mcl_core:gold_ingot", "mcl_core:gold_ingot"},
-		{"", "mcl_core:stick"},
-		{"", "mcl_core:stick"}
+		{"mcla:gold_ingot", "mcla:gold_ingot"},
+		{"", "mcla:stick"},
+		{"", "mcla:stick"}
 	}
 })
 minetest.register_craft({
-	output = "mcl_farming:gold_hoe",
+	output = "mcla:gold_hoe",
 	recipe = {
-		{"mcl_core:gold_ingot", "mcl_core:gold_ingot"},
-		{"mcl_core:stick", ""},
-		{"mcl_core:stick", ""}
+		{"mcla:gold_ingot", "mcla:gold_ingot"},
+		{"mcla:stick", ""},
+		{"mcla:stick", ""}
 	}
 })
 
 
 
-minetest.register_tool("mcl_farming:diamond_hoe", {
+minetest.register_tool(":mcla:diamond_hoe", {
 	description = S("Diamond Hoe"),
 	inventory_image = "mcl_farming_diamond_hoe.png",
 	wield_scale = { x = 1.8, y = 1.8, z = 1 },
@@ -204,23 +200,22 @@ minetest.register_tool("mcl_farming:diamond_hoe", {
 		damage_groups = { fleshy = 1, },
 		punch_attack_uses = uses.diamond,
 	},
-	_repair_material = "mcl_core:diamond",
 	_mcl_toollike_wield = true,
 })
 
 minetest.register_craft({
-	output = "mcl_farming:diamond_hoe",
+	output = "mcla:diamond_hoe",
 	recipe = {
-		{"mcl_core:diamond", "mcl_core:diamond"},
-		{"", "mcl_core:stick"},
-		{"", "mcl_core:stick"}
+		{"mcla:diamond", "mcla:diamond"},
+		{"", "mcla:stick"},
+		{"", "mcla:stick"}
 	}
 })
 minetest.register_craft({
-	output = "mcl_farming:diamond_hoe",
+	output = "mcla:diamond_hoe",
 	recipe = {
-		{"mcl_core:diamond", "mcl_core:diamond"},
-		{"mcl_core:stick", ""},
-		{"mcl_core:stick", ""}
+		{"mcla:diamond", "mcla:diamond"},
+		{"mcla:stick", ""},
+		{"mcla:stick", ""}
 	}
 })

@@ -387,7 +387,7 @@ end
 mcl_spawn.get_bed_spawn_pos = function(player)
 	local spawn, custom_spawn = nil, false
 	if player ~= nil and player:is_player() then
-		local attr = player:get_meta():get_string("mcl_beds:spawn")
+		local attr = player:get_meta():get_string("mcla:spawn")
 		if attr ~= nil and attr ~= "" then
 			spawn = minetest.string_to_pos(attr)
 			custom_spawn = true
@@ -408,16 +408,16 @@ mcl_spawn.set_spawn_pos = function(player, pos, message)
 	local spawn_changed = false
 	local meta = player:get_meta()
 	if pos == nil then
-		if meta:get_string("mcl_beds:spawn") ~= "" then
+		if meta:get_string("mcla:spawn") ~= "" then
 			spawn_changed = true
 			if message then
 				minetest.chat_send_player(player:get_player_name(), S("Respawn position cleared!"))
 			end
 		end
-		meta:set_string("mcl_beds:spawn", "")
+		meta:set_string("mcla:spawn", "")
 	else
-		local oldpos = minetest.string_to_pos(meta:get_string("mcl_beds:spawn"))
-		meta:set_string("mcl_beds:spawn", minetest.pos_to_string(pos))
+		local oldpos = minetest.string_to_pos(meta:get_string("mcla:spawn"))
+		meta:set_string("mcla:spawn", minetest.pos_to_string(pos))
 		if oldpos then
 			-- We don't bother sending a message if the new spawn pos is basically the same
 			spawn_changed = vector.distance(pos, oldpos) > 0.1
@@ -441,7 +441,7 @@ mcl_spawn.get_player_spawn_pos = function(player)
 		if bgroup ~= 1 and bgroup ~= 2 then
 			-- Bed is destroyed:
 			if player ~= nil and player:is_player() then
-				player:get_meta():set_string("mcl_beds:spawn", "")
+				player:get_meta():set_string("mcla:spawn", "")
 			end
 			minetest.chat_send_player(player:get_player_name(), S("Your spawn bed was missing or blocked."))
 			return mcl_spawn.get_world_spawn_pos(), false

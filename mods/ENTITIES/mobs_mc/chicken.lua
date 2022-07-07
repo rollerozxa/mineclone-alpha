@@ -27,7 +27,7 @@ mobs:register_mob("mobs_mc:chicken", {
 	makes_footstep_sound = true,
 	walk_velocity = 1,
 	drops = {
-		{name = "mcl_core:feather",
+		{name = "mcla:feather",
 		chance = 1,
 		min = 0,
 		max = 2,
@@ -80,7 +80,7 @@ mobs:register_mob("mobs_mc:chicken", {
 
 		local pos = self.object:get_pos()
 
-		minetest.add_item(pos, "mcl_throwing:egg")
+		minetest.add_item(pos, "mcla:egg")
 
 		minetest.sound_play("mobs_mc_chicken_lay_egg", {
 			pos = pos,

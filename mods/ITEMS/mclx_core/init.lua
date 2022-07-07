@@ -2,7 +2,7 @@ local S = minetest.get_translator("mclx_core")
 
 -- Liquids: River Water
 
-local source = table.copy(minetest.registered_nodes["mcl_core:water_source"])
+local source = table.copy(minetest.registered_nodes["mcla:water_source"])
 source.description = S("River Water Source")
 source.liquid_range = 2
 source.liquid_alternative_flowing = "mclx_core:river_water_flowing"
@@ -21,7 +21,7 @@ source.special_tiles = {
 	}
 }
 
-local flowing = table.copy(minetest.registered_nodes["mcl_core:water_flowing"])
+local flowing = table.copy(minetest.registered_nodes["mcla:water_flowing"])
 flowing.description = S("Flowing River Water")
 flowing.liquid_range = 2
 flowing.liquid_alternative_flowing = "mclx_core:river_water_flowing"

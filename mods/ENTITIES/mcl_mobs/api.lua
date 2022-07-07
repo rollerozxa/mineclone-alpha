@@ -96,7 +96,7 @@ local stuck_timeout = 3 -- how long before mob gets stuck in place and starts se
 local stuck_path_timeout = 10 -- how long will mob follow path before giving up
 
 -- default nodes
-mobs.fallback_node = minetest.registered_aliases["mapgen_dirt"] or "mcl_core:dirt"
+mobs.fallback_node = minetest.registered_aliases["mapgen_dirt"] or "mcla:dirt"
 
 local mod_weather = false
 
@@ -1242,7 +1242,7 @@ local do_jump = function(self)
 	end
 
 	-- thin blocks that do not need to be jumped
-	if nod.name == "mcl_core:snow" then
+	if nod.name == "mcla:snow" then
 		return false
 	end
 
@@ -4229,7 +4229,7 @@ function mobs:register_egg(mob, desc, background, addegg, no_creative)
 
 				local name = placer:get_player_name()
 				local privs = minetest.get_player_privs(name)
-				if under.name == "mcl_mobspawners:spawner" then
+				if under.name == "mcla:spawner" then
 					if minetest.is_protected(pointed_thing.under, name) then
 						minetest.record_protection_violation(pointed_thing.under, name)
 						return itemstack

@@ -150,7 +150,7 @@ minetest.register_globalstep(function(dtime)
 		end
 
 		-- controls right and left arms pitch when shooting a bow or punching
-		if string.find(player:get_wielded_item():get_name(), "mcl_bows:bow") and controls.RMB and not controls.LMB and not controls.up and not controls.down and not controls.left and not controls.right then
+		if string.find(player:get_wielded_item():get_name(), "mcla:bow") and controls.RMB and not controls.LMB and not controls.up and not controls.down and not controls.left and not controls.right then
 			set_bone_position_conditional(player,"Arm_Right_Pitch_Control", vector.new(-3,5.785,0), vector.new(pitch+90,-30,pitch * -1 * .35))
 			set_bone_position_conditional(player,"Arm_Left_Pitch_Control", vector.new(3.5,5.785,0), vector.new(pitch+90,43,pitch * .35))
 		elseif controls.LMB and player:get_attach() == nil then
@@ -277,7 +277,7 @@ minetest.register_globalstep(function(dtime)
 		def.speed = 1
 
 		-- Reset speed decrease
-		playerphysics.remove_physics_factor(player, "speed", "mcl_playerplus:surface")
+		playerphysics.remove_physics_factor(player, "speed", "mcla:surface")
 
 		-- Is player suffocating inside node? (Only for solid full opaque cube type nodes
 		-- without group disable_suffocation=1)
@@ -298,9 +298,9 @@ minetest.register_globalstep(function(dtime)
 		end
 
 		-- Am I near a cactus?
-		local near = minetest.find_node_near(pos, 1, "mcl_core:cactus")
+		local near = minetest.find_node_near(pos, 1, "mcla:cactus")
 		if not near then
-			near = minetest.find_node_near({x=pos.x, y=pos.y-1, z=pos.z}, 1, "mcl_core:cactus")
+			near = minetest.find_node_near({x=pos.x, y=pos.y-1, z=pos.z}, 1, "mcla:cactus")
 		end
 		if near then
 			-- Am I touching the cactus? If so, it hurts

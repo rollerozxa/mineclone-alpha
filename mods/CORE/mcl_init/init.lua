@@ -24,7 +24,6 @@ mcl_vars.inventory_header = ""
 -- Mapgen variables
 local mg_name = minetest.get_mapgen_setting("mg_name")
 local minecraft_height_limit = 256
-local superflat = mg_name == "flat" and minetest.get_mapgen_setting("mcl_superflat_classic") == "true"
 local singlenode = mg_name == "singlenode"
 
 -- Calculate mapgen_edge_min/mapgen_edge_max
@@ -82,7 +81,7 @@ function mcl_vars.get_chunk_number(pos) -- unsigned int
 		 c.x + k_positive
 end
 
-if not superflat and not singlenode then
+if not singlenode then
 	-- Normal mode
 
 	-- Overworld
@@ -96,20 +95,6 @@ if not superflat and not singlenode then
 
 elseif singlenode then
 	mcl_vars.mg_overworld_min = -66
-	mcl_vars.mg_overworld_max_official = mcl_vars.mg_overworld_min + minecraft_height_limit
-	mcl_vars.mg_bedrock_overworld_min = mcl_vars.mg_overworld_min
-	mcl_vars.mg_bedrock_overworld_max = mcl_vars.mg_bedrock_overworld_min
-	mcl_vars.mg_lava = false
-	mcl_vars.mg_lava_overworld_max = mcl_vars.mg_overworld_min
-	mcl_vars.mg_bedrock_is_rough = false
-else
-	-- Classic superflat
-	local ground = minetest.get_mapgen_setting("mgflat_ground_level")
-	ground = tonumber(ground)
-	if not ground then
-		ground = 8
-	end
-	mcl_vars.mg_overworld_min = ground - 3
 	mcl_vars.mg_overworld_max_official = mcl_vars.mg_overworld_min + minecraft_height_limit
 	mcl_vars.mg_bedrock_overworld_min = mcl_vars.mg_overworld_min
 	mcl_vars.mg_bedrock_overworld_max = mcl_vars.mg_bedrock_overworld_min

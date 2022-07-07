@@ -269,7 +269,7 @@ minetest.register_on_dieplayer(function(player, reason)
 					msg = dmsg("murder_any", name)
 				end
 			-- Arrow
-			elseif hitter:get_luaentity().name == "mcl_bows:arrow_entity" or hitter:get_luaentity().name == "mobs_mc:arrow_entity" and not killed_by_potion then
+			elseif hitter:get_luaentity().name == "mcla:arrow_entity" or hitter:get_luaentity().name == "mobs_mc:arrow_entity" and not killed_by_potion then
 				local shooter
 				if hitter:get_luaentity()._shooter then
 					shooter = hitter:get_luaentity()._shooter

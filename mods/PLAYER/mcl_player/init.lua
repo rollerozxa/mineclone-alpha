@@ -82,12 +82,12 @@ function mcl_player.player_set_textures(player, textures, preview)
 	player_textures[name] = textures
 	player:set_properties({textures = textures,})
 	if preview then
-		player:get_meta():set_string("mcl_player:preview", preview)
+		player:get_meta():set_string("mcla:preview", preview)
 	end
 end
 
 function mcl_player.player_get_preview(player)
-	local preview = player:get_meta():get_string("mcl_player:preview")
+	local preview = player:get_meta():get_string("mcla:preview")
 	if preview == nil or preview == "" then
 		return "player.png"
 	else
