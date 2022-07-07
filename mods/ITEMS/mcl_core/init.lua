@@ -16,7 +16,7 @@ mcl_autogroup.register_diggroup("swordy")
 mcl_autogroup.register_diggroup("swordy_cobweb")
 
 -- Load files
-local modpath = minetest.get_modpath("mcl_core")
+local modpath = minetest.get_modpath("mcla_core")
 dofile(modpath.."/functions.lua")
 dofile(modpath.."/nodes_base.lua") -- Simple solid cubic nodes with simple definitions
 dofile(modpath.."/nodes_liquid.lua") -- Liquids

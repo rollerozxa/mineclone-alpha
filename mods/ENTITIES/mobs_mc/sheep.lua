@@ -8,7 +8,7 @@ local S = minetest.get_translator("mobs_mc")
 
 local colors = {
 	-- group = { wool, textures }
-	unicolor_white = { "mcl_wool:white", "#FFFFFF00" },
+	unicolor_white = { "mcla:white", "#FFFFFF00" },
 }
 
 local sheep_texture = function(color_group)
@@ -63,7 +63,7 @@ mobs:register_mob("mobs_mc:sheep", {
 	-- Eat grass
 	replace_rate = 20,
 	replace_what = {
-		{ "mcl_core:dirt_with_grass", "mcl_core:dirt", -1 }
+		{ "mcla:dirt_with_grass", "mcla:dirt", -1 }
 	},
 	-- Properly regrow wool after eating grass
 	on_replace = function(self, pos, oldnode, newnode)

@@ -62,7 +62,7 @@ function mcl_farming:add_plant(identifier, full_grown, names, interval, chance)
 		interval = interval,
 		chance = chance,
 		action = function(pos, node)
-			local low_speed = minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name ~= "mcl_farming:soil_wet"
+			local low_speed = minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name ~= "mcla:soil_wet"
 			mcl_farming:grow_plant(identifier, pos, node, false, false, low_speed)
 		end,
 	})
@@ -155,7 +155,7 @@ function mcl_farming:place_seed(itemstack, placer, pointed_thing, plantname)
 	pos= {x=pt.above.x, y=pt.above.y, z=pt.above.z}
 	local place_s = minetest.get_node(pos)
 
-	if string.find(farmland.name, "mcl_farming:soil") and string.find(place_s.name, "air")  then
+	if string.find(farmland.name, "mcla:soil") and string.find(place_s.name, "air")  then
 		minetest.sound_play(minetest.registered_nodes[plantname].sounds.place, {pos = pos}, true)
 		minetest.add_node(pos, {name=plantname, param2 = minetest.registered_nodes[plantname].place_param2})
 		local intervals_counter = get_intervals_counter(pos, 1, 1)
@@ -187,7 +187,7 @@ end
 
 function mcl_farming:add_gourd(full_unconnected_stem, connected_stem_basename, stem_itemstring, stem_def, stem_drop, gourd_itemstring, gourd_def, grow_interval, grow_chance, connected_stem_texture, gourd_on_construct_extra)
 
-	local connected_stem_names = { 
+	local connected_stem_names = {
 		connected_stem_basename .. "_r",
 		connected_stem_basename .. "_l",
 		connected_stem_basename .. "_t",
@@ -390,7 +390,7 @@ function mcl_farming:add_gourd(full_unconnected_stem, connected_stem_basename, s
 					local floor = minetest.get_node(floorpos)
 					local block = minetest.get_node(blockpos)
 					local soilgroup = minetest.get_item_group(floor.name, "soil")
-					if not ((minetest.get_item_group(floor.name, "grass_block") == 1 or floor.name=="mcl_core:dirt" or soilgroup == 2 or soilgroup == 3) and block.name == "air") then
+					if not ((minetest.get_item_group(floor.name, "grass_block") == 1 or floor.name=="mcla:dirt" or soilgroup == 2 or soilgroup == 3) and block.name == "air") then
 						table.remove(neighbors, n)
 					end
 				end
@@ -425,7 +425,7 @@ function mcl_farming:add_gourd(full_unconnected_stem, connected_stem_basename, s
 					end
 					-- Reset farmland, etc. to dirt when the gourd grows on top
 					if minetest.get_item_group(floor.name, "dirtifies_below_solid") == 1 then
-						minetest.set_node(floorpos, {name = "mcl_core:dirt"})
+						minetest.set_node(floorpos, {name = "mcla:dirt"})
 					end
 				end
 			end
@@ -452,7 +452,7 @@ end
 
 minetest.register_lbm({
 	label = "Add growth for unloaded farming plants",
-	name = "mcl_farming:growth",
+	name = "mcla_farming:growth",
 	nodenames = {"group:plant"},
 	run_at_every_load = true,
 	action = function(pos, node)
@@ -460,7 +460,7 @@ minetest.register_lbm({
 		if not identifier then
 			return
 		end
-		local low_speed = minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name ~= "mcl_farming:soil_wet"
-		mcl_farming:grow_plant(identifier, pos, node, false, false, low_speed)
+		local low_speed = minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name ~= "mcla:soil_wet"
+		mcla:grow_plant(identifier, pos, node, false, false, low_speed)
 	end,
 })

@@ -20,7 +20,7 @@ local lava_death_messages = {
 	N("@1 could not survive in lava."),
 }
 
-minetest.register_node("mcl_core:water_flowing", {
+minetest.register_node(":mcla:water_flowing", {
 	description = S("Flowing Water"),
 	wield_image = "mcl_core_water_flowing_animated.png^[verticalframe:64:0",
 	drawtype = "flowingliquid",
@@ -50,8 +50,8 @@ minetest.register_node("mcl_core:water_flowing", {
 	drop = "",
 	drowning = 4,
 	liquidtype = "flowing",
-	liquid_alternative_flowing = "mcl_core:water_flowing",
-	liquid_alternative_source = "mcl_core:water_source",
+	liquid_alternative_flowing = "mcla:water_flowing",
+	liquid_alternative_source = "mcla:water_source",
 	liquid_viscosity = WATER_VISC,
 	liquid_range = 7,
 	post_effect_color = {a=209, r=0x03, g=0x3C, b=0x5C},
@@ -61,7 +61,7 @@ minetest.register_node("mcl_core:water_flowing", {
 	_mcl_hardness = -1,
 })
 
-minetest.register_node("mcl_core:water_source", {
+minetest.register_node(":mcla:water_source", {
 	description = S("Water Source"),
 	drawtype = "liquid",
 	tiles = {
@@ -87,8 +87,8 @@ minetest.register_node("mcl_core:water_source", {
 	drop = "",
 	drowning = 4,
 	liquidtype = "source",
-	liquid_alternative_flowing = "mcl_core:water_flowing",
-	liquid_alternative_source = "mcl_core:water_source",
+	liquid_alternative_flowing = "mcla:water_flowing",
+	liquid_alternative_source = "mcla:water_source",
 	liquid_viscosity = WATER_VISC,
 	liquid_range = 7,
 	post_effect_color = {a=209, r=0x03, g=0x3C, b=0x5C},
@@ -99,7 +99,7 @@ minetest.register_node("mcl_core:water_source", {
 	_mcl_hardness = -1,
 })
 
-minetest.register_node("mcl_core:lava_flowing", {
+minetest.register_node(":mcla:lava_flowing", {
 	description = S("Flowing Lava"),
 	wield_image = "mcl_core_lava_flowing_animated.png^[verticalframe:64:0",
 	drawtype = "flowingliquid",
@@ -131,8 +131,8 @@ minetest.register_node("mcl_core:lava_flowing", {
 	translates to 4 drowning damage ]]
 	drowning = 4,
 	liquidtype = "flowing",
-	liquid_alternative_flowing = "mcl_core:lava_flowing",
-	liquid_alternative_source = "mcl_core:lava_source",
+	liquid_alternative_flowing = "mcla:lava_flowing",
+	liquid_alternative_source = "mcla:lava_source",
 	liquid_viscosity = LAVA_VISC,
 	liquid_renewable = false,
 	liquid_range = 3,
@@ -145,15 +145,7 @@ minetest.register_node("mcl_core:lava_flowing", {
 	_mcl_hardness = -1,
 })
 
-local fire_text
-local fire_enabled = minetest.settings:get_bool("enable_fire", true)
-if fire_enabled then
-	fire_text = S("A lava source sets fire to a couple of air blocks above when they're next to a flammable block.")
-else
-	fire_text = ""
-end
-
-minetest.register_node("mcl_core:lava_source", {
+minetest.register_node(":mcla:lava_source", {
 	description = S("Lava Source"),
 	drawtype = "liquid",
 	tiles = {
@@ -178,8 +170,8 @@ minetest.register_node("mcl_core:lava_source", {
 	drop = "",
 	drowning = 4,
 	liquidtype = "source",
-	liquid_alternative_flowing = "mcl_core:lava_flowing",
-	liquid_alternative_source = "mcl_core:lava_source",
+	liquid_alternative_flowing = "mcla:lava_flowing",
+	liquid_alternative_source = "mcla:lava_source",
 	liquid_viscosity = LAVA_VISC,
 	liquid_renewable = false,
 	liquid_range = 3,

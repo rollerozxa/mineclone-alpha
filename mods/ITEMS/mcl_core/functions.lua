@@ -26,21 +26,21 @@ minetest.register_abm({
 			local watertype = minetest.registered_nodes[waternode.name].liquidtype
 			-- Lava on top of water: Water turns into stone
 			if water[w].y < pos.y and water[w].x == pos.x and water[w].z == pos.z then
-				minetest.set_node(water[w], {name="mcl_core:stone"})
+				minetest.set_node(water[w], {name="mcla:stone"})
 				minetest.sound_play("fire_extinguish_flame", {pos = water[w], gain = 0.25, max_hear_distance = 16}, true)
 			-- Flowing lava vs water on same level: Lava turns into cobblestone
 			elseif lavatype == "flowing" and water[w].y == pos.y and (water[w].x == pos.x or water[w].z == pos.z) then
-				minetest.set_node(pos, {name="mcl_core:cobble"})
+				minetest.set_node(pos, {name="mcla:cobble"})
 				minetest.sound_play("fire_extinguish_flame", {pos = pos, gain = 0.25, max_hear_distance = 16}, true)
 			-- Lava source vs flowing water above or horizontally neighbored: Lava turns into obsidian
 			elseif lavatype == "source" and
 					((water[w].y > pos.y and water[w].x == pos.x and water[w].z == pos.z) or
 					(water[w].y == pos.y and (water[w].x == pos.x or water[w].z == pos.z))) then
-				minetest.set_node(pos, {name="mcl_core:obsidian"})
+				minetest.set_node(pos, {name="mcla:obsidian"})
 				minetest.sound_play("fire_extinguish_flame", {pos = pos, gain = 0.25, max_hear_distance = 16}, true)
 			-- water above flowing lava: Lava turns into cobblestone
 			elseif lavatype == "flowing" and water[w].y > pos.y and water[w].x == pos.x and water[w].z == pos.z then
-				minetest.set_node(pos, {name="mcl_core:cobble"})
+				minetest.set_node(pos, {name="mcla:cobble"})
 				minetest.sound_play("fire_extinguish_flame", {pos = pos, gain = 0.25, max_hear_distance = 16}, true)
 			end
 		end
@@ -58,13 +58,13 @@ mcl_core.grow_cactus = function(pos, node)
 	if minetest.get_item_group(name, "sand") ~= 0 then
 		pos.y = pos.y+1
 		local height = 0
-		while minetest.get_node(pos).name == "mcl_core:cactus" and height < 4 do
+		while minetest.get_node(pos).name == "mcla:cactus" and height < 4 do
 			height = height+1
 			pos.y = pos.y+1
 		end
 		if height < 3 then
 			if minetest.get_node(pos).name == "air" then
-				minetest.set_node(pos, {name="mcl_core:cactus"})
+				minetest.set_node(pos, {name="mcla:cactus"})
 			end
 		end
 	end
@@ -79,13 +79,13 @@ mcl_core.grow_reeds = function(pos, node)
 		end
 		pos.y = pos.y+1
 		local height = 0
-		while minetest.get_node(pos).name == "mcl_core:reeds" and height < 3 do
+		while minetest.get_node(pos).name == "mcla:reeds" and height < 3 do
 			height = height+1
 			pos.y = pos.y+1
 		end
 		if height < 3 then
 			if minetest.get_node(pos).name == "air" then
-				minetest.set_node(pos, {name="mcl_core:reeds"})
+				minetest.set_node(pos, {name="mcla:reeds"})
 			end
 		end
 	end
@@ -180,7 +180,7 @@ minetest.register_abm({
 
 minetest.register_abm({
 	label = "Cactus growth",
-	nodenames = {"mcl_core:cactus"},
+	nodenames = {"mcla:cactus"},
 	neighbors = {"group:sand"},
 	interval = 25,
 	chance = 10,
@@ -191,7 +191,7 @@ minetest.register_abm({
 
 minetest.register_abm({
 	label = "Sugar canes growth",
-	nodenames = {"mcl_core:reeds"},
+	nodenames = {"mcla:reeds"},
 	neighbors = {"group:soil_sugarcane"},
 	interval = 25,
 	chance = 10,
@@ -204,7 +204,7 @@ minetest.register_abm({
 -- Sugar canes drop
 --
 
-local timber_nodenames={"mcl_core:reeds"}
+local timber_nodenames={"mcla:reeds"}
 
 minetest.register_on_dignode(function(pos, node)
 	local i=1
@@ -327,8 +327,8 @@ end
 
 -- Classic oak in v6 style
 function mcl_core.generate_v6_oak_tree(pos)
-	local trunk = "mcl_core:tree"
-	local leaves = "mcl_core:leaves"
+	local trunk = "mcla:tree"
+	local leaves = "mcla:leaves"
 	local node = {name = ""}
 	for dy=1,4 do
 		pos.y = pos.y+dy
@@ -397,12 +397,12 @@ function mcl_core.generate_balloon_oak_tree(pos)
 	local s = math.random(1, 12)
 	if s == 1 then
 		-- Small balloon oak
-		path = minetest.get_modpath("mcl_core") .. "/schematics/mcl_core_oak_balloon.mts"
+		path = minetest.get_modpath("mcla_core") .. "/schematics/mcl_core_oak_balloon.mts"
 		offset = { x = -2, y = -1, z = -2 }
 	else
 		-- Large balloon oak
 		local t = math.random(1, 4)
-		path = minetest.get_modpath("mcl_core") .. "/schematics/mcl_core_oak_large_"..t..".mts"
+		path = minetest.get_modpath("mcla_core") .. "/schematics/mcl_core_oak_large_"..t..".mts"
 		if t == 1 or t == 3 then
 			offset = { x = -3, y = -1, z = -3 }
 		elseif t == 2 or t == 4 then
@@ -414,7 +414,7 @@ end
 
 -- Oak
 function mcl_core.generate_oak_tree(pos)
-	local path = minetest.get_modpath("mcl_core") .. "/schematics/mcl_core_oak_classic.mts"
+	local path = minetest.get_modpath("mcla_core") .. "/schematics/mcl_core_oak_classic.mts"
 	local offset = { x = -2, y = -1, z = -2 }
 
 	minetest.place_schematic(vector.add(pos, offset), path, "random", nil, false)
@@ -484,7 +484,7 @@ function mcl_core.get_grass_block_type(pos)
 			index = reg_biome._mcl_palette_index
 		end
 	end
-	return {name="mcl_core:dirt_with_grass", param2=index}
+	return {name="mcla:dirt_with_grass", param2=index}
 end
 
 ------------------------------
@@ -492,7 +492,7 @@ end
 ------------------------------
 minetest.register_abm({
 	label = "Grass Block spread",
-	nodenames = {"mcl_core:dirt"},
+	nodenames = {"mcla:dirt"},
 	neighbors = {"air", "group:grass_block_no_snow"},
 	interval = 30,
 	chance = 20,
@@ -549,7 +549,7 @@ minetest.register_abm({
 		local name = minetest.get_node(above).name
 		-- Kill grass when below opaque block or liquid
 		if name ~= "ignore" and (minetest.get_item_group(name, "opaque") == 1 or minetest.get_item_group(name, "liquid") ~= 0) then
-			minetest.set_node(pos, {name = "mcl_core:dirt"})
+			minetest.set_node(pos, {name = "mcla:dirt"})
 		end
 	end
 })
@@ -561,14 +561,14 @@ minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack
 		local below = {x=pos.x, y=pos.y-1, z=pos.z}
 		local belownode = minetest.get_node(below)
 		if minetest.get_item_group(belownode.name, "dirtifies_below_solid") == 1 then
-			minetest.set_node(below, {name="mcl_core:dirt"})
+			minetest.set_node(below, {name="mcla:dirt"})
 		end
 	end
 end)
 
 minetest.register_abm({
 	label = "Turn Grass Path below solid block into Dirt",
-	nodenames = {"mcl_core:grass_path"},
+	nodenames = {"mcla:grass_path"},
 	neighbors = {"group:solid"},
 	interval = 8,
 	chance = 50,
@@ -577,7 +577,7 @@ minetest.register_abm({
 		local name = minetest.get_node(above).name
 		local nodedef = minetest.registered_nodes[name]
 		if name ~= "ignore" and nodedef and (nodedef.groups and nodedef.groups.solid) then
-			minetest.set_node(pos, {name = "mcl_core:dirt"})
+			minetest.set_node(pos, {name = "mcla:dirt"})
 		end
 	end,
 })
@@ -715,7 +715,7 @@ local grow_oak = sapling_grow_action(OAK_TREE_ID, 1, true, false)
 -- Returns true on success and false on failure
 mcl_core.grow_sapling = function(pos, node)
 	local grow
-	if node.name == "mcl_core:sapling" then
+	if node.name == "mcla:sapling" then
 		grow = grow_oak
 	end
 	if grow then
@@ -732,7 +732,7 @@ end
 -- Oak tree
 minetest.register_abm({
 	label = "Oak tree growth",
-	nodenames = {"mcl_core:sapling"},
+	nodenames = {"mcla:sapling"},
 	neighbors = {"group:soil_sapling"},
 	interval = 25,
 	chance = 2,
@@ -740,8 +740,8 @@ minetest.register_abm({
 })
 minetest.register_lbm({
 	label = "Add growth for unloaded oak tree",
-	name = "mcl_core:lbm_oak",
-	nodenames = {"mcl_core:sapling"},
+	name = "mcla_core:lbm_oak",
+	nodenames = {"mcla:sapling"},
 	run_at_every_load = true,
 	action = grow_oak
 })
@@ -859,12 +859,12 @@ minetest.register_abm({
 -- Melt snow
 minetest.register_abm({
 	label = "Top snow and ice melting",
-	nodenames = {"mcl_core:snow", "mcl_core:ice"},
+	nodenames = {"mcla:snow", "mcla:ice"},
 	interval = 16,
 	chance = 8,
 	action = function(pos, node)
 		if minetest.get_node_light(pos, 0) >= 12 then
-			if node.name == "mcl_core:ice" then
+			if node.name == "mcla:ice" then
 				mcl_core.melt_ice(pos)
 			else
 				minetest.remove_node(pos)
@@ -873,14 +873,14 @@ minetest.register_abm({
 	end
 })
 
--- Melt ice at pos. mcl_core:ice MUST be at pos if you call this!
+-- Melt ice at pos. mcla:ice MUST be at pos if you call this!
 function mcl_core.melt_ice(pos)
 	-- Create a water source if ice is destroyed and there was something below it
 	local below = {x=pos.x, y=pos.y-1, z=pos.z}
 	local belownode = minetest.get_node(below)
 	local dim = mcl_worlds.pos_to_dimension(below)
-	if belownode.name ~= "air" and belownode.name ~= "ignore" and belownode.name ~= "mcl_core:void" then
-		minetest.set_node(pos, {name="mcl_core:water_source"})
+	if belownode.name ~= "air" and belownode.name ~= "ignore" and belownode.name ~= "mcla:void" then
+		minetest.set_node(pos, {name="mcla:water_source"})
 	else
 		minetest.remove_node(pos)
 	end
@@ -998,7 +998,7 @@ end
 
 -- A snow cover node is a node which turns a snowed dirtlike --
 -- node into its snowed form while it is placed above.
--- MCL2's snow cover nodes are Top Snow (mcl_core:snow) and Snow (mcl_core:snowblock).
+-- MCL2's snow cover nodes are Top Snow (mcla:snow) and Snow (mcla:snowblock).
 
 -- Always add the following functions to snow cover nodes:
 

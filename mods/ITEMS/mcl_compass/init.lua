@@ -73,7 +73,7 @@ for i,img in ipairs(images) do
 	if i == stereotype_frame then
 		inv = 0
 	end
-	local itemstring = "mcl_compass:"..(i-1)
+	local itemstring = "mcla_compass:"..(i-1)
 	minetest.register_craftitem(itemstring, {
 		description = S("Compass"),
 		inventory_image = img,
@@ -86,13 +86,13 @@ end
 minetest.register_craft({
 	output = 'mcl_compass:'..stereotype_frame,
 	recipe = {
-		{'', 'mcl_core:iron_ingot', ''},
-		{'mcl_core:iron_ingot', 'mesecons:redstone', 'mcl_core:iron_ingot'},
-		{'', 'mcl_core:iron_ingot', ''}
+		{'', 'mcla:iron_ingot', ''},
+		{'mcla:iron_ingot', 'mesecons:redstone', 'mcla:iron_ingot'},
+		{'', 'mcla:iron_ingot', ''}
 	}
 })
 
-minetest.register_alias("mcl_compass:compass", "mcl_compass:"..stereotype_frame)
+minetest.register_alias("mcla:compass", "mcl_compass:"..stereotype_frame)
 
 -- Export stereotype item for other mods to use
 mcl_compass.stereotype = "mcl_compass:"..tostring(stereotype_frame)

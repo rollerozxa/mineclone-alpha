@@ -1,6 +1,6 @@
 local S = minetest.get_translator("mcl_crafting_table")
 
-minetest.register_node("mcl_crafting_table:crafting_table", {
+minetest.register_node(":mcla:crafting_table", {
 	description = S("Crafting Table"),
 	is_ground_content = false,
 	tiles = {"mcl_crafting_table_top.png", "mcl_core_wood.png", "mcl_crafting_table_side.png",
@@ -35,7 +35,7 @@ minetest.register_node("mcl_crafting_table:crafting_table", {
 })
 
 minetest.register_craft({
-	output = "mcl_crafting_table:crafting_table",
+	output = "mcla:crafting_table",
 	recipe = {
 		{"group:wood", "group:wood"},
 		{"group:wood", "group:wood"}
@@ -44,9 +44,6 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "fuel",
-	recipe = "mcl_crafting_table:crafting_table",
+	recipe = "mcla:crafting_table",
 	burntime = 15,
 })
-
-minetest.register_alias("crafting:workbench", "mcl_crafting_table:crafting_table")
-minetest.register_alias("mcl_inventory:workbench", "mcl_crafting_table:crafting_table")

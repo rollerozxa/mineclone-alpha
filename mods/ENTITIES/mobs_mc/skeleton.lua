@@ -40,12 +40,12 @@ local skeleton = {
 	damage = 2,
 	reach = 2,
 	drops = {
-		{name = "mcl_bows:arrow",
+		{name = "mcla:arrow",
 		chance = 1,
 		min = 0,
 		max = 2,
 		looting = "common",},
-		{name = "mcl_bows:bow",
+		{name = "mcla:bow",
 		chance = 100 / 8.5,
 		min = 1,
 		max = 1,
@@ -70,11 +70,11 @@ local skeleton = {
 	view_range = 16,
 	fear_height = 4,
 	attack_type = "dogshoot",
-	arrow = "mcl_bows:arrow_entity",
+	arrow = "mcla:arrow_entity",
 	shoot_arrow = function(self, pos, dir)
 		-- 2-4 damage per arrow
 		local dmg = math.max(4, math.random(2, 8))
-		mcl_bows.shoot_arrow("mcl_bows:arrow", pos, dir, self.object:get_yaw(), self.object, nil, dmg)
+		mcl_bows.shoot_arrow("mcla:arrow", pos, dir, self.object:get_yaw(), self.object, nil, dmg)
 	end,
 	shoot_interval = 2,
 	shoot_offset = 1.5,

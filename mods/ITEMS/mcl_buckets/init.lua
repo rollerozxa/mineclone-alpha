@@ -1,10 +1,10 @@
 local S = minetest.get_translator("mcl_buckets")
 
 minetest.register_craft({
-	output = 'mcl_buckets:bucket_empty 1',
+	output = 'mcla:bucket_empty 1',
 	recipe = {
-		{'mcl_core:iron_ingot', '', 'mcl_core:iron_ingot'},
-		{'', 'mcl_core:iron_ingot', ''},
+		{'mcla:iron_ingot', '', 'mcla:iron_ingot'},
+		{'', 'mcla:iron_ingot', ''},
 	}
 })
 
@@ -58,7 +58,7 @@ function mcl_buckets.register_liquid(source_place, source_take, itemname, invent
 	end
 
 	if itemname ~= nil then
-		minetest.register_craftitem(itemname, {
+		minetest.register_craftitem(":"..itemname, {
 			description = name,
 			inventory_image = inventory_image,
 			stack_max = 16,
@@ -119,7 +119,7 @@ function mcl_buckets.register_liquid(source_place, source_take, itemname, invent
 				if not minetest.is_creative_enabled(user:get_player_name()) then
 					-- Add empty bucket and put it into inventory, if possible.
 					-- Drop empty bucket otherwise.
-					local new_bucket = ItemStack("mcl_buckets:bucket_empty")
+					local new_bucket = ItemStack("mcla:bucket_empty")
 					if itemstack:get_count() == 1 then
 						return new_bucket
 					else
@@ -151,7 +151,7 @@ function mcl_buckets.register_liquid(source_place, source_take, itemname, invent
 						node_place = source_place
 					end
 					place_liquid(droppos, node_place)
-					stack:set_name("mcl_buckets:bucket_empty")
+					stack:set_name("mcla:bucket_empty")
 				end
 				return stack
 			end,
@@ -159,7 +159,7 @@ function mcl_buckets.register_liquid(source_place, source_take, itemname, invent
 	end
 end
 
-minetest.register_craftitem("mcl_buckets:bucket_empty", {
+minetest.register_craftitem(":mcla:bucket_empty", {
 	description = S("Empty Bucket"),
 
 	liquids_pointable = true,
@@ -248,19 +248,19 @@ minetest.register_craftitem("mcl_buckets:bucket_empty", {
 -- Lava bucket
 mcl_buckets.register_liquid(
 	function(pos)
-		return "mcl_core:lava_source"
+		return "mcla:lava_source"
 	end,
-	{"mcl_core:lava_source"},
-	"mcl_buckets:bucket_lava",
+	{"mcla:lava_source"},
+	"mcla:bucket_lava",
 	"mcl_buckets_lava.png",
 	S("Lava Bucket")
 )
 
 -- Water bucket
 mcl_buckets.register_liquid(
-	"mcl_core:water_source",
-	{"mcl_core:water_source"},
-	"mcl_buckets:bucket_water",
+	"mcla:water_source",
+	{"mcla:water_source"},
+	"mcla:bucket_water",
 	"mcl_buckets_water.png",
 	S("Water Bucket"),
 	function(pos, placer)
@@ -283,7 +283,7 @@ mcl_buckets.register_liquid(
 mcl_buckets.register_liquid(
 	"mclx_core:river_water_source",
 	{"mclx_core:river_water_source"},
-	"mcl_buckets:bucket_river_water",
+	"mcla:bucket_river_water",
 	"mcl_buckets_river_water.png",
 	S("River Water Bucket"),
 	function(pos, placer)
@@ -304,7 +304,7 @@ mcl_buckets.register_liquid(
 
 minetest.register_craft({
 	type = "fuel",
-	recipe = "mcl_buckets:bucket_lava",
+	recipe = "mcla:bucket_lava",
 	burntime = 1000,
-	replacements = {{"mcl_buckets:bucket_lava", "mcl_buckets:bucket_empty"}},
+	replacements = {{"mcla:bucket_lava", "mcla:bucket_empty"}},
 })

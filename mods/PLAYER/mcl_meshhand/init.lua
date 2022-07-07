@@ -1,9 +1,9 @@
-local has_mcl_skins = minetest.get_modpath("mcl_skins") ~= nil
+local has_mcl_skins = minetest.get_modpath("mcla_skins") ~= nil
 
 local def = minetest.registered_items[""]
 
 -- This is a fake node that should never be placed in the world
-minetest.register_node("mcl_meshhand:hand", {
+minetest.register_node(":mcla:hand", {
 	description = "",
 	tiles = {"character.png"},
 	use_texture_alpha = minetest.features.use_texture_alpha_string_modes and "opaque" or false,
@@ -15,7 +15,7 @@ minetest.register_node("mcl_meshhand:hand", {
 	-- Prevent construction
 	node_placement_prediction = "",
 	on_construct = function(pos)
-		minetest.log("error", "[mcl_meshhand] Trying to construct mcl_meshhand:hand at "..minetest.pos_to_string(pos))
+		minetest.log("error", "[mcl_meshhand] Trying to construct mcla:hand at "..minetest.pos_to_string(pos))
 		minetest.remove_node(pos)
 	end,
 	drop = "",
@@ -27,5 +27,5 @@ minetest.register_node("mcl_meshhand:hand", {
 	})
 
 minetest.register_on_joinplayer(function(player)
-	player:get_inventory():set_stack("hand", 1, "mcl_meshhand:hand")
+	player:get_inventory():set_stack("hand", 1, "mcla:hand")
 end)

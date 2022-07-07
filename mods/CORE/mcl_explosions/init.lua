@@ -12,7 +12,7 @@ under the LGPLv2.1 license.
 
 mcl_explosions = {}
 
-local CONTENT_FIRE = minetest.get_content_id("mcl_fire:fire")
+local CONTENT_FIRE = minetest.get_content_id("mcla:fire")
 
 local S = minetest.get_translator("mcl_explosions")
 
@@ -315,13 +315,7 @@ local function trace_explode(pos, strength, raydirs, radius, info, puncher)
 				local sleep_formspec_doesnt_close_mt53 = false
 				if obj:is_player() then
 					local name = obj:get_player_name()
-					if mcl_beds then
-						local meta = obj:get_meta()
-						if meta:get_string("mcl_beds:sleeping") == "true" then
-							minetest.close_formspec(name, "") -- ABSOLUTELY NECESSARY FOR MT5.3 -- TODO: REMOVE THIS IN THE FUTURE
-							sleep_formspec_doesnt_close_mt53 = true
-						end
-					end
+
 					mcl_death_messages.player_damage(obj, S("@1 was caught in an explosion.", name))
 					if rawget(_G, "armor") and armor.last_damage_types then
 						armor.last_damage_types[name] = "explosion"
@@ -386,7 +380,7 @@ local function trace_explode(pos, strength, raydirs, radius, info, puncher)
 		minetest.bulk_set_node(airs, {name="air"})
 	end
 	if #fires > 0 then
-		minetest.bulk_set_node(fires, {name="mcl_fire:fire"})
+		minetest.bulk_set_node(fires, {name="mcla:fire"})
 	end
 	-- Update falling nodes
 	for a=1, #airs do

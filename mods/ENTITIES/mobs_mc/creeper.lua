@@ -54,7 +54,7 @@ mobs:register_mob("mobs_mc:creeper", {
 			return
 		end
 		local item = clicker:get_wielded_item()
-		if item:get_name() == "mcl_fire:flint_and_steel" then
+		if item:get_name() == "mcla:flint_and_steel" then
 			if not minetest.is_creative_enabled(clicker:get_player_name()) then
 				-- Wear tool
 				local wdef = item:get_definition()
@@ -85,14 +85,14 @@ mobs:register_mob("mobs_mc:creeper", {
 			if luaentity and luaentity.name:find("arrow") then
 				local shooter_luaentity = luaentity._shooter and luaentity._shooter:get_luaentity()
 				if shooter_luaentity and (shooter_luaentity.name == "mobs_mc:skeleton" or shooter_luaentity.name == "mobs_mc:stray") then
-					minetest.add_item({x=pos.x, y=pos.y+1, z=pos.z}, "mcl_jukebox:record_1")
+					minetest.add_item({x=pos.x, y=pos.y+1, z=pos.z}, "mcla:record_1")
 				end
 			end
 		end
 	end,
 	maxdrops = 2,
 	drops = {
-		{name = "mcl_core:gunpowder",
+		{name = "mcla:gunpowder",
 		chance = 1,
 		min = 0,
 		max = 2,

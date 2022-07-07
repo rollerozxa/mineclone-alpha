@@ -2,39 +2,39 @@ local S = minetest.get_translator("mcl_core")
 
 -- Simple solid cubic nodes, most of them are the ground materials and simple building blocks
 
-minetest.register_node("mcl_core:stone", {
+minetest.register_node(":mcla:stone", {
 	description = S("Stone"),
 	tiles = {"mcl_core_stone.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {pickaxey=1, stone=1, building_block=1, material_stone=1},
-	drop = 'mcl_core:cobble',
+	drop = 'mcla:cobble',
 	sounds = mcl_sounds.node_sound_stone_defaults(),
 	_mcl_blast_resistance = 6,
 	_mcl_hardness = 1.5,
 	_mcl_silk_touch_drop = true,
 })
 
-minetest.register_node("mcl_core:stone_with_coal", {
+minetest.register_node(":mcla:stone_with_coal", {
 	description = S("Coal Ore"),
 	tiles = {"mcl_core_coal_ore.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {pickaxey=1, building_block=1, material_stone=1, xp=1},
-	drop = 'mcl_core:coal_lump',
+	drop = 'mcla:coal_lump',
 	sounds = mcl_sounds.node_sound_stone_defaults(),
 	_mcl_blast_resistance = 3,
 	_mcl_hardness = 3,
 	_mcl_silk_touch_drop = true,
 })
 
-minetest.register_node("mcl_core:stone_with_iron", {
+minetest.register_node(":mcla:stone_with_iron", {
 	description = S("Iron Ore"),
 	tiles = {"mcl_core_iron_ore.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {pickaxey=3, building_block=1, material_stone=1},
-	drop = 'mcl_core:stone_with_iron',
+	drop = 'mcla:stone_with_iron',
 	sounds = mcl_sounds.node_sound_stone_defaults(),
 	_mcl_blast_resistance = 3,
 	_mcl_hardness = 3,
@@ -42,13 +42,13 @@ minetest.register_node("mcl_core:stone_with_iron", {
 })
 
 
-minetest.register_node("mcl_core:stone_with_gold", {
+minetest.register_node(":mcla:stone_with_gold", {
 	description = S("Gold Ore"),
 	tiles = {"mcl_core_gold_ore.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {pickaxey=4, building_block=1, material_stone=1},
-	drop = "mcl_core:stone_with_gold",
+	drop = "mcla:stone_with_gold",
 	sounds = mcl_sounds.node_sound_stone_defaults(),
 	_mcl_blast_resistance = 3,
 	_mcl_hardness = 3,
@@ -57,11 +57,11 @@ minetest.register_node("mcl_core:stone_with_gold", {
 
 local redstone_timer = 68.28
 local redstone_ore_activate = function(pos)
-	minetest.swap_node(pos, {name="mcl_core:stone_with_redstone_lit"})
+	minetest.swap_node(pos, {name="mcla:stone_with_redstone_lit"})
 	local t = minetest.get_node_timer(pos)
 	t:start(redstone_timer)
 end
-minetest.register_node("mcl_core:stone_with_redstone", {
+minetest.register_node(":mcla:stone_with_redstone", {
 	description = S("Redstone Ore"),
 	tiles = {"mcl_core_redstone_ore.png"},
 	is_ground_content = true,
@@ -92,7 +92,7 @@ local redstone_ore_reactivate = function(pos)
 	t:start(redstone_timer)
 end
 -- Light the redstone ore up when it has been touched
-minetest.register_node("mcl_core:stone_with_redstone_lit", {
+minetest.register_node(":mcla:stone_with_redstone_lit", {
 	description = S("Lit Redstone Ore"),
 	tiles = {"mcl_core_redstone_ore.png"},
 	paramtype = "light",
@@ -118,20 +118,20 @@ minetest.register_node("mcl_core:stone_with_redstone_lit", {
 	on_walk_over = redstone_ore_reactivate, -- Uses walkover mod
 	-- Turn back to normal node after some time has passed
 	on_timer = function(pos, elapsed)
-		minetest.swap_node(pos, {name="mcl_core:stone_with_redstone"})
+		minetest.swap_node(pos, {name="mcla:stone_with_redstone"})
 	end,
 	_mcl_blast_resistance = 3,
 	_mcl_hardness = 3,
-	_mcl_silk_touch_drop = {"mcl_core:stone_with_redstone"},
+	_mcl_silk_touch_drop = {"mcla:stone_with_redstone"},
 })
 
-minetest.register_node("mcl_core:stone_with_diamond", {
+minetest.register_node(":mcla:stone_with_diamond", {
 	description = S("Diamond Ore"),
 	tiles = {"mcl_core_diamond_ore.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {pickaxey=4, building_block=1, material_stone=1, xp=4},
-	drop = "mcl_core:diamond",
+	drop = "mcla:diamond",
 	sounds = mcl_sounds.node_sound_stone_defaults(),
 	_mcl_blast_resistance = 3,
 	_mcl_hardness = 3,
@@ -139,7 +139,7 @@ minetest.register_node("mcl_core:stone_with_diamond", {
 })
 
 -- Grass Block
-minetest.register_node("mcl_core:dirt_with_grass", {
+minetest.register_node(":mcla:dirt_with_grass", {
 	description = S("Grass Block"),
 	tiles = {"mcl_core_grass_block_top.png", { name="mcl_core_dirt.png", color="white" }},
 	overlay_tiles = {"mcl_core_grass_block_top.png", "", {name="mcl_core_grass_block_side_overlay.png", tileable_vertical=false}},
@@ -147,7 +147,7 @@ minetest.register_node("mcl_core:dirt_with_grass", {
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {handy=1,shovely=1,dirt=2,grass_block=1, grass_block_no_snow=1, soil=1, soil_sapling=2, soil_sugarcane=1, cultivatable=2, spreading_dirt_type=1, building_block=1},
-	drop = 'mcl_core:dirt',
+	drop = 'mcla:dirt',
 	sounds = mcl_sounds.node_sound_dirt_defaults({
 		footstep = {name="mcl_core_grass_footstep", gain=0.1},
 	}),
@@ -155,20 +155,20 @@ minetest.register_node("mcl_core:dirt_with_grass", {
 		local node = minetest.get_node(pos)
 		if node.param2 == 0 then
 			local new_node = mcl_core.get_grass_block_type(pos)
-			if new_node.param2 ~= 0 or new_node.name ~= "mcl_core:dirt_with_grass" then
+			if new_node.param2 ~= 0 or new_node.name ~= "mcla:dirt_with_grass" then
 				minetest.set_node(pos, new_node)
 			end
 		end
 		return mcl_core.on_snowable_construct(pos)
 	end,
-	_mcl_snowed = "mcl_core:dirt_with_grass_snow",
+	_mcl_snowed = "mcla:dirt_with_grass_snow",
 	_mcl_blast_resistance = 0.5,
 	_mcl_hardness = 0.6,
 	_mcl_silk_touch_drop = true,
 })
-mcl_core.register_snowed_node("mcl_core:dirt_with_grass_snow", "mcl_core:dirt_with_grass", nil, nil, true, S("Dirt with Snow"))
+mcl_core.register_snowed_node(":mcla:dirt_with_grass_snow", "mcla:dirt_with_grass", nil, nil, true, S("Dirt with Snow"))
 
-minetest.register_node("mcl_core:dirt", {
+minetest.register_node(":mcla:dirt", {
 	description = S("Dirt"),
 	tiles = {"mcl_core_dirt.png"},
 	is_ground_content = true,
@@ -179,7 +179,7 @@ minetest.register_node("mcl_core:dirt", {
 	_mcl_hardness = 0.5,
 })
 
-minetest.register_node("mcl_core:gravel", {
+minetest.register_node(":mcla:gravel", {
 	description = S("Gravel"),
 	tiles = {"mcl_core_gravel.png"},
 	is_ground_content = true,
@@ -188,8 +188,8 @@ minetest.register_node("mcl_core:gravel", {
 	drop = {
 		max_items = 1,
 		items = {
-			{items = {'mcl_core:flint'},rarity = 10},
-			{items = {'mcl_core:gravel'}}
+			{items = {'mcla:flint'},rarity = 10},
+			{items = {'mcla:gravel'}}
 		}
 	},
 	sounds = mcl_sounds.node_sound_dirt_defaults({
@@ -200,7 +200,7 @@ minetest.register_node("mcl_core:gravel", {
 	_mcl_silk_touch_drop = true,
 })
 
-minetest.register_node("mcl_core:sand", {
+minetest.register_node(":mcla:sand", {
 	description = S("Sand"),
 	tiles = {"mcl_core_sand.png"},
 	is_ground_content = true,
@@ -213,20 +213,20 @@ minetest.register_node("mcl_core:sand", {
 
 ---
 
-minetest.register_node("mcl_core:clay", {
+minetest.register_node(":mcla:clay", {
 	description = S("Clay"),
 	tiles = {"mcl_core_clay.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {handy=1,shovely=1, building_block=1},
-	drop = 'mcl_core:clay_lump 4',
+	drop = 'mcla:clay_lump 4',
 	sounds = mcl_sounds.node_sound_dirt_defaults(),
 	_mcl_blast_resistance = 0.6,
 	_mcl_hardness = 0.6,
 	_mcl_silk_touch_drop = true,
 })
 
-minetest.register_node("mcl_core:brick_block", {
+minetest.register_node(":mcla:brick_block", {
 	-- Original name: “Bricks”
 	description = S("Brick Block"),
 	tiles = {"mcl_core_brick.png"},
@@ -239,7 +239,7 @@ minetest.register_node("mcl_core:brick_block", {
 })
 
 
-minetest.register_node("mcl_core:bedrock", {
+minetest.register_node(":mcla:bedrock", {
 	description = S("Bedrock"),
 	tiles = {"mcl_core_bedrock.png"},
 	stack_max = 64,
@@ -250,33 +250,9 @@ minetest.register_node("mcl_core:bedrock", {
 	drop = '',
 	_mcl_blast_resistance = 3600000,
 	_mcl_hardness = -1,
-
-	-- Eternal fire on top of bedrock, if in the End dimension
-	after_destruct = function(pos)
-		pos.y = pos.y + 1
-		if minetest.get_node(pos).name == "mcl_fire:eternal_fire" then
-			minetest.remove_node(pos)
-		end
-	end,
-	_on_ignite = function(player, pointed_thing)
-		local pos = pointed_thing.under
-		local dim = mcl_worlds.pos_to_dimension(pos)
-		local flame_pos = {x = pos.x, y = pos.y + 1, z = pos.z}
-		local fn = minetest.get_node(flame_pos)
-		local pname = player:get_player_name()
-		if minetest.is_protected(flame_pos, pname) then
-			return minetest.record_protection_violation(flame_pos, pname)
-		end
-		if dim == "end" and fn.name == "air" and pointed_thing.under.y < pointed_thing.above.y then
-			minetest.set_node(flame_pos, {name = "mcl_fire:eternal_fire"})
-			return true
-		else
-			return false
-		end
-	end,
 })
 
-minetest.register_node("mcl_core:cobble", {
+minetest.register_node(":mcla:cobble", {
 	description = S("Cobblestone"),
 	tiles = {"mcl_core_cobble.png"},
 	is_ground_content = false,
@@ -287,7 +263,7 @@ minetest.register_node("mcl_core:cobble", {
 	_mcl_hardness = 2,
 })
 
-minetest.register_node("mcl_core:mossycobble", {
+minetest.register_node(":mcla:mossycobble", {
 	description = S("Mossy Cobblestone"),
 	tiles = {"mcl_core_mossycobble.png"},
 	is_ground_content = false,
@@ -298,7 +274,7 @@ minetest.register_node("mcl_core:mossycobble", {
 	_mcl_hardness = 2,
 })
 
-minetest.register_node("mcl_core:ironblock", {
+minetest.register_node(":mcla:ironblock", {
 	description = S("Block of Iron"),
 	tiles = {"mcl_core_steel_block.png"},
 	is_ground_content = false,
@@ -309,7 +285,7 @@ minetest.register_node("mcl_core:ironblock", {
 	_mcl_hardness = 5,
 })
 
-minetest.register_node("mcl_core:goldblock", {
+minetest.register_node(":mcla:goldblock", {
 	description = S("Block of Gold"),
 	tiles = {"mcl_core_gold_block.png"},
 	is_ground_content = false,
@@ -320,7 +296,7 @@ minetest.register_node("mcl_core:goldblock", {
 	_mcl_hardness = 5,
 })
 
-minetest.register_node("mcl_core:diamondblock", {
+minetest.register_node(":mcla:diamondblock", {
 	description = S("Block of Diamond"),
 	tiles = {"mcl_core_diamond_block.png"},
 	is_ground_content = false,
@@ -331,7 +307,7 @@ minetest.register_node("mcl_core:diamondblock", {
 	_mcl_hardness = 5,
 })
 
-minetest.register_node("mcl_core:obsidian", {
+minetest.register_node(":mcla:obsidian", {
 	description = S("Obsidian"),
 	tiles = {"mcl_core_obsidian.png"},
 	is_ground_content = true,
@@ -342,7 +318,7 @@ minetest.register_node("mcl_core:obsidian", {
 	_mcl_hardness = 50,
 })
 
-minetest.register_node("mcl_core:ice", {
+minetest.register_node(":mcla:ice", {
 	description = S("Ice"),
 	tiles = {"mcl_core_ice.png"},
 	is_ground_content = true,
@@ -351,7 +327,7 @@ minetest.register_node("mcl_core:ice", {
 	groups = {handy=1,pickaxey=1, slippery=3, building_block=1, ice=1},
 	drop = "",
 	sounds = mcl_sounds.node_sound_glass_defaults(),
-	node_dig_prediction = "mcl_core:water_source",
+	node_dig_prediction = "mcla:water_source",
 	after_dig_node = function(pos, oldnode)
 		mcl_core.melt_ice(pos)
 	end,
@@ -363,11 +339,11 @@ minetest.register_node("mcl_core:ice", {
 for i=1,8 do
 	local id, desc, walkable, drawtype, node_box
 	if i == 1 then
-		id = "mcl_core:snow"
+		id = ":mcla:snow"
 		desc = S("Top Snow")
 		walkable = false
 	else
-		id = "mcl_core:snow_"..i
+		id = ":mcla:snow_"..i
 		walkable = true
 	end
 	if i ~= 8 then
@@ -411,7 +387,7 @@ for i=1,8 do
 			local itemstring = itemstack:get_name()
 			local itemcount = itemstack:get_count()
 			local fakestack = ItemStack(itemstring.." "..itemcount)
-			fakestack:set_name("mcl_core:snow_"..math.min(8, (i+g)))
+			fakestack:set_name("mcla:snow_"..math.min(8, (i+g)))
 			local success
 			itemstack, success = minetest.item_place(fakestack, placer, pointed_thing)
 			minetest.sound_play(mcl_sounds.node_sound_snow_defaults().place, {pos = below}, true)
@@ -456,14 +432,14 @@ for i=1,8 do
 		on_construct = mcl_core.on_snow_construct,
 		on_place = on_place,
 		after_destruct = mcl_core.after_snow_destruct,
-		drop = "mcl_throwing:snowball "..(i+1),
+		drop = "mcla:snowball "..(i+1),
 		_mcl_blast_resistance = 0.1,
 		_mcl_hardness = 0.1,
-		_mcl_silk_touch_drop = {"mcl_core:snow " .. i},
+		_mcl_silk_touch_drop = {"mcla:snow " .. i},
 	})
 end
 
-minetest.register_node("mcl_core:snowblock", {
+minetest.register_node(":mcla:snowblock", {
 	description = S("Snow"),
 	tiles = {"mcl_core_snow.png"},
 	is_ground_content = true,
@@ -472,13 +448,13 @@ minetest.register_node("mcl_core:snowblock", {
 	sounds = mcl_sounds.node_sound_snow_defaults(),
 	on_construct = mcl_core.on_snow_construct,
 	after_destruct = mcl_core.after_snow_destruct,
-	drop = "mcl_throwing:snowball 4",
+	drop = "mcla:snowball 4",
 	_mcl_blast_resistance = 0.2,
 	_mcl_hardness = 0.2,
 	_mcl_silk_touch_drop = true,
 })
 
-minetest.register_node("mcl_core:sponge", {
+minetest.register_node(":mcla:sponge", {
 	description = S("Sponge"),
 	drawtype = "normal",
 	is_ground_content = false,
@@ -495,13 +471,13 @@ minetest.register_node("mcl_core:sponge", {
 })
 
 -- Bookshelf
-minetest.register_node("mcl_core:bookshelf", {
+minetest.register_node(":mcla:bookshelf", {
 	description = S("Bookshelf"),
 	tiles = {"mcl_core_wood.png", "mcl_core_wood.png", "mcl_core_bookshelf.png"},
 	stack_max = 64,
 	is_ground_content = false,
 	groups = {handy=1,axey=1, flammable=3,building_block=1, material_wood=1, fire_encouragement=30, fire_flammability=20},
-	drop = "mcl_core:book 3",
+	drop = "mcla:book 3",
 	sounds = mcl_sounds.node_sound_wood_defaults(),
 	_mcl_blast_resistance = 1.5,
 	_mcl_hardness = 1.5,

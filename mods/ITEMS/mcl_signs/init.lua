@@ -13,7 +13,7 @@ After line 3, another info block may follow. This repeats until the end of the f
 All character files must be 5 or 6 pixels wide (5 pixels are preferred)
 ]]
 
-local chars_file = io.open(minetest.get_modpath("mcl_signs").."/characters.txt", "r")
+local chars_file = io.open(minetest.get_modpath("mcla_signs").."/characters.txt", "r")
 -- FIXME: Support more characters (many characters are missing). Currently ASCII and Latin-1 Supplement are supported.
 local charmap = {}
 if not chars_file then
@@ -128,7 +128,7 @@ end
 local generate_texture = function(lines, signnodename)
 	local texture = "[combine:"..SIGN_WIDTH.."x"..SIGN_WIDTH
 	local ypos
-	if signnodename == "mcl_signs:wall_sign" then
+	if signnodename == "mcla:wall_sign" then
 		ypos = 30
 	else
 		ypos = 0
@@ -162,11 +162,11 @@ end
 
 local function get_rotation_level(facedir, nodename)
 	local rl = facedir * 4
-	if nodename == "mcl_signs:standing_sign22_5" then
+	if nodename == "mcla:standing_sign22_5" then
 		rl = rl + 1
-	elseif nodename == "mcl_signs:standing_sign45" then
+	elseif nodename == "mcla:standing_sign45" then
 		rl = rl + 2
-	elseif nodename == "mcl_signs:standing_sign67_5" then
+	elseif nodename == "mcla:standing_sign67_5" then
 		rl = rl + 3
 	end
 	return rl
@@ -191,14 +191,14 @@ local destruct_sign = function(pos)
 	local objects = minetest.get_objects_inside_radius(pos, 0.5)
 	for _, v in ipairs(objects) do
 		local ent = v:get_luaentity()
-		if ent and ent.name == "mcl_signs:text" then
+		if ent and ent.name == "mcla:text" then
 			v:remove()
 		end
 	end
 	local players = minetest.get_connected_players()
 	for p=1, #players do
 		if vector.distance(players[p]:get_pos(), pos) <= 30 then
-			minetest.close_formspec(players[p]:get_player_name(), "mcl_signs:set_text_"..pos.x.."_"..pos.y.."_"..pos.z)
+			minetest.close_formspec(players[p]:get_player_name(), "mcla:set_text_"..pos.x.."_"..pos.y.."_"..pos.z)
 		end
 	end
 end
@@ -220,9 +220,9 @@ local update_sign = function(pos, fields, sender, force_remove)
 	local sign_info
 	local n = minetest.get_node(pos)
 	local nn = n.name
-	if nn == "mcl_signs:standing_sign" or nn == "mcl_signs:standing_sign22_5" or nn == "mcl_signs:standing_sign45" or nn == "mcl_signs:standing_sign67_5" then
+	if nn == "mcla:standing_sign" or nn == "mcla:standing_sign22_5" or nn == "mcla:standing_sign45" or nn == "mcla:standing_sign67_5" then
 		sign_info = signtext_info_standing[get_rotation_level(n.param2, nn) + 1]
-	elseif nn == "mcl_signs:wall_sign" then
+	elseif nn == "mcla:wall_sign" then
 		sign_info = signtext_info_wall[get_wall_signtext_info(n.param2)]
 	end
 	if sign_info == nil then
@@ -234,7 +234,7 @@ local update_sign = function(pos, fields, sender, force_remove)
 	local text_entity
 	for _, v in ipairs(objects) do
 		local ent = v:get_luaentity()
-		if ent and ent.name == "mcl_signs:text" then
+		if ent and ent.name == "mcla:text" then
 			if force_remove then
 				v:remove()
 			else
@@ -248,7 +248,7 @@ local update_sign = function(pos, fields, sender, force_remove)
 		text_entity = minetest.add_entity({
 			x = pos.x + sign_info.delta.x,
 			y = pos.y + sign_info.delta.y,
-			z = pos.z + sign_info.delta.z}, "mcl_signs:text")
+			z = pos.z + sign_info.delta.z}, "mcla:text")
 	end
 	text_entity:get_luaentity()._signnodename = nn
 	text_entity:set_properties({textures={generate_texture(create_lines(text), nn)}})
@@ -259,14 +259,14 @@ end
 local show_formspec = function(player, pos)
 	minetest.show_formspec(
 		player:get_player_name(),
-		"mcl_signs:set_text_"..pos.x.."_"..pos.y.."_"..pos.z,
+		"mcla:set_text_"..pos.x.."_"..pos.y.."_"..pos.z,
 		"size[6,3]textarea[0.25,0.25;6,1.5;text;"..F(S("Enter sign text:"))..";]label[0,1.5;"..F(S("Maximum line length: 15")).."\n"..F(S("Maximum lines: 4")).."]button_exit[0,2.5;6,1;submit;"..F(S("Done")).."]"
 	)
 end
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
-	if formname:find("mcl_signs:set_text_") == 1 then
-		local x, y, z = formname:match("mcl_signs:set_text_(.-)_(.-)_(.*)")
+	if formname:find("mcla:set_text_") == 1 then
+		local x, y, z = formname:match("mcla:set_text_(.-)_(.-)_(.*)")
 		local pos = {x=tonumber(x), y=tonumber(y), z=tonumber(z)}
 		if not pos or not pos.x or not pos.y or not pos.z then return end
 		update_sign(pos, fields, player)
@@ -275,7 +275,7 @@ end)
 
 local node_sounds = mcl_sounds.node_sound_wood_defaults()
 
-minetest.register_node("mcl_signs:wall_sign", {
+minetest.register_node(":mcla:wall_sign", {
 	description = S("Sign"),
 	inventory_image = "mcl_signs_icon.png",
 	walkable = false,
@@ -344,13 +344,13 @@ minetest.register_node("mcl_signs:wall_sign", {
 
 			-- The actual rotation is a combination of predefined mesh and facedir (see node definition)
 			if rotation_level % 4 == 0 then
-				nodeitem:set_name("mcl_signs:standing_sign")
+				nodeitem:set_name("mcla:standing_sign")
 			elseif rotation_level % 4 == 1 then
-				nodeitem:set_name("mcl_signs:standing_sign22_5")
+				nodeitem:set_name("mcla:standing_sign22_5")
 			elseif rotation_level % 4 == 2 then
-				nodeitem:set_name("mcl_signs:standing_sign45")
+				nodeitem:set_name("mcla:standing_sign45")
 			elseif rotation_level % 4 == 3 then
-				nodeitem:set_name("mcl_signs:standing_sign67_5")
+				nodeitem:set_name("mcla:standing_sign67_5")
 			end
 			fdir = math.floor(rotation_level / 4)
 
@@ -384,7 +384,7 @@ minetest.register_node("mcl_signs:wall_sign", {
 		local text_entity = minetest.add_entity({
 			x = place_pos.x + sign_info.delta.x,
 			y = place_pos.y + sign_info.delta.y,
-			z = place_pos.z + sign_info.delta.z}, "mcl_signs:text")
+			z = place_pos.z + sign_info.delta.z}, "mcla:text")
 		text_entity:set_yaw(sign_info.yaw)
 		text_entity:get_luaentity()._signnodename = nodeitem:get_name()
 
@@ -430,7 +430,7 @@ local ssign = {
 	selection_box = {type = "fixed", fixed = {-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
 	tiles = {"mcl_signs_sign.png"},
 	groups = sign_groups,
-	drop = "mcl_signs:wall_sign",
+	drop = "mcla:wall_sign",
 	stack_max = 16,
 	sounds = node_sounds,
 
@@ -440,7 +440,7 @@ local ssign = {
 	end,
 	on_rotate = function(pos, node, user, mode)
 		if mode == screwdriver.ROTATE_FACE then
-			node.name = "mcl_signs:standing_sign22_5"
+			node.name = "mcla:standing_sign22_5"
 			minetest.swap_node(pos, node)
 		elseif mode == screwdriver.ROTATE_AXIS then
 			return false
@@ -453,14 +453,14 @@ local ssign = {
 	_mcl_blast_resistance = 1,
 }
 
-minetest.register_node("mcl_signs:standing_sign", ssign)
+minetest.register_node(":mcla:standing_sign", ssign)
 
 -- 22.5°
 local ssign22_5 = table.copy(ssign)
 ssign22_5.mesh = "mcl_signs_sign22.5.obj"
 ssign22_5.on_rotate = function(pos, node, user, mode)
 	if mode == screwdriver.ROTATE_FACE then
-		node.name = "mcl_signs:standing_sign45"
+		node.name = "mcla:standing_sign45"
 		minetest.swap_node(pos, node)
 	elseif mode == screwdriver.ROTATE_AXIS then
 		return false
@@ -468,14 +468,14 @@ ssign22_5.on_rotate = function(pos, node, user, mode)
 	update_sign(pos, nil, nil, true)
 	return true
 end
-minetest.register_node("mcl_signs:standing_sign22_5", ssign22_5)
+minetest.register_node(":mcla:standing_sign22_5", ssign22_5)
 
 -- 45°
 local ssign45 = table.copy(ssign)
 ssign45.mesh = "mcl_signs_sign45.obj"
 ssign45.on_rotate = function(pos, node, user, mode)
 	if mode == screwdriver.ROTATE_FACE then
-		node.name = "mcl_signs:standing_sign67_5"
+		node.name = "mcla:standing_sign67_5"
 		minetest.swap_node(pos, node)
 	elseif mode == screwdriver.ROTATE_AXIS then
 		return false
@@ -483,14 +483,14 @@ ssign45.on_rotate = function(pos, node, user, mode)
 	update_sign(pos, nil, nil, true)
 	return true
 end
-minetest.register_node("mcl_signs:standing_sign45", ssign45)
+minetest.register_node(":mcla:standing_sign45", ssign45)
 
 -- 67.5°
 local ssign67_5 = table.copy(ssign)
 ssign67_5.mesh = "mcl_signs_sign67.5.obj"
 ssign67_5.on_rotate = function(pos, node, user, mode)
 	if mode == screwdriver.ROTATE_FACE then
-		node.name = "mcl_signs:standing_sign"
+		node.name = "mcla:standing_sign"
 		node.param2 = (node.param2 + 1) % 4
 		minetest.swap_node(pos, node)
 	elseif mode == screwdriver.ROTATE_AXIS then
@@ -499,10 +499,10 @@ ssign67_5.on_rotate = function(pos, node, user, mode)
 	update_sign(pos, nil, nil, true)
 	return true
 end
-minetest.register_node("mcl_signs:standing_sign67_5", ssign67_5)
+minetest.register_node(":mcla:standing_sign67_5", ssign67_5)
 
 -- FIXME: Prevent entity destruction by /clearobjects
-minetest.register_entity("mcl_signs:text", {
+minetest.register_entity("mcla_signs:text", {
 	pointable = false,
 	visual = "upright_sprite",
 	textures = {},
@@ -533,27 +533,24 @@ minetest.register_entity("mcl_signs:text", {
 
 minetest.register_craft({
 	type = "fuel",
-	recipe = "mcl_signs:wall_sign",
+	recipe = "mcla:wall_sign",
 	burntime = 10,
 })
 
 minetest.register_craft({
-	output = 'mcl_signs:wall_sign 3',
+	output = 'mcla:wall_sign 3',
 	recipe = {
 		{'group:wood', 'group:wood', 'group:wood'},
 		{'group:wood', 'group:wood', 'group:wood'},
-		{'', 'mcl_core:stick', ''},
+		{'', 'mcla:stick', ''},
 	}
 })
 
-minetest.register_alias("signs:sign_wall", "mcl_signs:wall_sign")
-minetest.register_alias("signs:sign_yard", "mcl_signs:standing_sign")
-
 minetest.register_lbm({
-	name = "mcl_signs:respawn_entities",
+	name = "mcla_signs:respawn_entities",
 	label = "Respawn sign text entities",
 	run_at_every_load = true,
-	nodenames = { "mcl_signs:wall_sign", "mcl_signs:standing_sign", "mcl_signs:standing_sign22_5", "mcl_signs:standing_sign45", "mcl_signs:standing_sign67_5" },
+	nodenames = { "mcla:wall_sign", "mcla:standing_sign", "mcla:standing_sign22_5", "mcla:standing_sign45", "mcla:standing_sign67_5" },
 	action = function(pos, node)
 		update_sign(pos)
 	end,

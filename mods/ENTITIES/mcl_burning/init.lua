@@ -1,5 +1,5 @@
 local S = minetest.get_translator("mcl_burning")
-local modpath = minetest.get_modpath("mcl_burning")
+local modpath = minetest.get_modpath("mcla_burning")
 
 mcl_burning = {
 	animation_frames = 8,
@@ -8,7 +8,7 @@ mcl_burning = {
 
 dofile(modpath .. "/api.lua")
 
-minetest.register_entity("mcl_burning:fire", {
+minetest.register_entity("mcla_burning:fire", {
 	initial_properties = {
 		physical = false,
 		collisionbox = {0, 0, 0, 0, 0, 0},

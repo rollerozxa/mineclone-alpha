@@ -127,7 +127,7 @@ local boat = {
 	_v = 0, -- Speed
 	_last_v = 0, -- Temporary speed variable
 	_removed = false, -- If true, boat entity is considered removed (e.g. after punch) and should be ignored
-	_itemstring = "mcl_boats:boat", -- Itemstring of the boat item (implies boat type)
+	_itemstring = "mcla:boat", -- Itemstring of the boat item (implies boat type)
 	_animation = 0, -- 0: not animated; 1: paddling forwards; -1: paddling forwards
 	_regen_timer = 0,
 	_damage_anim = 0,
@@ -373,9 +373,9 @@ function boat.on_step(self, dtime, moveresult)
 end
 
 -- Register one entity for all boat types
-minetest.register_entity("mcl_boats:boat", boat)
+minetest.register_entity("mcla_boats:boat", boat)
 
-minetest.register_craftitem("mcl_boats:boat", {
+minetest.register_craftitem(":mcla:boat", {
 	description = S("Boat"),
 	inventory_image = "mcl_boats_boat.png",
 	liquids_pointable = true,
@@ -404,8 +404,8 @@ minetest.register_craftitem("mcl_boats:boat", {
 		else
 			pos = vector.add(pos, vector.multiply(dir, boat_y_offset_ground))
 		end
-		local boat = minetest.add_entity(pos, "mcl_boats:boat")
-		boat:get_luaentity()._itemstring = "mcl_boats:boat"
+		local boat = minetest.add_entity(pos, "mcla:boat")
+		boat:get_luaentity()._itemstring = "mcla:boat"
 		boat:set_properties({textures = { "mcl_boats_boat_texture.png" }})
 		boat:set_yaw(placer:get_look_horizontal())
 		if not minetest.is_creative_enabled(placer:get_player_name()) then
@@ -418,16 +418,16 @@ minetest.register_craftitem("mcl_boats:boat", {
 		local belownode = minetest.get_node(below)
 		-- Place boat as entity on or in water
 		if minetest.get_item_group(dropnode.name, "water") ~= 0 or (dropnode.name == "air" and minetest.get_item_group(belownode.name, "water") ~= 0) then
-			minetest.add_entity(droppos, "mcl_boats:boat")
+			minetest.add_entity(droppos, "mcla:boat")
 		else
 			minetest.add_item(droppos, stack)
 		end
 	end,
 })
 
-local c = "mcl_core:wood"
+local c = "mcla:wood"
 minetest.register_craft({
-	output = "mcl_boats:boat",
+	output = "mcla:boat",
 	recipe = {
 		{c, "", c},
 		{c, c, c},

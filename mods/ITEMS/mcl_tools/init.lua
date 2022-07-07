@@ -57,10 +57,10 @@ minetest.register_tool(":", {
 	}
 })
 
-local wield_scale = { x = 1.8, y = 1.8, z = 1 }
+local wield_scale = { x = 1.5, y = 1.5, z = 1 }
 
 -- Picks
-minetest.register_tool("mcl_tools:wood_pickaxe", {
+minetest.register_tool(":mcla:wood_pickaxe", {
 	description = S("Wooden Pickaxe"),
 	inventory_image = "mcl_tools_wood_pickaxe.png",
 	wield_scale = wield_scale,
@@ -72,13 +72,12 @@ minetest.register_tool("mcl_tools:wood_pickaxe", {
 		damage_groups = {fleshy=2},
 		punch_attack_uses = 30,
 	},
-	_repair_material = "group:wood",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
 		pickaxey = { speed = 2, level = 1, uses = 60 }
 	},
 })
-minetest.register_tool("mcl_tools:stone_pickaxe", {
+minetest.register_tool(":mcla:stone_pickaxe", {
 	description = S("Stone Pickaxe"),
 	inventory_image = "mcl_tools_stone_pickaxe.png",
 	wield_scale = wield_scale,
@@ -90,13 +89,12 @@ minetest.register_tool("mcl_tools:stone_pickaxe", {
 		damage_groups = {fleshy=3},
 		punch_attack_uses = 66,
 	},
-	_repair_material = "mcl_core:cobble",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
 		pickaxey = { speed = 4, level = 3, uses = 132 }
 	},
 })
-minetest.register_tool("mcl_tools:iron_pickaxe", {
+minetest.register_tool(":mcla:iron_pickaxe", {
 	description = S("Iron Pickaxe"),
 	inventory_image = "mcl_tools_iron_pickaxe.png",
 	wield_scale = wield_scale,
@@ -108,13 +106,12 @@ minetest.register_tool("mcl_tools:iron_pickaxe", {
 		damage_groups = {fleshy=4},
 		punch_attack_uses = 126,
 	},
-	_repair_material = "mcl_core:iron_ingot",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
 		pickaxey = { speed = 6, level = 4, uses = 251 }
 	},
 })
-minetest.register_tool("mcl_tools:gold_pickaxe", {
+minetest.register_tool(":mcla:gold_pickaxe", {
 	description = S("Golden Pickaxe"),
 	inventory_image = "mcl_tools_gold_pickaxe.png",
 	wield_scale = wield_scale,
@@ -126,13 +123,12 @@ minetest.register_tool("mcl_tools:gold_pickaxe", {
 		damage_groups = {fleshy=2},
 		punch_attack_uses = 17,
 	},
-	_repair_material = "mcl_core:gold_ingot",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
 		pickaxey = { speed = 12, level = 2, uses = 33 }
 	},
 })
-minetest.register_tool("mcl_tools:diamond_pickaxe", {
+minetest.register_tool(":mcla:diamond_pickaxe", {
 	description = S("Diamond Pickaxe"),
 	inventory_image = "mcl_tools_diamond_pickaxe.png",
 	wield_scale = wield_scale,
@@ -144,7 +140,6 @@ minetest.register_tool("mcl_tools:diamond_pickaxe", {
 		damage_groups = {fleshy=5},
 		punch_attack_uses = 781,
 	},
-	_repair_material = "mcl_core:diamond",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
 		pickaxey = { speed = 8, level = 5, uses = 1562 }
@@ -152,7 +147,7 @@ minetest.register_tool("mcl_tools:diamond_pickaxe", {
 })
 
 -- Shovels
-minetest.register_tool("mcl_tools:wood_shovel", {
+minetest.register_tool(":mcla:wood_shovel", {
 	description = S("Wooden Shovel"),
 	inventory_image = "mcl_tools_wood_shovel.png",
 	wield_scale = wield_scale,
@@ -163,13 +158,12 @@ minetest.register_tool("mcl_tools:wood_shovel", {
 		damage_groups = {fleshy=2},
 		punch_attack_uses = 30,
 	},
-	_repair_material = "group:wood",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
 		shovely = { speed = 2, level = 1, uses = 60 }
 	},
 })
-minetest.register_tool("mcl_tools:stone_shovel", {
+minetest.register_tool(":mcla:stone_shovel", {
 	description = S("Stone Shovel"),
 	inventory_image = "mcl_tools_stone_shovel.png",
 	wield_scale = wield_scale,
@@ -180,13 +174,12 @@ minetest.register_tool("mcl_tools:stone_shovel", {
 		damage_groups = {fleshy=3},
 		punch_attack_uses = 66,
 	},
-	_repair_material = "mcl_core:cobble",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
 		shovely = { speed = 4, level = 3, uses = 132 }
 	},
 })
-minetest.register_tool("mcl_tools:iron_shovel", {
+minetest.register_tool(":mcla:iron_shovel", {
 	description = S("Iron Shovel"),
 	inventory_image = "mcl_tools_iron_shovel.png",
 	wield_scale = wield_scale,
@@ -197,13 +190,12 @@ minetest.register_tool("mcl_tools:iron_shovel", {
 		damage_groups = {fleshy=4},
 		punch_attack_uses = 126,
 	},
-	_repair_material = "mcl_core:iron_ingot",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
 		shovely = { speed = 6, level = 4, uses = 251 }
 	},
 })
-minetest.register_tool("mcl_tools:gold_shovel", {
+minetest.register_tool(":mcla:gold_shovel", {
 	description = S("Golden Shovel"),
 	inventory_image = "mcl_tools_gold_shovel.png",
 	wield_scale = wield_scale,
@@ -214,13 +206,12 @@ minetest.register_tool("mcl_tools:gold_shovel", {
 		damage_groups = {fleshy=2},
 		punch_attack_uses = 17,
 	},
-	_repair_material = "mcl_core:gold_ingot",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
 		shovely = { speed = 12, level = 2, uses = 33 }
 	},
 })
-minetest.register_tool("mcl_tools:diamond_shovel", {
+minetest.register_tool(":mcla:diamond_shovel", {
 	description = S("Diamond Shovel"),
 	inventory_image = "mcl_tools_diamond_shovel.png",
 	wield_scale = wield_scale,
@@ -231,7 +222,6 @@ minetest.register_tool("mcl_tools:diamond_shovel", {
 		damage_groups = {fleshy=5},
 		punch_attack_uses = 781,
 	},
-	_repair_material = "mcl_core:diamond",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
 		shovely = { speed = 8, level = 5, uses = 1562 }
@@ -239,7 +229,7 @@ minetest.register_tool("mcl_tools:diamond_shovel", {
 })
 
 -- Axes
-minetest.register_tool("mcl_tools:wood_axe", {
+minetest.register_tool(":mcla:wood_axe", {
 	description = S("Wooden Axe"),
 	inventory_image = "mcl_tools_wood_axe.png",
 	wield_scale = wield_scale,
@@ -250,13 +240,12 @@ minetest.register_tool("mcl_tools:wood_axe", {
 		damage_groups = {fleshy=7},
 		punch_attack_uses = 30,
 	},
-	_repair_material = "group:wood",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
 		axey = { speed = 2, level = 1, uses = 60 }
 	},
 })
-minetest.register_tool("mcl_tools:stone_axe", {
+minetest.register_tool(":mcla:stone_axe", {
 	description = S("Stone Axe"),
 	inventory_image = "mcl_tools_stone_axe.png",
 	wield_scale = wield_scale,
@@ -267,13 +256,12 @@ minetest.register_tool("mcl_tools:stone_axe", {
 		damage_groups = {fleshy=9},
 		punch_attack_uses = 66,
 	},
-	_repair_material = "mcl_core:cobble",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
 		axey = { speed = 4, level = 3, uses = 132 }
 	},
 })
-minetest.register_tool("mcl_tools:iron_axe", {
+minetest.register_tool(":mcla:iron_axe", {
 	description = S("Iron Axe"),
 	inventory_image = "mcl_tools_iron_axe.png",
 	wield_scale = wield_scale,
@@ -285,13 +273,12 @@ minetest.register_tool("mcl_tools:iron_axe", {
 		damage_groups = {fleshy=9},
 		punch_attack_uses = 126,
 	},
-	_repair_material = "mcl_core:iron_ingot",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
 		axey = { speed = 6, level = 4, uses = 251 }
 	},
 })
-minetest.register_tool("mcl_tools:gold_axe", {
+minetest.register_tool(":mcla:gold_axe", {
 	description = S("Golden Axe"),
 	inventory_image = "mcl_tools_gold_axe.png",
 	wield_scale = wield_scale,
@@ -302,13 +289,12 @@ minetest.register_tool("mcl_tools:gold_axe", {
 		damage_groups = {fleshy=7},
 		punch_attack_uses = 17,
 	},
-	_repair_material = "mcl_core:gold_ingot",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
 		axey = { speed = 12, level = 2, uses = 33 }
 	},
 })
-minetest.register_tool("mcl_tools:diamond_axe", {
+minetest.register_tool(":mcla:diamond_axe", {
 	description = S("Diamond Axe"),
 	inventory_image = "mcl_tools_diamond_axe.png",
 	wield_scale = wield_scale,
@@ -319,7 +305,6 @@ minetest.register_tool("mcl_tools:diamond_axe", {
 		damage_groups = {fleshy=9},
 		punch_attack_uses = 781,
 	},
-	_repair_material = "mcl_core:diamond",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
 		axey = { speed = 8, level = 5, uses = 1562 }
@@ -327,7 +312,7 @@ minetest.register_tool("mcl_tools:diamond_axe", {
 })
 
 -- Swords
-minetest.register_tool("mcl_tools:wood_sword", {
+minetest.register_tool(":mcla:wood_sword", {
 	description = S("Wooden Sword"),
 	inventory_image = "mcl_tools_wood_sword.png",
 	wield_scale = wield_scale,
@@ -338,14 +323,13 @@ minetest.register_tool("mcl_tools:wood_sword", {
 		damage_groups = {fleshy=4},
 		punch_attack_uses = 60,
 	},
-	_repair_material = "group:wood",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
 		swordy = { speed = 2, level = 1, uses = 60 },
 		swordy_cobweb = { speed = 2, level = 1, uses = 60 }
 	},
 })
-minetest.register_tool("mcl_tools:stone_sword", {
+minetest.register_tool(":mcla:stone_sword", {
 	description = S("Stone Sword"),
 	inventory_image = "mcl_tools_stone_sword.png",
 	wield_scale = wield_scale,
@@ -356,14 +340,13 @@ minetest.register_tool("mcl_tools:stone_sword", {
 		damage_groups = {fleshy=5},
 		punch_attack_uses = 132,
 	},
-	_repair_material = "mcl_core:cobble",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
 		swordy = { speed = 4, level = 3, uses = 132 },
 		swordy_cobweb = { speed = 4, level = 3, uses = 132 }
 	},
 })
-minetest.register_tool("mcl_tools:iron_sword", {
+minetest.register_tool(":mcla:iron_sword", {
 	description = S("Iron Sword"),
 	inventory_image = "mcl_tools_iron_sword.png",
 	wield_scale = wield_scale,
@@ -374,14 +357,13 @@ minetest.register_tool("mcl_tools:iron_sword", {
 		damage_groups = {fleshy=6},
 		punch_attack_uses = 251,
 	},
-	_repair_material = "mcl_core:iron_ingot",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
 		swordy = { speed = 6, level = 4, uses = 251 },
 		swordy_cobweb = { speed = 6, level = 4, uses = 251 }
 	},
 })
-minetest.register_tool("mcl_tools:gold_sword", {
+minetest.register_tool(":mcla:gold_sword", {
 	description = S("Golden Sword"),
 	inventory_image = "mcl_tools_gold_sword.png",
 	wield_scale = wield_scale,
@@ -392,14 +374,13 @@ minetest.register_tool("mcl_tools:gold_sword", {
 		damage_groups = {fleshy=4},
 		punch_attack_uses = 33,
 	},
-	_repair_material = "mcl_core:gold_ingot",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
 		swordy = { speed = 12, level = 2, uses = 33 },
 		swordy_cobweb = { speed = 12, level = 2, uses = 33 }
 	},
 })
-minetest.register_tool("mcl_tools:diamond_sword", {
+minetest.register_tool(":mcla:diamond_sword", {
 	description = S("Diamond Sword"),
 	inventory_image = "mcl_tools_diamond_sword.png",
 	wield_scale = wield_scale,
@@ -410,7 +391,6 @@ minetest.register_tool("mcl_tools:diamond_sword", {
 		damage_groups = {fleshy=7},
 		punch_attack_uses = 1562,
 	},
-	_repair_material = "mcl_core:diamond",
 	_mcl_toollike_wield = true,
 	_mcl_diggroups = {
 		swordy = { speed = 8, level = 5, uses = 1562 },
@@ -419,4 +399,4 @@ minetest.register_tool("mcl_tools:diamond_sword", {
 })
 
 
-dofile(minetest.get_modpath("mcl_tools").."/crafting.lua")
+dofile(minetest.get_modpath("mcla_tools").."/crafting.lua")

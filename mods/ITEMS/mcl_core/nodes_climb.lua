@@ -11,7 +11,7 @@ local rotate_climbable = function(pos, node, user, mode)
 	return false
 end
 
-minetest.register_node("mcl_core:ladder", {
+minetest.register_node(":mcla:ladder", {
 	description = S("Ladder"),
 	drawtype = "signlike",
 	is_ground_content = false,
@@ -52,7 +52,7 @@ minetest.register_node("mcl_core:ladder", {
 
 		-- Don't allow to place the ladder at particular nodes
 		if (groups and (groups.glass or groups.leaves or groups.slab)) or
-				node.name == "mcl_core:ladder" or node.name == "mcl_core:ice" then
+				node.name == "mcla:ladder" or node.name == "mcla:ice" then
 			return itemstack
 		end
 

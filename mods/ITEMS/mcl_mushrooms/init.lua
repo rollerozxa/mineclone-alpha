@@ -17,7 +17,7 @@ local on_place = mcl_util.generate_on_place_plant_function(function(place_pos, p
 	return ((light_ok and minetest.get_item_group(snn, "solid") == 1 and minetest.get_item_group(snn, "opaque") == 1))
 end)
 
-minetest.register_node("mcl_mushrooms:mushroom_brown", {
+minetest.register_node(":mcla:mushroom_brown", {
 	description = S("Brown Mushroom"),
 	drawtype = "plantlike",
 	tiles = { "mcl_mushrooms_brown.png" },
@@ -38,7 +38,7 @@ minetest.register_node("mcl_mushrooms:mushroom_brown", {
 	_mcl_blast_resistance = 0,
 })
 
-minetest.register_node("mcl_mushrooms:mushroom_red", {
+minetest.register_node(":mcla:mushroom_red", {
 	description = S("Red Mushroom"),
 	drawtype = "plantlike",
 	tiles = { "mcl_mushrooms_red.png" },
@@ -58,19 +58,19 @@ minetest.register_node("mcl_mushrooms:mushroom_red", {
 	_mcl_blast_resistance = 0,
 })
 
-minetest.register_craftitem("mcl_mushrooms:mushroom_stew", {
+minetest.register_craftitem(":mcla:mushroom_stew", {
 	description = S("Mushroom Stew"),
 	inventory_image = "mcl_mushrooms_stew.png",
-	on_place = minetest.item_eat(6, "mcl_core:bowl"),
-	on_secondary_use = minetest.item_eat(6, "mcl_core:bowl"),
+	on_place = minetest.item_eat(6, "mcla:bowl"),
+	on_secondary_use = minetest.item_eat(6, "mcla:bowl"),
 	groups = { food = 3 },
 	stack_max = 1,
 })
 
 minetest.register_craft({
 	type = "shapeless",
-	output = "mcl_mushrooms:mushroom_stew",
-	recipe = {'mcl_core:bowl', 'mcl_mushrooms:mushroom_brown', 'mcl_mushrooms:mushroom_red'}
+	output = "mcla:mushroom_stew",
+	recipe = {'mcla:bowl', 'mcla:mushroom_brown', 'mcla:mushroom_red'}
 })
 
 --[[ Mushroom spread and death
@@ -79,7 +79,7 @@ Code based on information gathered from Minecraft Wiki
 ]]
 minetest.register_abm({
 	label = "Mushroom spread and death",
-	nodenames = {"mcl_mushrooms:mushroom_brown", "mcl_mushrooms:mushroom_red"},
+	nodenames = {"mcla:mushroom_brown", "mcla:mushroom_red"},
 	interval = 11,
 	chance = 50,
 	action = function(pos, node)

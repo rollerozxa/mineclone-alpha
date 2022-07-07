@@ -61,25 +61,6 @@ mobs_griefing (Mobs change blocks) bool true
 
 [Experimental]
 
-# If enabled, the “flat” map generator generates a Classic Superflat world:
-# Completely flat, 1 layer of grass blocks on top of 2 layers of dirt on
-# top of a final layer of bedrock. No caves, trees or plants.
-# Also, if enabled, the setting “mgflat_flags” is ignored.
-# If disabled, Minetest's default flat map generator is used, that is, trees,
-# caves, and a deeper underground can be generated.
-#
-# Caution: Change this setting with care!
-# If you change this setting, then play on an existing flat world
-# that started with a different setting (e.g. you changed from superflat
-# from “enabled” to “disabled”), there will be continuity errors when players
-# reach new areas. Most importantly, the void is much higher in Superflat than
-# in “normal” Flat.
-# But creating new flat worlds after changing this setting should be safe.
-mcl_superflat_classic (Classic superflat map generation) bool false
-
-# If disabled, no ores will be generated.
-mcl_generate_ores (Generate Ores) bool true
-
 # Make some blocks emit decorative particles like flames. This setting
 # specifies the detail level of particles, with higher levels being
 # more CPU demanding.

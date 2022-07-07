@@ -14,8 +14,8 @@ local active_huds = {}
 local hud_sequence_numbers = {}
 
 function mcl_jukebox.register_record(title, author, identifier, image, sound)
-	mcl_jukebox.registered_records["mcl_jukebox:record_"..identifier] = {title, author, identifier, image, sound}
-	minetest.register_craftitem(":mcl_jukebox:record_"..identifier, {
+	mcl_jukebox.registered_records["mcla:record_"..identifier] = {title, author, identifier, image, sound}
+	minetest.register_craftitem(":mcla:record_"..identifier, {
 		description =
 			core.colorize("#55FFFF", S("Music Disc")) .. "\n" ..
 			core.colorize("#989898", S("@1—@2", author, title)),
@@ -76,10 +76,10 @@ end)
 
 -- Jukebox crafting
 minetest.register_craft({
-	output = 'mcl_jukebox:jukebox',
+	output = 'mcla:jukebox',
 	recipe = {
 		{'group:wood', 'group:wood', 'group:wood'},
-		{'group:wood', 'mcl_core:diamond', 'group:wood'},
+		{'group:wood', 'mcla:diamond', 'group:wood'},
 		{'group:wood', 'group:wood', 'group:wood'},
 	}
 })
@@ -105,7 +105,7 @@ local play_record = function(pos, itemstack, player)
 end
 
 -- Jukebox
-minetest.register_node("mcl_jukebox:jukebox", {
+minetest.register_node(":mcla:jukebox", {
 	description = S("Jukebox"),
 	tiles = {"mcl_jukebox_top.png", "mcl_jukebox_side.png", "mcl_jukebox_side.png"},
 	sounds = mcl_sounds.node_sound_wood_defaults(),
@@ -214,7 +214,7 @@ minetest.register_node("mcl_jukebox:jukebox", {
 
 minetest.register_craft({
 	type = "fuel",
-	recipe = "mcl_jukebox:jukebox",
+	recipe = "mcla:jukebox",
 	burntime = 15,
 })
 
@@ -222,5 +222,5 @@ mcl_jukebox.register_record("The Evil Sister (Jordach's Mix)", "SoundHelix", "13
 mcl_jukebox.register_record("The Energetic Rat (Jordach's Mix)", "SoundHelix", "cat", "mcl_jukebox_record_cat.png", "mcl_jukebox_track_2")
 
 --add backward compatibility
-minetest.register_alias("mcl_jukebox:record_1", "mcl_jukebox:record_13")
-minetest.register_alias("mcl_jukebox:record_2", "mcl_jukebox:record_cat")
+minetest.register_alias("mcla:record_1", "mcla:record_13")
+minetest.register_alias("mcla:record_2", "mcla:record_cat")

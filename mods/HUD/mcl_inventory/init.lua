@@ -44,7 +44,7 @@ function return_fields(player, name)
 end
 
 local function set_inventory(player, armor_change_only)
-	if minetest.is_creative_enabled(player:get_player_name()) then
+	if minetest.is_creative_enabled(player:get_player_name()) and false then
 		if armor_change_only then
 			-- Stay on survival inventory plage if only the armor has been changed
 			mcl_inventory.set_creative_formspec(player, 0, 0, nil, nil, "inv")
@@ -106,17 +106,17 @@ end
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if fields.quit then
 		return_fields(player,"craft")
-		if not minetest.is_creative_enabled(player:get_player_name()) and (formname == "" or formname == "main") then
+		if (formname == "" or formname == "main") then --not minetest.is_creative_enabled(player:get_player_name()) and
 			set_inventory(player)
 		end
 	end
 end)
 
-if not minetest.is_creative_enabled("") then
+--if not minetest.is_creative_enabled("") then
 	mcl_inventory.update_inventory_formspec = function(player)
 		set_inventory(player)
 	end
-end
+--end
 
 -- Drop crafting grid items on leaving
 minetest.register_on_leaveplayer(function(player)
@@ -147,9 +147,9 @@ minetest.register_on_joinplayer(function(player)
 	armor:update_inventory(player)
 
 	-- In Creative Mode, the initial inventory setup is handled in creative.lua
-	if not minetest.is_creative_enabled(player:get_player_name()) then
+	--if not minetest.is_creative_enabled(player:get_player_name()) then
 		set_inventory(player)
-	end
+	--end
 
 	--[[ Make sure the crafting grid is empty. Why? Because the player might have
 	items remaining in the crafting grid from the previous join; this is likely
@@ -157,8 +157,3 @@ minetest.register_on_joinplayer(function(player)
 	inventories. ]]
 	return_fields(player, "craft")
 end)
-
-if minetest.is_creative_enabled("") then
-	dofile(minetest.get_modpath("mcl_inventory").."/creative.lua")
-end
-

@@ -128,7 +128,7 @@ local set_entity = function(object)
 	object:set_yaw(minetest.dir_to_yaw(dir))
 end
 
-minetest.register_entity("mcl_paintings:painting", {
+minetest.register_entity("mcla_paintings:painting", {
 	visual = "cube",
 	visual_size = { x=0.999, y=0.999, z=1/32 },
 	selectionbox = { -1/64, -0.5, -0.5, 1/64, 0.5, 0.5 },
@@ -177,14 +177,14 @@ minetest.register_entity("mcl_paintings:painting", {
 			if not minetest.is_protected(pos, kname) then
 				self.object:remove()
 				if not minetest.is_creative_enabled(kname) then
-					minetest.add_item(pos, "mcl_paintings:painting")
+					minetest.add_item(pos, "mcla:painting")
 				end
 			end
 		end
 	end,
 })
 
-minetest.register_craftitem("mcl_paintings:painting", {
+minetest.register_craftitem(":mcla:painting", {
 	description = S("Painting"),
 	inventory_image = "mcl_paintings_painting.png",
 	on_place = function(itemstack, placer, pointed_thing)
@@ -279,7 +279,7 @@ minetest.register_craftitem("mcl_paintings:painting", {
 				_xsize = xsize,
 				_ysize = ysize,
 			}
-			local obj = minetest.add_entity(pposa, "mcl_paintings:painting", minetest.serialize(staticdata))
+			local obj = minetest.add_entity(pposa, "mcla:painting", minetest.serialize(staticdata))
 			if not obj then
 				return itemstack
 			end
@@ -294,11 +294,11 @@ minetest.register_craftitem("mcl_paintings:painting", {
 })
 
 minetest.register_craft({
-	output = "mcl_paintings:painting",
+	output = "mcla:painting",
 	recipe = {
-		{ "mcl_core:stick", "mcl_core:stick", "mcl_core:stick" },
-		{ "mcl_core:stick", "group:wool", "mcl_core:stick" },
-		{ "mcl_core:stick", "mcl_core:stick", "mcl_core:stick" },
+		{ "mcla:stick", "mcla:stick", "mcla:stick" },
+		{ "mcla:stick", "group:wool", "mcla:stick" },
+		{ "mcla:stick", "mcla:stick", "mcla:stick" },
 	}
 })
 

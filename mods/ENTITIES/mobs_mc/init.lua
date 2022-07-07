@@ -13,7 +13,7 @@ mobs_mc.tools = {}
 -- List of nodes on which mobs can spawn
 mobs_mc.spawn = {
 	solid = { "group:solid", }, -- spawn on "solid" nodes
-	grassland = { "mcl_core:dirt_with_grass" },
+	grassland = { "mcla:dirt_with_grass" },
 }
 
 

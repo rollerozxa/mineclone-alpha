@@ -8,8 +8,8 @@ if mod_screwdriver then
 end
 
 -- Register tree trunk (wood) and bark
-local function register_tree_trunk(subname, description_trunk, description_bark, tile_inner, tile_bark, stripped_variant)
-	minetest.register_node("mcl_core:"..subname, {
+local function register_tree_trunk(subname, description_trunk, description_bark, tile_inner, tile_bark)
+	minetest.register_node(":mcla:"..subname, {
 		description = description_trunk,
 		tiles = {tile_inner, tile_inner, tile_bark},
 		stack_max = 64,
@@ -17,12 +17,11 @@ local function register_tree_trunk(subname, description_trunk, description_bark,
 		sounds = mcl_sounds.node_sound_wood_defaults(),
 		_mcl_blast_resistance = 2,
 		_mcl_hardness = 2,
-		_mcl_stripped_variant = stripped_variant,
 	})
 end
 
 local function register_wooden_planks(subname, description, tiles)
-	minetest.register_node("mcl_core:"..subname, {
+	minetest.register_node(":mcla:"..subname, {
 		description = description,
 		tiles = tiles,
 		stack_max = 64,
@@ -54,14 +53,14 @@ local register_leaves = function(subname, description, tiles, sapling, drop_appl
 		}
 		if drop_apples then
 			table.insert(drop.items, {
-				items = {"mcl_core:apple"},
+				items = {"mcla:apple"},
 				rarity = apple_chances[fortune_level + 1]
 			})
 		end
 		return drop
 	end
 
-	minetest.register_node("mcl_core:"..subname, {
+	minetest.register_node(":mcla:"..subname, {
 		description = description,
 		drawtype = "allfaces_optional",
 		waving = 2,
@@ -80,7 +79,7 @@ local register_leaves = function(subname, description, tiles, sapling, drop_appl
 end
 
 local function register_sapling(subname, description, texture, selbox)
-	minetest.register_node("mcl_core:"..subname, {
+	minetest.register_node(":mcla:"..subname, {
 		description = description,
 		drawtype = "plantlike",
 		waving = 1,
@@ -106,7 +105,7 @@ local function register_sapling(subname, description, texture, selbox)
 			local node_below = minetest.get_node_or_nil({x=pos.x,y=pos.y-1,z=pos.z})
 			if not node_below then return false end
 			local nn = node_below.name
-			return ((minetest.get_item_group(nn, "grass_block") == 1) or nn=="mcl_core:dirt")
+			return ((minetest.get_item_group(nn, "grass_block") == 1) or nn=="mcla:dirt")
 		end),
 		node_placement_prediction = "",
 		_mcl_blast_resistance = 0,
@@ -116,12 +115,10 @@ end
 
 ---------------------
 
-register_tree_trunk("tree", S("Wood"), S("Bark"), "mcl_core_tree_top.png", "mcl_core_tree.png", "mcl_core:stripped_oak")
+register_tree_trunk("tree", S("Wood"), S("Bark"), "mcl_core_tree_top.png", "mcl_core_tree.png")
 
 register_wooden_planks("wood", S("Wood Planks"), {"mcl_core_wood.png"})
 
-
 register_sapling("sapling", S("Sapling"), "mcl_core_sapling.png", {-5/16, -0.5, -5/16, 5/16, 0.5, 5/16})
 
-
-register_leaves("leaves", S("Leaves"), {"mcl_core_leaves.png"}, "mcl_core:sapling", true, {20, 16, 12, 10})
+register_leaves("leaves", S("Leaves"), {"mcl_core_leaves.png"}, "mcla:sapling", true, {20, 16, 12, 10})

@@ -63,7 +63,7 @@ end
 -- This is a helper function to register both chests and trapped chests. Trapped chests will make use of the additional parameters
 local register_chest = function(basename, desc, tiles_table)
 -- START OF register_chest FUNCTION BODY
-drop = "mcl_chests:"..basename
+drop = "mcla:"..basename
 
 local double_chest_add_item = function(top_inv, bottom_inv, listname, stack)
 	if not stack or stack:is_empty() then
@@ -138,10 +138,10 @@ local function limit_put(stack, inv1, inv2)
 	return stack:get_count() - leftover:get_count()
 end
 
-local small_name = "mcl_chests:"..basename.."_small"
-local left_name = "mcl_chests:"..basename.."_left"
+local small_name = "mcla:"..basename.."_small"
+local left_name = "mcla:"..basename.."_left"
 
-minetest.register_node("mcl_chests:"..basename, {
+minetest.register_node(":mcla:"..basename, {
 	description = desc,
 	tiles = tiles_table.inv,
 	use_texture_alpha = minetest.features.use_texture_alpha_string_modes and "opaque" or false,
@@ -165,7 +165,7 @@ local function close_forms(basename, pos)
 	end
 end
 
-minetest.register_node(small_name, {
+minetest.register_node(":"..small_name, {
 	description = desc,
 	tiles = tiles_table.inv,
 	use_texture_alpha = minetest.features.use_texture_alpha_string_modes and "clip" or true,
@@ -200,16 +200,16 @@ minetest.register_node(small_name, {
 		-- BEGIN OF LISTRING WORKAROUND
 		inv:set_size("input", 1)
 		-- END OF LISTRING WORKAROUND
-		if minetest.get_node(mcl_util.get_double_container_neighbor_pos(pos, param2, "right")).name == "mcl_chests:"..basename.."_small" then
-			minetest.swap_node(pos, {name="mcl_chests:"..basename.."_right",param2=param2})
+		if minetest.get_node(mcl_util.get_double_container_neighbor_pos(pos, param2, "right")).name == "mcla:"..basename.."_small" then
+			minetest.swap_node(pos, {name="mcla:"..basename.."_right",param2=param2})
 			local p = mcl_util.get_double_container_neighbor_pos(pos, param2, "right")
-			minetest.swap_node(p, { name = "mcl_chests:"..basename.."_left", param2 = param2 })
-		elseif minetest.get_node(mcl_util.get_double_container_neighbor_pos(pos, param2, "left")).name == "mcl_chests:"..basename.."_small" then
-			minetest.swap_node(pos, {name="mcl_chests:"..basename.."_left",param2=param2})
+			minetest.swap_node(p, { name = "mcla:"..basename.."_left", param2 = param2 })
+		elseif minetest.get_node(mcl_util.get_double_container_neighbor_pos(pos, param2, "left")).name == "mcla:"..basename.."_small" then
+			minetest.swap_node(pos, {name="mcla:"..basename.."_left",param2=param2})
 			local p = mcl_util.get_double_container_neighbor_pos(pos, param2, "left")
-			minetest.swap_node(p, { name = "mcl_chests:"..basename.."_right", param2 = param2 })
+			minetest.swap_node(p, { name = "mcla:"..basename.."_right", param2 = param2 })
 		else
-			minetest.swap_node(pos, { name = "mcl_chests:"..basename.."_small", param2 = param2 })
+			minetest.swap_node(pos, { name = "mcla:"..basename.."_small", param2 = param2 })
 		end
 	end,
 	after_dig_node = drop_items_chest,
@@ -272,7 +272,7 @@ minetest.register_node(small_name, {
 	on_rotate = simple_rotate,
 })
 
-minetest.register_node(left_name, {
+minetest.register_node(":"..left_name, {
 	drawtype = "nodebox",
 	tiles = tiles_table.left,
 	use_texture_alpha = minetest.features.use_texture_alpha_string_modes and "clip" or true,
@@ -285,8 +285,8 @@ minetest.register_node(left_name, {
 		local n = minetest.get_node(pos)
 		local param2 = n.param2
 		local p = mcl_util.get_double_container_neighbor_pos(pos, param2, "left")
-		if not p or minetest.get_node(p).name ~= "mcl_chests:"..basename.."_right" then
-			n.name = "mcl_chests:"..basename.."_small"
+		if not p or minetest.get_node(p).name ~= "mcla:"..basename.."_right" then
+			n.name = "mcla:"..basename.."_small"
 			minetest.swap_node(pos, n)
 		end
 	end,
@@ -300,7 +300,7 @@ minetest.register_node(left_name, {
 
 		local param2 = n.param2
 		local p = mcl_util.get_double_container_neighbor_pos(pos, param2, "left")
-		if not p or minetest.get_node(p).name ~= "mcl_chests:"..basename.."_right" then
+		if not p or minetest.get_node(p).name ~= "mcla:"..basename.."_right" then
 			return
 		end
 		close_forms(basename, p)
@@ -396,7 +396,7 @@ minetest.register_node(left_name, {
 	on_rotate = no_rotate,
 })
 
-minetest.register_node("mcl_chests:"..basename.."_right", {
+minetest.register_node(":mcla:"..basename.."_right", {
 	drawtype = "nodebox",
 	paramtype2 = "facedir",
 	tiles = tiles_table.right,
@@ -409,8 +409,8 @@ minetest.register_node("mcl_chests:"..basename.."_right", {
 		local n = minetest.get_node(pos)
 		local param2 = n.param2
 		local p = mcl_util.get_double_container_neighbor_pos(pos, param2, "right")
-		if not p or minetest.get_node(p).name ~= "mcl_chests:"..basename.."_left" then
-			n.name = "mcl_chests:"..basename.."_small"
+		if not p or minetest.get_node(p).name ~= "mcla:"..basename.."_left" then
+			n.name = "mcla:"..basename.."_small"
 			minetest.swap_node(pos, n)
 		end
 	end,
@@ -424,7 +424,7 @@ minetest.register_node("mcl_chests:"..basename.."_right", {
 
 		local param2 = n.param2
 		local p = mcl_util.get_double_container_neighbor_pos(pos, param2, "right")
-		if not p or minetest.get_node(p).name ~= "mcl_chests:"..basename.."_left" then
+		if not p or minetest.get_node(p).name ~= "mcla:"..basename.."_left" then
 			return
 		end
 		close_forms(basename, p)
@@ -556,7 +556,7 @@ minetest.register_on_leaveplayer(function(player)
 end)
 
 minetest.register_craft({
-	output = 'mcl_chests:chest',
+	output = 'mcla:chest',
 	recipe = {
 		{'group:wood', 'group:wood', 'group:wood'},
 		{'group:wood', '', 'group:wood'},
@@ -566,6 +566,6 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = 'fuel',
-	recipe = 'mcl_chests:chest',
+	recipe = 'mcla:chest',
 	burntime = 15
 })

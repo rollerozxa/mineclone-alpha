@@ -21,7 +21,7 @@ armor = {
 	last_damage_types = {},
 }
 
-if minetest.get_modpath("mcl_skins") then
+if minetest.get_modpath("mcla_skins") then
 	skin_mod = "mcl_skins"
 elseif minetest.get_modpath("skins") then
 	skin_mod = "skins"
@@ -96,7 +96,7 @@ armor.update_player_visuals = function(self, player)
 	local def = wielditem:get_definition()
 	if def and def._mcl_toollike_wield then
 		player:set_bone_position("Wield_Item", vector.new(0,3.9,1.3), vector.new(90,0,0))
-	elseif string.find(wielditem:get_name(), "mcl_bows:bow") then
+	elseif string.find(wielditem:get_name(), "mcla:bow") then
 		 player:set_bone_position("Wield_Item", vector.new(.5,4.5,-1.6), vector.new(90,0,20))
 	else
 		player:set_bone_position("Wield_Item", vector.new(-1.5,4.9,1.8), vector.new(135,0,90))
@@ -516,7 +516,7 @@ minetest.register_on_player_hpchange(function(player, hp_change, reason)
 				end
 				local fire_protection_level = 0
 				if fire_protection_level > 0 and (damage_type == "burning" or damage_type == "fireball" or reason.type == "node_damage" and
-					(reason.node == "mcl_fire:fire" or reason.node == "mcl_core:lava_source" or reason.node == "mcl_core:lava_flowing")) then
+					(reason.node == "mcla:fire" or reason.node == "mcla:lava_source" or reason.node == "mcla:lava_flowing")) then
 					epf = epf + fire_protection_level * 2
 				end
 				local projectile_protection_level = 0

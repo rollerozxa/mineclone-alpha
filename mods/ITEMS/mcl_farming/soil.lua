@@ -1,9 +1,9 @@
 local S = minetest.get_translator("mcl_farming")
 
-minetest.register_node("mcl_farming:soil", {
+minetest.register_node(":mcla:soil", {
 	tiles = {"mcl_farming_farmland_dry.png", "mcl_core_dirt.png"},
 	description = S("Farmland"),
-	drop = "mcl_core:dirt",
+	drop = "mcla:dirt",
 	drawtype = "nodebox",
 	paramtype = "light",
 	node_box = {
@@ -23,10 +23,10 @@ minetest.register_node("mcl_farming:soil", {
 	_mcl_hardness = 0.6,
 })
 
-minetest.register_node("mcl_farming:soil_wet", {
+minetest.register_node(":mcla:soil_wet", {
 	tiles = {"mcl_farming_farmland_wet.png", "mcl_core_dirt.png"},
 	description = S("Hydrated Farmland"),
-	drop = "mcl_core:dirt",
+	drop = "mcla:dirt",
 	drawtype = "nodebox",
 	paramtype = "light",
 	node_box = {
@@ -47,7 +47,7 @@ minetest.register_node("mcl_farming:soil_wet", {
 
 minetest.register_abm({
 	label = "Farmland hydration",
-	nodenames = {"mcl_farming:soil", "mcl_farming:soil_wet"},
+	nodenames = {"mcla:soil", "mcla:soil_wet"},
 	interval = 15,
 	chance = 4,
 	action = function(pos, node)
@@ -55,7 +55,7 @@ minetest.register_abm({
 		local meta = minetest.get_meta(pos)
 		local wet = meta:get_int("wet")
 		if not wet then
-			if node.name == "mcl_farming:soil" then
+			if node.name == "mcla:soil" then
 				wet = 0
 			else
 				wet = 7
@@ -66,7 +66,7 @@ minetest.register_abm({
 		local above_node = minetest.get_node_or_nil({x=pos.x,y=pos.y+1,z=pos.z})
 		if above_node then
 			if minetest.get_item_group(above_node.name, "solid") ~= 0 then
-				node.name = "mcl_core:dirt"
+				node.name = "mcla:dirt"
 				minetest.set_node(pos, node)
 				return
 			end
@@ -79,9 +79,9 @@ minetest.register_abm({
 		end
 
 		if check_surroundings(pos, "group:water") then
-			if node.name ~= "mcl_farming:soil_wet" then
+			if node.name ~= "mcla:soil_wet" then
 				-- Make it wet
-				node.name = "mcl_farming:soil_wet"
+				node.name = "mcla:soil_wet"
 				minetest.set_node(pos, node)
 			end
 		else -- No water nearby.
@@ -104,13 +104,13 @@ minetest.register_abm({
 					local nn_def = minetest.registered_nodes[nn.name] or nil
 
 					if nn_def and minetest.get_item_group(nn.name, "plant") == 0 then
-						node.name = "mcl_core:dirt"
+						node.name = "mcla:dirt"
 						minetest.set_node(pos, node)
 						return
 					end
 				else
 					if wet == 7 then
-						node.name = "mcl_farming:soil"
+						node.name = "mcla:soil"
 						minetest.swap_node(pos, node)
 					end
 					-- Slowly count down wetness

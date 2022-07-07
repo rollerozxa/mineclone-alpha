@@ -6,7 +6,7 @@ local S = minetest.get_translator("mcl_core")
 -- Crafting items
 --
 
-minetest.register_craftitem("mcl_core:stick", {
+minetest.register_craftitem(":mcla:stick", {
 	description = S("Stick"),
 	inventory_image = "mcl_core_stick.png",
 	stack_max = 64,
@@ -14,14 +14,14 @@ minetest.register_craftitem("mcl_core:stick", {
 	_mcl_toollike_wield = true,
 })
 
-minetest.register_craftitem("mcl_core:paper", {
+minetest.register_craftitem(":mcla:paper", {
 	description = S("Paper"),
 	inventory_image = "mcl_core_paper.png",
 	stack_max = 64,
 	groups = { craftitem=1 },
 })
 
-minetest.register_craftitem("mcl_core:coal_lump", {
+minetest.register_craftitem(":mcla:coal_lump", {
 	description = S("Coal"),
 	groups = { coal=1 },
 	inventory_image = "mcl_core_coal_lump.png",
@@ -29,56 +29,56 @@ minetest.register_craftitem("mcl_core:coal_lump", {
 	groups = { craftitem=1, coal=1 },
 })
 
-minetest.register_craftitem("mcl_core:diamond", {
+minetest.register_craftitem(":mcla:diamond", {
 	description = S("Diamond"),
 	inventory_image = "mcl_core_diamond.png",
 	stack_max = 64,
 	groups = { craftitem=1 },
 })
 
-minetest.register_craftitem("mcl_core:clay_lump", {
+minetest.register_craftitem(":mcla:clay_lump", {
 	description = S("Clay Ball"),
 	inventory_image = "mcl_core_clay_lump.png",
 	stack_max = 64,
 	groups = { craftitem=1 },
 })
 
-minetest.register_craftitem("mcl_core:iron_ingot", {
+minetest.register_craftitem(":mcla:iron_ingot", {
 	description = S("Iron Ingot"),
 	inventory_image = "mcl_core_steel_ingot.png",
 	stack_max = 64,
 	groups = { craftitem=1 },
 })
 
-minetest.register_craftitem("mcl_core:gold_ingot", {
+minetest.register_craftitem(":mcla:gold_ingot", {
 	description = S("Gold Ingot"),
 	inventory_image = "mcl_core_gold_ingot.png",
 	stack_max = 64,
 	groups = { craftitem=1 },
 })
 
-minetest.register_craftitem("mcl_core:brick", {
+minetest.register_craftitem(":mcla:brick", {
 	description = S("Brick"),
 	inventory_image = "mcl_core_clay_brick.png",
 	stack_max = 64,
 	groups = { craftitem=1 },
 })
 
-minetest.register_craftitem("mcl_core:flint", {
+minetest.register_craftitem(":mcla:flint", {
 	description = S("Flint"),
 	inventory_image = "mcl_core_flint.png",
 	stack_max = 64,
 	groups = { craftitem=1 },
 })
 
-minetest.register_craftitem("mcl_core:bowl",{
+minetest.register_craftitem(":mcla:bowl",{
 	description = S("Bowl"),
 	inventory_image = "mcl_core_bowl.png",
 	stack_max = 64,
 	groups = { craftitem = 1 },
 })
 
-minetest.register_craftitem("mcl_core:apple", {
+minetest.register_craftitem(":mcla:apple", {
 	description = S("Apple"),
 	wield_image = "mcl_core_apple.png",
 	inventory_image = "mcl_core_apple.png",
@@ -105,7 +105,7 @@ local function eat_gapple(itemstack, placer, pointed_thing)
 	return gapple_hunger_restore(itemstack, placer, pointed_thing)
 end
 
-minetest.register_craftitem("mcl_core:apple_gold", {
+minetest.register_craftitem(":mcla:apple_gold", {
 	description = S("Golden Apple"),
 	wield_image = "mcl_core_apple_golden.png",
 	inventory_image = "mcl_core_apple_golden.png",
@@ -116,7 +116,7 @@ minetest.register_craftitem("mcl_core:apple_gold", {
 })
 
 -- Book
-minetest.register_craftitem("mcl_core:book", {
+minetest.register_craftitem(":mcla:book", {
 	description = S("Book"),
 	inventory_image = "mcl_core_book.png",
 	stack_max = 64,
@@ -125,7 +125,7 @@ minetest.register_craftitem("mcl_core:book", {
 
 -- from mcl_mobiterms
 
-minetest.register_craftitem("mcl_core:porkchop", {
+minetest.register_craftitem(":mcla:porkchop", {
 	description = S("Raw Porkchop"),
 	inventory_image = "mcl_core_porkchop_raw.png",
 	wield_image = "mcl_core_porkchop_raw.png",
@@ -135,7 +135,7 @@ minetest.register_craftitem("mcl_core:porkchop", {
 	stack_max = 64,
 })
 
-minetest.register_craftitem("mcl_core:cooked_porkchop", {
+minetest.register_craftitem(":mcla:cooked_porkchop", {
 	description = S("Cooked Porkchop"),
 	inventory_image = "mcl_core_porkchop_cooked.png",
 	wield_image = "mcl_core_porkchop_cooked.png",
@@ -145,7 +145,7 @@ minetest.register_craftitem("mcl_core:cooked_porkchop", {
 	stack_max = 64,
 })
 
-minetest.register_craftitem("mcl_core:milk_bucket", {
+minetest.register_craftitem(":mcla:milk_bucket", {
 	description = S("Milk"),
 	inventory_image = "mcl_core_bucket_milk.png",
 	wield_image = "mcl_core_bucket_milk.png",
@@ -153,14 +153,14 @@ minetest.register_craftitem("mcl_core:milk_bucket", {
 	groups = { food = 3, can_eat_when_full = 1 },
 })
 
-minetest.register_craftitem("mcl_core:string",{
+minetest.register_craftitem(":mcla:string",{
 	description = S("String"),
 	inventory_image = "mcl_core_string.png",
 	stack_max = 64,
 	groups = { craftitem = 1 },
 })
 
-minetest.register_craftitem("mcl_core:leather", {
+minetest.register_craftitem(":mcla:leather", {
 	description = S("Leather"),
 	wield_image = "mcl_core_leather.png",
 	inventory_image = "mcl_core_leather.png",
@@ -168,7 +168,7 @@ minetest.register_craftitem("mcl_core:leather", {
 	stack_max = 64,
 })
 
-minetest.register_craftitem("mcl_core:feather", {
+minetest.register_craftitem(":mcla:feather", {
 	description = S("Feather"),
 	wield_image = "mcl_core_feather.png",
 	inventory_image = "mcl_core_feather.png",
@@ -176,7 +176,7 @@ minetest.register_craftitem("mcl_core:feather", {
 	stack_max = 64,
 })
 
-minetest.register_craftitem("mcl_core:saddle", {
+minetest.register_craftitem(":mcla:saddle", {
 	description = S("Saddle"),
 	wield_image = "mcl_core_saddle.png",
 	inventory_image = "mcl_core_saddle.png",
@@ -184,13 +184,13 @@ minetest.register_craftitem("mcl_core:saddle", {
 	stack_max = 1,
 })
 
-minetest.register_craftitem("mcl_core:slimeball", {
+minetest.register_craftitem(":mcla:slimeball", {
 	description = S("Slimeball"),
 	inventory_image = "mcl_core_slimeball.png",
 	groups = { craftitem = 1 },
 })
 
-minetest.register_craftitem("mcl_core:gunpowder", {
+minetest.register_craftitem(":mcla:gunpowder", {
 	description = S("Gunpowder"),
 	inventory_image = "mcl_core_gunpowder.png",
 	stack_max = 64,
@@ -203,8 +203,8 @@ minetest.register_craftitem("mcl_core:gunpowder", {
 
 minetest.register_craft({
 	type = "cooking",
-	output = "mcl_core:cooked_porkchop",
-	recipe = "mcl_core:porkchop",
+	output = "mcla:cooked_porkchop",
+	recipe = "mcla:porkchop",
 	cooktime = 10,
 })
 

@@ -1,7 +1,7 @@
 local S = minetest.get_translator("mcl_minecarts")
 
 mcl_minecarts = {}
-mcl_minecarts.modpath = minetest.get_modpath("mcl_minecarts")
+mcl_minecarts.modpath = minetest.get_modpath("mcla_minecarts")
 mcl_minecarts.speed_max = 10
 mcl_minecarts.check_float_time = 15
 
@@ -90,7 +90,7 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 		if self.on_activate_by_rail then
 			local pos = self.object:get_pos()
 			local node = minetest.get_node(vector.floor(pos))
-			if node.name == "mcl_minecarts:activator_rail_on" then
+			if node.name == "mcla:activator_rail_on" then
 				self:on_activate_by_rail()
 			end
 		end
@@ -104,7 +104,7 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 		end
 
 		if not puncher or not puncher:is_player() then
-			local cart_dir = mcl_minecarts:get_rail_direction(pos, {x=1, y=0, z=0}, nil, nil, self._railtype)
+			local cart_dir = mcla:get_rail_direction(pos, {x=1, y=0, z=0}, nil, nil, self._railtype)
 			if vector.equals(cart_dir, {x=0, y=0, z=0}) then
 				return
 			end
@@ -126,8 +126,8 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 			-- Disable detector rail
 			local rou_pos = vector.round(pos)
 			local node = minetest.get_node(rou_pos)
-			if node.name == "mcl_minecarts:detector_rail_on" then
-				local newnode = {name="mcl_minecarts:detector_rail", param2 = node.param2}
+			if node.name == "mcla:detector_rail_on" then
+				local newnode = {name="mcla:detector_rail", param2 = node.param2}
 				minetest.swap_node(rou_pos, newnode)
 				mesecon.receptor_off(rou_pos)
 			end
@@ -157,9 +157,9 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 			end
 		end
 
-		local punch_dir = mcl_minecarts:velocity_to_dir(puncher:get_look_dir())
+		local punch_dir = mcla:velocity_to_dir(puncher:get_look_dir())
 		punch_dir.y = 0
-		local cart_dir = mcl_minecarts:get_rail_direction(pos, punch_dir, nil, nil, self._railtype)
+		local cart_dir = mcla:get_rail_direction(pos, punch_dir, nil, nil, self._railtype)
 		if vector.equals(cart_dir, {x=0, y=0, z=0}) then
 			return
 		end
@@ -330,18 +330,18 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 			local node_old = minetest.get_node(rou_old)
 
 			-- Update detector rails
-			if node.name == "mcl_minecarts:detector_rail" then
-				local newnode = {name="mcl_minecarts:detector_rail_on", param2 = node.param2}
+			if node.name == "mcla:detector_rail" then
+				local newnode = {name="mcla:detector_rail_on", param2 = node.param2}
 				minetest.swap_node(rou_pos, newnode)
 				mesecon.receptor_on(rou_pos)
 			end
-			if node_old.name == "mcl_minecarts:detector_rail_on" then
-				local newnode = {name="mcl_minecarts:detector_rail", param2 = node_old.param2}
+			if node_old.name == "mcla:detector_rail_on" then
+				local newnode = {name="mcla:detector_rail", param2 = node_old.param2}
 				minetest.swap_node(rou_old, newnode)
 				mesecon.receptor_off(rou_old)
 			end
 			-- Activate minecart if on activator rail
-			if node_old.name == "mcl_minecarts:activator_rail_on" and self.on_activate_by_rail then
+			if node_old.name == "mcla:activator_rail_on" and self.on_activate_by_rail then
 				self:on_activate_by_rail()
 			end
 		end
@@ -362,7 +362,7 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 			for _,v in ipairs({"x","y","z"}) do
 				if math.abs(diff[v]) > 1.1 then
 					local expected_pos = vector.add(self._old_pos, self._old_dir)
-					dir, last_switch = mcl_minecarts:get_rail_direction(pos, self._old_dir, ctrl, self._old_switch, self._railtype)
+					dir, last_switch = mcla:get_rail_direction(pos, self._old_dir, ctrl, self._old_switch, self._railtype)
 					if vector.equals(dir, {x=0, y=0, z=0}) then
 						dir = false
 						pos = vector.new(expected_pos)
@@ -382,10 +382,10 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 			end
 		end
 
-		local cart_dir = mcl_minecarts:velocity_to_dir(vel)
+		local cart_dir = mcla:velocity_to_dir(vel)
 		local max_vel = mcl_minecarts.speed_max
 		if not dir then
-			dir, last_switch = mcl_minecarts:get_rail_direction(pos, cart_dir, ctrl, self._old_switch, self._railtype)
+			dir, last_switch = mcla:get_rail_direction(pos, cart_dir, ctrl, self._old_switch, self._railtype)
 		end
 
 		local new_acc = {x=0, y=0, z=0}
@@ -439,7 +439,7 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 		-- Limits
 		for _,v in ipairs({"x","y","z"}) do
 			if math.abs(vel[v]) > max_vel then
-				vel[v] = mcl_minecarts:get_sign(vel[v]) * max_vel
+				vel[v] = mcla:get_sign(vel[v]) * max_vel
 				new_acc[v] = 0
 				update.vel = true
 			end
@@ -495,10 +495,10 @@ mcl_minecarts.place_minecart = function(itemstack, pointed_thing, placer)
 	end
 
 	local railpos, node
-	if mcl_minecarts:is_rail(pointed_thing.under) then
+	if mcla:is_rail(pointed_thing.under) then
 		railpos = pointed_thing.under
 		node = minetest.get_node(pointed_thing.under)
-	elseif mcl_minecarts:is_rail(pointed_thing.above) then
+	elseif mcla:is_rail(pointed_thing.above) then
 		railpos = pointed_thing.above
 		node = minetest.get_node(pointed_thing.above)
 	else
@@ -506,8 +506,8 @@ mcl_minecarts.place_minecart = function(itemstack, pointed_thing, placer)
 	end
 
 	-- Activate detector rail
-	if node.name == "mcl_minecarts:detector_rail" then
-		local newnode = {name="mcl_minecarts:detector_rail_on", param2 = node.param2}
+	if node.name == "mcla:detector_rail" then
+		local newnode = {name="mcla:detector_rail_on", param2 = node.param2}
 		minetest.swap_node(railpos, newnode)
 		mesecon.receptor_on(railpos)
 	end
@@ -519,7 +519,7 @@ mcl_minecarts.place_minecart = function(itemstack, pointed_thing, placer)
 	if le ~= nil then
 		le._railtype = railtype
 	end
-	local cart_dir = mcl_minecarts:get_rail_direction(railpos, {x=1, y=0, z=0}, nil, nil, railtype)
+	local cart_dir = mcla:get_rail_direction(railpos, {x=1, y=0, z=0}, nil, nil, railtype)
 	cart:set_yaw(minetest.dir_to_yaw(cart_dir))
 
 	local pname = ""
@@ -593,18 +593,18 @@ Register a minecart
 ]]
 local function register_minecart(itemstring, entity_id, description, mesh, textures, icon, drop, on_rightclick, on_activate_by_rail, creative)
 	register_entity(entity_id, mesh, textures, drop, on_rightclick, on_activate_by_rail)
-	register_craftitem(itemstring, entity_id, description, icon, creative)
+	register_craftitem(":"..itemstring, entity_id, description, icon, creative)
 end
 
 -- Minecart
 register_minecart(
-	"mcl_minecarts:minecart",
-	"mcl_minecarts:minecart",
+	"mcla:minecart",
+	"mcla_minecarts:minecart",
 	S("Minecart"),
 	"mcl_minecarts_minecart.b3d",
 	{"mcl_minecarts_minecart.png"},
 	"mcl_minecarts_minecart_normal.png",
-	{"mcl_minecarts:minecart"},
+	{"mcla:minecart"},
 	function(self, clicker)
 		local name = clicker:get_player_name()
 		if not clicker or not clicker:is_player() then
@@ -633,19 +633,19 @@ register_minecart(
 
 -- Minecart with Chest
 register_minecart(
-	"mcl_minecarts:chest_minecart",
-	"mcl_minecarts:chest_minecart",
+	"mcla:chest_minecart",
+	"mcla_minecarts:chest_minecart",
 	S("Minecart with Chest"),
 	"mcl_minecarts_minecart_chest.b3d",
 	{ "mcl_chests_normal.png", "mcl_minecarts_minecart.png" },
 	"mcl_minecarts_minecart_chest.png",
-	{"mcl_minecarts:minecart", "mcl_chests:chest"},
+	{"mcla:minecart", "mcla:chest"},
 	nil, nil, false)
 
 -- Minecart with Furnace
 register_minecart(
-	"mcl_minecarts:furnace_minecart",
-	"mcl_minecarts:furnace_minecart",
+	"mcla:furnace_minecart",
+	"mcla_minecarts:furnace_minecart",
 	S("Minecart with Furnace"),
 	"mcl_minecarts_minecart_block.b3d",
 	{
@@ -658,7 +658,7 @@ register_minecart(
 		"mcl_minecarts_minecart.png",
 	},
 	"mcl_minecarts_minecart_furnace.png",
-	{"mcl_minecarts:minecart", "mcl_furnaces:furnace"},
+	{"mcla:minecart", "mcla:furnace"},
 	-- Feed furnace with coal
 	function(self, clicker)
 		if not clicker or not clicker:is_player() then
@@ -692,9 +692,9 @@ register_minecart(
 )
 
 minetest.register_craft({
-	output = "mcl_minecarts:minecart",
+	output = "mcla:minecart",
 	recipe = {
-		{"mcl_core:iron_ingot", "", "mcl_core:iron_ingot"},
-		{"mcl_core:iron_ingot", "mcl_core:iron_ingot", "mcl_core:iron_ingot"},
+		{"mcla:iron_ingot", "", "mcla:iron_ingot"},
+		{"mcla:iron_ingot", "mcla:iron_ingot", "mcla:iron_ingot"},
 	},
 })

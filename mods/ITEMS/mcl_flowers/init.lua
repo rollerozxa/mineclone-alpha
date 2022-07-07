@@ -45,12 +45,12 @@ local on_place_flower = mcl_util.generate_on_place_plant_function(function(pos, 
 		light_ok = true
 	end
 	local is_flower = minetest.get_item_group(itemstack:get_name(), "flower") == 1
-	local ok = (soil_node.name == "mcl_core:dirt" or minetest.get_item_group(soil_node.name, "grass_block") == 1 or (not is_flower and (soil_node.name == "mcl_core:coarse_dirt" or soil_node.name == "mcl_core:podzol" or soil_node.name == "mcl_core:podzol_snow"))) and light_ok
+	local ok = (soil_node.name == "mcla:dirt" or minetest.get_item_group(soil_node.name, "grass_block") == 1 or (not is_flower and (soil_node.name == "mcla:coarse_dirt" or soil_node.name == "mcla:podzol" or soil_node.name == "mcla:podzol_snow"))) and light_ok
 	return ok, colorize
 end)
 
 local function add_simple_flower(name, desc, image, simple_selection_box)
-	minetest.register_node("mcl_flowers:"..name, {
+	minetest.register_node(":mcla:"..name, {
 		description = desc,
 		drawtype = "plantlike",
 		waving = 1,
@@ -79,7 +79,7 @@ local wheat_seed_drop = {
 	max_items = 1,
 	items = {
 		{
-			items = {'mcl_farming:wheat_seeds'},
+			items = {'mcla:wheat_seeds'},
 			rarity = 8,
 		},
 	}
@@ -96,7 +96,7 @@ minetest.register_abm({
 			return
 		end
 		-- Pop out flower if not on dirt, grass block or too low brightness
-		if (below.name ~= "mcl_core:dirt" and minetest.get_item_group(below.name, "grass_block") ~= 1) or (minetest.get_node_light(pos, 0.5) < 8) then
+		if (below.name ~= "mcla:dirt" and minetest.get_item_group(below.name, "grass_block") ~= 1) or (minetest.get_node_light(pos, 0.5) < 8) then
 			minetest.dig_node(pos)
 			return
 		end

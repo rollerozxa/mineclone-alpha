@@ -75,7 +75,7 @@ local wood_connect = {"group:fence_wood"}
 local wood_sounds = mcl_sounds.node_sound_wood_defaults()
 
 local woods = {
-	{"", S("Fence"), "mcl_core_wood.png", "mcl_core:wood"},
+	{"", S("Fence"), "mcl_core_wood.png", "mcla:wood"},
 }
 
 for w=1, #woods do
@@ -91,8 +91,8 @@ for w=1, #woods do
 	minetest.register_craft({
 		output = 'mcl_fences:'..id..' 3',
 		recipe = {
-			{wood[4], 'mcl_core:stick', wood[4]},
-			{wood[4], 'mcl_core:stick', wood[4]},
+			{wood[4], 'mcla:stick', wood[4]},
+			{wood[4], 'mcla:stick', wood[4]},
 		}
 	})
 end

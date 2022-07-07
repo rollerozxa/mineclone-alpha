@@ -31,10 +31,10 @@ digging group with 5 different levels (in this case one for each material of a
 pickaxes).
 
 Nodes indicate that they belong to a particular digging group by being member of
-the digging group in their node definition.  "mcl_core:dirt" for example has
+the digging group in their node definition.  "mcla:dirt" for example has
 shovely=1 in its groups.  If the digging group has multiple levels the value of
 the group indicates which digging level the node requires.
-"mcl_core:stone_with_gold" for example has pickaxey=4 because it requires a
+"mcla:stone_with_gold" for example has pickaxey=4 because it requires a
 pickaxe of level 4 be mined.
 
 For tools to be able to dig nodes of digging groups they need to use the have
@@ -69,7 +69,7 @@ This also means that it is very important that no mod adds _mcl_autogroup as a
 dependency.
 --]]
 
-assert(minetest.get_modpath("mcl_autogroup"), "This mod requires the mod mcl_autogroup to function")
+assert(minetest.get_modpath("mcla_autogroup"), "This mod requires the mod mcl_autogroup to function")
 
 -- Returns a table containing the unique "_mcl_hardness" for nodes belonging to
 -- each diggroup.
@@ -272,7 +272,7 @@ end
 -- or in the metadata of an enchanted tool.
 --
 -- Parameters:
--- toolname - Name of the tool being enchanted (like "mcl_tools:diamond_pickaxe")
+-- toolname - Name of the tool being enchanted (like "mcla:diamond_pickaxe")
 -- efficiency - The efficiency level the tool is enchanted with (default 0)
 --
 -- NOTE:

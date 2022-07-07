@@ -11,13 +11,13 @@ local woods = {
 
 for w=1, #woods do
 	local wood = woods[w]
-	mcl_stairs.register_stair(wood[1], "mcl_core:"..wood[1],
+	mcl_stairs.register_stair(wood[1], "mcla:"..wood[1],
 			{handy=1,axey=1, flammable=3,wood_stairs=1, material_wood=1, fire_encouragement=5, fire_flammability=20},
 			{wood[2]},
 			wood[3],
 			mcl_sounds.node_sound_wood_defaults(), 3, 2,
 			"woodlike")
-	mcl_stairs.register_slab(wood[1], "mcl_core:"..wood[1],
+	mcl_stairs.register_slab(wood[1], "mcla:"..wood[1],
 			{handy=1,axey=1, flammable=3,wood_slab=1, material_wood=1, fire_encouragement=5, fire_flammability=20},
 			{wood[2]},
 			wood[4],
@@ -25,11 +25,11 @@ for w=1, #woods do
 			wood[5])
 end
 
-mcl_stairs.register_slab("stone", "mcl_core:stone_smooth",
+mcl_stairs.register_slab("stone", "mcla:stone_smooth",
 		{pickaxey=1, material_stone=1},
 		{"mcl_stairs_stone_slab_top.png", "mcl_stairs_stone_slab_top.png", "mcl_stairs_stone_slab_side.png"},
 		S("Polished Stone Slab"),
 		mcl_sounds.node_sound_stone_defaults(), 6, 2,
 		S("Double Polished Stone Slab"))
 
-mcl_stairs.register_stair_and_slab_simple("cobble", "mcl_core:cobble", S("Cobblestone Stairs"), S("Cobblestone Slab"), S("Double Cobblestone Slab"))
+mcl_stairs.register_stair_and_slab_simple("cobble", "mcla:cobble", S("Cobblestone Stairs"), S("Cobblestone Slab"), S("Double Cobblestone Slab"))
