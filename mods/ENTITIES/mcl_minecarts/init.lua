@@ -104,7 +104,7 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 		end
 
 		if not puncher or not puncher:is_player() then
-			local cart_dir = mcla:get_rail_direction(pos, {x=1, y=0, z=0}, nil, nil, self._railtype)
+			local cart_dir = mcl_minecarts:get_rail_direction(pos, {x=1, y=0, z=0}, nil, nil, self._railtype)
 			if vector.equals(cart_dir, {x=0, y=0, z=0}) then
 				return
 			end
@@ -157,9 +157,9 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 			end
 		end
 
-		local punch_dir = mcla:velocity_to_dir(puncher:get_look_dir())
+		local punch_dir = mcl_minecarts:velocity_to_dir(puncher:get_look_dir())
 		punch_dir.y = 0
-		local cart_dir = mcla:get_rail_direction(pos, punch_dir, nil, nil, self._railtype)
+		local cart_dir = mcl_minecarts:get_rail_direction(pos, punch_dir, nil, nil, self._railtype)
 		if vector.equals(cart_dir, {x=0, y=0, z=0}) then
 			return
 		end
@@ -362,7 +362,7 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 			for _,v in ipairs({"x","y","z"}) do
 				if math.abs(diff[v]) > 1.1 then
 					local expected_pos = vector.add(self._old_pos, self._old_dir)
-					dir, last_switch = mcla:get_rail_direction(pos, self._old_dir, ctrl, self._old_switch, self._railtype)
+					dir, last_switch = mcl_minecarts:get_rail_direction(pos, self._old_dir, ctrl, self._old_switch, self._railtype)
 					if vector.equals(dir, {x=0, y=0, z=0}) then
 						dir = false
 						pos = vector.new(expected_pos)
@@ -382,10 +382,10 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 			end
 		end
 
-		local cart_dir = mcla:velocity_to_dir(vel)
+		local cart_dir = mcl_minecarts:velocity_to_dir(vel)
 		local max_vel = mcl_minecarts.speed_max
 		if not dir then
-			dir, last_switch = mcla:get_rail_direction(pos, cart_dir, ctrl, self._old_switch, self._railtype)
+			dir, last_switch = mcl_minecarts:get_rail_direction(pos, cart_dir, ctrl, self._old_switch, self._railtype)
 		end
 
 		local new_acc = {x=0, y=0, z=0}
@@ -439,7 +439,7 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 		-- Limits
 		for _,v in ipairs({"x","y","z"}) do
 			if math.abs(vel[v]) > max_vel then
-				vel[v] = mcla:get_sign(vel[v]) * max_vel
+				vel[v] = mcl_minecarts:get_sign(vel[v]) * max_vel
 				new_acc[v] = 0
 				update.vel = true
 			end
@@ -495,10 +495,10 @@ mcl_minecarts.place_minecart = function(itemstack, pointed_thing, placer)
 	end
 
 	local railpos, node
-	if mcla:is_rail(pointed_thing.under) then
+	if mcl_minecarts:is_rail(pointed_thing.under) then
 		railpos = pointed_thing.under
 		node = minetest.get_node(pointed_thing.under)
-	elseif mcla:is_rail(pointed_thing.above) then
+	elseif mcl_minecarts:is_rail(pointed_thing.above) then
 		railpos = pointed_thing.above
 		node = minetest.get_node(pointed_thing.above)
 	else
@@ -519,7 +519,7 @@ mcl_minecarts.place_minecart = function(itemstack, pointed_thing, placer)
 	if le ~= nil then
 		le._railtype = railtype
 	end
-	local cart_dir = mcla:get_rail_direction(railpos, {x=1, y=0, z=0}, nil, nil, railtype)
+	local cart_dir = mcl_minecarts:get_rail_direction(railpos, {x=1, y=0, z=0}, nil, nil, railtype)
 	cart:set_yaw(minetest.dir_to_yaw(cart_dir))
 
 	local pname = ""
@@ -575,7 +575,7 @@ local register_craftitem = function(itemstring, entity_id, description, icon, cr
 	def.description = description
 	def.inventory_image = icon
 	def.wield_image = icon
-	minetest.register_craftitem(itemstring, def)
+	minetest.register_craftitem(":"..itemstring, def)
 end
 
 --[[
@@ -593,7 +593,7 @@ Register a minecart
 ]]
 local function register_minecart(itemstring, entity_id, description, mesh, textures, icon, drop, on_rightclick, on_activate_by_rail, creative)
 	register_entity(entity_id, mesh, textures, drop, on_rightclick, on_activate_by_rail)
-	register_craftitem(":"..itemstring, entity_id, description, icon, creative)
+	register_craftitem(itemstring, entity_id, description, icon, creative)
 end
 
 -- Minecart

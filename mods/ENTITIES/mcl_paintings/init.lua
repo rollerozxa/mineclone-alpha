@@ -279,7 +279,7 @@ minetest.register_craftitem(":mcla:painting", {
 				_xsize = xsize,
 				_ysize = ysize,
 			}
-			local obj = minetest.add_entity(pposa, "mcla:painting", minetest.serialize(staticdata))
+			local obj = minetest.add_entity(pposa, "mcla_paintings:painting", minetest.serialize(staticdata))
 			if not obj then
 				return itemstack
 			end

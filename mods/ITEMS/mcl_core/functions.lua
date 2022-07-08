@@ -582,8 +582,6 @@ minetest.register_abm({
 	end,
 })
 
-local SAVANNA_INDEX = 1
-
 --------------------------
 -- Try generate tree   ---
 --------------------------
