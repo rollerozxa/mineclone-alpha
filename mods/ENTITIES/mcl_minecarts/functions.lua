@@ -8,9 +8,9 @@ end
 
 function mcl_minecarts:velocity_to_dir(v)
 	if math.abs(v.x) > math.abs(v.z) then
-		return {x=mcla:get_sign(v.x), y=mcla:get_sign(v.y), z=0}
+		return {x=mcl_minecarts:get_sign(v.x), y=mcl_minecarts:get_sign(v.y), z=0}
 	else
-		return {x=0, y=mcla:get_sign(v.y), z=mcla:get_sign(v.z)}
+		return {x=0, y=mcl_minecarts:get_sign(v.y), z=mcl_minecarts:get_sign(v.z)}
 	end
 end
 
@@ -86,14 +86,14 @@ function mcl_minecarts:get_rail_direction(pos_, dir, ctrl, old_switch, railtype)
 			right_check = false
 		end
 		if ctrl.left and left_check then
-			cur = mcla:check_front_up_down(pos, left, false, railtype)
+			cur = mcl_minecarts:check_front_up_down(pos, left, false, railtype)
 			if cur then
 				return cur, 1
 			end
 			left_check = false
 		end
 		if ctrl.right and right_check then
-			cur = mcla:check_front_up_down(pos, right, false, railtype)
+			cur = mcl_minecarts:check_front_up_down(pos, right, false, railtype)
 			if cur then
 				return cur, 2
 			end
@@ -102,14 +102,14 @@ function mcl_minecarts:get_rail_direction(pos_, dir, ctrl, old_switch, railtype)
 	end
 
 	-- Normal
-	cur = mcla:check_front_up_down(pos, dir, true, railtype)
+	cur = mcl_minecarts:check_front_up_down(pos, dir, true, railtype)
 	if cur then
 		return cur
 	end
 
 	-- Left, if not already checked
 	if left_check then
-		cur = mcla:check_front_up_down(pos, left, false, railtype)
+		cur = mcl_minecarts:check_front_up_down(pos, left, false, railtype)
 		if cur then
 			return cur
 		end
@@ -117,7 +117,7 @@ function mcl_minecarts:get_rail_direction(pos_, dir, ctrl, old_switch, railtype)
 
 	-- Right, if not already checked
 	if right_check then
-		cur = mcla:check_front_up_down(pos, right, false, railtype)
+		cur = mcl_minecarts:check_front_up_down(pos, right, false, railtype)
 		if cur then
 			return cur
 		end
@@ -125,7 +125,7 @@ function mcl_minecarts:get_rail_direction(pos_, dir, ctrl, old_switch, railtype)
 
 	-- Backwards
 	if not old_switch then
-		cur = mcla:check_front_up_down(pos, {
+		cur = mcl_minecarts:check_front_up_down(pos, {
 				x = -dir.x,
 				y = dir.y,
 				z = -dir.z

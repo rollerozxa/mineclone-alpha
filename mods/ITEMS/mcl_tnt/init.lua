@@ -11,7 +11,7 @@ end
 tnt = {}
 tnt.ignite = function(pos)
 	minetest.remove_node(pos)
-	local e = spawn_tnt(pos, "mcla:tnt")
+	local e = spawn_tnt(pos, "mcla_tnt:tnt")
 	minetest.check_for_falling(pos)
 	return e
 end
