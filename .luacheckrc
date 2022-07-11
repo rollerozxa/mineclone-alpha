@@ -1,3 +1,8 @@
+unused_args = false
+allow_defined_top = true
+max_line_length = false
+redefined = false
+
 std = "min"
 
 read_globals = {
@@ -5,15 +10,29 @@ read_globals = {
 	"dump", "dump2",
 	"vector",
 	"VoxelArea",
-	"minetest",
+	"minetest", "core",
 	"PseudoRandom",
 	"PerlinNoise",
 	"PcgRandom",
-
+	
+	
+	"mobs",
+	
+	"mcla_tnt", "mcla_burning", "mcla_playerinfo", "mcla_sprint", "mcla_worlds", "mcla_util", 
+	"screwdriver",
+	
 	string = {fields = {"split", "trim"}},
 	table  = {fields = {"copy", "getn", "indexof", "insert_all"}},
 	math   = {fields = {"hypot", "round"}},
 }
+
+globals = {
+	"armor",
+	"mesecon",
+	"mcla_vars", 
+}
+
+ignore = {"631"}
 
 -- A config option to allow r/w access to mods which contain
 -- this one. It only avoids a couple warnings, and may not be

@@ -77,19 +77,15 @@ local mg_name = minetest.get_mapgen_setting("mg_name")
 
 -- Content IDs
 local c_bedrock = minetest.get_content_id("mcla:bedrock")
-local c_obsidian = minetest.get_content_id("mcla:obsidian")
-local c_stone = minetest.get_content_id("mcla:stone")
 local c_dirt = minetest.get_content_id("mcla:dirt")
 local c_dirt_with_grass = minetest.get_content_id("mcla:dirt_with_grass")
 local c_dirt_with_grass_snow = minetest.get_content_id("mcla:dirt_with_grass_snow")
-local c_sand = minetest.get_content_id("mcla:sand")
 local c_void = minetest.get_content_id("mcla:void")
 local c_lava = minetest.get_content_id("mcla:lava_source")
 local c_water = minetest.get_content_id("mcla:water_source")
 local c_top_snow = minetest.get_content_id("mcla:snow")
 local c_snow_block = minetest.get_content_id("mcla:snowblock")
 local c_clay = minetest.get_content_id("mcla:clay")
-local c_leaves = minetest.get_content_id("mcla:leaves")
 local c_air = minetest.CONTENT_AIR
 
 --

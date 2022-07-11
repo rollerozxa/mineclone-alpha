@@ -3,7 +3,7 @@ local TS = 16 -- texture size
 mcla_paintings.paintings = {
 	[1] = {
 		[1] = {
-	 		{ cx = 0, cy = 0 },
+			{ cx = 0, cy = 0 },
 			{ cx = TS, cy = 0 },
 			{ cx = 2*TS, cy = 0 },
 			{ cx = 3*TS, cy = 0 },

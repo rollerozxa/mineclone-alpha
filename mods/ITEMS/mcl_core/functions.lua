@@ -5,10 +5,6 @@
 local mg_name = minetest.get_mapgen_setting("mg_name")
 
 local OAK_TREE_ID = 1
-local DARK_OAK_TREE_ID = 2
-local SPRUCE_TREE_ID = 3
-local ACACIA_TREE_ID = 4
-local JUNGLE_TREE_ID = 5
 
 minetest.register_abm({
 	label = "Lava cooling",
@@ -23,7 +19,6 @@ minetest.register_abm({
 
 		for w=1, #water do
 			local waternode = minetest.get_node(water[w])
-			local watertype = minetest.registered_nodes[waternode.name].liquidtype
 			-- Lava on top of water: Water turns into stone
 			if water[w].y < pos.y and water[w].x == pos.x and water[w].z == pos.z then
 				minetest.set_node(water[w], {name="mcla:stone"})
@@ -301,7 +296,6 @@ end
 -- oak tree.
 function mcla_core.generate_tree(pos, tree_type, options)
 	pos.y = pos.y-1
-	local nodename = minetest.get_node(pos).name
 
 	pos.y = pos.y+1
 	if not minetest.get_node_light(pos) then
@@ -348,10 +342,7 @@ function mcla_core.generate_v6_oak_tree(pos)
 
 	node = {name = leaves}
 	pos.y = pos.y+3
-	local rarity = 0
-	if math.random(0, 10) == 3 then
-		rarity = 1
-	end
+
 	for dx=-2,2 do
 		for dz=-2,2 do
 			for dy=0,3 do
@@ -420,56 +411,6 @@ function mcla_core.generate_oak_tree(pos)
 	minetest.place_schematic(vector.add(pos, offset), path, "random", nil, false)
 end
 
--- Helper function for jungle tree, form Minetest Game 0.4.15
-local function add_trunk_and_leaves(data, a, pos, tree_cid, leaves_cid,
-		height, size, iters)
-	local x, y, z = pos.x, pos.y, pos.z
-	local c_air = minetest.CONTENT_AIR
-	local c_ignore = minetest.CONTENT_IGNORE
-
-	-- Trunk
-	data[a:index(x, y, z)] = tree_cid -- Force-place lowest trunk node to replace sapling
-	for yy = y + 1, y + height - 1 do
-		local vi = a:index(x, yy, z)
-		local node_id = data[vi]
-		if node_id == c_air or node_id == c_ignore or node_id == leaves_cid then
-			data[vi] = tree_cid
-		end
-	end
-
-	-- Force leaves near the trunk
-	for z_dist = -1, 1 do
-	for y_dist = -size, 1 do
-		local vi = a:index(x - 1, y + height + y_dist, z + z_dist)
-		for x_dist = -1, 1 do
-			if data[vi] == c_air or data[vi] == c_ignore then
-				data[vi] = leaves_cid
-			end
-			vi = vi + 1
-		end
-	end
-	end
-
-	-- Randomly add leaves in 2x2x2 clusters.
-	for i = 1, iters do
-		local clust_x = x + math.random(-size, size - 1)
-		local clust_y = y + height + math.random(-size, 0)
-		local clust_z = z + math.random(-size, size - 1)
-
-		for xi = 0, 1 do
-		for yi = 0, 1 do
-		for zi = 0, 1 do
-			local vi = a:index(clust_x + xi, clust_y + yi, clust_z + zi)
-			if data[vi] == c_air or data[vi] == c_ignore then
-				data[vi] = leaves_cid
-			end
-		end
-		end
-		end
-	end
-end
-
-
 local grass_spread_randomizer = PseudoRandom(minetest.get_mapgen_setting("seed"))
 
 -- Return appropriate grass block node for pos
@@ -501,7 +442,6 @@ minetest.register_abm({
 		if pos == nil then
 			return
 		end
-		local can_change = false
 		local above = {x=pos.x, y=pos.y+1, z=pos.z}
 		local abovenode = minetest.get_node(above)
 		if minetest.get_item_group(abovenode.name, "liquid") ~= 0 or minetest.get_item_group(abovenode.name, "opaque") == 1 then
@@ -876,7 +816,6 @@ function mcla_core.melt_ice(pos)
 	-- Create a water source if ice is destroyed and there was something below it
 	local below = {x=pos.x, y=pos.y-1, z=pos.z}
 	local belownode = minetest.get_node(below)
-	local dim = mcla_worlds.pos_to_dimension(below)
 	if belownode.name ~= "air" and belownode.name ~= "ignore" and belownode.name ~= "mcla:void" then
 		minetest.set_node(pos, {name="mcla:water_source"})
 	else
@@ -911,12 +850,6 @@ end
 -- of the snowed node.
 mcla_core.register_snowed_node = function(itemstring_snowed, itemstring_clear, tiles, sounds, clear_colorization, desc)
 	local def = table.copy(minetest.registered_nodes[itemstring_clear])
-	local create_doc_alias
-	if def.description then
-		create_doc_alias = true
-	else
-		create_doc_alias = false
-	end
 	-- Just some group clearing
 	def.description = desc
 	def.groups.not_in_creative_inventory = 1

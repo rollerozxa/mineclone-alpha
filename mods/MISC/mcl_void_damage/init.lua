@@ -50,7 +50,6 @@ minetest.register_globalstep(function(dtime)
 	voidtimer = voidtimer + dtime
 	if voidtimer > VOID_DAMAGE_FREQ then
 		voidtimer = 0
-		local enable_damage = minetest.settings:get_bool("enable_damage")
 		local players = minetest.get_connected_players()
 		for p=1, #players do
 			local player = players[p]

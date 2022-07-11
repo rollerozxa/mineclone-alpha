@@ -69,11 +69,10 @@ local function quick_flow_logic(node,pos_testing,direction)
 	end
 	if minetest.registered_nodes[name].liquidtype == "source" then
 		local node_testing = minetest.get_node(pos_testing)
-		local param2_testing = node_testing.param2
 		if not minetest.registered_nodes[node_testing.name] then
 			return 0
 		end
-		if minetest.registered_nodes[node_testing.name].liquidtype 
+		if minetest.registered_nodes[node_testing.name].liquidtype
 		~= "flowing" then
 			return 0
 		else
@@ -85,10 +84,10 @@ local function quick_flow_logic(node,pos_testing,direction)
 		if not minetest.registered_nodes[node_testing.name] then
 			return 0
 		end
-		if minetest.registered_nodes[node_testing.name].liquidtype 
+		if minetest.registered_nodes[node_testing.name].liquidtype
 		== "source" then
 			return -direction
-		elseif minetest.registered_nodes[node_testing.name].liquidtype 
+		elseif minetest.registered_nodes[node_testing.name].liquidtype
 		== "flowing" then
 			if param2_testing < node.param2 then
 				if (node.param2 - param2_testing) > 6 then
@@ -111,16 +110,16 @@ end
 local quick_flow = function(pos,node)
 	local x = 0
 	local z = 0
-	
+
 	if not node_is_liquid(node)  then
 		return {x=0,y=0,z=0}
 	end
-	
+
 	x = x + quick_flow_logic(node,{x=pos.x-1,y=pos.y,z=pos.z},-1)
 	x = x + quick_flow_logic(node,{x=pos.x+1,y=pos.y,z=pos.z}, 1)
 	z = z + quick_flow_logic(node,{x=pos.x,y=pos.y,z=pos.z-1},-1)
 	z = z + quick_flow_logic(node,{x=pos.x,y=pos.y,z=pos.z+1}, 1)
-	
+
 	return to_unit_vector({x=x,y=0,z=z})
 end
 
