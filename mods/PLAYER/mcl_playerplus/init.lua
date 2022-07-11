@@ -1,7 +1,7 @@
-local S = minetest.get_translator("mcl_playerplus")
+local S = minetest.get_translator("mcla_playerplus")
 
 -- Internal player state
-local mcl_playerplus_internal = {}
+local mcla_playerplus_internal = {}
 
 local def = {}
 local time = 0
@@ -168,7 +168,7 @@ minetest.register_globalstep(function(dtime)
 			set_properties_conditional(player,{collisionbox = {-0.35,0,-0.35,0.35,1.8,0.35}, eye_height = 1.35, nametag_color = { r = 225, b = 225, a = 0, g = 225 }})
 			-- sneaking body conrols
 			set_bone_position_conditional(player,"Body_Control", vector.new(0,6.3,0), vector.new(0,0,0))
-		elseif minetest.get_item_group(mcl_playerinfo[name].node_head, "water") ~= 0 and player:get_attach() == nil and mcl_sprint.is_sprinting(name) == true then
+		elseif minetest.get_item_group(mcla_playerinfo[name].node_head, "water") ~= 0 and player:get_attach() == nil and mcla_sprint.is_sprinting(name) == true then
 			-- set head pitch and yaw when swimming
 			set_bone_position_conditional(player,"Head", vector.new(0,6.3,0), vector.new(pitch+90-degrees(dir_to_pitch(player_velocity)),yaw - player_vel_yaw * -1,0))
 			-- sets eye height, and nametag color accordingly
@@ -202,17 +202,17 @@ minetest.register_globalstep(function(dtime)
 			set_bone_position_conditional(player,"Body_Control", vector.new(0,6.3,0), vector.new(0,0,0))
 		end
 
-		if mcl_playerplus_internal[name].jump_cooldown > 0 then
-			mcl_playerplus_internal[name].jump_cooldown = mcl_playerplus_internal[name].jump_cooldown - dtime
+		if mcla_playerplus_internal[name].jump_cooldown > 0 then
+			mcla_playerplus_internal[name].jump_cooldown = mcla_playerplus_internal[name].jump_cooldown - dtime
 		end
-		if player:get_player_control().jump and mcl_playerplus_internal[name].jump_cooldown <= 0 then
+		if player:get_player_control().jump and mcla_playerplus_internal[name].jump_cooldown <= 0 then
 
 			pos = player:get_pos()
 
-			node_stand = mcl_playerinfo[name].node_stand
-			node_stand_below = mcl_playerinfo[name].node_stand_below
-			node_head = mcl_playerinfo[name].node_head
-			node_feet = mcl_playerinfo[name].node_feet
+			node_stand = mcla_playerinfo[name].node_stand
+			node_stand_below = mcla_playerinfo[name].node_stand_below
+			node_head = mcla_playerinfo[name].node_head
+			node_feet = mcla_playerinfo[name].node_feet
 			if not node_stand or not node_stand_below or not node_head or not node_feet then
 				return
 			end
@@ -242,7 +242,7 @@ minetest.register_globalstep(function(dtime)
 					and minetest.get_item_group(node_stand_below, "disable_jump") == 0 then
 
 			-- Reset cooldown timer
-				mcl_playerplus_internal[name].jump_cooldown = 0.45
+				mcla_playerplus_internal[name].jump_cooldown = 0.45
 			end
 		end
 	end
@@ -265,10 +265,10 @@ minetest.register_globalstep(function(dtime)
 		local pos = player:get_pos()
 
 		-- what is around me?
-		local node_stand = mcl_playerinfo[name].node_stand
-		local node_stand_below = mcl_playerinfo[name].node_stand_below
-		local node_head = mcl_playerinfo[name].node_head
-		local node_feet = mcl_playerinfo[name].node_feet
+		local node_stand = mcla_playerinfo[name].node_stand
+		local node_stand_below = mcla_playerinfo[name].node_stand_below
+		local node_head = mcla_playerinfo[name].node_head
+		local node_feet = mcla_playerinfo[name].node_feet
 		if not node_stand or not node_stand_below or not node_head or not node_feet then
 			return
 		end
@@ -292,7 +292,7 @@ minetest.register_globalstep(function(dtime)
 		-- Check privilege, too
 		and (not minetest.check_player_privs(name, {noclip = true})) then
 			if player:get_hp() > 0 then
-				mcl_death_messages.player_damage(player, S("@1 suffocated to death.", name))
+				mcla_death_messages.player_damage(player, S("@1 suffocated to death.", name))
 				player:set_hp(player:get_hp() - 1)
 			end
 		end
@@ -308,7 +308,7 @@ minetest.register_globalstep(function(dtime)
 			local dist_feet = vector.distance({x=pos.x, y=pos.y-1, z=pos.z}, near)
 			if dist < 1.1 or dist_feet < 1.1 then
 				if player:get_hp() > 0 then
-					mcl_death_messages.player_damage(player, S("@1 was prickled to death by a cactus.", name))
+					mcla_death_messages.player_damage(player, S("@1 was prickled to death by a cactus.", name))
 					player:set_hp(player:get_hp() - 1, { type = "punch", from = "mod" })
 				end
 			end
@@ -319,13 +319,13 @@ minetest.register_globalstep(function(dtime)
 		Head alone does not count. We respect that for now. ]]
 		if not player:get_attach() and (minetest.get_item_group(node_feet, "liquid") ~= 0 or
 				minetest.get_item_group(node_stand, "liquid") ~= 0) then
-			local lastPos = mcl_playerplus_internal[name].lastPos
+			local lastPos = mcla_playerplus_internal[name].lastPos
 			if lastPos then
 				local dist = vector.distance(lastPos, pos)
-				mcl_playerplus_internal[name].swimDistance = mcl_playerplus_internal[name].swimDistance + dist
-				if mcl_playerplus_internal[name].swimDistance >= 1 then
-					local superficial = math.floor(mcl_playerplus_internal[name].swimDistance)
-					mcl_playerplus_internal[name].swimDistance = mcl_playerplus_internal[name].swimDistance - superficial
+				mcla_playerplus_internal[name].swimDistance = mcla_playerplus_internal[name].swimDistance + dist
+				if mcla_playerplus_internal[name].swimDistance >= 1 then
+					local superficial = math.floor(mcla_playerplus_internal[name].swimDistance)
+					mcla_playerplus_internal[name].swimDistance = mcla_playerplus_internal[name].swimDistance - superficial
 				end
 			end
 
@@ -353,7 +353,7 @@ minetest.register_globalstep(function(dtime)
 		end
 
 		-- Update internal values
-		mcl_playerplus_internal[name].lastPos = pos
+		mcla_playerplus_internal[name].lastPos = pos
 	end
 
 end)
@@ -362,7 +362,7 @@ end)
 minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
 
-	mcl_playerplus_internal[name] = {
+	mcla_playerplus_internal[name] = {
 		lastPos = nil,
 		swimDistance = 0,
 		jump_cooldown = -1,	-- Cooldown timer for jumping, we need this to prevent the jump exhaustion to increase rapidly
@@ -373,5 +373,5 @@ end)
 minetest.register_on_leaveplayer(function(player)
 	local name = player:get_player_name()
 
-	mcl_playerplus_internal[name] = nil
+	mcla_playerplus_internal[name] = nil
 end)

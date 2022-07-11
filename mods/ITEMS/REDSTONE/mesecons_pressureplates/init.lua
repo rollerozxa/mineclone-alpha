@@ -110,8 +110,8 @@ function mesecon.register_pressure_plate(basename, description, textures_off, te
 		is_ground_content = false,
 		pressureplate_basename = basename,
 		pressureplate_activated_by = activated_by,
-		_mcl_blast_resistance = 0.5,
-		_mcl_hardness = 0.5,
+		_mcla_blast_resistance = 0.5,
+		_mcla_hardness = 0.5,
 	},{
 		node_box = pp_box_off,
 		selection_box = pp_box_off,
@@ -148,7 +148,7 @@ for w=1, #woods do
 		woods[w][3],
 		nil,
 		{{woods[w][2], woods[w][2]}},
-		mcl_sounds.node_sound_wood_defaults(),
+		mcla_sounds.node_sound_wood_defaults(),
 		{axey=1, material_wood=1},
 		nil)
 
@@ -167,7 +167,7 @@ mesecon.register_pressure_plate(
 	"mcl_core_stone.png",
 	nil,
 	{{"mcla:stone", "mcla:stone"}},
-	mcl_sounds.node_sound_stone_defaults(),
+	mcla_sounds.node_sound_stone_defaults(),
 	{pickaxey=1, material_stone=1},
 	{ player = true, mob = true })
 

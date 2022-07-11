@@ -1,6 +1,6 @@
 -- Liquids: Water and lava
 
-local S = minetest.get_translator("mcl_core")
+local S = minetest.get_translator("mcla_core")
 local N = function(s) return s end
 
 local WATER_ALPHA = 179
@@ -37,7 +37,7 @@ minetest.register_node(":mcla:water_flowing", {
 			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=4.0}
 		},
 	},
-	sounds = mcl_sounds.node_sound_water_defaults(),
+	sounds = mcla_sounds.node_sound_water_defaults(),
 	is_ground_content = false,
 	alpha = WATER_ALPHA,
 	use_texture_alpha = USE_TEXTURE_ALPHA,
@@ -56,9 +56,9 @@ minetest.register_node(":mcla:water_flowing", {
 	liquid_range = 7,
 	post_effect_color = {a=209, r=0x03, g=0x3C, b=0x5C},
 	groups = { water=3, liquid=3, puts_out_fire=1, not_in_creative_inventory=1, freezes=1, melt_around=1, },
-	_mcl_blast_resistance = 100,
+	_mcla_blast_resistance = 100,
 	-- Hardness intentionally set to infinite instead of 100 (Minecraft value) to avoid problems in creative mode
-	_mcl_hardness = -1,
+	_mcla_hardness = -1,
 })
 
 minetest.register_node(":mcla:water_source", {
@@ -75,7 +75,7 @@ minetest.register_node(":mcla:water_source", {
 			backface_culling = false,
 		}
 	},
-	sounds = mcl_sounds.node_sound_water_defaults(),
+	sounds = mcla_sounds.node_sound_water_defaults(),
 	is_ground_content = false,
 	alpha = WATER_ALPHA,
 	use_texture_alpha = USE_TEXTURE_ALPHA,
@@ -94,9 +94,9 @@ minetest.register_node(":mcla:water_source", {
 	post_effect_color = {a=209, r=0x03, g=0x3C, b=0x5C},
 	stack_max = 64,
 	groups = { water=3, liquid=3, puts_out_fire=1, freezes=1, not_in_creative_inventory=1, },
-	_mcl_blast_resistance = 100,
+	_mcla_blast_resistance = 100,
 	-- Hardness intentionally set to infinite instead of 100 (Minecraft value) to avoid problems in creative mode
-	_mcl_hardness = -1,
+	_mcla_hardness = -1,
 })
 
 minetest.register_node(":mcla:lava_flowing", {
@@ -120,7 +120,7 @@ minetest.register_node(":mcla:lava_flowing", {
 	paramtype2 = "flowingliquid",
 	light_source = LIGHT_LAVA,
 	is_ground_content = false,
-	sounds = mcl_sounds.node_sound_lava_defaults(),
+	sounds = mcla_sounds.node_sound_lava_defaults(),
 	walkable = false,
 	pointable = false,
 	diggable = false,
@@ -137,12 +137,12 @@ minetest.register_node(":mcla:lava_flowing", {
 	liquid_renewable = false,
 	liquid_range = 3,
 	damage_per_second = 4*2,
-	_mcl_node_death_message = lava_death_messages,
+	_mcla_node_death_message = lava_death_messages,
 	post_effect_color = {a=245, r=208, g=73, b=10},
 	groups = { lava=3, liquid=2, destroys_items=1, not_in_creative_inventory=1,  set_on_fire=15},
-	_mcl_blast_resistance = 100,
+	_mcla_blast_resistance = 100,
 	-- Hardness intentionally set to infinite instead of 100 (Minecraft value) to avoid problems in creative mode
-	_mcl_hardness = -1,
+	_mcla_hardness = -1,
 })
 
 minetest.register_node(":mcla:lava_source", {
@@ -162,7 +162,7 @@ minetest.register_node(":mcla:lava_source", {
 	paramtype = "light",
 	light_source = LIGHT_LAVA,
 	is_ground_content = false,
-	sounds = mcl_sounds.node_sound_lava_defaults(),
+	sounds = mcla_sounds.node_sound_lava_defaults(),
 	walkable = false,
 	pointable = false,
 	diggable = false,
@@ -176,13 +176,13 @@ minetest.register_node(":mcla:lava_source", {
 	liquid_renewable = false,
 	liquid_range = 3,
 	damage_per_second = 4*2,
-	_mcl_node_death_message = lava_death_messages,
+	_mcla_node_death_message = lava_death_messages,
 	post_effect_color = {a=245, r=208, g=73, b=10},
 	stack_max = 64,
 	groups = { lava=3, lava_source=1, liquid=2, destroys_items=1, not_in_creative_inventory=1,  set_on_fire=15},
-	_mcl_blast_resistance = 100,
+	_mcla_blast_resistance = 100,
 	-- Hardness intentionally set to infinite instead of 100 (Minecraft value) to avoid problems in creative mode
-	_mcl_hardness = -1,
+	_mcla_hardness = -1,
 })
 
 local emit_lava_particle = function(pos)
@@ -208,7 +208,7 @@ local emit_lava_particle = function(pos)
 	})
 end
 
-if minetest.settings:get("mcl_node_particles") == "full" then
+if minetest.settings:get("mcla_node_particles") == "full" then
 	minetest.register_abm({
 		label = "Lava particles",
 		nodenames = {"group:lava_source"},

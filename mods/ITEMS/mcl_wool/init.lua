@@ -1,4 +1,4 @@
-local S = minetest.get_translator("mcl_wool")
+local S = minetest.get_translator("mcla_wool")
 
 -- minetest/wool/init.lua
 
@@ -25,9 +25,9 @@ for _, row in ipairs(wool.dyes) do
 		is_ground_content = false,
 		tiles = {texture..".png"},
 		groups = {handy=1,shearsy_wool=1, flammable=1,fire_encouragement=30, fire_flammability=60, wool=1,building_block=1,[color_group]=1},
-		sounds = mcl_sounds.node_sound_wool_defaults(),
-		_mcl_hardness = 0.8,
-		_mcl_blast_resistance = 0.8,
+		sounds = mcla_sounds.node_sound_wool_defaults(),
+		_mcla_hardness = 0.8,
+		_mcla_blast_resistance = 0.8,
 	})
 end
 

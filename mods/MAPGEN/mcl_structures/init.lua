@@ -1,5 +1,5 @@
-local S = minetest.get_translator("mcl_structures")
-mcl_structures ={}
+local S = minetest.get_translator("mcla_structures")
+mcla_structures ={}
 local rotations = {
 	"0",
 	"90",
@@ -14,7 +14,7 @@ local function ecb_place(blockpos, action, calls_remaining, param)
 		param.after_placement_callback(param.p1, param.p2, param.size, param.rotation, param.pr)
 	end
 end
-mcl_structures.place_schematic = function(pos, schematic, rotation, replacements, force_placement, flags, after_placement_callback, pr)
+mcla_structures.place_schematic = function(pos, schematic, rotation, replacements, force_placement, flags, after_placement_callback, pr)
 	local s = loadstring(minetest.serialize_schematic(schematic, "lua", {lua_use_comments = false, lua_num_indent_spaces = 0}) .. " return(schematic)")()
 	if s and s.size then
 		local x, z = s.size.x, s.size.z
@@ -31,17 +31,17 @@ mcl_structures.place_schematic = function(pos, schematic, rotation, replacements
 		end
 		local p1 = {x=pos.x    , y=pos.y           , z=pos.z    }
 		local p2 = {x=pos.x+x-1, y=pos.y+s.size.y-1, z=pos.z+z-1}
-		minetest.log("verbose","[mcl_structures] size=" ..minetest.pos_to_string(s.size) .. ", rotation=" .. tostring(rotation) .. ", emerge from "..minetest.pos_to_string(p1) .. " to " .. minetest.pos_to_string(p2))
+		minetest.log("verbose","[mcla_structures] size=" ..minetest.pos_to_string(s.size) .. ", rotation=" .. tostring(rotation) .. ", emerge from "..minetest.pos_to_string(p1) .. " to " .. minetest.pos_to_string(p2))
 		local param = {pos=vector.new(pos), schematic=s, rotation=rotation, replacements=replacements, force_placement=force_placement, flags=flags, p1=p1, p2=p2, after_placement_callback = after_placement_callback, size=vector.new(s.size), pr=pr}
 		minetest.emerge_area(p1, p2, ecb_place, param)
 	end
 end
 
-mcl_structures.get_struct = function(file)
+mcla_structures.get_struct = function(file)
 	local localfile = minetest.get_modpath("mcla_structures").."/schematics/"..file
 	local file, errorload = io.open(localfile, "rb")
 	if errorload ~= nil then
-		minetest.log("error", '[mcl_structures] Could not open this struct: ' .. localfile)
+		minetest.log("error", '[mcla_structures] Could not open this struct: ' .. localfile)
 		return nil
 	end
 
@@ -64,13 +64,13 @@ local init_node_construct = function(pos)
 end
 
 -- The call of Struct
-mcl_structures.call_struct = function(pos, struct_style, rotation, pr)
-	minetest.log("action","[mcl_structures] call_struct " .. struct_style.." at "..minetest.pos_to_string(pos))
+mcla_structures.call_struct = function(pos, struct_style, rotation, pr)
+	minetest.log("action","[mcla_structures] call_struct " .. struct_style.." at "..minetest.pos_to_string(pos))
 	if not rotation then
 		rotation = "random"
 	end
 	--if struct_style == "desert_temple" then
-	--	return mcl_structures.generate_desert_temple(pos, rotation, pr)
+	--	return mcla_structures.generate_desert_temple(pos, rotation, pr)
 	--end
 end
 
@@ -87,7 +87,7 @@ Format of return value:
 
 TODO: Implement this function for all other structure types as well.
 ]]
-mcl_structures.get_registered_structures = function(structure_type)
+mcla_structures.get_registered_structures = function(structure_type)
 	if registered_structures[structure_type] then
 		return table.copy(registered_structures[structure_type])
 	else
@@ -96,8 +96,8 @@ mcl_structures.get_registered_structures = function(structure_type)
 end
 
 -- Register a structures table for the given type. The table format is the same as for
--- mcl_structures.get_registered_structures.
-mcl_structures.register_structures = function(structure_type, structures)
+-- mcla_structures.get_registered_structures.
+mcla_structures.register_structures = function(structure_type, structures)
 	registered_structures[structure_type] = structures
 end
 
@@ -115,9 +115,9 @@ local function dir_to_rotation(dir)
 	return "0"
 end
 
-mcl_structures.generate_test_structure_fireproof = function(pos, rotation, pr)
-	local path = minetest.get_modpath("mcla_structures").."/schematics/mcl_structures_test_structure_fireproof.mts"
-	mcl_structures.place_schematic(pos, path, rotation, nil, true, nil, nil, pr)
+mcla_structures.generate_test_structure_fireproof = function(pos, rotation, pr)
+	local path = minetest.get_modpath("mcla_structures").."/schematics/mcla_structures_test_structure_fireproof.mts"
+	mcla_structures.place_schematic(pos, path, rotation, nil, true, nil, nil, pr)
 end
 
 -- Debug command
@@ -137,7 +137,7 @@ minetest.register_chatcommand("spawnstruct", {
 		local errord = false
 		local message = S("Structure placed.")
 		if param == "test_structure_fireproof" then
-			mcl_structures.generate_test_structure_fireproof(pos, rot, pr)
+			mcla_structures.generate_test_structure_fireproof(pos, rot, pr)
 		elseif param == "" then
 			message = S("Error: No structure type given. Please use “/spawnstruct <type>”.")
 			errord = true

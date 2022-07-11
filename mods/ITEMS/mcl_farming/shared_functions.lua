@@ -50,7 +50,7 @@ local function get_avg_light_level(pos)
 	return math.ceil((summary + 0.0) / counter)
 end
 
-function mcl_farming:add_plant(identifier, full_grown, names, interval, chance)
+function mcla_farming:add_plant(identifier, full_grown, names, interval, chance)
 	plant_lists[identifier] = {}
 	plant_lists[identifier].full_grown = full_grown
 	plant_lists[identifier].names = names
@@ -63,7 +63,7 @@ function mcl_farming:add_plant(identifier, full_grown, names, interval, chance)
 		chance = chance,
 		action = function(pos, node)
 			local low_speed = minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name ~= "mcla:soil_wet"
-			mcl_farming:grow_plant(identifier, pos, node, false, false, low_speed)
+			mcla_farming:grow_plant(identifier, pos, node, false, false, low_speed)
 		end,
 	})
 	for _, nodename in pairs(names) do
@@ -72,7 +72,7 @@ function mcl_farming:add_plant(identifier, full_grown, names, interval, chance)
 end
 
 -- Attempts to advance a plant at pos by one or more growth stages (if possible)
--- identifier: Identifier of plant as defined by mcl_farming:add_plant
+-- identifier: Identifier of plant as defined by mcla_farming:add_plant
 -- pos: Position
 -- node: Node table
 -- stages: Number of stages to advance (optional, defaults to 1)
@@ -80,7 +80,7 @@ end
 
 -- Returns true if plant has been grown by 1 or more stages.
 -- Returns false if nothing changed.
-function mcl_farming:grow_plant(identifier, pos, node, stages, ignore_light, low_speed)
+function mcla_farming:grow_plant(identifier, pos, node, stages, ignore_light, low_speed)
 	local average_light_level = get_avg_light_level(pos)
 	local plant_info = plant_lists[identifier]
 	local intervals_counter = get_intervals_counter(pos, plant_info.interval, plant_info.chance)
@@ -133,7 +133,7 @@ function mcl_farming:grow_plant(identifier, pos, node, stages, ignore_light, low
 	return true
 end
 
-function mcl_farming:place_seed(itemstack, placer, pointed_thing, plantname)
+function mcla_farming:place_seed(itemstack, placer, pointed_thing, plantname)
 	local pt = pointed_thing
 	if not pt then
 		return
@@ -185,7 +185,7 @@ end
 - gourd_on_construct_extra: Custom on_construct extra function for the gourd. Will be called after the stem check code
 ]]
 
-function mcl_farming:add_gourd(full_unconnected_stem, connected_stem_basename, stem_itemstring, stem_def, stem_drop, gourd_itemstring, gourd_def, grow_interval, grow_chance, connected_stem_texture, gourd_on_construct_extra)
+function mcla_farming:add_gourd(full_unconnected_stem, connected_stem_basename, stem_itemstring, stem_def, stem_drop, gourd_itemstring, gourd_def, grow_interval, grow_chance, connected_stem_texture, gourd_on_construct_extra)
 
 	local connected_stem_names = {
 		connected_stem_basename .. "_r",
@@ -288,7 +288,7 @@ function mcl_farming:add_gourd(full_unconnected_stem, connected_stem_basename, s
 		stem_def.groups = {dig_immediate=3, not_in_creative_inventory=1, plant=1,attached_node=1, dig_by_water=1,destroy_by_lava_flow=1,}
 	end
 	if stem_def.sounds == nil then
-		stem_def.sounds = mcl_sounds.node_sound_leaves_defaults()
+		stem_def.sounds = mcla_sounds.node_sound_leaves_defaults()
 	end
 
 	if not stem_def.on_construct then
@@ -362,8 +362,8 @@ function mcl_farming:add_gourd(full_unconnected_stem, connected_stem_basename, s
 			tiles = connected_stem_tiles[i],
 			use_texture_alpha = minetest.features.use_texture_alpha_string_modes and "clip" or true,
 			groups = {dig_immediate=3, not_in_creative_inventory=1, plant=1,attached_node=1, dig_by_water=1,destroy_by_lava_flow=1,},
-			sounds = mcl_sounds.node_sound_leaves_defaults(),
-			_mcl_blast_resistance = 0,
+			sounds = mcla_sounds.node_sound_leaves_defaults(),
+			_mcla_blast_resistance = 0,
 		})
 	end
 
@@ -438,7 +438,7 @@ end
 -- * endcolor: ColorSpec in table form for the stem in its final growing stage
 -- * step: The nth growth step. Counting starts at 1
 -- * step_count: The number of total growth steps
-function mcl_farming:stem_color(startcolor, endcolor, step, step_count)
+function mcla_farming:stem_color(startcolor, endcolor, step, step_count)
 	local color = {}
 	local function get_component(startt, endd, step, step_count)
 		return math.floor(math.max(0, math.min(255, (startt + (((step-1)/step_count) * endd)))))

@@ -1,4 +1,4 @@
-local S = minetest.get_translator("mcl_farming")
+local S = minetest.get_translator("mcla_farming")
 
 local function create_soil(pos, inv)
 	if pos == nil then
@@ -68,7 +68,7 @@ minetest.register_tool(":mcla:wood_hoe", {
 		damage_groups = { fleshy = 1, },
 		punch_attack_uses = uses.wood,
 	},
-	_mcl_toollike_wield = true,
+	_mcla_toollike_wield = true,
 })
 
 minetest.register_craft({
@@ -104,7 +104,7 @@ minetest.register_tool(":mcla:stone_hoe", {
 		damage_groups = { fleshy = 1, },
 		punch_attack_uses = uses.stone,
 	},
-	_mcl_toollike_wield = true,
+	_mcla_toollike_wield = true,
 })
 
 minetest.register_craft({
@@ -136,7 +136,7 @@ minetest.register_tool(":mcla:iron_hoe", {
 		damage_groups = { fleshy = 1, },
 		punch_attack_uses = uses.iron,
 	},
-	_mcl_toollike_wield = true,
+	_mcla_toollike_wield = true,
 })
 
 minetest.register_craft({
@@ -167,7 +167,7 @@ minetest.register_tool(":mcla:gold_hoe", {
 		damage_groups = { fleshy = 1, },
 		punch_attack_uses = uses.gold,
 	},
-	_mcl_toollike_wield = true,
+	_mcla_toollike_wield = true,
 })
 
 minetest.register_craft({
@@ -200,7 +200,7 @@ minetest.register_tool(":mcla:diamond_hoe", {
 		damage_groups = { fleshy = 1, },
 		punch_attack_uses = uses.diamond,
 	},
-	_mcl_toollike_wield = true,
+	_mcla_toollike_wield = true,
 })
 
 minetest.register_craft({

@@ -73,7 +73,7 @@ mobs:register_mob("mobs_mc:creeper", {
 		if self._forced_explosion_countdown_timer ~= nil then
 			self._forced_explosion_countdown_timer = self._forced_explosion_countdown_timer - dtime
 			if self._forced_explosion_countdown_timer <= 0 then
-				mobs:boom(self, mcl_util.get_object_center(self.object), self.explosion_strength)
+				mobs:boom(self, mcla_util.get_object_center(self.object), self.explosion_strength)
 				self.object:remove()
 			end
 		end
@@ -119,7 +119,7 @@ mobs:register_mob("mobs_mc:creeper", {
 	view_range = 16,
 })
 
-mobs:spawn_specific("mobs_mc:creeper", mobs_mc.spawn.solid, {"air"}, 0, 7, 20, 16500, 2, mcl_vars.mg_overworld_min, mcl_vars.mg_overworld_max)
+mobs:spawn_specific("mobs_mc:creeper", mobs_mc.spawn.solid, {"air"}, 0, 7, 20, 16500, 2, mcla_vars.mg_overworld_min, mcla_vars.mg_overworld_max)
 
 -- spawn eggs
 mobs:register_egg("mobs_mc:creeper", S("Creeper"), "mobs_mc_spawn_icon_creeper.png", 0)

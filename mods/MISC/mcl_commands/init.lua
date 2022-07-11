@@ -1,4 +1,4 @@
-local S = minetest.get_translator("mcl_commands")
+local S = minetest.get_translator("mcla_commands")
 
 local function handle_kill_command(suspect, victim)
 	if minetest.settings:get_bool("enable_damage") == false then
@@ -21,7 +21,7 @@ local function handle_kill_command(suspect, victim)
 	else
 		msg = S("@1 was killed by @2.", victim, suspect)
 	end
-	mcl_death_messages.player_damage(victimref, msg)
+	mcla_death_messages.player_damage(victimref, msg)
 
 	-- DIE!
 	victimref:set_hp(0)

@@ -1,12 +1,12 @@
-local S = minetest.get_translator("mclx_core")
+local S = minetest.get_translator("mclax_core")
 
 -- Liquids: River Water
 
 local source = table.copy(minetest.registered_nodes["mcla:water_source"])
 source.description = S("River Water Source")
 source.liquid_range = 2
-source.liquid_alternative_flowing = "mclx_core:river_water_flowing"
-source.liquid_alternative_source = "mclx_core:river_water_source"
+source.liquid_alternative_flowing = "mclax_core:river_water_flowing"
+source.liquid_alternative_source = "mclax_core:river_water_source"
 source.liquid_renewable = false
 source.post_effect_color = {a=192, r=0x2c, g=0x88, b=0x8c}
 source.tiles = {
@@ -24,8 +24,8 @@ source.special_tiles = {
 local flowing = table.copy(minetest.registered_nodes["mcla:water_flowing"])
 flowing.description = S("Flowing River Water")
 flowing.liquid_range = 2
-flowing.liquid_alternative_flowing = "mclx_core:river_water_flowing"
-flowing.liquid_alternative_source = "mclx_core:river_water_source"
+flowing.liquid_alternative_flowing = "mclax_core:river_water_flowing"
+flowing.liquid_alternative_source = "mclax_core:river_water_source"
 flowing.liquid_renewable = false
 flowing.tiles = {"mclx_core_river_water_flowing_animated.png^[verticalframe:64:0"}
 flowing.post_effect_color = {a=192, r=0x2c, g=0x88, b=0x8c}
@@ -42,5 +42,5 @@ flowing.special_tiles = {
 	},
 }
 
-minetest.register_node("mclx_core:river_water_source", source)
-minetest.register_node("mclx_core:river_water_flowing", flowing)
+minetest.register_node("mclax_core:river_water_source", source)
+minetest.register_node("mclax_core:river_water_flowing", flowing)

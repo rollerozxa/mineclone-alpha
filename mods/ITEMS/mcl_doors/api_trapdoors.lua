@@ -1,4 +1,4 @@
-local S = minetest.get_translator("mcl_doors")
+local S = minetest.get_translator("mcla_doors")
 
 -- Wrapper around mintest.pointed_thing_to_face_pos.
 local function get_fpos(placer, pointed_thing)
@@ -48,7 +48,7 @@ if minetest.get_modpath("screwdriver") then
 	end
 end
 
-function mcl_doors:register_trapdoor(name, def)
+function mcla_doors:register_trapdoor(name, def)
 	local groups = table.copy(def.groups)
 	if groups == nil then
 		groups = {}
@@ -114,8 +114,8 @@ function mcl_doors:register_trapdoor(name, def)
 		paramtype2 = "facedir",
 		sunlight_propagates = true,
 		groups = groups_closed,
-		_mcl_hardness = def._mcl_hardness,
-		_mcl_blast_resistance = def._mcl_blast_resistance,
+		_mcla_hardness = def._mcla_hardness,
+		_mcla_blast_resistance = def._mcla_blast_resistance,
 		sounds = def.sounds,
 		node_box = {
 			type = "fixed",
@@ -184,8 +184,8 @@ function mcl_doors:register_trapdoor(name, def)
 		sunlight_propagates = true,
 		pointable = true,
 		groups = groups_open,
-		_mcl_hardness = def._mcl_hardness,
-		_mcl_blast_resistance = def._mcl_blast_resistance,
+		_mcla_hardness = def._mcla_hardness,
+		_mcla_blast_resistance = def._mcla_blast_resistance,
 		sounds = def.sounds,
 		drop = name,
 		node_box = {

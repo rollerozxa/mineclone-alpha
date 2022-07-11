@@ -72,7 +72,7 @@ local cow_def = {
 mobs:register_mob("mobs_mc:cow", cow_def)
 
 -- Spawning
-mobs:spawn_specific("mobs_mc:cow", mobs_mc.spawn.grassland, {"air"}, 9, minetest.LIGHT_MAX+1, 30, 17000, 10, mcl_vars.mg_overworld_min, mcl_vars.mg_overworld_max)
+mobs:spawn_specific("mobs_mc:cow", mobs_mc.spawn.grassland, {"air"}, 9, minetest.LIGHT_MAX+1, 30, 17000, 10, mcla_vars.mg_overworld_min, mcla_vars.mg_overworld_max)
 
 -- spawn egg
 mobs:register_egg("mobs_mc:cow", S("Cow"), "mobs_mc_spawn_icon_cow.png", 0)

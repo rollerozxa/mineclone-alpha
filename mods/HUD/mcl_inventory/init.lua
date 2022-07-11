@@ -1,7 +1,7 @@
-local S = minetest.get_translator("mcl_inventory")
+local S = minetest.get_translator("mcla_inventory")
 local F = minetest.formspec_escape
 
-mcl_inventory = {}
+mcla_inventory = {}
 
 -- Returns a single itemstack in the given inventory to the main inventory, or drop it when there's no space left
 function return_item(itemstack, dropper, pos, inv)
@@ -47,9 +47,9 @@ local function set_inventory(player, armor_change_only)
 	if minetest.is_creative_enabled(player:get_player_name()) and false then
 		if armor_change_only then
 			-- Stay on survival inventory plage if only the armor has been changed
-			mcl_inventory.set_creative_formspec(player, 0, 0, nil, nil, "inv")
+			mcla_inventory.set_creative_formspec(player, 0, 0, nil, nil, "inv")
 		else
-			mcl_inventory.set_creative_formspec(player, 0, 1)
+			mcla_inventory.set_creative_formspec(player, 0, 1)
 		end
 		return
 	end
@@ -60,7 +60,7 @@ local function set_inventory(player, armor_change_only)
 	local player_name = player:get_player_name()
 
 	-- Show armor and player image
-	local player_preview = mcl_player.get_player_formspec_model(player, 1.0, 0.0, 2.25, 4.5, "")
+	local player_preview = mcla_player.get_player_formspec_model(player, 1.0, 0.0, 2.25, 4.5, "")
 
 	local armor_slots = {"helmet", "chestplate", "leggings", "boots"}
 	local armor_slot_imgs = ""
@@ -70,7 +70,7 @@ local function set_inventory(player, armor_change_only)
 		end
 	end
 
-	local form = mcl_formspec.formspec_wrapper([[
+	local form = mcla_formspec.formspec_wrapper([[
 		size[10,9.4,true]
 		no_prepend[]
 		real_coordinates[true]
@@ -113,7 +113,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 end)
 
 --if not minetest.is_creative_enabled("") then
-	mcl_inventory.update_inventory_formspec = function(player)
+	mcla_inventory.update_inventory_formspec = function(player)
 		set_inventory(player)
 	end
 --end

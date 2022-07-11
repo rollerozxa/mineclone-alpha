@@ -1,5 +1,5 @@
 
-local S = minetest.get_translator("mcl_furnaces")
+local S = minetest.get_translator("mcla_furnaces")
 
 local LIGHT_ACTIVE_FURNACE = 13
 
@@ -11,16 +11,16 @@ local function active_formspec(fuel_percent, item_percent)
 	return "size[9,8.75]"..
 	"label[0,4;"..minetest.formspec_escape(minetest.colorize("#313131", S("Inventory"))).."]"..
 	"list[current_player;main;0,4.5;9,3;9]"..
-	mcl_formspec.get_itemslot_bg(0,4.5,9,3)..
+	mcla_formspec.get_itemslot_bg(0,4.5,9,3)..
 	"list[current_player;main;0,7.74;9,1;]"..
-	mcl_formspec.get_itemslot_bg(0,7.74,9,1)..
+	mcla_formspec.get_itemslot_bg(0,7.74,9,1)..
 	"label[2.75,0;"..minetest.formspec_escape(minetest.colorize("#313131", S("Furnace"))).."]"..
 	"list[current_name;src;2.75,0.5;1,1;]"..
-	mcl_formspec.get_itemslot_bg(2.75,0.5,1,1)..
+	mcla_formspec.get_itemslot_bg(2.75,0.5,1,1)..
 	"list[current_name;fuel;2.75,2.5;1,1;]"..
-	mcl_formspec.get_itemslot_bg(2.75,2.5,1,1)..
+	mcla_formspec.get_itemslot_bg(2.75,2.5,1,1)..
 	"list[current_name;dst;5.75,1.5;1,1;]"..
-	mcl_formspec.get_itemslot_bg(5.75,1.5,1,1)..
+	mcla_formspec.get_itemslot_bg(5.75,1.5,1,1)..
 	"image[2.75,1.5;1,1;mcl_furnaces_fire_bg.png^[lowpart:"..
 	(100-fuel_percent)..":mcl_furnaces_fire_fg.png]"..
 	"image[4.1,1.5;1.5,1;mcl_furnaces_arrow_bg.png^[lowpart:"..
@@ -40,16 +40,16 @@ end
 local inactive_formspec = "size[9,8.75]"..
 	"label[0,4;"..minetest.formspec_escape(minetest.colorize("#313131", S("Inventory"))).."]"..
 	"list[current_player;main;0,4.5;9,3;9]"..
-	mcl_formspec.get_itemslot_bg(0,4.5,9,3)..
+	mcla_formspec.get_itemslot_bg(0,4.5,9,3)..
 	"list[current_player;main;0,7.74;9,1;]"..
-	mcl_formspec.get_itemslot_bg(0,7.74,9,1)..
+	mcla_formspec.get_itemslot_bg(0,7.74,9,1)..
 	"label[2.75,0;"..minetest.formspec_escape(minetest.colorize("#313131", S("Furnace"))).."]"..
 	"list[current_name;src;2.75,0.5;1,1;]"..
-	mcl_formspec.get_itemslot_bg(2.75,0.5,1,1)..
+	mcla_formspec.get_itemslot_bg(2.75,0.5,1,1)..
 	"list[current_name;fuel;2.75,2.5;1,1;]"..
-	mcl_formspec.get_itemslot_bg(2.75,2.5,1,1)..
+	mcla_formspec.get_itemslot_bg(2.75,2.5,1,1)..
 	"list[current_name;dst;5.75,1.5;1,1;]"..
-	mcl_formspec.get_itemslot_bg(5.75,1.5,1,1)..
+	mcla_formspec.get_itemslot_bg(5.75,1.5,1,1)..
 	"image[2.75,1.5;1,1;mcl_furnaces_fire_bg.png]"..
 	"image[4.1,1.5;1.5,1;mcl_furnaces_arrow_bg.png^[transformR270]"..
 	"listring[current_name;dst]"..
@@ -410,7 +410,7 @@ minetest.register_node(":mcla:furnace", {
 	paramtype2 = "facedir",
 	groups = {pickaxey=1, container=4, deco_block=1, material_stone=1},
 	is_ground_content = false,
-	sounds = mcl_sounds.node_sound_stone_defaults(),
+	sounds = mcla_sounds.node_sound_stone_defaults(),
 
 	on_timer = furnace_node_timer,
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
@@ -461,8 +461,8 @@ minetest.register_node(":mcla:furnace", {
 	allow_metadata_inventory_put = allow_metadata_inventory_put,
 	allow_metadata_inventory_move = allow_metadata_inventory_move,
 	allow_metadata_inventory_take = allow_metadata_inventory_take,
-	_mcl_blast_resistance = 3.5,
-	_mcl_hardness = 3.5,
+	_mcla_blast_resistance = 3.5,
+	_mcla_hardness = 3.5,
 	on_rotate = on_rotate,
 })
 
@@ -479,7 +479,7 @@ minetest.register_node(":mcla:furnace_active", {
 	drop = "mcla:furnace",
 	groups = {pickaxey=1, container=4, deco_block=1, not_in_creative_inventory=1, material_stone=1},
 	is_ground_content = false,
-	sounds = mcl_sounds.node_sound_stone_defaults(),
+	sounds = mcla_sounds.node_sound_stone_defaults(),
 	on_timer = furnace_node_timer,
 
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
@@ -509,8 +509,8 @@ minetest.register_node(":mcla:furnace_active", {
 	allow_metadata_inventory_move = allow_metadata_inventory_move,
 	allow_metadata_inventory_take = allow_metadata_inventory_take,
 	on_metadata_inventory_take = on_metadata_inventory_take,
-	_mcl_blast_resistance = 3.5,
-	_mcl_hardness = 3.5,
+	_mcla_blast_resistance = 3.5,
+	_mcla_hardness = 3.5,
 	on_rotate = on_rotate,
 	after_rotate = after_rotate_active,
 })

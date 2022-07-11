@@ -11,7 +11,6 @@ local crash_threshold = 6.5 -- ignored if enable_crash=false
 --
 
 local node_ok = function(pos, fallback)
-
 	fallback = fallback or mobs.fallback_node
 
 	local node = minetest.get_node_or_nil(pos)
@@ -82,9 +81,9 @@ local function force_detach(player)
 	end
 
 	player:set_detach()
-	mcl_player.player_attached[player:get_player_name()] = false
+	mcla_player.player_attached[player:get_player_name()] = false
 	player:set_eye_offset({x = 0, y = 0, z = 0}, {x = 0, y = 0, z = 0})
-	mcl_player.player_set_animation(player, "stand" , 30)
+	mcla_player.player_set_animation(player, "stand" , 30)
 	player:set_properties({visual_size = {x = 1, y = 1} })
 
 end
@@ -130,7 +129,7 @@ function mobs.attach(entity, player)
 	force_detach(player)
 
 	player:set_attach(entity.object, "", attach_at, entity.player_rotation)
-	mcl_player.player_attached[player:get_player_name()] = true
+	mcla_player.player_attached[player:get_player_name()] = true
 	player:set_eye_offset(eye_offset, {x = 0, y = 0, z = 0})
 
 	player:set_properties({
@@ -143,7 +142,7 @@ function mobs.attach(entity, player)
 	minetest.after(0.2, function(name)
 		local player = minetest.get_player_by_name(name)
 		if player then
-			mcl_player.player_set_animation(player, "sit" , 30)
+			mcla_player.player_set_animation(player, "sit" , 30)
 		end
 	end, player:get_player_name())
 
@@ -153,7 +152,7 @@ end
 function mobs.detach(player, offset)
 	force_detach(player)
 
-	mcl_player.player_set_animation(player, "stand" , 30)
+	mcla_player.player_set_animation(player, "stand" , 30)
 
 	local pos = player:get_pos()
 

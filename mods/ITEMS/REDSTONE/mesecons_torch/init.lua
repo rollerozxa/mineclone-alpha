@@ -117,13 +117,13 @@ minetest.register_craft({
 	{"mcla:stick"},}
 })
 
-mcl_torches.register_torch("mesecon_torch_off", S("Redstone Torch (off)"),
+mcla_torches.register_torch("mesecon_torch_off", S("Redstone Torch (off)"),
 	"jeija_torches_off.png",
 	"mcl_torches_torch_floor.obj", "mcl_torches_torch_wall.obj",
 	{"jeija_torches_off.png"},
 	0,
 	{dig_immediate=3, dig_by_water=1, redstone_torch=2, mesecon_ignore_opaque_dig=1, not_in_creative_inventory=1},
-	mcl_sounds.node_sound_wood_defaults(),
+	mcla_sounds.node_sound_wood_defaults(),
 	{
 		mesecons = {
 			receptor = {
@@ -140,13 +140,13 @@ mcl_torches.register_torch("mesecon_torch_off", S("Redstone Torch (off)"),
 	}
 )
 
-mcl_torches.register_torch("mesecon_torch_overheated", S("Redstone Torch (overheated)"),
+mcla_torches.register_torch("mesecon_torch_overheated", S("Redstone Torch (overheated)"),
 	"jeija_torches_off.png",
 	"mcl_torches_torch_floor.obj", "mcl_torches_torch_wall.obj",
 	{"jeija_torches_off.png"},
 	0,
 	{dig_immediate=3, dig_by_water=1, redstone_torch=2, mesecon_ignore_opaque_dig=1, not_in_creative_inventory=1},
-	mcl_sounds.node_sound_wood_defaults(),
+	mcla_sounds.node_sound_wood_defaults(),
 	{
 		drop = "mesecons_torch:mesecon_torch_on",
 		on_timer = function(pos, elapsed)
@@ -160,13 +160,13 @@ mcl_torches.register_torch("mesecon_torch_overheated", S("Redstone Torch (overhe
 
 
 
-mcl_torches.register_torch("mesecon_torch_on", S("Redstone Torch"),
+mcla_torches.register_torch("mesecon_torch_on", S("Redstone Torch"),
 	"jeija_torches_on.png",
 	"mcl_torches_torch_floor.obj", "mcl_torches_torch_wall.obj",
 	{"jeija_torches_on.png"},
 	7,
 	{dig_immediate=3, dig_by_water=1, redstone_torch=1, mesecon_ignore_opaque_dig=1},
-	mcl_sounds.node_sound_wood_defaults(),
+	mcla_sounds.node_sound_wood_defaults(),
 	{
 		on_destruct = function(pos, oldnode)
 			local node = minetest.get_node(pos)

@@ -9,14 +9,14 @@
 enable_fire (Destructive and spreading fire) bool true
 
 # If enabled, the weather will change naturally over time.
-mcl_doWeatherCycle (Change weather) bool true
+mcla_doWeatherCycle (Change weather) bool true
 
 # If enabled, breaking blocks will cause them to drop as item.
 # Note that blocks never have drops when in Creative Mode.
-mcl_doTileDrops (Blocks have drops) bool true
+mcla_doTileDrops (Blocks have drops) bool true
 
 # If enabled, TNT explosions destroy blocks.
-mcl_tnt_griefing (TNT destroys blocks) bool true
+mcla_tnt_griefing (TNT destroys blocks) bool true
 
 [Players]
 # If enabled, the night can be skipped if all players are in bed.
@@ -24,10 +24,10 @@ mcl_tnt_griefing (TNT destroys blocks) bool true
 enable_bed_night_skip (Skip night when sleeping) bool true
 # Normally, players drop all their items when they die. Enable this
 # setting, so players always keep their inventory on death.
-mcl_keepInventory (Keep inventory on death) bool false
+mcla_keepInventory (Keep inventory on death) bool false
 
 # If enabled, chat messages are shown to everyone when a player dies.
-mcl_showDeathMessages (Show death messages) bool true
+mcla_showDeathMessages (Show death messages) bool true
 
 [Mobs]
 # If enabled, mobs will spawn naturally. This does not affect
@@ -66,4 +66,4 @@ mobs_griefing (Mobs change blocks) bool true
 # more CPU demanding.
 # WARNING: This setting has quite poor performance and can slow down your
 # game by a lot.
-mcl_node_particles (Block particles detail level) enum none high,medium,low,none
+mcla_node_particles (Block particles detail level) enum none high,medium,low,none

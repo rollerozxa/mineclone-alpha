@@ -1,8 +1,8 @@
-mcl_paintings = {}
+mcla_paintings = {}
 
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/paintings.lua")
 
-local S = minetest.get_translator("mcl_paintings")
+local S = minetest.get_translator("mcla_paintings")
 
 local wood = "[combine:16x16:-192,0=mcl_paintings_paintings.png"
 
@@ -24,7 +24,7 @@ local shrink_painting = function(x, y)
 	local xstart = x
 	local painting
 	while not painting do
-		painting = mcl_paintings.paintings[y] and mcl_paintings.paintings[y][x]
+		painting = mcla_paintings.paintings[y] and mcla_paintings.paintings[y][x]
 		if type(painting) == "table" then
 			break
 		elseif type(painting) == "number" then
@@ -44,7 +44,7 @@ local shrink_painting = function(x, y)
 end
 
 local get_painting = function(x, y, motive)
-	local painting = mcl_paintings.paintings[y] and mcl_paintings.paintings[y][x] and mcl_paintings.paintings[y][x][motive]
+	local painting = mcla_paintings.paintings[y] and mcla_paintings.paintings[y][x] and mcla_paintings.paintings[y][x][motive]
 	if not painting then
 		return nil
 	end
@@ -54,10 +54,10 @@ local get_painting = function(x, y, motive)
 end
 
 local get_random_painting = function(x, y)
-	if not mcl_paintings.paintings[y] or not mcl_paintings.paintings[y][x] then
+	if not mcla_paintings.paintings[y] or not mcla_paintings.paintings[y][x] then
 		return nil
 	end
-	local max = #mcl_paintings.paintings[y][x]
+	local max = #mcla_paintings.paintings[y][x]
 	if max < 1 then
 		return nil
 	end
@@ -96,12 +96,12 @@ local set_entity = function(object)
 	local eymin, eymax = size_to_minmax_entity(ysize)
 	local visual_size = { x=xsize-0.0001, y=ysize-0.0001, z=1/32 }
 	if not ent._xsize or not ent._ysize or not ent._motive then
-		minetest.log("error", "[mcl_paintings] Painting loaded with missing painting values!")
+		minetest.log("error", "[mcla_paintings] Painting loaded with missing painting values!")
 		return
 	end
 	local painting = get_painting(xsize, ysize, ent._motive)
 	if not painting then
-		minetest.log("error", "[mcl_paintings] No painting found for size "
+		minetest.log("error", "[mcla_paintings] No painting found for size "
 				..xsize..","..ysize..", motive number "..ent._motive.."!")
 		return
 	end
@@ -269,7 +269,7 @@ minetest.register_craftitem(":mcla:painting", {
 			if is_protected(ppos2, name) then return itemstack end
 			local painting, pid = get_random_painting(xsize, ysize)
 			if not painting then
-				minetest.log("error", "[mcl_paintings] No painting found for size "..xsize..","..ysize.."!")
+				minetest.log("error", "[mcla_paintings] No painting found for size "..xsize..","..ysize.."!")
 				return itemstack
 			end
 			local staticdata = {

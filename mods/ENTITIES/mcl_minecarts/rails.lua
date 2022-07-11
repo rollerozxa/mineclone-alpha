@@ -1,4 +1,4 @@
-local S = minetest.get_translator("mcl_minecarts")
+local S = minetest.get_translator("mcla_minecarts")
 
 -- Template rail function
 local register_rail = function(itemstring, tiles, def_extras, creative)
@@ -20,9 +20,9 @@ local register_rail = function(itemstring, tiles, def_extras, creative)
 		},
 		stack_max = 64,
 		groups = groups,
-		sounds = mcl_sounds.node_sound_metal_defaults(),
-		_mcl_blast_resistance = 3.5,
-		_mcl_hardness = 0.7,
+		sounds = mcla_sounds.node_sound_metal_defaults(),
+		_mcla_blast_resistance = 3.5,
+		_mcla_hardness = 0.7,
 		after_destruct = function(pos)
 			-- Scan for minecarts in this pos and force them to execute their "floating" check.
 			-- Normally, this will make them drop.
@@ -32,7 +32,7 @@ local register_rail = function(itemstring, tiles, def_extras, creative)
 				if le then
 					-- All entities in this mod are minecarts, so this works
 					if string.sub(le.name, 1, 14) == "mcla:" then
-						le._last_float_check = mcl_minecarts.check_float_time
+						le._last_float_check = mcla_minecarts.check_float_time
 					end
 				end
 			end

@@ -1,4 +1,4 @@
-mcl_colors = {
+mcla_colors = {
 	BLACK = "#000000",
 	DARK_BLUE = "#0000AA",
 	DARK_GREEN = "#00AA00",

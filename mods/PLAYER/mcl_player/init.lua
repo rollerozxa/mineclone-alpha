@@ -1,22 +1,22 @@
 -- Minetest 0.4 mod: player
 -- See README.txt for licensing and other information.
-mcl_player = {}
+mcla_player = {}
 
 -- Player animation blending
 -- Note: This is currently broken due to a bug in Irrlicht, leave at 0
 local animation_blend = 0
 
-mcl_player.registered_player_models = { }
+mcla_player.registered_player_models = { }
 
 -- Local for speed.
-local models = mcl_player.registered_player_models
+local models = mcla_player.registered_player_models
 
-function mcl_player.player_register_model(name, def)
+function mcla_player.player_register_model(name, def)
 	models[name] = def
 end
 
 -- Default player appearance
-mcl_player.player_register_model("character.b3d", {
+mcla_player.player_register_model("character.b3d", {
 	animation_speed = 30,
 	textures = {"character.png", },
 	animations = {
@@ -41,9 +41,9 @@ local player_model = {}
 local player_textures = {}
 local player_anim = {}
 local player_sneak = {}
-mcl_player.player_attached = {}
+mcla_player.player_attached = {}
 
-function mcl_player.player_get_animation(player)
+function mcla_player.player_get_animation(player)
 	local name = player:get_player_name()
 	return {
 		model = player_model[name],
@@ -53,7 +53,7 @@ function mcl_player.player_get_animation(player)
 end
 
 -- Called when a player's appearance needs to be updated
-function mcl_player.player_set_model(player, model_name)
+function mcla_player.player_set_model(player, model_name)
 	local name = player:get_player_name()
 	local model = models[model_name]
 	if model then
@@ -67,7 +67,7 @@ function mcl_player.player_set_model(player, model_name)
 			visual_size = model.visual_size or {x=1, y=1},
 			damage_texture_modifier = "^[colorize:red:130",
 		})
-		mcl_player.player_set_animation(player, "stand")
+		mcla_player.player_set_animation(player, "stand")
 	else
 		player:set_properties({
 			textures = { "player.png", "player_back.png", },
@@ -77,7 +77,7 @@ function mcl_player.player_set_model(player, model_name)
 	player_model[name] = model_name
 end
 
-function mcl_player.player_set_textures(player, textures, preview)
+function mcla_player.player_set_textures(player, textures, preview)
 	local name = player:get_player_name()
 	player_textures[name] = textures
 	player:set_properties({textures = textures,})
@@ -86,7 +86,7 @@ function mcl_player.player_set_textures(player, textures, preview)
 	end
 end
 
-function mcl_player.player_get_preview(player)
+function mcla_player.player_get_preview(player)
 	local preview = player:get_meta():get_string("mcla:preview")
 	if preview == nil or preview == "" then
 		return "player.png"
@@ -95,14 +95,14 @@ function mcl_player.player_get_preview(player)
 	end
 end
 
-function mcl_player.get_player_formspec_model(player, x, y, w, h, fsname)
+function mcla_player.get_player_formspec_model(player, x, y, w, h, fsname)
 	local name = player:get_player_name()
 	local model = player_model[name]
 	local anim = models[model].animations[player_anim[name]]
 	return "model[" .. x .. "," .. y .. ";" .. w .. "," .. h .. ";" .. fsname .. ";" .. model .. ";" .. table.concat(player_textures[name], ",") .. ";0," .. 180 .. ";false;false;" .. anim.x .. "," .. anim.y .. "]"
 end
 
-function mcl_player.player_set_animation(player, anim_name, speed)
+function mcla_player.player_set_animation(player, anim_name, speed)
 	local name = player:get_player_name()
 	if player_anim[name] == anim_name then
 		return
@@ -118,8 +118,8 @@ end
 
 -- Update appearance when the player joins
 minetest.register_on_joinplayer(function(player)
-	mcl_player.player_attached[player:get_player_name()] = false
-	mcl_player.player_set_model(player, "character.b3d")
+	mcla_player.player_attached[player:get_player_name()] = false
+	mcla_player.player_set_model(player, "character.b3d")
 	--player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 30)
 	player:set_fov(86.1) -- see <https://minecraft.gamepedia.com/Options#Video_settings>>>>
 end)
@@ -132,8 +132,8 @@ minetest.register_on_leaveplayer(function(player)
 end)
 
 -- Localize for better performance.
-local player_set_animation = mcl_player.player_set_animation
-local player_attached = mcl_player.player_attached
+local player_set_animation = mcla_player.player_set_animation
+local player_attached = mcla_player.player_attached
 
 -- Check each player and apply animations
 minetest.register_globalstep(function(dtime)
@@ -159,9 +159,9 @@ minetest.register_globalstep(function(dtime)
 
 
 			-- ask if player is swiming
-			local head_in_water = minetest.get_item_group(mcl_playerinfo[name].node_head, "water") ~= 0
+			local head_in_water = minetest.get_item_group(mcla_playerinfo[name].node_head, "water") ~= 0
 			-- ask if player is sprinting
-			local is_sprinting = mcl_sprint.is_sprinting(name)
+			local is_sprinting = mcla_sprint.is_sprinting(name)
 
 			local velocity = player:get_velocity() or player:get_player_velocity()
 

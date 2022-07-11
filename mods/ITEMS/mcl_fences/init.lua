@@ -1,4 +1,4 @@
-local S = minetest.get_translator("mcl_fences")
+local S = minetest.get_translator("mcla_fences")
 
 -- Node box
 local p = {-2/16, -0.5, -2/16, 2/16, 0.5, 2/16}
@@ -18,9 +18,9 @@ local cx2 = {2/16, -0.5, -2/16, 0.5, 1.01, 2/16} --unten(quer) x
 local cz1 = {-2/16, -0.5, -0.5, 2/16, 1.01, -2/16} --unten(quer) -z
 local cz2 = {-2/16, -0.5, 2/16, 2/16, 1.01, 0.5} --unten(quer) z
 
-mcl_fences = {}
+mcla_fences = {}
 
-mcl_fences.register_fence = function(id, fence_name, texture, groups, hardness, blast_resistance, connects_to, sounds)
+mcla_fences.register_fence = function(id, fence_name, texture, groups, hardness, blast_resistance, connects_to, sounds)
 	local cgroups = table.copy(groups)
 	if cgroups == nil then cgroups = {} end
 	cgroups.fence = 1
@@ -30,10 +30,10 @@ mcl_fences.register_fence = function(id, fence_name, texture, groups, hardness, 
 	else
 		connects_to = table.copy(connects_to)
 	end
-	local fence_id = minetest.get_current_modname()..":"..id
+	local fence_id = "mcla:"..id
 	table.insert(connects_to, "group:solid")
 	table.insert(connects_to, fence_id)
-	minetest.register_node(fence_id, {
+	minetest.register_node(":"..fence_id, {
 		description = fence_name,
 		tiles = {texture},
 		inventory_image = "mcl_fences_fence_mask.png^" .. texture .. "^mcl_fences_fence_mask.png^[makealpha:255,126,126",
@@ -63,8 +63,8 @@ mcl_fences.register_fence = function(id, fence_name, texture, groups, hardness, 
 			connect_right = {cx2},
 		},
 		sounds = sounds,
-		_mcl_blast_resistance = blast_resistance,
-		_mcl_hardness = hardness,
+		_mcla_blast_resistance = blast_resistance,
+		_mcla_hardness = hardness,
 	})
 
 	return fence_id
@@ -72,7 +72,7 @@ end
 
 local wood_groups = {handy=1,axey=1, flammable=2,fence_wood=1, fire_encouragement=5, fire_flammability=20}
 local wood_connect = {"group:fence_wood"}
-local wood_sounds = mcl_sounds.node_sound_wood_defaults()
+local wood_sounds = mcla_sounds.node_sound_wood_defaults()
 
 local woods = {
 	{"", S("Fence"), "mcl_core_wood.png", "mcla:wood"},
@@ -86,10 +86,10 @@ for w=1, #woods do
 	else
 		id = wood[1].."_fence"
 	end
-	mcl_fences.register_fence(id, wood[2], wood[3], wood_groups, 2, 15, wood_connect, wood_sounds)
+	mcla_fences.register_fence(id, wood[2], wood[3], wood_groups, 2, 15, wood_connect, wood_sounds)
 
 	minetest.register_craft({
-		output = 'mcl_fences:'..id..' 3',
+		output = 'mcla:'..id..' 3',
 		recipe = {
 			{wood[4], 'mcla:stick', wood[4]},
 			{wood[4], 'mcla:stick', wood[4]},

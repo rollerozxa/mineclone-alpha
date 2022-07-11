@@ -1,22 +1,12 @@
---[[
-Sprint mod for Minetest by GunshipPenguin
-
-To the extent possible under law, the author(s)
-have dedicated all copyright and related and neighboring rights
-to this software to the public domain worldwide. This software is
-distributed without any warranty.
-]]
 
 --Configuration variables, these are all explained in README.md
-mcl_sprint = {}
-
-mcl_sprint.SPEED = 1.3
+mcla_sprint = {}
 
 local players = {}
 
 -- Returns true if the player with the given name is sprinting, false if not.
 -- Returns nil if player does not exist.
-mcl_sprint.is_sprinting = function(playername)
+mcla_sprint.is_sprinting = function(playername)
 	if players[playername] then
 		return players[playername].sprinting
 	else
@@ -49,7 +39,7 @@ local function setSprinting(playerName, sprinting) --Sets the state of a player 
 		local fov_new
 		if sprinting == true then
 			fov_new = math.min(players[playerName].fov + 0.05, 1.2)
-			playerphysics.add_physics_factor(player, "speed", "mcla:sprint", mcl_sprint.SPEED)
+			playerphysics.add_physics_factor(player, "speed", "mcla:sprint", 1.3)
 		elseif sprinting == false then
 			fov_new = math.max(players[playerName].fov - 0.05, 1.0)
 			playerphysics.remove_physics_factor(player, "speed", "mcla:sprint")

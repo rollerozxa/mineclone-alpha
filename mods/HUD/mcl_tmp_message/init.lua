@@ -1,9 +1,9 @@
-mcl_tmp_message = {}
+mcla_tmp_message = {}
 
 local huds = {}
 local hud_hide_timeouts = {}
 
-function mcl_tmp_message.message(player, message)
+function mcla_tmp_message.message(player, message)
 	local name = player:get_player_name()
 	player:hud_change(huds[name], "text", message)
 	hud_hide_timeouts[name] = 3

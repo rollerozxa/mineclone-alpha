@@ -290,7 +290,7 @@ function mesecon.mvps_push_or_pull(pos, stackdir, movedir, maximum, player_name,
 		end
 		if string.find(n.node.name, "mcla:observer") then
 			-- It also counts as a block update when the observer itself is moved by a piston (Wiki):
-			mcl_observers.observer_activate(np)
+			mcla_observers.observer_activate(np)
 		end
 	end
 

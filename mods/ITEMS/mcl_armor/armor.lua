@@ -22,7 +22,7 @@ armor = {
 }
 
 if minetest.get_modpath("mcla_skins") then
-	skin_mod = "mcl_skins"
+	skin_mod = "mcla_skins"
 elseif minetest.get_modpath("skins") then
 	skin_mod = "skins"
 end
@@ -94,7 +94,7 @@ armor.update_player_visuals = function(self, player)
 
 	local wielditem = player:get_wielded_item()
 	local def = wielditem:get_definition()
-	if def and def._mcl_toollike_wield then
+	if def and def._mcla_toollike_wield then
 		player:set_bone_position("Wield_Item", vector.new(0,3.9,1.3), vector.new(90,0,0))
 	elseif string.find(wielditem:get_name(), "mcla:bow") then
 		 player:set_bone_position("Wield_Item", vector.new(.5,4.5,-1.6), vector.new(90,0,20))
@@ -104,7 +104,7 @@ armor.update_player_visuals = function(self, player)
 
 	local name = player:get_player_name()
 	if self.textures[name] then
-		mcl_player.player_set_textures(player, {
+		mcla_player.player_set_textures(player, {
 			self.textures[name].skin,
 			self.textures[name].armor,
 			self.textures[name].wielditem,
@@ -119,7 +119,7 @@ armor.set_player_armor = function(self, player)
 	end
 	local armor_texture = "blank.png"
 	local armor_level = 0
-	local mcl_armor_points = 0
+	local mcla_armor_points = 0
 	local items = 0
 	local elements = {}
 	local textures = {}
@@ -147,7 +147,7 @@ armor.set_player_armor = function(self, player)
 						preview = "player.png^[opacity:0^"..texture.."_preview.png"..enchanted_addition..""..(preview and "^"..preview or "")
 						armor_level = armor_level + level
 						items = items + 1
-						mcl_armor_points = mcl_armor_points + (def.groups["mcl_armor_points"] or 0)
+						mcla_armor_points = mcla_armor_points + (def.groups["mcla_armor_points"] or 0)
 						for kk,vv in ipairs(self.physics) do
 							local o_value = def.groups["physics_"..vv]
 							if o_value then
@@ -188,7 +188,7 @@ armor.set_player_armor = function(self, player)
 	self.textures[name].preview = preview
 	self.def[name].count = items
 	self.def[name].level = armor_level
-	self.def[name].heal = mcl_armor_points
+	self.def[name].heal = mcla_armor_points
 	self.def[name].jump = physics_o.jump
 	self.def[name].speed = physics_o.speed
 	self.def[name].gravity = physics_o.gravity
@@ -209,7 +209,7 @@ armor.get_armor_points = function(self, player)
 	for i=1, 6 do
 		local stack = player_inv:get_stack("armor", i)
 		if stack:get_count() > 0 then
-			local p = minetest.get_item_group(stack:get_name(), "mcl_armor_points")
+			local p = minetest.get_item_group(stack:get_name(), "mcla_armor_points")
 			if p then
 				pts = pts + p
 			end
@@ -231,13 +231,13 @@ armor.get_mob_view_range_factor = function(self, player, mob)
 		local stack = player_inv:get_stack("armor", i)
 		if stack:get_count() > 0 then
 			local def = stack:get_definition()
-			if def._mcl_armor_mob_range_mob == mob then
+			if def._mcla_armor_mob_range_mob == mob then
 				if not factor then
-					factor = def._mcl_armor_mob_range_factor
+					factor = def._mcla_armor_mob_range_factor
 				elseif factor == 0 then
 					return 0
 				else
-					factor = factor * def._mcl_armor_mob_range_factor
+					factor = factor * def._mcla_armor_mob_range_factor
 				end
 			end
 		end
@@ -247,8 +247,8 @@ end
 
 armor.get_player_skin = function(self, name)
 	local skin = nil
-	if skin_mod == "mcl_skins" then
-		skin = mcl_skins.skins[name]
+	if skin_mod == "mcla_skins" then
+		skin = mcla_skins.skins[name]
 	end
 	return skin or armor.default_skin
 end
@@ -261,17 +261,17 @@ end
 
 armor.get_armor_formspec = function(self, name)
 	if not armor.textures[name] then
-		minetest.log("error", "mcl_armor: Player texture["..name.."] is nil [get_armor_formspec]")
+		minetest.log("error", "mcla_armor: Player texture["..name.."] is nil [get_armor_formspec]")
 		return ""
 	end
 	if not armor.def[name] then
-		minetest.log("error", "mcl_armor: Armor def["..name.."] is nil [get_armor_formspec]")
+		minetest.log("error", "mcla_armor: Armor def["..name.."] is nil [get_armor_formspec]")
 		return ""
 	end
 	local formspec = armor.formspec.."list[detached:"..name.."_armor;armor;0,1;2,3;]"
 	formspec = formspec:gsub("armor_preview", armor.textures[name].preview)
 	formspec = formspec:gsub("armor_level", armor.def[name].level)
-	formspec = formspec:gsub("mcl_armor_points", armor.def[name].heal)
+	formspec = formspec:gsub("mcla_armor_points", armor.def[name].heal)
 	return formspec
 end
 
@@ -281,25 +281,25 @@ end
 armor.get_valid_player = function(self, player, msg)
 	msg = msg or ""
 	if not player then
-		minetest.log("error", "mcl_armor: Player reference is nil "..msg)
+		minetest.log("error", "mcla_armor: Player reference is nil "..msg)
 		return
 	end
 	local name = player:get_player_name()
 	if not name then
-		minetest.log("error", "mcl_armor: Player name is nil "..msg)
+		minetest.log("error", "mcla_armor: Player name is nil "..msg)
 		return
 	end
 	local pos = player:get_pos()
 	local player_inv = player:get_inventory()
 	local armor_inv = minetest.get_inventory({type="detached", name=name.."_armor"})
 	if not pos then
-		minetest.log("error", "mcl_armor: Player position is nil "..msg)
+		minetest.log("error", "mcla_armor: Player position is nil "..msg)
 		return
 	elseif not player_inv then
-		minetest.log("error", "mcl_armor: Player inventory is nil "..msg)
+		minetest.log("error", "mcla_armor: Player inventory is nil "..msg)
 		return
 	elseif not armor_inv then
-		minetest.log("error", "mcl_armor: Detached armor inventory is nil "..msg)
+		minetest.log("error", "mcla_armor: Detached armor inventory is nil "..msg)
 		return
 	end
 	return name, player_inv, armor_inv, pos
@@ -311,10 +311,10 @@ armor.play_equip_sound = function(self, stack, player, pos, unequip)
 	if unequip then
 		estr = "unequip"
 	end
-	local snd = def.sounds and def.sounds["_mcl_armor_"..estr]
+	local snd = def.sounds and def.sounds["_mcla_armor_"..estr]
 	if not snd then
 		-- Fallback sound
-		snd = { name = "mcl_armor_"..estr.."_generic" }
+		snd = { name = "mcla_armor_"..estr.."_generic" }
 	end
 	if snd then
 		local dist = 8
@@ -327,7 +327,7 @@ end
 
 -- Register Player Model
 
-mcl_player.player_register_model("mcl_armor_character.b3d", {
+mcla_player.player_register_model("mcl_armor_character.b3d", {
 	animation_speed = 30,
 	textures = {
 		armor.default_skin..".png",
@@ -380,7 +380,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 end)
 
 minetest.register_on_joinplayer(function(player)
-	mcl_player.player_set_model(player, "mcl_armor_character.b3d")
+	mcla_player.player_set_model(player, "mcl_armor_character.b3d")
 	local name = player:get_player_name()
 	local player_inv = player:get_inventory()
 	local armor_inv = minetest.create_detached_inventory(name.."_armor", {
@@ -453,8 +453,8 @@ minetest.register_on_joinplayer(function(player)
 		wielditem = "blank.png",
 		preview = armor.default_skin.."_preview.png",
 	}
-	if skin_mod == "mcl_skins" then
-		local skin = mcl_skins.skins[name]
+	if skin_mod == "mcla_skins" then
+		local skin = mcla_skins.skins[name]
 		if skin then
 			armor.textures[name].skin = skin..".png"
 		end
@@ -501,8 +501,8 @@ minetest.register_on_player_hpchange(function(player, hp_change, reason)
 		for i=1, 6 do
 			local stack = player_inv:get_stack("armor", i)
 			if stack:get_count() > 0 then
-				local pts = stack:get_definition().groups["mcl_armor_points"] or 0
-				local tough = stack:get_definition().groups["mcl_armor_toughness"] or 0
+				local pts = stack:get_definition().groups["mcla_armor_points"] or 0
+				local tough = stack:get_definition().groups["mcla_armor_toughness"] or 0
 				total_points = total_points + pts
 				total_toughness = total_toughness + tough
 
@@ -543,7 +543,7 @@ minetest.register_on_player_hpchange(function(player, hp_change, reason)
 				end
 
 				-- Damage armor
-				local use = stack:get_definition().groups["mcl_armor_uses"] or 0
+				local use = stack:get_definition().groups["mcla_armor_uses"] or 0
 				if use > 0 and regular_reduction then
 					local unbreaking_level = 0
 					if unbreaking_level > 0 then

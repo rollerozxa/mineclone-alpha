@@ -1,6 +1,6 @@
-mcl_formspec = {}
+mcla_formspec = {}
 
-function mcl_formspec.get_itemslot_bg(x, y, w, h)
+function mcla_formspec.get_itemslot_bg(x, y, w, h)
 	local out = ""
 	for i = 0, w - 1, 1 do
 		for j = 0, h - 1, 1 do
@@ -11,11 +11,11 @@ function mcl_formspec.get_itemslot_bg(x, y, w, h)
 end
 
 minetest.register_on_joinplayer(function(player)
-	player:set_formspec_prepend(mcl_vars.gui_nonbg .. mcl_vars.gui_bg_color .. mcl_vars.gui_bg_img)
+	player:set_formspec_prepend(mcla_vars.gui_nonbg .. mcla_vars.gui_bg_color .. mcla_vars.gui_bg_img)
 end)
 
 -- Simple formspec wrapper that does variable substitution.
-function mcl_formspec.formspec_wrapper(formspec, variables)
+function mcla_formspec.formspec_wrapper(formspec, variables)
 	local retval = formspec
 
 	for k,v in pairs(variables) do

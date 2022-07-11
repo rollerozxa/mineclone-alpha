@@ -1,4 +1,4 @@
-local S = minetest.get_translator("mcl_signs")
+local S = minetest.get_translator("mcla_signs")
 local F = minetest.formspec_escape
 
 -- Load the characters map (characters.txt)
@@ -17,7 +17,7 @@ local chars_file = io.open(minetest.get_modpath("mcla_signs").."/characters.txt"
 -- FIXME: Support more characters (many characters are missing). Currently ASCII and Latin-1 Supplement are supported.
 local charmap = {}
 if not chars_file then
-	minetest.log("error", "[mcl_signs] : character map file not found")
+	minetest.log("error", "[mcla_signs] : character map file not found")
 else
 	while true do
 		local char = chars_file:read("*l")
@@ -106,7 +106,7 @@ local generate_line = function(s, ypos)
 			-- Use replacement character:
 			file = "_rc"
 			i = i + 1
-			minetest.log("verbose", "[mcl_signs] Unknown symbol in '"..s.."' at "..i)
+			minetest.log("verbose", "[mcla_signs] Unknown symbol in '"..s.."' at "..i)
 		end
 		if file ~= nil then
 			width = width + printed_char_width
@@ -226,7 +226,7 @@ local update_sign = function(pos, fields, sender, force_remove)
 		sign_info = signtext_info_wall[get_wall_signtext_info(n.param2)]
 	end
 	if sign_info == nil then
-		minetest.log("error", "[mcl_signs] Missing sign_info!")
+		minetest.log("error", "[mcla_signs] Missing sign_info!")
 		return
 	end
 
@@ -273,7 +273,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 end)
 
-local node_sounds = mcl_sounds.node_sound_wood_defaults()
+local node_sounds = mcla_sounds.node_sound_wood_defaults()
 
 minetest.register_node(":mcla:wall_sign", {
 	description = S("Sign"),
@@ -408,8 +408,8 @@ minetest.register_node(":mcla:wall_sign", {
 			return false
 		end
 	end,
-	_mcl_hardness = 1,
-	_mcl_blast_resistance = 1,
+	_mcla_hardness = 1,
+	_mcla_blast_resistance = 1,
 })
 
 -- Standing sign nodes.
@@ -449,8 +449,8 @@ local ssign = {
 		return true
 	end,
 
-	_mcl_hardness = 1,
-	_mcl_blast_resistance = 1,
+	_mcla_hardness = 1,
+	_mcla_blast_resistance = 1,
 }
 
 minetest.register_node(":mcla:standing_sign", ssign)

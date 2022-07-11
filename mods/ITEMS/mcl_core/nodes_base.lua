@@ -1,4 +1,4 @@
-local S = minetest.get_translator("mcl_core")
+local S = minetest.get_translator("mcla_core")
 
 -- Simple solid cubic nodes, most of them are the ground materials and simple building blocks
 
@@ -9,10 +9,10 @@ minetest.register_node(":mcla:stone", {
 	stack_max = 64,
 	groups = {pickaxey=1, stone=1, building_block=1, material_stone=1},
 	drop = 'mcla:cobble',
-	sounds = mcl_sounds.node_sound_stone_defaults(),
-	_mcl_blast_resistance = 6,
-	_mcl_hardness = 1.5,
-	_mcl_silk_touch_drop = true,
+	sounds = mcla_sounds.node_sound_stone_defaults(),
+	_mcla_blast_resistance = 6,
+	_mcla_hardness = 1.5,
+	_mcla_silk_touch_drop = true,
 })
 
 minetest.register_node(":mcla:stone_with_coal", {
@@ -22,10 +22,10 @@ minetest.register_node(":mcla:stone_with_coal", {
 	stack_max = 64,
 	groups = {pickaxey=1, building_block=1, material_stone=1, xp=1},
 	drop = 'mcla:coal_lump',
-	sounds = mcl_sounds.node_sound_stone_defaults(),
-	_mcl_blast_resistance = 3,
-	_mcl_hardness = 3,
-	_mcl_silk_touch_drop = true,
+	sounds = mcla_sounds.node_sound_stone_defaults(),
+	_mcla_blast_resistance = 3,
+	_mcla_hardness = 3,
+	_mcla_silk_touch_drop = true,
 })
 
 minetest.register_node(":mcla:stone_with_iron", {
@@ -35,10 +35,10 @@ minetest.register_node(":mcla:stone_with_iron", {
 	stack_max = 64,
 	groups = {pickaxey=3, building_block=1, material_stone=1},
 	drop = 'mcla:stone_with_iron',
-	sounds = mcl_sounds.node_sound_stone_defaults(),
-	_mcl_blast_resistance = 3,
-	_mcl_hardness = 3,
-	_mcl_silk_touch_drop = true,
+	sounds = mcla_sounds.node_sound_stone_defaults(),
+	_mcla_blast_resistance = 3,
+	_mcla_hardness = 3,
+	_mcla_silk_touch_drop = true,
 })
 
 
@@ -49,10 +49,10 @@ minetest.register_node(":mcla:stone_with_gold", {
 	stack_max = 64,
 	groups = {pickaxey=4, building_block=1, material_stone=1},
 	drop = "mcla:stone_with_gold",
-	sounds = mcl_sounds.node_sound_stone_defaults(),
-	_mcl_blast_resistance = 3,
-	_mcl_hardness = 3,
-	_mcl_silk_touch_drop = true,
+	sounds = mcla_sounds.node_sound_stone_defaults(),
+	_mcla_blast_resistance = 3,
+	_mcla_hardness = 3,
+	_mcla_silk_touch_drop = true,
 })
 
 local redstone_timer = 68.28
@@ -79,12 +79,12 @@ minetest.register_node(":mcla:stone_with_redstone", {
 			},
 		}
 	},
-	sounds = mcl_sounds.node_sound_stone_defaults(),
+	sounds = mcla_sounds.node_sound_stone_defaults(),
 	on_punch = redstone_ore_activate,
 	on_walk_over = redstone_ore_activate, -- Uses walkover mod
-	_mcl_blast_resistance = 3,
-	_mcl_hardness = 3,
-	_mcl_silk_touch_drop = true,
+	_mcla_blast_resistance = 3,
+	_mcla_hardness = 3,
+	_mcla_silk_touch_drop = true,
 })
 
 local redstone_ore_reactivate = function(pos)
@@ -112,7 +112,7 @@ minetest.register_node(":mcla:stone_with_redstone_lit", {
 			},
 		}
 	},
-	sounds = mcl_sounds.node_sound_stone_defaults(),
+	sounds = mcla_sounds.node_sound_stone_defaults(),
 	-- Reset timer after re-punching or stepping on
 	on_punch = redstone_ore_reactivate,
 	on_walk_over = redstone_ore_reactivate, -- Uses walkover mod
@@ -120,9 +120,9 @@ minetest.register_node(":mcla:stone_with_redstone_lit", {
 	on_timer = function(pos, elapsed)
 		minetest.swap_node(pos, {name="mcla:stone_with_redstone"})
 	end,
-	_mcl_blast_resistance = 3,
-	_mcl_hardness = 3,
-	_mcl_silk_touch_drop = {"mcla:stone_with_redstone"},
+	_mcla_blast_resistance = 3,
+	_mcla_hardness = 3,
+	_mcla_silk_touch_drop = {"mcla:stone_with_redstone"},
 })
 
 minetest.register_node(":mcla:stone_with_diamond", {
@@ -132,10 +132,10 @@ minetest.register_node(":mcla:stone_with_diamond", {
 	stack_max = 64,
 	groups = {pickaxey=4, building_block=1, material_stone=1, xp=4},
 	drop = "mcla:diamond",
-	sounds = mcl_sounds.node_sound_stone_defaults(),
-	_mcl_blast_resistance = 3,
-	_mcl_hardness = 3,
-	_mcl_silk_touch_drop = true,
+	sounds = mcla_sounds.node_sound_stone_defaults(),
+	_mcla_blast_resistance = 3,
+	_mcla_hardness = 3,
+	_mcla_silk_touch_drop = true,
 })
 
 -- Grass Block
@@ -148,25 +148,25 @@ minetest.register_node(":mcla:dirt_with_grass", {
 	stack_max = 64,
 	groups = {handy=1,shovely=1,dirt=2,grass_block=1, grass_block_no_snow=1, soil=1, soil_sapling=2, soil_sugarcane=1, cultivatable=2, spreading_dirt_type=1, building_block=1},
 	drop = 'mcla:dirt',
-	sounds = mcl_sounds.node_sound_dirt_defaults({
+	sounds = mcla_sounds.node_sound_dirt_defaults({
 		footstep = {name="mcl_core_grass_footstep", gain=0.1},
 	}),
 	on_construct = function(pos)
 		local node = minetest.get_node(pos)
 		if node.param2 == 0 then
-			local new_node = mcl_core.get_grass_block_type(pos)
+			local new_node = mcla_core.get_grass_block_type(pos)
 			if new_node.param2 ~= 0 or new_node.name ~= "mcla:dirt_with_grass" then
 				minetest.set_node(pos, new_node)
 			end
 		end
-		return mcl_core.on_snowable_construct(pos)
+		return mcla_core.on_snowable_construct(pos)
 	end,
-	_mcl_snowed = "mcla:dirt_with_grass_snow",
-	_mcl_blast_resistance = 0.5,
-	_mcl_hardness = 0.6,
-	_mcl_silk_touch_drop = true,
+	_mcla_snowed = "mcla:dirt_with_grass_snow",
+	_mcla_blast_resistance = 0.5,
+	_mcla_hardness = 0.6,
+	_mcla_silk_touch_drop = true,
 })
-mcl_core.register_snowed_node(":mcla:dirt_with_grass_snow", "mcla:dirt_with_grass", nil, nil, true, S("Dirt with Snow"))
+mcla_core.register_snowed_node(":mcla:dirt_with_grass_snow", "mcla:dirt_with_grass", nil, nil, true, S("Dirt with Snow"))
 
 minetest.register_node(":mcla:dirt", {
 	description = S("Dirt"),
@@ -174,9 +174,9 @@ minetest.register_node(":mcla:dirt", {
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {handy=1,shovely=1, dirt=1,soil=1, soil_sapling=2, soil_sugarcane=1, cultivatable=2, building_block=1},
-	sounds = mcl_sounds.node_sound_dirt_defaults(),
-	_mcl_blast_resistance = 0.5,
-	_mcl_hardness = 0.5,
+	sounds = mcla_sounds.node_sound_dirt_defaults(),
+	_mcla_blast_resistance = 0.5,
+	_mcla_hardness = 0.5,
 })
 
 minetest.register_node(":mcla:gravel", {
@@ -192,12 +192,12 @@ minetest.register_node(":mcla:gravel", {
 			{items = {'mcla:gravel'}}
 		}
 	},
-	sounds = mcl_sounds.node_sound_dirt_defaults({
+	sounds = mcla_sounds.node_sound_dirt_defaults({
 		footstep = {name="mcl_core_gravel_footstep", gain=0.45},
 	}),
-	_mcl_blast_resistance = 0.6,
-	_mcl_hardness = 0.6,
-	_mcl_silk_touch_drop = true,
+	_mcla_blast_resistance = 0.6,
+	_mcla_hardness = 0.6,
+	_mcla_silk_touch_drop = true,
 })
 
 minetest.register_node(":mcla:sand", {
@@ -206,9 +206,9 @@ minetest.register_node(":mcla:sand", {
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {handy=1,shovely=1, falling_node=1, sand=1, soil_sugarcane=1, building_block=1, material_sand=1},
-	sounds = mcl_sounds.node_sound_sand_defaults(),
-	_mcl_blast_resistance = 0.5,
-	_mcl_hardness = 0.5,
+	sounds = mcla_sounds.node_sound_sand_defaults(),
+	_mcla_blast_resistance = 0.5,
+	_mcla_hardness = 0.5,
 })
 
 ---
@@ -220,10 +220,10 @@ minetest.register_node(":mcla:clay", {
 	stack_max = 64,
 	groups = {handy=1,shovely=1, building_block=1},
 	drop = 'mcla:clay_lump 4',
-	sounds = mcl_sounds.node_sound_dirt_defaults(),
-	_mcl_blast_resistance = 0.6,
-	_mcl_hardness = 0.6,
-	_mcl_silk_touch_drop = true,
+	sounds = mcla_sounds.node_sound_dirt_defaults(),
+	_mcla_blast_resistance = 0.6,
+	_mcla_hardness = 0.6,
+	_mcla_silk_touch_drop = true,
 })
 
 minetest.register_node(":mcla:brick_block", {
@@ -233,9 +233,9 @@ minetest.register_node(":mcla:brick_block", {
 	is_ground_content = false,
 	stack_max = 64,
 	groups = {pickaxey=1, building_block=1, material_stone=1},
-	sounds = mcl_sounds.node_sound_stone_defaults(),
-	_mcl_blast_resistance = 6,
-	_mcl_hardness = 2,
+	sounds = mcla_sounds.node_sound_stone_defaults(),
+	_mcla_blast_resistance = 6,
+	_mcla_hardness = 2,
 })
 
 
@@ -244,12 +244,12 @@ minetest.register_node(":mcla:bedrock", {
 	tiles = {"mcl_core_bedrock.png"},
 	stack_max = 64,
 	groups = {creative_breakable=1, building_block=1, material_stone=1},
-	sounds = mcl_sounds.node_sound_stone_defaults(),
+	sounds = mcla_sounds.node_sound_stone_defaults(),
 	is_ground_content = false,
 	on_blast = function() end,
 	drop = '',
-	_mcl_blast_resistance = 3600000,
-	_mcl_hardness = -1,
+	_mcla_blast_resistance = 3600000,
+	_mcla_hardness = -1,
 })
 
 minetest.register_node(":mcla:cobble", {
@@ -258,9 +258,9 @@ minetest.register_node(":mcla:cobble", {
 	is_ground_content = false,
 	stack_max = 64,
 	groups = {pickaxey=1, building_block=1, material_stone=1},
-	sounds = mcl_sounds.node_sound_stone_defaults(),
-	_mcl_blast_resistance = 6,
-	_mcl_hardness = 2,
+	sounds = mcla_sounds.node_sound_stone_defaults(),
+	_mcla_blast_resistance = 6,
+	_mcla_hardness = 2,
 })
 
 minetest.register_node(":mcla:mossycobble", {
@@ -269,9 +269,9 @@ minetest.register_node(":mcla:mossycobble", {
 	is_ground_content = false,
 	stack_max = 64,
 	groups = {pickaxey=1, building_block=1, material_stone=1},
-	sounds = mcl_sounds.node_sound_stone_defaults(),
-	_mcl_blast_resistance = 6,
-	_mcl_hardness = 2,
+	sounds = mcla_sounds.node_sound_stone_defaults(),
+	_mcla_blast_resistance = 6,
+	_mcla_hardness = 2,
 })
 
 minetest.register_node(":mcla:ironblock", {
@@ -280,9 +280,9 @@ minetest.register_node(":mcla:ironblock", {
 	is_ground_content = false,
 	stack_max = 64,
 	groups = {pickaxey=2, building_block=1},
-	sounds = mcl_sounds.node_sound_metal_defaults(),
-	_mcl_blast_resistance = 6,
-	_mcl_hardness = 5,
+	sounds = mcla_sounds.node_sound_metal_defaults(),
+	_mcla_blast_resistance = 6,
+	_mcla_hardness = 5,
 })
 
 minetest.register_node(":mcla:goldblock", {
@@ -291,9 +291,9 @@ minetest.register_node(":mcla:goldblock", {
 	is_ground_content = false,
 	stack_max = 64,
 	groups = {pickaxey=4, building_block=1},
-	sounds = mcl_sounds.node_sound_metal_defaults(),
-	_mcl_blast_resistance = 6,
-	_mcl_hardness = 5,
+	sounds = mcla_sounds.node_sound_metal_defaults(),
+	_mcla_blast_resistance = 6,
+	_mcla_hardness = 5,
 })
 
 minetest.register_node(":mcla:diamondblock", {
@@ -302,20 +302,20 @@ minetest.register_node(":mcla:diamondblock", {
 	is_ground_content = false,
 	stack_max = 64,
 	groups = {pickaxey=4, building_block=1},
-	sounds = mcl_sounds.node_sound_stone_defaults(),
-	_mcl_blast_resistance = 6,
-	_mcl_hardness = 5,
+	sounds = mcla_sounds.node_sound_stone_defaults(),
+	_mcla_blast_resistance = 6,
+	_mcla_hardness = 5,
 })
 
 minetest.register_node(":mcla:obsidian", {
 	description = S("Obsidian"),
 	tiles = {"mcl_core_obsidian.png"},
 	is_ground_content = true,
-	sounds = mcl_sounds.node_sound_stone_defaults(),
+	sounds = mcla_sounds.node_sound_stone_defaults(),
 	stack_max = 64,
 	groups = {pickaxey=5, building_block=1, material_stone=1},
-	_mcl_blast_resistance = 1200,
-	_mcl_hardness = 50,
+	_mcla_blast_resistance = 1200,
+	_mcla_hardness = 50,
 })
 
 minetest.register_node(":mcla:ice", {
@@ -326,14 +326,14 @@ minetest.register_node(":mcla:ice", {
 	stack_max = 64,
 	groups = {handy=1,pickaxey=1, slippery=3, building_block=1, ice=1},
 	drop = "",
-	sounds = mcl_sounds.node_sound_glass_defaults(),
+	sounds = mcla_sounds.node_sound_glass_defaults(),
 	node_dig_prediction = "mcla:water_source",
 	after_dig_node = function(pos, oldnode)
-		mcl_core.melt_ice(pos)
+		mcla_core.melt_ice(pos)
 	end,
-	_mcl_blast_resistance = 0.5,
-	_mcl_hardness = 0.5,
-	_mcl_silk_touch_drop = true,
+	_mcla_blast_resistance = 0.5,
+	_mcla_hardness = 0.5,
+	_mcla_silk_touch_drop = true,
 })
 
 for i=1,8 do
@@ -390,7 +390,7 @@ for i=1,8 do
 			fakestack:set_name("mcla:snow_"..math.min(8, (i+g)))
 			local success
 			itemstack, success = minetest.item_place(fakestack, placer, pointed_thing)
-			minetest.sound_play(mcl_sounds.node_sound_snow_defaults().place, {pos = below}, true)
+			minetest.sound_play(mcla_sounds.node_sound_snow_defaults().place, {pos = below}, true)
 			itemstack:set_name(itemstring)
 			return itemstack
 		end
@@ -400,7 +400,7 @@ for i=1,8 do
 		local bnode = minetest.get_node(below)
 
 		if minetest.get_item_group(bnode.name, "solid") == 1 then
-			minetest.sound_play(mcl_sounds.node_sound_snow_defaults().place, {pos = below}, true)
+			minetest.sound_play(mcla_sounds.node_sound_snow_defaults().place, {pos = below}, true)
 			return minetest.item_place_node(itemstack, placer, pointed_thing)
 		else
 			return itemstack
@@ -424,18 +424,18 @@ for i=1,8 do
 		on_flood = function(pos, oldnode, newnode)
 			local npos = {x=pos.x, y=pos.y-1, z=pos.z}
 			local node = minetest.get_node(npos)
-			mcl_core.clear_snow_dirt(npos, node)
+			mcla_core.clear_snow_dirt(npos, node)
 		end,
 		node_box = node_box,
 		groups = {shovely=1, attached_node=1,deco_block=1,  snow_cover=1, top_snow=i},
-		sounds = mcl_sounds.node_sound_snow_defaults(),
-		on_construct = mcl_core.on_snow_construct,
+		sounds = mcla_sounds.node_sound_snow_defaults(),
+		on_construct = mcla_core.on_snow_construct,
 		on_place = on_place,
-		after_destruct = mcl_core.after_snow_destruct,
+		after_destruct = mcla_core.after_snow_destruct,
 		drop = "mcla:snowball "..(i+1),
-		_mcl_blast_resistance = 0.1,
-		_mcl_hardness = 0.1,
-		_mcl_silk_touch_drop = {"mcla:snow " .. i},
+		_mcla_blast_resistance = 0.1,
+		_mcla_hardness = 0.1,
+		_mcla_silk_touch_drop = {"mcla:snow " .. i},
 	})
 end
 
@@ -445,13 +445,13 @@ minetest.register_node(":mcla:snowblock", {
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {shovely=1, building_block=1, snow_cover=1},
-	sounds = mcl_sounds.node_sound_snow_defaults(),
-	on_construct = mcl_core.on_snow_construct,
-	after_destruct = mcl_core.after_snow_destruct,
+	sounds = mcla_sounds.node_sound_snow_defaults(),
+	on_construct = mcla_core.on_snow_construct,
+	after_destruct = mcla_core.after_snow_destruct,
 	drop = "mcla:snowball 4",
-	_mcl_blast_resistance = 0.2,
-	_mcl_hardness = 0.2,
-	_mcl_silk_touch_drop = true,
+	_mcla_blast_resistance = 0.2,
+	_mcla_hardness = 0.2,
+	_mcla_silk_touch_drop = true,
 })
 
 minetest.register_node(":mcla:sponge", {
@@ -464,10 +464,10 @@ minetest.register_node(":mcla:sponge", {
 	diggable = true,
 	buildable_to = false,
 	stack_max = 64,
-	sounds = mcl_sounds.node_sound_dirt_defaults(),
+	sounds = mcla_sounds.node_sound_dirt_defaults(),
 	groups = {handy=1, building_block=1},
-	_mcl_blast_resistance = 0.6,
-	_mcl_hardness = 0.6,
+	_mcla_blast_resistance = 0.6,
+	_mcla_hardness = 0.6,
 })
 
 -- Bookshelf
@@ -478,8 +478,8 @@ minetest.register_node(":mcla:bookshelf", {
 	is_ground_content = false,
 	groups = {handy=1,axey=1, flammable=3,building_block=1, material_wood=1, fire_encouragement=30, fire_flammability=20},
 	drop = "mcla:book 3",
-	sounds = mcl_sounds.node_sound_wood_defaults(),
-	_mcl_blast_resistance = 1.5,
-	_mcl_hardness = 1.5,
-	_mcl_silk_touch_drop = true,
+	sounds = mcla_sounds.node_sound_wood_defaults(),
+	_mcla_blast_resistance = 1.5,
+	_mcla_hardness = 1.5,
+	_mcla_silk_touch_drop = true,
 })

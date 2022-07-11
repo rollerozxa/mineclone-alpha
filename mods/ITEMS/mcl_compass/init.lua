@@ -1,6 +1,6 @@
-local S = minetest.get_translator("mcl_compass")
+local S = minetest.get_translator("mcla_compass")
 
-mcl_compass = {}
+mcla_compass = {}
 
 local compass_frames = 32
 
@@ -31,7 +31,7 @@ minetest.register_globalstep(function(dtime)
 		end
 		if has_compass(player) then
 			local pos = player:get_pos()
-			local dim = mcl_worlds.pos_to_dimension(pos)
+			local dim = mcla_worlds.pos_to_dimension(pos)
 			local compass_image
 			-- Compasses do not work in certain zones
 			local spawn = {x=0,y=0,z=0}
@@ -52,7 +52,7 @@ minetest.register_globalstep(function(dtime)
 			for j,stack in ipairs(player:get_inventory():get_list("main")) do
 				if minetest.get_item_group(stack:get_name(), "compass") ~= 0 and
 						minetest.get_item_group(stack:get_name(), "compass")-1 ~= compass_image then
-					local itemname = "mcl_compass:"..compass_image
+					local itemname = "mcla_compass:"..compass_image
 					stack:set_name(itemname)
 					player:get_inventory():set_stack("main", j, stack)
 				end
@@ -84,7 +84,7 @@ for i,img in ipairs(images) do
 end
 
 minetest.register_craft({
-	output = 'mcl_compass:'..stereotype_frame,
+	output = 'mcla_compass:'..stereotype_frame,
 	recipe = {
 		{'', 'mcla:iron_ingot', ''},
 		{'mcla:iron_ingot', 'mesecons:redstone', 'mcla:iron_ingot'},
@@ -92,9 +92,9 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_alias("mcla:compass", "mcl_compass:"..stereotype_frame)
+minetest.register_alias("mcla:compass", "mcla_compass:"..stereotype_frame)
 
 -- Export stereotype item for other mods to use
-mcl_compass.stereotype = "mcl_compass:"..tostring(stereotype_frame)
+mcla_compass.stereotype = "mcla_compass:"..tostring(stereotype_frame)
 
 

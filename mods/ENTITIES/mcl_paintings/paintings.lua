@@ -1,6 +1,6 @@
 local TS = 16 -- texture size
 
-mcl_paintings.paintings = {
+mcla_paintings.paintings = {
 	[1] = {
 		[1] = {
 	 		{ cx = 0, cy = 0 },

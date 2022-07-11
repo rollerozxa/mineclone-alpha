@@ -1,12 +1,12 @@
-mcl_mapgen_core = {}
-mcl_mapgen_core.registered_generators = {}
+mcla_mapgen_core = {}
+mcla_mapgen_core.registered_generators = {}
 
 local lvm, nodes, param2 = 0, 0, 0
 
 local generating = {} -- generating chunks
 local chunks = {} -- intervals of chunks generated
 local function add_chunk(pos)
-	local n = mcl_vars.get_chunk_number(pos) -- unsigned int
+	local n = mcla_vars.get_chunk_number(pos) -- unsigned int
 	local prev
 	for i, d in pairs(chunks) do
 		if n <= d[2] then -- we've found it
@@ -31,8 +31,8 @@ local function add_chunk(pos)
 	end
 	chunks[#chunks] = {n, n}
 end
-function mcl_mapgen_core.is_generated(pos)
-	local n = mcl_vars.get_chunk_number(pos) -- unsigned int
+function mcla_mapgen_core.is_generated(pos)
+	local n = mcla_vars.get_chunk_number(pos) -- unsigned int
 	for i, d in pairs(chunks) do
 		if n <= d[2] then
 			return (n >= d[1])
@@ -66,7 +66,7 @@ minetest.register_alias("mapgen_stone_with_iron", "mcla:stone_with_iron")
 minetest.register_alias("mapgen_desert_sand", "mcla:sand")
 minetest.register_alias("mapgen_desert_stone", "mcla:sandstone")
 minetest.register_alias("mapgen_sandstone", "mcla:sandstone")
-minetest.register_alias("mapgen_river_water_source", "mclx_core:river_water_source")
+minetest.register_alias("mapgen_river_water_source", "mclax_core:river_water_source")
 minetest.register_alias("mapgen_snow", "mcla:snow")
 minetest.register_alias("mapgen_snowblock", "mcla:snowblock")
 minetest.register_alias("mapgen_ice", "mcla:ice")
@@ -106,8 +106,8 @@ minetest.register_ore({
 	clust_scarcity = 15*15*15,
 	clust_num_ores = 33,
 	clust_size     = 4,
-	y_min          = mcl_vars.mg_overworld_min,
-	y_max          = mcl_vars.mg_overworld_max,
+	y_min          = mcla_vars.mg_overworld_min,
+	y_max          = mcla_vars.mg_overworld_max,
 	noise_params = {
 		offset  = 0,
 		scale   = 1,
@@ -128,8 +128,8 @@ minetest.register_ore({
 	clust_scarcity = 14*14*14,
 	clust_num_ores = 33,
 	clust_size     = 5,
-	y_min          = mcl_vars.mg_overworld_min,
-	y_max          = mcl_worlds.layer_to_y(111),
+	y_min          = mcla_vars.mg_overworld_min,
+	y_max          = mcla_worlds.layer_to_y(111),
 	noise_params = {
 		offset  = 0,
 		scale   = 1,
@@ -155,8 +155,8 @@ minetest.register_ore({
 	clust_scarcity = 525*3,
 	clust_num_ores = 5,
 	clust_size     = 3,
-	y_min          = mcl_vars.mg_overworld_min,
-	y_max          = mcl_worlds.layer_to_y(50),
+	y_min          = mcla_vars.mg_overworld_min,
+	y_max          = mcla_worlds.layer_to_y(50),
 })
 minetest.register_ore({
 	ore_type       = "scatter",
@@ -165,8 +165,8 @@ minetest.register_ore({
 	clust_scarcity = 510*3,
 	clust_num_ores = 8,
 	clust_size     = 3,
-	y_min          = mcl_vars.mg_overworld_min,
-	y_max          = mcl_worlds.layer_to_y(50),
+	y_min          = mcla_vars.mg_overworld_min,
+	y_max          = mcla_worlds.layer_to_y(50),
 })
 minetest.register_ore({
 	ore_type       = "scatter",
@@ -175,8 +175,8 @@ minetest.register_ore({
 	clust_scarcity = 500*3,
 	clust_num_ores = 12,
 	clust_size     = 3,
-	y_min          = mcl_vars.mg_overworld_min,
-	y_max          = mcl_worlds.layer_to_y(50),
+	y_min          = mcla_vars.mg_overworld_min,
+	y_max          = mcla_worlds.layer_to_y(50),
 })
 
 -- Medium-rare spawn
@@ -187,8 +187,8 @@ minetest.register_ore({
 	clust_scarcity = 550*3,
 	clust_num_ores = 4,
 	clust_size     = 2,
-	y_min          = mcl_worlds.layer_to_y(51),
-	y_max          = mcl_worlds.layer_to_y(80),
+	y_min          = mcla_worlds.layer_to_y(51),
+	y_max          = mcla_worlds.layer_to_y(80),
 })
 minetest.register_ore({
 	ore_type       = "scatter",
@@ -197,8 +197,8 @@ minetest.register_ore({
 	clust_scarcity = 525*3,
 	clust_num_ores = 6,
 	clust_size     = 3,
-	y_min          = mcl_worlds.layer_to_y(51),
-	y_max          = mcl_worlds.layer_to_y(80),
+	y_min          = mcla_worlds.layer_to_y(51),
+	y_max          = mcla_worlds.layer_to_y(80),
 })
 minetest.register_ore({
 	ore_type       = "scatter",
@@ -207,8 +207,8 @@ minetest.register_ore({
 	clust_scarcity = 500*3,
 	clust_num_ores = 8,
 	clust_size     = 3,
-	y_min          = mcl_worlds.layer_to_y(51),
-	y_max          = mcl_worlds.layer_to_y(80),
+	y_min          = mcla_worlds.layer_to_y(51),
+	y_max          = mcla_worlds.layer_to_y(80),
 })
 
 -- Rare spawn
@@ -219,8 +219,8 @@ minetest.register_ore({
 	clust_scarcity = 600*3,
 	clust_num_ores = 3,
 	clust_size     = 2,
-	y_min          = mcl_worlds.layer_to_y(81),
-	y_max          = mcl_worlds.layer_to_y(128),
+	y_min          = mcla_worlds.layer_to_y(81),
+	y_max          = mcla_worlds.layer_to_y(128),
 })
 minetest.register_ore({
 	ore_type       = "scatter",
@@ -229,8 +229,8 @@ minetest.register_ore({
 	clust_scarcity = 550*3,
 	clust_num_ores = 4,
 	clust_size     = 3,
-	y_min          = mcl_worlds.layer_to_y(81),
-	y_max          = mcl_worlds.layer_to_y(128),
+	y_min          = mcla_worlds.layer_to_y(81),
+	y_max          = mcla_worlds.layer_to_y(128),
 })
 minetest.register_ore({
 	ore_type       = "scatter",
@@ -239,8 +239,8 @@ minetest.register_ore({
 	clust_scarcity = 500*3,
 	clust_num_ores = 5,
 	clust_size     = 3,
-	y_min          = mcl_worlds.layer_to_y(81),
-	y_max          = mcl_worlds.layer_to_y(128),
+	y_min          = mcla_worlds.layer_to_y(81),
+	y_max          = mcla_worlds.layer_to_y(128),
 })
 
 --
@@ -253,8 +253,8 @@ minetest.register_ore({
 	clust_scarcity = 830,
 	clust_num_ores = 5,
 	clust_size     = 3,
-	y_min          = mcl_vars.mg_overworld_min,
-	y_max          = mcl_worlds.layer_to_y(39),
+	y_min          = mcla_vars.mg_overworld_min,
+	y_max          = mcla_worlds.layer_to_y(39),
 })
 minetest.register_ore({
 	ore_type       = "scatter",
@@ -263,8 +263,8 @@ minetest.register_ore({
 	clust_scarcity = 1660,
 	clust_num_ores = 4,
 	clust_size     = 2,
-	y_min          = mcl_worlds.layer_to_y(40),
-	y_max          = mcl_worlds.layer_to_y(63),
+	y_min          = mcla_worlds.layer_to_y(40),
+	y_max          = mcla_worlds.layer_to_y(63),
 })
 
 --
@@ -279,8 +279,8 @@ minetest.register_ore({
 	clust_scarcity = 4775,
 	clust_num_ores = 5,
 	clust_size     = 3,
-	y_min          = mcl_vars.mg_overworld_min,
-	y_max          = mcl_worlds.layer_to_y(30),
+	y_min          = mcla_vars.mg_overworld_min,
+	y_max          = mcla_worlds.layer_to_y(30),
 })
 minetest.register_ore({
 	ore_type       = "scatter",
@@ -289,8 +289,8 @@ minetest.register_ore({
 	clust_scarcity = 6560,
 	clust_num_ores = 7,
 	clust_size     = 3,
-	y_min          = mcl_vars.mg_overworld_min,
-	y_max          = mcl_worlds.layer_to_y(30),
+	y_min          = mcla_vars.mg_overworld_min,
+	y_max          = mcla_worlds.layer_to_y(30),
 })
 
 -- Rare spawn
@@ -301,8 +301,8 @@ minetest.register_ore({
 	clust_scarcity = 13000,
 	clust_num_ores = 4,
 	clust_size     = 2,
-	y_min          = mcl_worlds.layer_to_y(31),
-	y_max          = mcl_worlds.layer_to_y(33),
+	y_min          = mcla_worlds.layer_to_y(31),
+	y_max          = mcla_worlds.layer_to_y(33),
 })
 
 --
@@ -317,8 +317,8 @@ minetest.register_ore({
 	clust_scarcity = 10000,
 	clust_num_ores = 4,
 	clust_size     = 3,
-	y_min          = mcl_vars.mg_overworld_min,
-	y_max          = mcl_worlds.layer_to_y(12),
+	y_min          = mcla_vars.mg_overworld_min,
+	y_max          = mcla_worlds.layer_to_y(12),
 })
 minetest.register_ore({
 	ore_type       = "scatter",
@@ -327,8 +327,8 @@ minetest.register_ore({
 	clust_scarcity = 5000,
 	clust_num_ores = 2,
 	clust_size     = 2,
-	y_min          = mcl_vars.mg_overworld_min,
-	y_max          = mcl_worlds.layer_to_y(12),
+	y_min          = mcla_vars.mg_overworld_min,
+	y_max          = mcla_worlds.layer_to_y(12),
 })
 minetest.register_ore({
 	ore_type       = "scatter",
@@ -337,8 +337,8 @@ minetest.register_ore({
 	clust_scarcity = 10000,
 	clust_num_ores = 8,
 	clust_size     = 3,
-	y_min          = mcl_vars.mg_overworld_min,
-	y_max          = mcl_worlds.layer_to_y(12),
+	y_min          = mcla_vars.mg_overworld_min,
+	y_max          = mcla_worlds.layer_to_y(12),
 })
 
 -- Rare spawn
@@ -349,8 +349,8 @@ minetest.register_ore({
 	clust_scarcity = 20000,
 	clust_num_ores = 1,
 	clust_size     = 1,
-	y_min          = mcl_worlds.layer_to_y(13),
-	y_max          = mcl_worlds.layer_to_y(15),
+	y_min          = mcla_worlds.layer_to_y(13),
+	y_max          = mcla_worlds.layer_to_y(15),
 })
 minetest.register_ore({
 	ore_type       = "scatter",
@@ -359,8 +359,8 @@ minetest.register_ore({
 	clust_scarcity = 20000,
 	clust_num_ores = 2,
 	clust_size     = 2,
-	y_min          = mcl_worlds.layer_to_y(13),
-	y_max          = mcl_worlds.layer_to_y(15),
+	y_min          = mcla_worlds.layer_to_y(13),
+	y_max          = mcla_worlds.layer_to_y(15),
 })
 
 --
@@ -375,8 +375,8 @@ minetest.register_ore({
 	clust_scarcity = 500,
 	clust_num_ores = 4,
 	clust_size     = 3,
-	y_min          = mcl_vars.mg_overworld_min,
-	y_max          = mcl_worlds.layer_to_y(13),
+	y_min          = mcla_vars.mg_overworld_min,
+	y_max          = mcla_worlds.layer_to_y(13),
 })
 minetest.register_ore({
 	ore_type       = "scatter",
@@ -385,8 +385,8 @@ minetest.register_ore({
 	clust_scarcity = 800,
 	clust_num_ores = 7,
 	clust_size     = 4,
-	y_min          = mcl_vars.mg_overworld_min,
-	y_max          = mcl_worlds.layer_to_y(13),
+	y_min          = mcla_vars.mg_overworld_min,
+	y_max          = mcla_worlds.layer_to_y(13),
 })
 
 -- Rare spawn
@@ -397,8 +397,8 @@ minetest.register_ore({
 	clust_scarcity = 1000,
 	clust_num_ores = 4,
 	clust_size     = 3,
-	y_min          = mcl_worlds.layer_to_y(13),
-	y_max          = mcl_worlds.layer_to_y(15),
+	y_min          = mcla_worlds.layer_to_y(13),
+	y_max          = mcla_worlds.layer_to_y(15),
 })
 minetest.register_ore({
 	ore_type       = "scatter",
@@ -407,8 +407,8 @@ minetest.register_ore({
 	clust_scarcity = 1600,
 	clust_num_ores = 7,
 	clust_size     = 4,
-	y_min          = mcl_worlds.layer_to_y(13),
-	y_max          = mcl_worlds.layer_to_y(15),
+	y_min          = mcla_worlds.layer_to_y(13),
+	y_max          = mcla_worlds.layer_to_y(15),
 })
 
 
@@ -421,8 +421,8 @@ minetest.register_ore({
 	clust_scarcity = 9000,
 	clust_num_ores = 1,
 	clust_size     = 1,
-	y_min          = mcl_worlds.layer_to_y(5),
-	y_max          = mcl_worlds.layer_to_y(128),
+	y_min          = mcla_worlds.layer_to_y(5),
+	y_max          = mcla_worlds.layer_to_y(128),
 })
 
 -- Lava springs are rather common at -31 and below
@@ -433,8 +433,8 @@ minetest.register_ore({
 	clust_scarcity = 2000,
 	clust_num_ores = 1,
 	clust_size     = 1,
-	y_min          = mcl_worlds.layer_to_y(1),
-	y_max          = mcl_worlds.layer_to_y(10),
+	y_min          = mcla_worlds.layer_to_y(1),
+	y_max          = mcla_worlds.layer_to_y(10),
 })
 
 minetest.register_ore({
@@ -444,8 +444,8 @@ minetest.register_ore({
 	clust_scarcity = 9000,
 	clust_num_ores = 1,
 	clust_size     = 1,
-	y_min          = mcl_worlds.layer_to_y(11),
-	y_max          = mcl_worlds.layer_to_y(31),
+	y_min          = mcla_worlds.layer_to_y(11),
+	y_max          = mcla_worlds.layer_to_y(31),
 })
 
 -- Lava springs will become gradually rarer with increasing height
@@ -456,8 +456,8 @@ minetest.register_ore({
 	clust_scarcity = 32000,
 	clust_num_ores = 1,
 	clust_size     = 1,
-	y_min          = mcl_worlds.layer_to_y(32),
-	y_max          = mcl_worlds.layer_to_y(47),
+	y_min          = mcla_worlds.layer_to_y(32),
+	y_max          = mcla_worlds.layer_to_y(47),
 })
 
 minetest.register_ore({
@@ -467,8 +467,8 @@ minetest.register_ore({
 	clust_scarcity = 72000,
 	clust_num_ores = 1,
 	clust_size     = 1,
-	y_min          = mcl_worlds.layer_to_y(48),
-	y_max          = mcl_worlds.layer_to_y(61),
+	y_min          = mcla_worlds.layer_to_y(48),
+	y_max          = mcla_worlds.layer_to_y(61),
 })
 
 -- Lava may even appear above surface, but this is very rare
@@ -479,8 +479,8 @@ minetest.register_ore({
 	clust_scarcity = 96000,
 	clust_num_ores = 1,
 	clust_size     = 1,
-	y_min          = mcl_worlds.layer_to_y(62),
-	y_max          = mcl_worlds.layer_to_y(127),
+	y_min          = mcla_worlds.layer_to_y(62),
+	y_max          = mcla_worlds.layer_to_y(127),
 })
 
 local function register_mgv6_decorations()
@@ -499,7 +499,7 @@ local function register_mgv6_decorations()
 			persist = 0.6
 		},
 		y_min = 4,
-		y_max = mcl_vars.mg_overworld_max,
+		y_max = mcla_vars.mg_overworld_max,
 		decoration = "mcla:cactus",
 		height = 1,
 		height_max = 3,
@@ -519,7 +519,7 @@ local function register_mgv6_decorations()
 			persist = 0.7
 		},
 		y_min = 1,
-		y_max = mcl_vars.mg_overworld_max,
+		y_max = mcla_vars.mg_overworld_max,
 		decoration = "mcla:reeds",
 		height = 1,
 		height_max = 3,
@@ -544,7 +544,7 @@ local function register_mgv6_decorations()
 				persist = 0.6
 			},
 			y_min = 1,
-			y_max = mcl_vars.mg_overworld_max,
+			y_max = mcla_vars.mg_overworld_max,
 			decoration = mushrooms[m],
 			spawn_by = { "mcla:tree" },
 			num_spawn_by = 1,
@@ -556,7 +556,7 @@ local function register_mgv6_decorations()
 			offset = 0
 		end
 		if y_max == nil then
-			y_max = mcl_vars.mg_overworld_max
+			y_max = mcla_vars.mg_overworld_max
 		end
 		minetest.register_decoration({
 			deco_type = "simple",
@@ -572,7 +572,7 @@ local function register_mgv6_decorations()
 			},
 			y_min = 1,
 			y_max = y_max,
-			decoration = "mcl_flowers:"..name,
+			decoration = "mcla_flowers:"..name,
 		})
 	end
 
@@ -587,7 +587,7 @@ local function register_mgv6_decorations()
 		sidelen = 16,
 		fill_ratio = 11.0, -- complete coverage
 		y_min = 1,
-		y_max = mcl_vars.mg_overworld_max,
+		y_max = mcla_vars.mg_overworld_max,
 		decoration = "mcla:snow",
 	})
 
@@ -596,7 +596,7 @@ end
 local mg_flags = minetest.settings:get_flags("mg_flags")
 
 -- Inform other mods of dungeon setting for MCL2-style dungeons
-mcl_vars.mg_dungeons = mg_flags.dungeons
+mcla_vars.mg_dungeons = mg_flags.dungeons
 
 -- Disable builtin dungeons, we provide our own dungeons
 mg_flags.dungeons = false
@@ -781,7 +781,7 @@ end
 local generate_underground_mushrooms = function(minp, maxp, seed)
 	-- Generate rare underground mushrooms
 	-- TODO: Make them appear in groups, use Perlin noise
-	local min, max = mcl_vars.mg_lava_overworld_max + 4, 0
+	local min, max = mcla_vars.mg_lava_overworld_max + 4, 0
 	if minp.y > max or maxp.y < min then
 		return
 	end
@@ -820,7 +820,7 @@ minetest.register_on_generated(function(minp, maxp, blockseed)
 		end
 		local area = VoxelArea:new({MinEdge=e1, MaxEdge=e2})
 
-		for _, rec in pairs(mcl_mapgen_core.registered_generators) do
+		for _, rec in pairs(mcla_mapgen_core.registered_generators) do
 			if rec.vf then
 				local lvm_used0, shadow0 = rec.vf(vm, data, data2, e1, e2, area, p1, p2, blockseed)
 				if lvm_used0 then
@@ -845,7 +845,7 @@ minetest.register_on_generated(function(minp, maxp, blockseed)
 	end
 
 	if nodes > 0 then
-		for _, rec in pairs(mcl_mapgen_core.registered_generators) do
+		for _, rec in pairs(mcla_mapgen_core.registered_generators) do
 			if rec.nf then
 				rec.nf(p1, p2, blockseed)
 			end
@@ -856,10 +856,10 @@ minetest.register_on_generated(function(minp, maxp, blockseed)
 end)
 
 minetest.register_on_generated=function(node_function)
-	mcl_mapgen_core.register_generator("mod_"..tostring(#mcl_mapgen_core.registered_generators+1), nil, node_function)
+	mcla_mapgen_core.register_generator("mod_"..tostring(#mcla_mapgen_core.registered_generators+1), nil, node_function)
 end
 
-function mcl_mapgen_core.register_generator(id, lvm_function, node_function, priority, needs_param2)
+function mcla_mapgen_core.register_generator(id, lvm_function, node_function, priority, needs_param2)
 	if not id then return end
 
 	local priority = priority or 5000
@@ -875,18 +875,18 @@ function mcl_mapgen_core.register_generator(id, lvm_function, node_function, pri
 		needs_param2 = needs_param2,
 	}
 
-	mcl_mapgen_core.registered_generators[id] = new_record
+	mcla_mapgen_core.registered_generators[id] = new_record
 	table.sort(
-		mcl_mapgen_core.registered_generators,
+		mcla_mapgen_core.registered_generators,
 		function(a, b)
 			return (a.i < b.i) or ((a.i == b.i) and (a.vf ~= nil) and (b.vf == nil))
 		end)
 end
 
-function mcl_mapgen_core.unregister_generator(id)
-	if not mcl_mapgen_core.registered_generators[id] then return end
-	local rec = mcl_mapgen_core.registered_generators[id]
-	mcl_mapgen_core.registered_generators[id] = nil
+function mcla_mapgen_core.unregister_generator(id)
+	if not mcla_mapgen_core.registered_generators[id] then return end
+	local rec = mcla_mapgen_core.registered_generators[id]
+	mcla_mapgen_core.registered_generators[id] = nil
 	if rec.vf then lvm = lvm - 1 end
 	if rev.nf then nodes = nodes - 1 end
 	if rec.needs_param2 then param2 = param2 - 1 end
@@ -897,13 +897,13 @@ end
 -- Also perform some basic node replacements.
 
 local bedrock_check
-if mcl_vars.mg_bedrock_is_rough then
+if mcla_vars.mg_bedrock_is_rough then
 	bedrock_check = function(pos, _, pr)
 		local y = pos.y
 		-- Bedrock layers with increasing levels of roughness, until a perfecly flat bedrock later at the bottom layer
 		-- This code assumes a bedrock height of 5 layers.
 
-		local diff = mcl_vars.mg_bedrock_overworld_max - y -- Overworld bedrock
+		local diff = mcla_vars.mg_bedrock_overworld_max - y -- Overworld bedrock
 
 		local top
 		if diff == 0 then
@@ -972,15 +972,15 @@ local function basic(vm, data, data2, emin, emax, area, minp, maxp, blockseed)
 	local lvm_used = false
 	local pr = PseudoRandom(blockseed)
 
-	lvm_used = set_layers(data, area, c_void, nil, mcl_vars.mapgen_edge_min, mcl_vars.mg_bedrock_overworld_min-1, minp, maxp, lvm_used, pr)
+	lvm_used = set_layers(data, area, c_void, nil, mcla_vars.mapgen_edge_min, mcla_vars.mg_bedrock_overworld_min-1, minp, maxp, lvm_used, pr)
 
 	if mg_name ~= "singlenode" then
 		-- Bedrock
-		lvm_used = set_layers(data, area, c_bedrock, bedrock_check, mcl_vars.mg_bedrock_overworld_min, mcl_vars.mg_bedrock_overworld_max, minp, maxp, lvm_used, pr)
+		lvm_used = set_layers(data, area, c_bedrock, bedrock_check, mcla_vars.mg_bedrock_overworld_min, mcla_vars.mg_bedrock_overworld_max, minp, maxp, lvm_used, pr)
 
 		-- Big lava seas by replacing air below a certain height
-		if mcl_vars.mg_lava then
-			--lvm_used = set_layers(data, area, c_lava, c_air, mcl_vars.mg_overworld_min, mcl_vars.mg_lava_overworld_max, emin, emax, lvm_used, pr)
+		if mcla_vars.mg_lava then
+			--lvm_used = set_layers(data, area, c_lava, c_air, mcla_vars.mg_overworld_min, mcla_vars.mg_lava_overworld_max, emin, emax, lvm_used, pr)
 		end
 
 		-- Clay
@@ -995,7 +995,7 @@ local function basic(vm, data, data2, emin, emax, area, minp, maxp, blockseed)
 		-- Snow and sand fixes. This code implements snow consistency
 		-- and fixes floating sand and cut plants.
 		-- A snowy grass block must be below a top snow or snow block at all times.
-		if emin.y <= mcl_vars.mg_overworld_max and emax.y >= mcl_vars.mg_overworld_min then
+		if emin.y <= mcla_vars.mg_overworld_max and emax.y >= mcla_vars.mg_overworld_min then
 			-- Non-v6 mapgens:
 			if mg_name ~= "v6" then
 				-- Set param2 (=color) of grass blocks.
@@ -1013,8 +1013,8 @@ local function basic(vm, data, data2, emin, emax, area, minp, maxp, blockseed)
 					local bn = minetest.get_biome_name(biomemap[b_pos])
 					if bn then
 						local biome = minetest.registered_biomes[bn]
-						if biome and biome._mcl_biome_type then
-							data2[p_pos] = biome._mcl_palette_index
+						if biome and biome._mcla_biome_type then
+							data2[p_pos] = biome._mcla_palette_index
 							lvm_used = true
 						end
 					end
@@ -1041,7 +1041,7 @@ local function basic_node(minp, maxp, blockseed)
 	end
 end
 
-mcl_mapgen_core.register_generator("main", basic, basic_node, 1, true)
+mcla_mapgen_core.register_generator("main", basic, basic_node, 1, true)
 
 -- "Trivial" (actually NOT) function to just read the node and some stuff to not just return "ignore", like 5.3.0 does.
 -- p: Position, if it's wrong, {name="error"} node will return.
@@ -1049,7 +1049,7 @@ mcl_mapgen_core.register_generator("main", basic, basic_node, 1, true)
 -- us_timeout: optional (default: 244 = 0.000244 s = 1/80/80/80), set it at least to 3000000 to let mapgen to finish its job.
 --
 -- returns node definition, eg. {name="air"}. Unfortunately still can return {name="ignore"}.
-function mcl_mapgen_core.get_node(p, force, us_timeout)
+function mcla_mapgen_core.get_node(p, force, us_timeout)
 	-- check initial circumstances
 	if not p or not p.x or not p.y or not p.z then return {name="error"} end
 
@@ -1071,7 +1071,7 @@ function mcl_mapgen_core.get_node(p, force, us_timeout)
 
 	-- all ways failed - need to emerge (or forceload if generated)
 	local us_timeout = us_timeout or 244
-	if mcl_mapgen_core.is_generated(pos) then
+	if mcla_mapgen_core.is_generated(pos) then
 		minetest.forceload_block(pos)
 	else
 		minetest.emerge_area(pos, pos)

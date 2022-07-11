@@ -1,4 +1,4 @@
-local S = minetest.get_translator("mcl_boats")
+local S = minetest.get_translator("mcla_boats")
 
 local boat_visual_size = {x = 3, y = 3, z = 3}
 local paddling_speed = 22
@@ -78,15 +78,15 @@ local function attach_object(self, obj)
 
 	if obj:is_player() then
 		local name = obj:get_player_name()
-		mcl_player.player_attached[name] = true
+		mcla_player.player_attached[name] = true
 		minetest.after(0.2, function(name)
 			local player = minetest.get_player_by_name(name)
 			if player then
-				mcl_player.player_set_animation(player, "sit" , 30)
+				mcla_player.player_set_animation(player, "sit" , 30)
 			end
 		end, name)
 		obj:set_look_horizontal(yaw)
-		mcl_tmp_message.message(obj, S("Sneak to dismount"))
+		mcla_tmp_message.message(obj, S("Sneak to dismount"))
 	else
 		obj:get_luaentity()._old_visual_size = visual_size
 	end
@@ -96,8 +96,8 @@ local function detach_object(obj, change_pos)
 	obj:set_detach()
 	obj:set_properties({visual_size = get_visual_size(obj)})
 	if obj:is_player() then
-		mcl_player.player_attached[obj:get_player_name()] = false
-		mcl_player.player_set_animation(obj, "stand" , 30)
+		mcla_player.player_attached[obj:get_player_name()] = false
+		mcla_player.player_set_animation(obj, "stand" , 30)
 	else
 		obj:get_luaentity()._old_visual_size = nil
 	end

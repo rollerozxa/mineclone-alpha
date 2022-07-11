@@ -10,11 +10,11 @@ This mod was created by Elias Astrom <ryvnf@riseup.net> and is released
 under the LGPLv2.1 license.
 --]]
 
-mcl_explosions = {}
+mcla_explosions = {}
 
 local CONTENT_FIRE = minetest.get_content_id("mcla:fire")
 
-local S = minetest.get_translator("mcl_explosions")
+local S = minetest.get_translator("mcla_explosions")
 
 -- Saved sphere explosion shapes for various radiuses
 local sphere_shapes = {}
@@ -38,7 +38,7 @@ minetest.register_on_mods_loaded(function()
 	-- Store blast resistance values by content ids to improve performance.
 	for name, def in pairs(minetest.registered_nodes) do
 		local id = minetest.get_content_id(name)
-		node_blastres[id] = def._mcl_blast_resistance or 0
+		node_blastres[id] = def._mcla_blast_resistance or 0
 		node_on_blast[id] = def.on_blast
 		node_walkable[id] = def.walkable
 	end
@@ -316,7 +316,7 @@ local function trace_explode(pos, strength, raydirs, radius, info, puncher)
 				if obj:is_player() then
 					local name = obj:get_player_name()
 
-					mcl_death_messages.player_damage(obj, S("@1 was caught in an explosion.", name))
+					mcla_death_messages.player_damage(obj, S("@1 was caught in an explosion.", name))
 					if rawget(_G, "armor") and armor.last_damage_types then
 						armor.last_damage_types[name] = "explosion"
 					end
@@ -417,7 +417,7 @@ end
 -- griefing - If true, the explosion will destroy nodes (default: true)
 -- grief_protected - If true, the explosion will also destroy nodes which have
 --                   been protected (default: false)
-function mcl_explosions.explode(pos, strength, info, puncher)
+function mcla_explosions.explode(pos, strength, info, puncher)
 	if info == nil then
 		info = {}
 	end

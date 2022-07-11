@@ -10,7 +10,7 @@ placing.
 ## Programmer notes
 To set the mob spawned by a mob spawner, first place the mob spawner
 (e.g. with `minetest.set_node`), then use the function
-`mcl_mobspawners.setup_spawner` to set its attributes. See the comment
+`mcla_mobspawners.setup_spawner` to set its attributes. See the comment
 in `init.lua` for more info.
 
 ## License (code and texture)

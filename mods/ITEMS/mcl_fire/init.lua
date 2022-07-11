@@ -1,12 +1,12 @@
 -- Global namespace for functions
 
-mcl_fire = {}
+mcla_fire = {}
 
-local S = minetest.get_translator("mcl_fire")
+local S = minetest.get_translator("mcla_fire")
 local N = function(s) return s end
 
 local spawn_smoke = function(pos)
-	mcl_particles.add_node_particlespawner(pos, {
+	mcla_particles.add_node_particlespawner(pos, {
 		amount = 0.1,
 		time = 0,
 		minpos = vector.add(pos, { x = -0.45, y = -0.45, z = -0.45 }),
@@ -99,7 +99,7 @@ minetest.register_node(":mcla:fire", {
 	buildable_to = true,
 	sunlight_propagates = true,
 	damage_per_second = 1,
-	_mcl_node_death_message = fire_death_messages,
+	_mcla_node_death_message = fire_death_messages,
 	groups = {fire = 1, dig_immediate = 3, not_in_creative_inventory = 1,  destroys_items=1, set_on_fire=8},
 	floodable = true,
 	on_flood = function(pos, oldnode, newnode)
@@ -116,9 +116,9 @@ minetest.register_node(":mcla:fire", {
 		spawn_smoke(pos)
 	end,
 	on_destruct = function(pos)
-		mcl_particles.delete_node_particlespawners(pos)
+		mcla_particles.delete_node_particlespawners(pos)
 	end,
-	_mcl_blast_resistance = 0,
+	_mcla_blast_resistance = 0,
 })
 
 --
@@ -135,7 +135,7 @@ local cycle = 3 -- Cycle time for sound updates
 
 -- Update sound for player
 
-function mcl_fire.update_player_sound(player)
+function mcla_fire.update_player_sound(player)
 	local player_name = player:get_player_name()
 	-- Search for flame nodes in radius around player
 	local ppos = player:get_pos()
@@ -213,7 +213,7 @@ minetest.register_globalstep(function(dtime)
 	timer = 0
 	local players = minetest.get_connected_players()
 	for n = 1, #players do
-		mcl_fire.update_player_sound(players[n])
+		mcla_fire.update_player_sound(players[n])
 	end
 end)
 
@@ -233,7 +233,7 @@ end)
 -- * pointed_thing: Pointed thing to ignite
 -- * player: Player who sets fire or nil if nobody
 -- * allow_on_fire: If false, can't ignite fire on fire (default: true)
-mcl_fire.set_fire = function(pointed_thing, player, allow_on_fire)
+mcla_fire.set_fire = function(pointed_thing, player, allow_on_fire)
 	local pname
 	if player == nil then
 		pname = ""

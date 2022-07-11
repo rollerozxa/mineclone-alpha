@@ -1,4 +1,4 @@
-local S = minetest.get_translator("mcl_crafting_table")
+local S = minetest.get_translator("mcla_crafting_table")
 
 minetest.register_node(":mcla:crafting_table", {
 	description = S("Crafting Table"),
@@ -29,9 +29,9 @@ minetest.register_node(":mcla:crafting_table", {
 
 		minetest.show_formspec(player:get_player_name(), "main", form)
 	end,
-	sounds = mcl_sounds.node_sound_wood_defaults(),
-	_mcl_blast_resistance = 2.5,
-	_mcl_hardness = 2.5,
+	sounds = mcla_sounds.node_sound_wood_defaults(),
+	_mcla_blast_resistance = 2.5,
+	_mcla_hardness = 2.5,
 })
 
 minetest.register_craft({

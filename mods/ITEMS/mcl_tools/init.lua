@@ -1,4 +1,4 @@
-local S = minetest.get_translator("mcl_tools")
+local S = minetest.get_translator("mcla_tools")
 
 -- mods/default/tools.lua
 
@@ -44,7 +44,7 @@ minetest.register_tool(":", {
 		damage_groups = {fleshy=1},
 	},
 	groups = hand_groups,
-	_mcl_diggroups = {
+	_mcla_diggroups = {
 		handy = { speed = 1, level = 1, uses = 0 },
 		axey = { speed = 1, level = 1, uses = 0 },
 		shovely = { speed = 1, level = 1, uses = 0 },
@@ -72,8 +72,8 @@ minetest.register_tool(":mcla:wood_pickaxe", {
 		damage_groups = {fleshy=2},
 		punch_attack_uses = 30,
 	},
-	_mcl_toollike_wield = true,
-	_mcl_diggroups = {
+	_mcla_toollike_wield = true,
+	_mcla_diggroups = {
 		pickaxey = { speed = 2, level = 1, uses = 60 }
 	},
 })
@@ -89,8 +89,8 @@ minetest.register_tool(":mcla:stone_pickaxe", {
 		damage_groups = {fleshy=3},
 		punch_attack_uses = 66,
 	},
-	_mcl_toollike_wield = true,
-	_mcl_diggroups = {
+	_mcla_toollike_wield = true,
+	_mcla_diggroups = {
 		pickaxey = { speed = 4, level = 3, uses = 132 }
 	},
 })
@@ -106,8 +106,8 @@ minetest.register_tool(":mcla:iron_pickaxe", {
 		damage_groups = {fleshy=4},
 		punch_attack_uses = 126,
 	},
-	_mcl_toollike_wield = true,
-	_mcl_diggroups = {
+	_mcla_toollike_wield = true,
+	_mcla_diggroups = {
 		pickaxey = { speed = 6, level = 4, uses = 251 }
 	},
 })
@@ -123,8 +123,8 @@ minetest.register_tool(":mcla:gold_pickaxe", {
 		damage_groups = {fleshy=2},
 		punch_attack_uses = 17,
 	},
-	_mcl_toollike_wield = true,
-	_mcl_diggroups = {
+	_mcla_toollike_wield = true,
+	_mcla_diggroups = {
 		pickaxey = { speed = 12, level = 2, uses = 33 }
 	},
 })
@@ -140,8 +140,8 @@ minetest.register_tool(":mcla:diamond_pickaxe", {
 		damage_groups = {fleshy=5},
 		punch_attack_uses = 781,
 	},
-	_mcl_toollike_wield = true,
-	_mcl_diggroups = {
+	_mcla_toollike_wield = true,
+	_mcla_diggroups = {
 		pickaxey = { speed = 8, level = 5, uses = 1562 }
 	},
 })
@@ -158,8 +158,8 @@ minetest.register_tool(":mcla:wood_shovel", {
 		damage_groups = {fleshy=2},
 		punch_attack_uses = 30,
 	},
-	_mcl_toollike_wield = true,
-	_mcl_diggroups = {
+	_mcla_toollike_wield = true,
+	_mcla_diggroups = {
 		shovely = { speed = 2, level = 1, uses = 60 }
 	},
 })
@@ -174,8 +174,8 @@ minetest.register_tool(":mcla:stone_shovel", {
 		damage_groups = {fleshy=3},
 		punch_attack_uses = 66,
 	},
-	_mcl_toollike_wield = true,
-	_mcl_diggroups = {
+	_mcla_toollike_wield = true,
+	_mcla_diggroups = {
 		shovely = { speed = 4, level = 3, uses = 132 }
 	},
 })
@@ -190,8 +190,8 @@ minetest.register_tool(":mcla:iron_shovel", {
 		damage_groups = {fleshy=4},
 		punch_attack_uses = 126,
 	},
-	_mcl_toollike_wield = true,
-	_mcl_diggroups = {
+	_mcla_toollike_wield = true,
+	_mcla_diggroups = {
 		shovely = { speed = 6, level = 4, uses = 251 }
 	},
 })
@@ -206,8 +206,8 @@ minetest.register_tool(":mcla:gold_shovel", {
 		damage_groups = {fleshy=2},
 		punch_attack_uses = 17,
 	},
-	_mcl_toollike_wield = true,
-	_mcl_diggroups = {
+	_mcla_toollike_wield = true,
+	_mcla_diggroups = {
 		shovely = { speed = 12, level = 2, uses = 33 }
 	},
 })
@@ -222,8 +222,8 @@ minetest.register_tool(":mcla:diamond_shovel", {
 		damage_groups = {fleshy=5},
 		punch_attack_uses = 781,
 	},
-	_mcl_toollike_wield = true,
-	_mcl_diggroups = {
+	_mcla_toollike_wield = true,
+	_mcla_diggroups = {
 		shovely = { speed = 8, level = 5, uses = 1562 }
 	},
 })
@@ -240,8 +240,8 @@ minetest.register_tool(":mcla:wood_axe", {
 		damage_groups = {fleshy=7},
 		punch_attack_uses = 30,
 	},
-	_mcl_toollike_wield = true,
-	_mcl_diggroups = {
+	_mcla_toollike_wield = true,
+	_mcla_diggroups = {
 		axey = { speed = 2, level = 1, uses = 60 }
 	},
 })
@@ -256,8 +256,8 @@ minetest.register_tool(":mcla:stone_axe", {
 		damage_groups = {fleshy=9},
 		punch_attack_uses = 66,
 	},
-	_mcl_toollike_wield = true,
-	_mcl_diggroups = {
+	_mcla_toollike_wield = true,
+	_mcla_diggroups = {
 		axey = { speed = 4, level = 3, uses = 132 }
 	},
 })
@@ -273,8 +273,8 @@ minetest.register_tool(":mcla:iron_axe", {
 		damage_groups = {fleshy=9},
 		punch_attack_uses = 126,
 	},
-	_mcl_toollike_wield = true,
-	_mcl_diggroups = {
+	_mcla_toollike_wield = true,
+	_mcla_diggroups = {
 		axey = { speed = 6, level = 4, uses = 251 }
 	},
 })
@@ -289,8 +289,8 @@ minetest.register_tool(":mcla:gold_axe", {
 		damage_groups = {fleshy=7},
 		punch_attack_uses = 17,
 	},
-	_mcl_toollike_wield = true,
-	_mcl_diggroups = {
+	_mcla_toollike_wield = true,
+	_mcla_diggroups = {
 		axey = { speed = 12, level = 2, uses = 33 }
 	},
 })
@@ -305,8 +305,8 @@ minetest.register_tool(":mcla:diamond_axe", {
 		damage_groups = {fleshy=9},
 		punch_attack_uses = 781,
 	},
-	_mcl_toollike_wield = true,
-	_mcl_diggroups = {
+	_mcla_toollike_wield = true,
+	_mcla_diggroups = {
 		axey = { speed = 8, level = 5, uses = 1562 }
 	},
 })
@@ -323,8 +323,8 @@ minetest.register_tool(":mcla:wood_sword", {
 		damage_groups = {fleshy=4},
 		punch_attack_uses = 60,
 	},
-	_mcl_toollike_wield = true,
-	_mcl_diggroups = {
+	_mcla_toollike_wield = true,
+	_mcla_diggroups = {
 		swordy = { speed = 2, level = 1, uses = 60 },
 		swordy_cobweb = { speed = 2, level = 1, uses = 60 }
 	},
@@ -340,8 +340,8 @@ minetest.register_tool(":mcla:stone_sword", {
 		damage_groups = {fleshy=5},
 		punch_attack_uses = 132,
 	},
-	_mcl_toollike_wield = true,
-	_mcl_diggroups = {
+	_mcla_toollike_wield = true,
+	_mcla_diggroups = {
 		swordy = { speed = 4, level = 3, uses = 132 },
 		swordy_cobweb = { speed = 4, level = 3, uses = 132 }
 	},
@@ -357,8 +357,8 @@ minetest.register_tool(":mcla:iron_sword", {
 		damage_groups = {fleshy=6},
 		punch_attack_uses = 251,
 	},
-	_mcl_toollike_wield = true,
-	_mcl_diggroups = {
+	_mcla_toollike_wield = true,
+	_mcla_diggroups = {
 		swordy = { speed = 6, level = 4, uses = 251 },
 		swordy_cobweb = { speed = 6, level = 4, uses = 251 }
 	},
@@ -374,8 +374,8 @@ minetest.register_tool(":mcla:gold_sword", {
 		damage_groups = {fleshy=4},
 		punch_attack_uses = 33,
 	},
-	_mcl_toollike_wield = true,
-	_mcl_diggroups = {
+	_mcla_toollike_wield = true,
+	_mcla_diggroups = {
 		swordy = { speed = 12, level = 2, uses = 33 },
 		swordy_cobweb = { speed = 12, level = 2, uses = 33 }
 	},
@@ -391,8 +391,8 @@ minetest.register_tool(":mcla:diamond_sword", {
 		damage_groups = {fleshy=7},
 		punch_attack_uses = 1562,
 	},
-	_mcl_toollike_wield = true,
-	_mcl_diggroups = {
+	_mcla_toollike_wield = true,
+	_mcla_diggroups = {
 		swordy = { speed = 8, level = 5, uses = 1562 },
 		swordy_cobweb = { speed = 8, level = 5, uses = 1562 }
 	},

@@ -1,4 +1,4 @@
-local S = minetest.get_translator("mcl_farming")
+local S = minetest.get_translator("mcla_farming")
 
 minetest.register_craftitem(":mcla:wheat_seeds", {
 	-- Original Minecraft name: “Seeds”
@@ -6,7 +6,7 @@ minetest.register_craftitem(":mcla:wheat_seeds", {
 	groups = { craftitem=1 },
 	inventory_image = "mcl_farming_wheat_seeds.png",
 	on_place = function(itemstack, placer, pointed_thing)
-		return mcla:place_seed(itemstack, placer, pointed_thing, "mcla:wheat_1")
+		return mcla_farming:place_seed(itemstack, placer, pointed_thing, "mcla:wheat_1")
 	end
 })
 
@@ -40,8 +40,8 @@ for i=1,7 do
 			},
 		},
 		groups = {dig_immediate=3, not_in_creative_inventory=1, plant=1,attached_node=1, dig_by_water=1,destroy_by_lava_flow=1, },
-		sounds = mcl_sounds.node_sound_leaves_defaults(),
-		_mcl_blast_resistance = 0,
+		sounds = mcla_sounds.node_sound_leaves_defaults(),
+		_mcla_blast_resistance = 0,
 	})
 end
 
@@ -66,11 +66,11 @@ minetest.register_node(":mcla:wheat", {
 		}
 	},
 	groups = {dig_immediate=3, not_in_creative_inventory=1, plant=1,attached_node=1, dig_by_water=1,destroy_by_lava_flow=1, },
-	sounds = mcl_sounds.node_sound_leaves_defaults(),
-	_mcl_blast_resistance = 0,
+	sounds = mcla_sounds.node_sound_leaves_defaults(),
+	_mcla_blast_resistance = 0,
 })
 
-mcl_farming:add_plant("plant_wheat", "mcla:wheat", {"mcla:wheat_1", "mcla:wheat_2", "mcla:wheat_3", "mcla:wheat_4", "mcla:wheat_5", "mcla:wheat_6", "mcla:wheat_7"}, 25, 20)
+mcla_farming:add_plant("plant_wheat", "mcla:wheat", {"mcla:wheat_1", "mcla:wheat_2", "mcla:wheat_3", "mcla:wheat_4", "mcla:wheat_5", "mcla:wheat_6", "mcla:wheat_7"}, 25, 20)
 
 minetest.register_craftitem(":mcla:wheat_item", {
 	description = S("Wheat"),

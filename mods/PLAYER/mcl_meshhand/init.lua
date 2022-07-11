@@ -1,4 +1,4 @@
-local has_mcl_skins = minetest.get_modpath("mcla_skins") ~= nil
+local has_mcla_skins = minetest.get_modpath("mcla_skins") ~= nil
 
 local def = minetest.registered_items[""]
 
@@ -15,7 +15,7 @@ minetest.register_node(":mcla:hand", {
 	-- Prevent construction
 	node_placement_prediction = "",
 	on_construct = function(pos)
-		minetest.log("error", "[mcl_meshhand] Trying to construct mcla:hand at "..minetest.pos_to_string(pos))
+		minetest.log("error", "[mcla_meshhand] Trying to construct mcla:hand at "..minetest.pos_to_string(pos))
 		minetest.remove_node(pos)
 	end,
 	drop = "",
@@ -27,5 +27,6 @@ minetest.register_node(":mcla:hand", {
 	})
 
 minetest.register_on_joinplayer(function(player)
+	player:get_inventory():set_size("hand", 1)
 	player:get_inventory():set_stack("hand", 1, "mcla:hand")
 end)

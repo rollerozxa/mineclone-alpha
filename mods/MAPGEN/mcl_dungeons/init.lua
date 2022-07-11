@@ -3,12 +3,12 @@
 local mg_name = minetest.get_mapgen_setting("mg_name")
 
 -- Are dungeons disabled?
-if mcl_vars.mg_dungeons == false or mg_name == "singlenode" then
+if mcla_vars.mg_dungeons == false or mg_name == "singlenode" then
 	return
 end
 
-local min_y = math.max(mcl_vars.mg_overworld_min, mcl_vars.mg_bedrock_overworld_max) + 1
-local max_y = mcl_vars.mg_overworld_max - 1
+local min_y = math.max(mcla_vars.mg_overworld_min, mcla_vars.mg_bedrock_overworld_max) + 1
+local max_y = mcla_vars.mg_overworld_max - 1
 
 local dungeonsizes = {
 	{ x=5, y=4, z=5},
@@ -69,7 +69,7 @@ local loottable =
 -- Calculate the number of dungeon spawn attempts
 -- In Minecraft, there 8 dungeon spawn attempts Minecraft chunk (16*256*16 = 65536 blocks).
 -- Minetest chunks don't have this size, so scale the number accordingly.
-local attempts = math.ceil(((mcl_vars.chunksize * mcl_vars.MAP_BLOCKSIZE) ^ 3) / 8192) -- 63 = 80*80*80/8192
+local attempts = math.ceil(((mcla_vars.chunksize * mcla_vars.MAP_BLOCKSIZE) ^ 3) / 8192) -- 63 = 80*80*80/8192
 
 local function ecb_spawn_dungeon(blockpos, action, calls_remaining, param)
 	if calls_remaining >= 1 then return end
@@ -81,8 +81,8 @@ local function ecb_spawn_dungeon(blockpos, action, calls_remaining, param)
 	local y_floor = y
 	local y_ceiling = y + dim.y + 1
 	for tx = x, x + dim.x do for tz = z, z + dim.z do
-		if not minetest.registered_nodes[mcl_mapgen_core.get_node({x = tx, y = y_floor  , z = tz}).name].walkable
-		or not minetest.registered_nodes[mcl_mapgen_core.get_node({x = tx, y = y_ceiling, z = tz}).name].walkable then return false end
+		if not minetest.registered_nodes[mcla_mapgen_core.get_node({x = tx, y = y_floor  , z = tz}).name].walkable
+		or not minetest.registered_nodes[mcla_mapgen_core.get_node({x = tx, y = y_ceiling, z = tz}).name].walkable then return false end
 	end end
 
 	-- Check for air openings (2 stacked air at ground level) in wall positions
@@ -111,9 +111,9 @@ local function ecb_spawn_dungeon(blockpos, action, calls_remaining, param)
 			pos.y = y+1
 
 			if openings[pos.x] == nil then openings[pos.x] = {} end
-			local doorname1 = mcl_mapgen_core.get_node(pos).name
+			local doorname1 = mcla_mapgen_core.get_node(pos).name
 			pos.y = y+2
-			local doorname2 = mcl_mapgen_core.get_node(pos).name
+			local doorname2 = mcla_mapgen_core.get_node(pos).name
 			if doorname1 == "air" and doorname2 == "air" then
 				openings_counter = openings_counter + 1
 				openings[pos.x][pos.z] = true
@@ -159,7 +159,7 @@ local function ecb_spawn_dungeon(blockpos, action, calls_remaining, param)
 	-- Check conditions. If okay, start generating
 	if openings_counter < 1 or openings_counter > 5 then return end
 
-	minetest.log("action","[mcl_dungeons] Placing new dungeon at "..minetest.pos_to_string({x=x,y=y,z=z}))
+	minetest.log("action","[mcla_dungeons] Placing new dungeon at "..minetest.pos_to_string({x=x,y=y,z=z}))
 	-- Okay! Spawning starts!
 
 	-- Remember spawner chest positions to set metadata later
@@ -193,7 +193,7 @@ local function ecb_spawn_dungeon(blockpos, action, calls_remaining, param)
 
 	-- Calculate the mob spawner position, to be re-used for later
 	local sp = {x = x + math.ceil(dim.x/2), y = y+1, z = z + math.ceil(dim.z/2)}
-	local rn = minetest.registered_nodes[mcl_mapgen_core.get_node(sp).name]
+	local rn = minetest.registered_nodes[mcla_mapgen_core.get_node(sp).name]
 	if rn and rn.is_ground_content then
 		table.insert(spawner_posses, sp)
 	end
@@ -208,7 +208,7 @@ local function ecb_spawn_dungeon(blockpos, action, calls_remaining, param)
 
 		-- Do not overwrite nodes with is_ground_content == false (e.g. bedrock)
 		-- Exceptions: cobblestone and mossy cobblestone so neighborings dungeons nicely connect to each other
-		local name = mcl_mapgen_core.get_node(p).name
+		local name = mcla_mapgen_core.get_node(p).name
 		if name == "mcla:cobble" or name == "mcla:mossycobble" or minetest.registered_nodes[name].is_ground_content then
 			-- Floor
 			if ty == y then
@@ -232,7 +232,7 @@ local function ecb_spawn_dungeon(blockpos, action, calls_remaining, param)
 					-- Normally the openings are already clear, but not if it is a corner
 					-- widening. Make sure to clear at least the bottom 2 nodes of an opening.
 					minetest.swap_node(p, {name = "air"})
-				elseif ty == maxy - 1 and mcl_mapgen_core.get_node(p).name ~= "air" then
+				elseif ty == maxy - 1 and mcla_mapgen_core.get_node(p).name ~= "air" then
 					-- This allows for variation between 2-node and 3-node high openings.
 					minetest.swap_node(p, {name = "mcla:cobble"})
 				end
@@ -286,7 +286,7 @@ local function ecb_spawn_dungeon(blockpos, action, calls_remaining, param)
 
 		minetest.set_node(pos, {name="mcla:chest", param2=facedir})
 		local meta = minetest.get_meta(pos)
-		mcl_loot.fill_inventory(meta:get_inventory(), "main", mcl_loot.get_multi_loot(loottable, pr), pr)
+		mcla_loot.fill_inventory(meta:get_inventory(), "main", mcla_loot.get_multi_loot(loottable, pr), pr)
 	end
 
 	-- Mob spawners are placed seperately, too
@@ -303,7 +303,7 @@ local function ecb_spawn_dungeon(blockpos, action, calls_remaining, param)
 		}
 		local spawner_mob = mobs[pr:next(1, #mobs)]
 
-		mcl_mobspawners.setup_spawner(sp, spawner_mob, 0, 7)
+		mcla_mobspawners.setup_spawner(sp, spawner_mob, 0, 7)
 	end
 end
 
@@ -318,10 +318,10 @@ local function dungeons_nodes(minp, maxp, blockseed)
 		local z = pr:next(minp.z, maxp.z-dim.z-2)
 		local p1 = {x=x,y=y,z=z}
 		local p2 = {x = x+dim.x+1, y = y+dim.y+1, z = z+dim.z+1}
-		minetest.log("verbose","[mcl_dungeons] size=" ..minetest.pos_to_string(dim) .. ", emerge from "..minetest.pos_to_string(p1) .. " to " .. minetest.pos_to_string(p2))
+		minetest.log("verbose","[mcla_dungeons] size=" ..minetest.pos_to_string(dim) .. ", emerge from "..minetest.pos_to_string(p1) .. " to " .. minetest.pos_to_string(p2))
 		local param = {p1=p1, p2=p2, dim=dim, pr=pr}
 		minetest.emerge_area(p1, p2, ecb_spawn_dungeon, param)
 	end
 end
 
-mcl_mapgen_core.register_generator("dungeons", nil, dungeons_nodes, 999999)
+mcla_mapgen_core.register_generator("dungeons", nil, dungeons_nodes, 999999)

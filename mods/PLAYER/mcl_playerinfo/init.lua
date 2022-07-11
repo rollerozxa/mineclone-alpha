@@ -1,5 +1,5 @@
 -- Player state for public API
-mcl_playerinfo = {}
+mcla_playerinfo = {}
 
 -- Get node but use fallback for nil or unknown
 local function node_ok(pos, fallback)
@@ -61,10 +61,10 @@ minetest.register_globalstep(function(dtime)
 
 		-- what is around me?
 		local node_stand, node_stand_below, node_head, node_feet = get_player_nodes(pos)
-		mcl_playerinfo[name].node_stand = node_stand
-		mcl_playerinfo[name].node_stand_below = node_stand_below
-		mcl_playerinfo[name].node_head = node_head
-		mcl_playerinfo[name].node_feet = node_feet
+		mcla_playerinfo[name].node_stand = node_stand
+		mcla_playerinfo[name].node_stand_below = node_stand_below
+		mcla_playerinfo[name].node_head = node_head
+		mcla_playerinfo[name].node_feet = node_feet
 
 	end
 
@@ -74,7 +74,7 @@ end)
 minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
 
-	mcl_playerinfo[name] = {
+	mcla_playerinfo[name] = {
 		node_head = "",
 		node_feet = "",
 		node_stand = "",
@@ -87,5 +87,5 @@ end)
 minetest.register_on_leaveplayer(function(player)
 	local name = player:get_player_name()
 
-	mcl_playerinfo[name] = nil
+	mcla_playerinfo[name] = nil
 end)

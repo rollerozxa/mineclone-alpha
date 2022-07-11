@@ -1,4 +1,4 @@
-mcl_farming = {}
+mcla_farming = {}
 
 -- IMPORTANT API AND HELPER FUNCTIONS --
 -- Contain functions for planting seed, addind plant growth and gourds (melon/pumpkin-like)

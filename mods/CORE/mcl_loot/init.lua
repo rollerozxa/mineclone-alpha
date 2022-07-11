@@ -1,4 +1,4 @@
-mcl_loot = {}
+mcla_loot = {}
 
 --[[
 Select a number of itemstacks out of a pool of treasure definitions randomly.
@@ -32,7 +32,7 @@ all items, the likelihood of each item being selected is equal.
 
 Returns: Table of itemstrings
 ]]
-function mcl_loot.get_loot(loot_definitions, pr)
+function mcla_loot.get_loot(loot_definitions, pr)
 	local items = {}
 
 	local total_weight = 0
@@ -80,7 +80,7 @@ function mcl_loot.get_loot(loot_definitions, pr)
 			elseif itemstack then
 				table.insert(items, itemstack)
 			else
-				minetest.log("error", "[mcl_loot] INTERNAL ERROR! Failed to select random loot item!")
+				minetest.log("error", "[mcla_loot] INTERNAL ERROR! Failed to select random loot item!")
 			end
 		end
 	end
@@ -89,17 +89,17 @@ function mcl_loot.get_loot(loot_definitions, pr)
 end
 
 --[[
-Repeat mcl_loot.get_loot multiple times for various loot_definitions.
+Repeat mcla_loot.get_loot multiple times for various loot_definitions.
 Useful for filling chests.
 
-* multi_loot_definitions: Table of loot_definitions (see mcl_loot.get_loot)
+* multi_loot_definitions: Table of loot_definitions (see mcla_loot.get_loot)
 * pr: PseudoRandom object used for the randomness
 
 Returns: Table of itemstrings ]]
-function mcl_loot.get_multi_loot(multi_loot_definitions, pr)
+function mcla_loot.get_multi_loot(multi_loot_definitions, pr)
 	local items = {}
 	for m=1, #multi_loot_definitions do
-		local group = mcl_loot.get_loot(multi_loot_definitions[m], pr)
+		local group = mcla_loot.get_loot(multi_loot_definitions[m], pr)
 		for g=1, #group do
 			table.insert(items, group[g])
 		end
@@ -135,7 +135,7 @@ Items will be added from start of the table to end.
 If the inventory already has occupied slots, or is
 too small, placement of some items might fail.
 ]]
-function mcl_loot.fill_inventory(inv, listname, items, pr)
+function mcla_loot.fill_inventory(inv, listname, items, pr)
 	local size = inv:get_size(listname)
 	local slots = get_random_slots(size, pr)
 	local leftovers = {}
