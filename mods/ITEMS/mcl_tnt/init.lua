@@ -1,5 +1,5 @@
-local S = minetest.get_translator("mcl_tnt")
-local tnt_griefing = minetest.settings:get_bool("mcl_tnt_griefing", true)
+local S = minetest.get_translator("mcla_tnt")
+local tnt_griefing = minetest.settings:get_bool("mcla_tnt_griefing", true)
 
 local function spawn_tnt(pos, entname)
 	minetest.sound_play("tnt_ignite", {pos = pos,gain = 1.0,max_hear_distance = 15,}, true)
@@ -8,8 +8,8 @@ local function spawn_tnt(pos, entname)
 	return tnt
 end
 
-tnt = {}
-tnt.ignite = function(pos)
+mcla_tnt = {}
+mcla_tnt.ignite = function(pos)
 	minetest.remove_node(pos)
 	local e = spawn_tnt(pos, "mcla_tnt:tnt")
 	minetest.check_for_falling(pos)
@@ -18,7 +18,7 @@ end
 
 -- Add smoke particle of entity at pos.
 -- Intended to be called every step
-tnt.smoke_step = function(pos)
+mcla_tnt.smoke_step = function(pos)
 	minetest.add_particle({
 		pos = {x=pos.x,y=pos.y+0.5,z=pos.z},
 		velocity = vector.new(math.random() * 0.2 - 0.1, 1.0 + math.random(), math.random() * 0.2 - 0.1),
@@ -30,14 +30,14 @@ tnt.smoke_step = function(pos)
 	})
 end
 
-tnt.BOOMTIMER = 4
-tnt.BLINKTIMER = 0.25
+mcla_tnt.BOOMTIMER = 4
+mcla_tnt.BLINKTIMER = 0.25
 
 local TNT_RANGE = 3
 
-local sounds = mcl_sounds.node_sound_wood_defaults()
+local sounds = mcla_sounds.node_sound_wood_defaults()
 local tnt_mesecons = {effector = {
-		action_on = tnt.ignite,
+		action_on = mcla_tnt.ignite,
 		rules = mesecon.rules.alldirs,
 	}}
 
@@ -54,25 +54,25 @@ minetest.register_node(":mcla:tnt", {
 	mesecons = tnt_mesecons,
 	drop = '',
 	after_destruct = function(pos)
-		tnt.ignite(pos)
+		mcla_tnt.ignite(pos)
 	end,
 	on_blast = function(pos)
-	        local e = tnt.ignite(pos)
-		e:get_luaentity().timer = tnt.BOOMTIMER - (0.5 + math.random())
+	        local e = mcla_tnt.ignite(pos)
+		e:get_luaentity().timer = mcla_tnt.BOOMTIMER - (0.5 + math.random())
 	end,
 	_on_ignite = function(player, pointed_thing)
-		tnt.ignite(pointed_thing.under)
+		mcla_tnt.ignite(pointed_thing.under)
 		return true
 	end,
 	_on_burn = function(pos)
-		tnt.ignite(pos)
+		mcla_tnt.ignite(pos)
 		return true
 	end,
 	_on_dispense = function(stack, pos, droppos, dropnode, dropdir)
 		-- Place and ignite TNT
 		if minetest.registered_nodes[dropnode.name].buildable_to then
 			minetest.set_node(droppos, {name = stack:get_name()})
-			tnt.ignite(droppos)
+			mcla_tnt.ignite(droppos)
 		end
 	end,
 	sounds = sounds,
@@ -153,11 +153,11 @@ end
 
 function TNT:on_step(dtime)
 	local pos = self.object:get_pos()
-	tnt.smoke_step(pos)
+	mcla_tnt.smoke_step(pos)
 	self.timer = self.timer + dtime
 	self.blinktimer = self.blinktimer + dtime
-	if self.blinktimer > tnt.BLINKTIMER then
-		self.blinktimer = self.blinktimer - tnt.BLINKTIMER
+	if self.blinktimer > mcla_tnt.BLINKTIMER then
+		self.blinktimer = self.blinktimer - mcla_tnt.BLINKTIMER
 		if self.blinkstatus then
 			self.object:set_texture_mod("")
 		else
@@ -165,8 +165,8 @@ function TNT:on_step(dtime)
 		end
 		self.blinkstatus = not self.blinkstatus
 	end
-	if self.timer > tnt.BOOMTIMER then
-		mcl_explosions.explode(self.object:get_pos(), 4, {}, self.object)
+	if self.timer > mcla_tnt.BOOMTIMER then
+		mcla_explosions.explode(self.object:get_pos(), 4, {}, self.object)
 		self.object:remove()
 	end
 end

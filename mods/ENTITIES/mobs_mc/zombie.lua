@@ -68,7 +68,7 @@ mobs:register_mob("mobs_mc:zombie", zombie)
 
 -- Spawning
 
-mobs:spawn_specific("mobs_mc:zombie", mobs_mc.spawn.solid, {"air"}, 0, 7, 30, 6000, 4, mcl_vars.mg_overworld_min, mcl_vars.mg_overworld_max)
+mobs:spawn_specific("mobs_mc:zombie", mobs_mc.spawn.solid, {"air"}, 0, 7, 30, 6000, 4, mcla_vars.mg_overworld_min, mcla_vars.mg_overworld_max)
 
 -- Spawn eggs
 mobs:register_egg("mobs_mc:zombie", S("Zombie"), "mobs_mc_spawn_icon_zombie.png", 0)

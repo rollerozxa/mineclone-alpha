@@ -1,4 +1,4 @@
-local S = minetest.get_translator("mcl_fire")
+local S = minetest.get_translator("mcla_fire")
 
 -- Flint and Steel
 minetest.register_tool(":mcla:flint_and_steel", {
@@ -34,10 +34,10 @@ minetest.register_tool(":mcla:flint_and_steel", {
 			if nodedef and nodedef._on_ignite then
 				local overwrite = nodedef._on_ignite(user, pointed_thing)
 				if not overwrite then
-					mcl_fire.set_fire(pointed_thing, user, false)
+					mcla_fire.set_fire(pointed_thing, user, false)
 				end
 			else
-				mcl_fire.set_fire(pointed_thing, user, false)
+				mcla_fire.set_fire(pointed_thing, user, false)
 			end
 			used = true
 		end
@@ -66,7 +66,7 @@ minetest.register_tool(":mcla:flint_and_steel", {
 		end
 		return stack
 	end,
-	_mcl_uses = 65,
+	_mcla_uses = 65,
 })
 
 minetest.register_craft({

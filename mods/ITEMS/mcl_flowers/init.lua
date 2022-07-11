@@ -1,4 +1,4 @@
-local S = minetest.get_translator("mcl_flowers")
+local S = minetest.get_translator("mcla_flowers")
 
 local mod_screwdriver = minetest.get_modpath("screwdriver") ~= nil
 
@@ -12,14 +12,14 @@ local get_palette_color_from_pos = function(pos)
 		local biome_name = minetest.get_biome_name(biome)
 		local reg_biome = minetest.registered_biomes[biome_name]
 		if reg_biome then
-			index = reg_biome._mcl_palette_index
+			index = reg_biome._mcla_palette_index
 		end
 	end
 	return index
 end
 
 -- on_place function for flowers
-local on_place_flower = mcl_util.generate_on_place_plant_function(function(pos, node, itemstack)
+local on_place_flower = mcla_util.generate_on_place_plant_function(function(pos, node, itemstack)
 	local below = {x=pos.x, y=pos.y-1, z=pos.z}
 	local soil_node = minetest.get_node_or_nil(below)
 	if not soil_node then return false end
@@ -62,7 +62,7 @@ local function add_simple_flower(name, desc, image, simple_selection_box)
 		walkable = false,
 		stack_max = 64,
 		groups = {dig_immediate=3,flammable=2,fire_encouragement=60,fire_flammability=100,plant=1,flower=1,place_flowerlike=1,attached_node=1,dig_by_water=1,destroy_by_lava_flow=1,deco_block=1},
-		sounds = mcl_sounds.node_sound_leaves_defaults(),
+		sounds = mcla_sounds.node_sound_leaves_defaults(),
 		node_placement_prediction = "",
 		on_place = on_place_flower,
 		selection_box = {

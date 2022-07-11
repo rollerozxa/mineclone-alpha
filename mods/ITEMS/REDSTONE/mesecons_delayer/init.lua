@@ -157,7 +157,7 @@ minetest.register_node("mesecons_delayer:delayer_off_"..tostring(i), {
 	delayer_time = delaytime,
 	delayer_onstate = "mesecons_delayer:delayer_on_"..tostring(i),
 	delayer_lockstate = "mesecons_delayer:delayer_off_locked",
-	sounds = mcl_sounds.node_sound_stone_defaults(),
+	sounds = mcla_sounds.node_sound_stone_defaults(),
 	mesecons = {
 		receptor =
 		{
@@ -224,7 +224,7 @@ minetest.register_node("mesecons_delayer:delayer_on_"..tostring(i), {
 	delayer_time = delaytime,
 	delayer_offstate = "mesecons_delayer:delayer_off_"..tostring(i),
 	delayer_lockstate = "mesecons_delayer:delayer_on_locked",
-	sounds = mcl_sounds.node_sound_stone_defaults(),
+	sounds = mcla_sounds.node_sound_stone_defaults(),
 	mesecons = {
 		receptor =
 		{

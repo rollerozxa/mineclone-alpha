@@ -1,4 +1,4 @@
-local S = minetest.get_translator("mcl_doors")
+local S = minetest.get_translator("mcla_doors")
 
 -- This helper function calls on_place_node callbacks.
 local function on_place_node(place_to, newnode,
@@ -40,7 +40,7 @@ end
 --    only_redstone_can_open: if true, the door can only be opened by redstone,
 --                            not by rightclicking it
 
-function mcl_doors:register_door(name, def)
+function mcla_doors:register_door(name, def)
 	def.groups.not_in_creative_inventory = 1
 	def.groups.door = 1
 	def.groups.mesecon_ignore_opaque_dig = 1
@@ -257,8 +257,8 @@ function mcl_doors:register_door(name, def)
 			fixed = def.selection_box_bottom
 		},
 		groups = def.groups,
-		_mcl_hardness = def._mcl_hardness,
-		_mcl_blast_resistance = def._mcl_blast_resistance,
+		_mcla_hardness = def._mcla_hardness,
+		_mcla_blast_resistance = def._mcla_blast_resistance,
 		sounds = def.sounds,
 
 		after_destruct = function(bottom, oldnode)
@@ -318,8 +318,8 @@ function mcl_doors:register_door(name, def)
 			fixed = def.selection_box_top
 		},
 		groups = def.groups,
-		_mcl_hardness = def._mcl_hardness,
-		_mcl_blast_resistance = def._mcl_blast_resistance,
+		_mcla_hardness = def._mcla_hardness,
+		_mcla_blast_resistance = def._mcla_blast_resistance,
 		sounds = def.sounds,
 
 		after_destruct = function(top, oldnode)
@@ -379,8 +379,8 @@ function mcl_doors:register_door(name, def)
 			fixed = def.selection_box_bottom
 		},
 		groups = def.groups,
-		_mcl_hardness = def._mcl_hardness,
-		_mcl_blast_resistance = def._mcl_blast_resistance,
+		_mcla_hardness = def._mcla_hardness,
+		_mcla_blast_resistance = def._mcla_blast_resistance,
 		sounds = def.sounds,
 
 		after_destruct = function(bottom, oldnode)
@@ -440,8 +440,8 @@ function mcl_doors:register_door(name, def)
 			fixed = def.selection_box_top
 		},
 		groups = def.groups,
-		_mcl_hardness = def._mcl_hardness,
-		_mcl_blast_resistance = def._mcl_blast_resistance,
+		_mcla_hardness = def._mcla_hardness,
+		_mcla_blast_resistance = def._mcla_blast_resistance,
 		sounds = def.sounds,
 
 		after_destruct = function(top, oldnode)

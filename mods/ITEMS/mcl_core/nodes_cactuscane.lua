@@ -1,6 +1,6 @@
 -- Cactus and Sugar Cane
 
-local S = minetest.get_translator("mcl_core")
+local S = minetest.get_translator("mcla_core")
 
 minetest.register_node(":mcla:cactus", {
 	description = S("Cactus"),
@@ -10,7 +10,7 @@ minetest.register_node(":mcla:cactus", {
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {handy=1, attached_node=1, plant=1, deco_block=1, },
-	sounds = mcl_sounds.node_sound_wood_defaults(),
+	sounds = mcla_sounds.node_sound_wood_defaults(),
 	paramtype = "light",
 	sunlight_propagates = true,
 	node_placement_prediction = "",
@@ -35,13 +35,13 @@ minetest.register_node(":mcla:cactus", {
 		},
 	},
 	-- Only allow to place cactus on sand or cactus
-	on_place = mcl_util.generate_on_place_plant_function(function(pos, node)
+	on_place = mcla_util.generate_on_place_plant_function(function(pos, node)
 		local node_below = minetest.get_node_or_nil({x=pos.x,y=pos.y-1,z=pos.z})
 		if not node_below then return false end
 		return (node_below.name == "mcla:cactus" or minetest.get_item_group(node_below.name, "sand") == 1)
 	end),
-	_mcl_blast_resistance = 0.4,
-	_mcl_hardness = 0.4,
+	_mcla_blast_resistance = 0.4,
+	_mcla_hardness = 0.4,
 })
 
 minetest.register_node(":mcla:reeds", {
@@ -71,9 +71,9 @@ minetest.register_node(":mcla:reeds", {
 	},
 	stack_max = 64,
 	groups = {dig_immediate=3, craftitem=1, deco_block=1, plant=1 },
-	sounds = mcl_sounds.node_sound_leaves_defaults(),
+	sounds = mcla_sounds.node_sound_leaves_defaults(),
 	node_placement_prediction = "",
-	on_place = mcl_util.generate_on_place_plant_function(function(place_pos, place_node)
+	on_place = mcla_util.generate_on_place_plant_function(function(place_pos, place_node)
 		local soil_pos = {x=place_pos.x, y=place_pos.y-1, z=place_pos.z}
 		local soil_node = minetest.get_node_or_nil(soil_pos)
 		if not soil_node then return false end
@@ -108,6 +108,6 @@ minetest.register_node(":mcla:reeds", {
 		return false
 
 	end),
-	_mcl_blast_resistance = 0,
-	_mcl_hardness = 0,
+	_mcla_blast_resistance = 0,
+	_mcla_hardness = 0,
 })

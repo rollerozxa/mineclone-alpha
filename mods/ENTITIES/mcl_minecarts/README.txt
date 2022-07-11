@@ -1,4 +1,4 @@
-mcl_minecarts
+mcla_minecarts
 =============
 Based on the mod "boost_carts" by Krock.
 Target: Run smoothly and do not use too much CPU.

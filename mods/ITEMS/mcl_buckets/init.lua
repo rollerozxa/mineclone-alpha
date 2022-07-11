@@ -1,4 +1,4 @@
-local S = minetest.get_translator("mcl_buckets")
+local S = minetest.get_translator("mcla_buckets")
 
 minetest.register_craft({
 	output = 'mcla:bucket_empty 1',
@@ -8,8 +8,8 @@ minetest.register_craft({
 	}
 })
 
-mcl_buckets = {}
-mcl_buckets.liquids = {}
+mcla_buckets = {}
+mcla_buckets.liquids = {}
 
 -- Sound helper functions for placing and taking liquids
 local sound_place = function(itemname, pos)
@@ -45,15 +45,15 @@ end
 --   groups = optional list of item groups
 --
 -- This function can be called from any mod (which depends on this one)
-function mcl_buckets.register_liquid(source_place, source_take, itemname, inventory_image, name, extra_check, groups)
+function mcla_buckets.register_liquid(source_place, source_take, itemname, inventory_image, name, extra_check, groups)
 	for i=1, #source_take do
-		mcl_buckets.liquids[source_take[i]] = {
+		mcla_buckets.liquids[source_take[i]] = {
 			source_place = source_place,
 			source_take = source_take[i],
 			itemname = itemname,
 		}
 		if type(source_place) == "string" then
-			mcl_buckets.liquids[source_place] = mcl_buckets.liquids[source_take[i]]
+			mcla_buckets.liquids[source_place] = mcla_buckets.liquids[source_take[i]]
 		end
 	end
 
@@ -187,7 +187,7 @@ minetest.register_craftitem(":mcla:bucket_empty", {
 		end
 
 		-- Check if pointing to a liquid source
-		local liquiddef = mcl_buckets.liquids[nn]
+		local liquiddef = mcla_buckets.liquids[nn]
 		local new_bucket
 		if liquiddef ~= nil and liquiddef.itemname ~= nil and (nn == liquiddef.source_take) then
 
@@ -223,7 +223,7 @@ minetest.register_craftitem(":mcla:bucket_empty", {
 		-- Fill empty bucket with liquid or drop bucket if no liquid
 		local collect_liquid = false
 
-		local liquiddef = mcl_buckets.liquids[dropnode.name]
+		local liquiddef = mcla_buckets.liquids[dropnode.name]
 		local new_bucket
 		if liquiddef ~= nil and liquiddef.itemname ~= nil and (dropnode.name  == liquiddef.source_take) then
 			-- Fill bucket
@@ -246,7 +246,7 @@ minetest.register_craftitem(":mcla:bucket_empty", {
 })
 
 -- Lava bucket
-mcl_buckets.register_liquid(
+mcla_buckets.register_liquid(
 	function(pos)
 		return "mcla:lava_source"
 	end,
@@ -257,7 +257,7 @@ mcl_buckets.register_liquid(
 )
 
 -- Water bucket
-mcl_buckets.register_liquid(
+mcla_buckets.register_liquid(
 	"mcla:water_source",
 	{"mcla:water_source"},
 	"mcla:bucket_water",
@@ -280,7 +280,7 @@ mcl_buckets.register_liquid(
 )
 
 -- River water bucket
-mcl_buckets.register_liquid(
+mcla_buckets.register_liquid(
 	"mclx_core:river_water_source",
 	{"mclx_core:river_water_source"},
 	"mcla:bucket_river_water",

@@ -1,9 +1,9 @@
-local S = minetest.get_translator("mcl_torches")
+local S = minetest.get_translator("mcla_torches")
 local LIGHT_TORCH = minetest.LIGHT_MAX
 
 local spawn_flames_floor = function(pos)
 	-- Flames
-	mcl_particles.add_node_particlespawner(pos, {
+	mcla_particles.add_node_particlespawner(pos, {
 		amount = 8,
 		time = 0,
 		minpos = vector.add(pos, { x = -0.1, y = 0.05, z = -0.1 }),
@@ -18,7 +18,7 @@ local spawn_flames_floor = function(pos)
 		glow = LIGHT_TORCH,
 	}, "low")
 	-- Smoke
-	mcl_particles.add_node_particlespawner(pos, {
+	mcla_particles.add_node_particlespawner(pos, {
 		amount = 0.5,
 		time = 0,
 		minpos = vector.add(pos, { x = -1/16, y = 0.04, z = -1/16 }),
@@ -58,7 +58,7 @@ local spawn_flames_wall = function(pos, param2)
 		return
 	end
 	-- Flames
-	mcl_particles.add_node_particlespawner(pos, {
+	mcla_particles.add_node_particlespawner(pos, {
 		amount = 8,
 		time = 0,
 		minpos = vector.add(pos, minrelpos),
@@ -73,7 +73,7 @@ local spawn_flames_wall = function(pos, param2)
 		glow = LIGHT_TORCH,
 	}, "low")
 	-- Smoke
-	mcl_particles.add_node_particlespawner(pos, {
+	mcla_particles.add_node_particlespawner(pos, {
 		amount = 0.5,
 		time = 0,
 		minpos = vector.add(pos, minrelpos),
@@ -95,7 +95,7 @@ local spawn_flames_wall = function(pos, param2)
 end
 
 local remove_flames = function(pos)
-	mcl_particles.delete_node_particlespawners(pos)
+	mcla_particles.delete_node_particlespawners(pos)
 end
 
 --
@@ -137,11 +137,11 @@ local function check_placement_allowed(node, wdir)
 	return true
 end
 
-mcl_torches = {}
+mcla_torches = {}
 
-mcl_torches.register_torch = function(substring, description, icon, mesh_floor, mesh_wall, tiles, light, groups, sounds, moredef, moredef_floor, moredef_wall)
-	local itemstring = minetest.get_current_modname()..":"..substring
-	local itemstring_wall = minetest.get_current_modname()..":"..substring.."_wall"
+mcla_torches.register_torch = function(substring, description, icon, mesh_floor, mesh_wall, tiles, light, groups, sounds, moredef, moredef_floor, moredef_wall)
+	local itemstring = "mcla:"..substring
+	local itemstring_wall = "mcla:"..substring.."_wall"
 
 	if light == nil then light = minetest.LIGHT_MAX end
 	if mesh_floor == nil then mesh_floor = "mcl_torches_torch_floor.obj" end
@@ -237,7 +237,7 @@ mcl_torches.register_torch = function(substring, description, icon, mesh_floor, 
 			floordef[k] = v
 		end
 	end
-	minetest.register_node(itemstring, floordef)
+	minetest.register_node(":"..itemstring, floordef)
 
 	local groups_wall = table.copy(groups)
 	groups_wall.torch = 2
@@ -274,11 +274,11 @@ mcl_torches.register_torch = function(substring, description, icon, mesh_floor, 
 			walldef[k] = v
 		end
 	end
-	minetest.register_node(itemstring_wall, walldef)
+	minetest.register_node(":"..itemstring_wall, walldef)
 
 end
 
-mcl_torches.register_torch("torch",
+mcla_torches.register_torch("torch",
 	S("Torch"),
 	"mcl_torches_on_floor.png",
 	"mcl_torches_torch_floor.obj", "mcl_torches_torch_wall.obj",
@@ -288,7 +288,7 @@ mcl_torches.register_torch("torch",
 	}},
 	LIGHT_TORCH,
 	{dig_immediate=3, torch=1, deco_block=1},
-	mcl_sounds.node_sound_wood_defaults(),
+	mcla_sounds.node_sound_wood_defaults(),
 	{
 	on_destruct = function(pos)
 		remove_flames(pos)

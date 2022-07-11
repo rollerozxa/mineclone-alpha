@@ -120,14 +120,14 @@ minetest.register_node("mesecons_walllever:wall_lever_off", {
 		return itemstack
 	end,
 
-	sounds = mcl_sounds.node_sound_stone_defaults(),
+	sounds = mcla_sounds.node_sound_stone_defaults(),
 	mesecons = {receptor = {
 		rules = lever_get_output_rules,
 		state = mesecon.state.off
 	}},
 	on_rotate = on_rotate,
-	_mcl_blast_resistance = 0.5,
-	_mcl_hardness = 0.5,
+	_mcla_blast_resistance = 0.5,
+	_mcla_hardness = 0.5,
 })
 minetest.register_node("mesecons_walllever:wall_lever_on", {
 	drawtype = "mesh",
@@ -152,14 +152,14 @@ minetest.register_node("mesecons_walllever:wall_lever_on", {
 		mesecon.receptor_off(pos, lever_get_output_rules(node))
 		minetest.sound_play("mesecons_button_push", {pos=pos, max_hear_distance=16, pitch=0.9}, true)
 	end,
-	sounds = mcl_sounds.node_sound_stone_defaults(),
+	sounds = mcla_sounds.node_sound_stone_defaults(),
 	mesecons = {receptor = {
 		rules = lever_get_output_rules,
 		state = mesecon.state.on
 	}},
 	on_rotate = on_rotate,
-	_mcl_blast_resistance = 0.5,
-	_mcl_hardness = 0.5,
+	_mcla_blast_resistance = 0.5,
+	_mcla_hardness = 0.5,
 })
 
 minetest.register_craft({

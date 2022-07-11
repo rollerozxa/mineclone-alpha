@@ -26,4 +26,4 @@ Left items in the crafting slots are dropped infront of you.
 Crafting table
 _________
 
-Has been moved to mcl_crafting_table
+Has been moved to mcla_crafting_table

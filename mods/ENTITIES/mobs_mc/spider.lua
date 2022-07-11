@@ -65,7 +65,7 @@ local spider = {
 }
 mobs:register_mob("mobs_mc:spider", spider)
 
-mobs:spawn_specific("mobs_mc:spider", mobs_mc.spawn.solid, {"air"}, 0, 7, 30, 17000, 2, mcl_vars.mg_overworld_min, mcl_vars.mg_overworld_max)
+mobs:spawn_specific("mobs_mc:spider", mobs_mc.spawn.solid, {"air"}, 0, 7, 30, 17000, 2, mcla_vars.mg_overworld_min, mcla_vars.mg_overworld_max)
 
 -- spawn eggs
 mobs:register_egg("mobs_mc:spider", S("Spider"), "mobs_mc_spawn_icon_spider.png", 0)

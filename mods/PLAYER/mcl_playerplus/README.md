@@ -12,7 +12,7 @@ Suffocation *not* dealt to player with the `noclip` privilege.
 ## Notes
 This mod is based on PlayerPlus [`playerplus`] by TenPlus1. It is now
 very different than the original, no compability is intended.
-See also `mcl_playerinfo` for the player node info.
+See also `mcla_playerinfo` for the player node info.
 
 ## API
 

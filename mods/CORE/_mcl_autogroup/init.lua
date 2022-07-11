@@ -17,12 +17,12 @@ How the mod is used
 ===================
 
 In MineClone 2, all diggable nodes have the hardness set in the custom field
-"_mcl_hardness" (0 by default).  These values are used together with digging
+"_mcla_hardness" (0 by default).  These values are used together with digging
 groups by this mod to create the correct digging times for nodes.  Digging
 groups are registered using the following code:
 
-    mcl_autogroup.register_diggroup("shovely")
-    mcl_autogroup.register_diggroup("pickaxey", {
+    mcla_autogroup.register_diggroup("shovely")
+    mcla_autogroup.register_diggroup("pickaxey", {
         levels = { "wood", "gold", "stone", "iron", "diamond" }
     })
 
@@ -38,11 +38,11 @@ the group indicates which digging level the node requires.
 pickaxe of level 4 be mined.
 
 For tools to be able to dig nodes of digging groups they need to use the have
-the custom field "_mcl_diggroups" function to get the groupcaps.  The value of
+the custom field "_mcla_diggroups" function to get the groupcaps.  The value of
 this field is a table which defines which groups the tool can dig and how
 efficiently.
 
-    _mcl_diggroups = {
+    _mcla_diggroups = {
         handy = { speed = 1, level = 1, uses = 0 },
         pickaxey = { speed = 1, level = 0, uses = 0 },
     }
@@ -54,37 +54,37 @@ on that digging group.
 The "level" field indicates which levels of the group the tool can harvest.  A
 level of 0 means that the tool cannot harvest blocks of that node.  A level of 1
 or above means that the tool can harvest nodes with that level or below.  See
-"mcl_tools/init.lua" for examples on how "_mcl_diggroups" is used in practice.
+"mcla_tools/init.lua" for examples on how "_mcla_diggroups" is used in practice.
 
 Information about the mod
 =========================
 
-The mod is split up into two parts, mcl_autogroup and _mcl_autogroup.
-mcl_autogroup contains the API functions used to register custom digging groups.
-_mcl_autogroup contains most of the code.  The leading underscore in the name
-"_mcl_autogroup" is used to force Minetest to load that part of the mod as late
+The mod is split up into two parts, mcla_autogroup and _mcla_autogroup.
+mcla_autogroup contains the API functions used to register custom digging groups.
+_mcla_autogroup contains most of the code.  The leading underscore in the name
+"_mcla_autogroup" is used to force Minetest to load that part of the mod as late
 as possible.  Minetest loads mods in reverse alphabetical order.
 
-This also means that it is very important that no mod adds _mcl_autogroup as a
+This also means that it is very important that no mod adds _mcla_autogroup as a
 dependency.
 --]]
 
-assert(minetest.get_modpath("mcla_autogroup"), "This mod requires the mod mcl_autogroup to function")
+assert(minetest.get_modpath("mcla_autogroup"), "This mod requires the mod mcla_autogroup to function")
 
--- Returns a table containing the unique "_mcl_hardness" for nodes belonging to
+-- Returns a table containing the unique "_mcla_hardness" for nodes belonging to
 -- each diggroup.
 local function get_hardness_values_for_groups()
 	local maps = {}
 	local values = {}
-	for g, _ in pairs(mcl_autogroup.registered_diggroups) do
+	for g, _ in pairs(mcla_autogroup.registered_diggroups) do
 		maps[g] = {}
 		values[g] = {}
 	end
 
 	for _, ndef in pairs(minetest.registered_nodes) do
-		for g, _ in pairs(mcl_autogroup.registered_diggroups) do
+		for g, _ in pairs(mcla_autogroup.registered_diggroups) do
 			if ndef.groups[g] ~= nil then
-				maps[g][ndef._mcl_hardness or 0] = true
+				maps[g][ndef._mcla_hardness or 0] = true
 			end
 		end
 	end
@@ -95,13 +95,13 @@ local function get_hardness_values_for_groups()
 		end
 	end
 
-	for g, _ in pairs(mcl_autogroup.registered_diggroups) do
+	for g, _ in pairs(mcla_autogroup.registered_diggroups) do
 		table.sort(values[g])
 	end
 	return values
 end
 
--- Returns a table containing a table indexed by "_mcl_hardness_value" to get
+-- Returns a table containing a table indexed by "_mcla_hardness_value" to get
 -- its index in the list of unique hardnesses for each diggroup.
 local function get_hardness_lookup_for_groups(hardness_values)
 	local map = {}
@@ -175,7 +175,7 @@ local function get_groupcap(group, can_harvest, multiplier, efficiency, uses)
 	}
 end
 
--- Add the groupcaps from a field in "_mcl_diggroups" to the groupcaps of a
+-- Add the groupcaps from a field in "_mcla_diggroups" to the groupcaps of a
 -- tool.
 local function add_groupcaps(toolname, groupcaps, groupcaps_def, efficiency)
 	if not groupcaps_def then
@@ -185,7 +185,7 @@ local function add_groupcaps(toolname, groupcaps, groupcaps_def, efficiency)
 	for g, capsdef in pairs(groupcaps_def) do
 		local mult = capsdef.speed or 1
 		local uses = capsdef.uses
-		local def = mcl_autogroup.registered_diggroups[g]
+		local def = mcla_autogroup.registered_diggroups[g]
 		local max_level = def.levels and #def.levels or 1
 
 		assert(capsdef.level, toolname .. ' is missing level for ' .. g)
@@ -204,7 +204,7 @@ end
 
 -- Checks if the given node would drop its useful drop if dug by a given tool.
 -- Returns true if it will yield its useful drop, false otherwise.
-function mcl_autogroup.can_harvest(nodename, toolname)
+function mcla_autogroup.can_harvest(nodename, toolname)
 	local ndef = minetest.registered_nodes[nodename]
 
 	if not ndef then
@@ -217,8 +217,8 @@ function mcl_autogroup.can_harvest(nodename, toolname)
 
 	-- Check if it can be dug by tool
 	local tdef = minetest.registered_tools[toolname]
-	if tdef and tdef._mcl_diggroups then
-		for g, gdef in pairs(tdef._mcl_diggroups) do
+	if tdef and tdef._mcla_diggroups then
+		for g, gdef in pairs(tdef._mcla_diggroups) do
 			if ndef.groups[g] then
 				if ndef.groups[g] <= gdef.level then
 					return true
@@ -230,7 +230,7 @@ function mcl_autogroup.can_harvest(nodename, toolname)
 	-- Check if it can be dug by hand
 	local tdef = minetest.registered_tools[""]
 	if tdef then
-		for g, gdef in pairs(tdef._mcl_diggroups) do
+		for g, gdef in pairs(tdef._mcla_diggroups) do
 			if ndef.groups[g] then
 				if ndef.groups[g] <= gdef.level then
 					return true
@@ -277,12 +277,12 @@ end
 --
 -- NOTE:
 -- This function can only be called after mod initialization.  Otherwise a mod
--- would have to add _mcl_autogroup as a dependency which would break the mod
+-- would have to add _mcla_autogroup as a dependency which would break the mod
 -- loading order.
-function mcl_autogroup.get_groupcaps(toolname, efficiency)
+function mcla_autogroup.get_groupcaps(toolname, efficiency)
 	local tdef = minetest.registered_tools[toolname]
 	local groupcaps = table.copy(get_tool_capabilities(tdef).groupcaps or {})
-	add_groupcaps(toolname, groupcaps, tdef._mcl_diggroups, efficiency)
+	add_groupcaps(toolname, groupcaps, tdef._mcla_diggroups, efficiency)
 	return groupcaps
 end
 
@@ -294,11 +294,11 @@ end
 --
 -- NOTE:
 -- This function can only be called after mod initialization.  Otherwise a mod
--- would have to add _mcl_autogroup as a dependency which would break the mod
+-- would have to add _mcla_autogroup as a dependency which would break the mod
 -- loading order.
-function mcl_autogroup.get_wear(toolname, diggroup)
+function mcla_autogroup.get_wear(toolname, diggroup)
 	local tdef = minetest.registered_tools[toolname]
-	local uses = tdef._mcl_diggroups[diggroup].uses
+	local uses = tdef._mcla_diggroups[diggroup].uses
 	return math.ceil(65535 / uses)
 end
 
@@ -323,9 +323,9 @@ local overwrite = function()
 
 			-- Assign groups used for digging this node depending on
 			-- the registered digging groups
-			for g, gdef in pairs(mcl_autogroup.registered_diggroups) do
+			for g, gdef in pairs(mcla_autogroup.registered_diggroups) do
 				creative_breakable = true
-				local index = hardness_lookup[g][ndef._mcl_hardness or 0]
+				local index = hardness_lookup[g][ndef._mcla_hardness or 0]
 				if ndef.groups[g] then
 					if gdef.levels then
 						newgroups[g .. "_dig_default"] = index
@@ -352,10 +352,10 @@ local overwrite = function()
 
 	for tname, tdef in pairs(minetest.registered_tools) do
 		-- Assign groupcaps for digging the registered digging groups
-		-- depending on the _mcl_diggroups in the tool definition
-		if tdef._mcl_diggroups then
+		-- depending on the _mcla_diggroups in the tool definition
+		if tdef._mcla_diggroups then
 			local toolcaps = table.copy(get_tool_capabilities(tdef))
-			toolcaps.groupcaps = mcl_autogroup.get_groupcaps(tname)
+			toolcaps.groupcaps = mcla_autogroup.get_groupcaps(tname)
 
 			minetest.override_item(tname, {
 				tool_capabilities = toolcaps

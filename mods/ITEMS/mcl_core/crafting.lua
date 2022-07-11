@@ -163,7 +163,7 @@ minetest.register_craft({
 --
 minetest.register_craft({
 	type = "toolrepair",
-	additional_wear = -mcl_core.repair,
+	additional_wear = -mcla_core.repair,
 })
 
 --

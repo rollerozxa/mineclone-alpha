@@ -1,4 +1,4 @@
-mcl_doors = {}
+mcla_doors = {}
 
 local this = minetest.get_current_modname()
 local path = minetest.get_modpath(this)

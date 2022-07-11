@@ -1,4 +1,4 @@
-local S = minetest.get_translator("mcl_bows")
+local S = minetest.get_translator("mcla_bows")
 
 -- Time in seconds after which a stuck arrow is deleted
 local ARROW_TIMEOUT = 60
@@ -23,7 +23,7 @@ minetest.register_craftitem(":mcla:arrow", {
 		-- Shoot arrow
 		local shootpos = vector.add(dispenserpos, vector.multiply(dropdir, 0.51))
 		local yaw = math.atan2(dropdir.z, dropdir.x) + YAW_OFFSET
-		mcl_bows.shoot_arrow(itemstack:get_name(), shootpos, dropdir, yaw, nil, 19, 3)
+		mcla_bows.shoot_arrow(itemstack:get_name(), shootpos, dropdir, yaw, nil, 19, 3)
 	end,
 })
 
@@ -64,7 +64,7 @@ minetest.register_node(":mcla:arrow_box", {
 	drop = "",
 	node_placement_prediction = "",
 	on_construct = function(pos)
-		minetest.log("error", "[mcl_bows] Trying to construct mcla:arrow_box at "..minetest.pos_to_string(pos))
+		minetest.log("error", "[mcla_bows] Trying to construct mcla:arrow_box at "..minetest.pos_to_string(pos))
 		minetest.remove_node(pos)
 	end,
 })
@@ -99,7 +99,7 @@ local spawn_item = function(self, pos)
 		item:set_velocity({x=0, y=0, z=0})
 		item:set_yaw(self.object:get_yaw())
 	end
-	mcl_burning.extinguish(self.object)
+	mcla_burning.extinguish(self.object)
 	self.object:remove()
 end
 
@@ -126,7 +126,7 @@ local damage_particles = function(pos, is_critical)
 end
 
 ARROW_ENTITY.on_step = function(self, dtime)
-	mcl_burning.tick(self.object, dtime)
+	mcla_burning.tick(self.object, dtime)
 
 	self._time_in_air = self._time_in_air + dtime
 
@@ -139,7 +139,7 @@ ARROW_ENTITY.on_step = function(self, dtime)
 		self._stucktimer = self._stucktimer + dtime
 		self._stuckrechecktimer = self._stuckrechecktimer + dtime
 		if self._stucktimer > ARROW_TIMEOUT then
-			mcl_burning.extinguish(self.object)
+			mcla_burning.extinguish(self.object)
 			self.object:remove()
 			return
 		end
@@ -171,7 +171,7 @@ ARROW_ENTITY.on_step = function(self, dtime)
 						}, true)
 					end
 				end
-				mcl_burning.extinguish(self.object)
+				mcla_burning.extinguish(self.object)
 				self.object:remove()
 				return
 			end
@@ -233,7 +233,7 @@ ARROW_ENTITY.on_step = function(self, dtime)
 							local def = minetest.registered_nodes[nn]
 							if (not def) or def.walkable then
 								-- There's a node in the way. Delete arrow without damage
-								mcl_burning.extinguish(self.object)
+								mcla_burning.extinguish(self.object)
 								self.object:remove()
 								return
 							end
@@ -246,8 +246,8 @@ ARROW_ENTITY.on_step = function(self, dtime)
 							armor.last_damage_types[obj:get_player_name()] = "projectile"
 						end
 						damage_particles(self.object:get_pos(), self._is_critical)
-						if mcl_burning.is_burning(self.object) then
-							mcl_burning.set_on_fire(obj, 5)
+						if mcla_burning.is_burning(self.object) then
+							mcla_burning.set_on_fire(obj, 5)
 						end
 						obj:punch(self.object, 1.0, {
 							full_punch_interval=1.0,
@@ -265,7 +265,7 @@ ARROW_ENTITY.on_step = function(self, dtime)
 
 					minetest.sound_play({name="mcl_bows_hit_other", gain=0.3}, {pos=self.object:get_pos(), max_hear_distance=16}, true)
 				end
-				mcl_burning.extinguish(self.object)
+				mcla_burning.extinguish(self.object)
 				self.object:remove()
 				return
 			end
@@ -318,8 +318,8 @@ ARROW_ENTITY.on_step = function(self, dtime)
 
 				minetest.sound_play({name="mcl_bows_hit_other", gain=0.3}, {pos=self.object:get_pos(), max_hear_distance=16}, true)
 
-				if mcl_burning.is_burning(self.object) and snode.name == "mcla:tnt" then
-					tnt.ignite(self._stuckin)
+				if mcla_burning.is_burning(self.object) and snode.name == "mcla:tnt" then
+					mcla_tnt.ignite(self._stuckin)
 				end
 
 				-- Push the button! Push, push, push the button!
@@ -403,7 +403,7 @@ ARROW_ENTITY.on_activate = function(self, staticdata, dtime_s)
 				-- If yes, delete it.
 				self._stucktimer = minetest.get_gametime() - data.stuckstarttime
 				if self._stucktimer > ARROW_TIMEOUT then
-					mcl_burning.extinguish(self.object)
+					mcla_burning.extinguish(self.object)
 					self.object:remove()
 					return
 				end

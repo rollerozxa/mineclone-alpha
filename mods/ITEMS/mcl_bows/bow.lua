@@ -1,6 +1,6 @@
-local S = minetest.get_translator("mcl_bows")
+local S = minetest.get_translator("mcla_bows")
 
-mcl_bows = {}
+mcla_bows = {}
 
 -- local arrows = {
 -- 	["mcla:arrow"] = "mcla:arrow_entity",
@@ -33,7 +33,7 @@ local bow_load = {}
 -- Another player table, this one stores the wield index of the bow being charged
 local bow_index = {}
 
-mcl_bows.shoot_arrow = function(arrow_item, pos, dir, yaw, shooter, power, damage, is_critical, bow_stack, collectable)
+mcla_bows.shoot_arrow = function(arrow_item, pos, dir, yaw, shooter, power, damage, is_critical, bow_stack, collectable)
 	local obj = minetest.add_entity({x=pos.x,y=pos.y,z=pos.z}, arrow_item.."_entity")
 	if power == nil then
 		power = BOW_MAX_SPEED --19
@@ -111,7 +111,7 @@ local player_shoot_arrow = function(itemstack, player, power, damage, is_critica
 	local dir = player:get_look_dir()
 	local yaw = player:get_look_horizontal()
 
-	mcl_bows.shoot_arrow(arrow_itemstring, {x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, dir, yaw, player, power, damage, is_critical, player:get_wielded_item(), not infinity_used)
+	mcla_bows.shoot_arrow(arrow_itemstring, {x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, dir, yaw, player, power, damage, is_critical, player:get_wielded_item(), not infinity_used)
 	return true
 end
 
@@ -143,7 +143,7 @@ minetest.register_tool(":mcla:bow", {
 		return itemstack
 	end,
 	groups = {weapon=1,weapon_ranged=1,bow=1},
-	_mcl_uses = 385,
+	_mcla_uses = 385,
 })
 
 -- Iterates through player inventory and resets all the bows in "charging" state back to their original stage
@@ -195,7 +195,7 @@ for level=0, 2 do
 		on_place = function(itemstack)
 			return itemstack
 		end,
-		_mcl_uses = 385,
+		_mcla_uses = 385,
 	})
 end
 
@@ -218,7 +218,7 @@ controls.register_on_release(function(player, key, time)
 			-- In case something goes wrong ...
 			-- Just assume minimum charge.
 			charge = 0
-			minetest.log("warning", "[mcl_bows] Player "..player:get_player_name().." fires arrow with non-numeric bow_load!")
+			minetest.log("warning", "[mcla_bows] Player "..player:get_player_name().." fires arrow with non-numeric bow_load!")
 		end
 		charge = math.max(math.min(charge, BOW_CHARGE_TIME_FULL), 0)
 

@@ -1,4 +1,4 @@
-function mcl_minecarts:get_sign(z)
+function mcla_minecarts:get_sign(z)
 	if z == 0 then
 		return 0
 	else
@@ -6,15 +6,15 @@ function mcl_minecarts:get_sign(z)
 	end
 end
 
-function mcl_minecarts:velocity_to_dir(v)
+function mcla_minecarts:velocity_to_dir(v)
 	if math.abs(v.x) > math.abs(v.z) then
-		return {x=mcl_minecarts:get_sign(v.x), y=mcl_minecarts:get_sign(v.y), z=0}
+		return {x=mcla_minecarts:get_sign(v.x), y=mcla_minecarts:get_sign(v.y), z=0}
 	else
-		return {x=0, y=mcl_minecarts:get_sign(v.y), z=mcl_minecarts:get_sign(v.z)}
+		return {x=0, y=mcla_minecarts:get_sign(v.y), z=mcla_minecarts:get_sign(v.z)}
 	end
 end
 
-function mcl_minecarts:is_rail(pos, railtype)
+function mcla_minecarts:is_rail(pos, railtype)
 	local node = minetest.get_node(pos).name
 	if node == "ignore" then
 		local vm = minetest.get_voxel_manip()
@@ -36,34 +36,34 @@ function mcl_minecarts:is_rail(pos, railtype)
 	return minetest.get_item_group(node, "connect_to_raillike") == railtype
 end
 
-function mcl_minecarts:check_front_up_down(pos, dir_, check_down, railtype)
+function mcla_minecarts:check_front_up_down(pos, dir_, check_down, railtype)
 	local dir = vector.new(dir_)
 	local cur = nil
 
 	-- Front
 	dir.y = 0
 	cur = vector.add(pos, dir)
-	if mcl_minecarts:is_rail(cur, railtype) then
+	if mcla_minecarts:is_rail(cur, railtype) then
 		return dir
 	end
 	-- Up
 	if check_down then
 		dir.y = 1
 		cur = vector.add(pos, dir)
-		if mcl_minecarts:is_rail(cur, railtype) then
+		if mcla_minecarts:is_rail(cur, railtype) then
 			return dir
 		end
 	end
 	-- Down
 	dir.y = -1
 	cur = vector.add(pos, dir)
-	if mcl_minecarts:is_rail(cur, railtype) then
+	if mcla_minecarts:is_rail(cur, railtype) then
 		return dir
 	end
 	return nil
 end
 
-function mcl_minecarts:get_rail_direction(pos_, dir, ctrl, old_switch, railtype)
+function mcla_minecarts:get_rail_direction(pos_, dir, ctrl, old_switch, railtype)
 	local pos = vector.round(pos_)
 	local cur = nil
 	local left_check, right_check = true, true
@@ -86,14 +86,14 @@ function mcl_minecarts:get_rail_direction(pos_, dir, ctrl, old_switch, railtype)
 			right_check = false
 		end
 		if ctrl.left and left_check then
-			cur = mcl_minecarts:check_front_up_down(pos, left, false, railtype)
+			cur = mcla_minecarts:check_front_up_down(pos, left, false, railtype)
 			if cur then
 				return cur, 1
 			end
 			left_check = false
 		end
 		if ctrl.right and right_check then
-			cur = mcl_minecarts:check_front_up_down(pos, right, false, railtype)
+			cur = mcla_minecarts:check_front_up_down(pos, right, false, railtype)
 			if cur then
 				return cur, 2
 			end
@@ -102,14 +102,14 @@ function mcl_minecarts:get_rail_direction(pos_, dir, ctrl, old_switch, railtype)
 	end
 
 	-- Normal
-	cur = mcl_minecarts:check_front_up_down(pos, dir, true, railtype)
+	cur = mcla_minecarts:check_front_up_down(pos, dir, true, railtype)
 	if cur then
 		return cur
 	end
 
 	-- Left, if not already checked
 	if left_check then
-		cur = mcl_minecarts:check_front_up_down(pos, left, false, railtype)
+		cur = mcla_minecarts:check_front_up_down(pos, left, false, railtype)
 		if cur then
 			return cur
 		end
@@ -117,7 +117,7 @@ function mcl_minecarts:get_rail_direction(pos_, dir, ctrl, old_switch, railtype)
 
 	-- Right, if not already checked
 	if right_check then
-		cur = mcl_minecarts:check_front_up_down(pos, right, false, railtype)
+		cur = mcla_minecarts:check_front_up_down(pos, right, false, railtype)
 		if cur then
 			return cur
 		end
@@ -125,7 +125,7 @@ function mcl_minecarts:get_rail_direction(pos_, dir, ctrl, old_switch, railtype)
 
 	-- Backwards
 	if not old_switch then
-		cur = mcl_minecarts:check_front_up_down(pos, {
+		cur = mcla_minecarts:check_front_up_down(pos, {
 				x = -dir.x,
 				y = dir.y,
 				z = -dir.z

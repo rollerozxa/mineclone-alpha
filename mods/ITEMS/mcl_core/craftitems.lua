@@ -1,6 +1,6 @@
 -- mods/default/craftitems.lua
 
-local S = minetest.get_translator("mcl_core")
+local S = minetest.get_translator("mcla_core")
 
 --
 -- Crafting items
@@ -11,7 +11,7 @@ minetest.register_craftitem(":mcla:stick", {
 	inventory_image = "mcl_core_stick.png",
 	stack_max = 64,
 	groups = { craftitem=1, stick=1 },
-	_mcl_toollike_wield = true,
+	_mcla_toollike_wield = true,
 })
 
 minetest.register_craftitem(":mcla:paper", {
@@ -123,7 +123,7 @@ minetest.register_craftitem(":mcla:book", {
 	groups = { book=1, craftitem = 1 },
 })
 
--- from mcl_mobiterms
+-- from mcla_mobiterms
 
 minetest.register_craftitem(":mcla:porkchop", {
 	description = S("Raw Porkchop"),

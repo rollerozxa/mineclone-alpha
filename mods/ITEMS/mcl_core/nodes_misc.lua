@@ -1,7 +1,7 @@
 -- Other nodes
-local S = minetest.get_translator("mcl_core")
+local S = minetest.get_translator("mcla_core")
 
--- The void below the bedrock. Void damage is handled in mcl_playerplus.
+-- The void below the bedrock. Void damage is handled in mcla_playerplus.
 -- The void does not exist as a block in Minecraft but we register it as a
 -- block here to make things easier for us.
 minetest.register_node(":mcla:void", {
@@ -27,6 +27,6 @@ minetest.register_node(":mcla:void", {
 	end,
 	drop = "",
 	-- Infinite blast resistance; it should never be destroyed by explosions
-	_mcl_blast_resistance = -1,
-	_mcl_hardness = -1,
+	_mcla_blast_resistance = -1,
+	_mcla_hardness = -1,
 })

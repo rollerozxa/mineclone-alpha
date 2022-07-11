@@ -1,4 +1,4 @@
-local S = minetest.get_translator("mcl_death_messages")
+local S = minetest.get_translator("mcla_death_messages")
 local N = function(s) return s end
 
 local function get_tool_name(item)
@@ -103,7 +103,7 @@ local test_tool_3b = {
 
 assert( get_tool_name(test_tool_3b) == "bar baz 3b" )
 
-mcl_death_messages = {}
+mcla_death_messages = {}
 
 -- Death messages
 local msgs = {
@@ -181,7 +181,7 @@ local last_damages = { }
 
 minetest.register_on_dieplayer(function(player, reason)
 	-- Death message
-	local message = minetest.settings:get_bool("mcl_showDeathMessages")
+	local message = minetest.settings:get_bool("mcla_showDeathMessages")
 	if message == nil then
 		message = true
 	end
@@ -211,8 +211,8 @@ minetest.register_on_dieplayer(function(player, reason)
 					highest_damage_def = def
 				end
 			end
-			if highest_damage_def and highest_damage_def._mcl_node_death_message then
-				local field = highest_damage_def._mcl_node_death_message
+			if highest_damage_def and highest_damage_def._mcla_node_death_message then
+				local field = highest_damage_def._mcla_node_death_message
 				local field_msg
 				if type(field) == "table" then
 					field_msg = field[math.random(1, #field)]
@@ -223,7 +223,7 @@ minetest.register_on_dieplayer(function(player, reason)
 				if highest_damage_def.mod_origin then
 					textdomain = highest_damage_def.mod_origin
 				else
-					textdomain = "mcl_death_messages"
+					textdomain = "mcla_death_messages"
 				end
 				-- We assume the textdomain of the death message in the node definition
 				-- equals the modname.
@@ -327,7 +327,7 @@ end
 -- To be called directly BEFORE damaging a player via set_hp or punch.
 -- The next time the player dies due to a set_hp, the message will be shown.
 -- The player must die via set_hp within 0.1 seconds, otherwise the message will be discarded.
-function mcl_death_messages.player_damage(player, message)
+function mcla_death_messages.player_damage(player, message)
 	last_damages[player:get_player_name()] = { message = message, sequence_number = dmg_sequence_number }
 	start_damage_reset_countdown(player, dmg_sequence_number)
 	dmg_sequence_number = dmg_sequence_number + 1

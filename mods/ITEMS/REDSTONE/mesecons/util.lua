@@ -146,7 +146,7 @@ end
 -- Returns the 6 immediate neighbors of pos
 -- (nodes which touch the sides of pos).
 -- NOT PART OF ORIGINAL MESECONS!
-function mesecon.mcl_get_neighbors(pos)
+function mesecon.mcla_get_neighbors(pos)
 	local r = mesecon.rules.alldirs
 	local e = {}
 	for i=1, #r do

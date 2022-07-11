@@ -1,4 +1,4 @@
-local S = minetest.get_translator("mcl_chests")
+local S = minetest.get_translator("mcla_chests")
 
 local no_rotate, simple_rotate
 if minetest.get_modpath("screwdriver") then
@@ -147,7 +147,7 @@ minetest.register_node(":mcla:"..basename, {
 	use_texture_alpha = minetest.features.use_texture_alpha_string_modes and "opaque" or false,
 	paramtype2 = "facedir",
 	stack_max = 64,
-	sounds = mcl_sounds.node_sound_wood_defaults(),
+	sounds = mcla_sounds.node_sound_wood_defaults(),
 	groups = {deco_block=1},
 	on_construct = function(pos, node)
 		local node = minetest.get_node(pos)
@@ -160,7 +160,7 @@ local function close_forms(basename, pos)
 	local players = minetest.get_connected_players()
 	for p=1, #players do
 		if vector.distance(players[p]:get_pos(), pos) <= 30 then
-			minetest.close_formspec(players[p]:get_player_name(), "mcl_chests:"..basename.."_"..pos.x.."_"..pos.y.."_"..pos.z)
+			minetest.close_formspec(players[p]:get_player_name(), "mcla_chests:"..basename.."_"..pos.x.."_"..pos.y.."_"..pos.z)
 		end
 	end
 end
@@ -174,7 +174,7 @@ minetest.register_node(":"..small_name, {
 	drop = drop,
 	groups = {handy=1,axey=1, container=2, deco_block=1, material_wood=1,flammable=-1,chest_entity=1, not_in_creative_inventory=1},
 	is_ground_content = false,
-	sounds = mcl_sounds.node_sound_wood_defaults(),
+	sounds = mcla_sounds.node_sound_wood_defaults(),
 	on_construct = function(pos)
 		local param2 = minetest.get_node(pos).param2
 		local meta = minetest.get_meta(pos)
@@ -200,13 +200,13 @@ minetest.register_node(":"..small_name, {
 		-- BEGIN OF LISTRING WORKAROUND
 		inv:set_size("input", 1)
 		-- END OF LISTRING WORKAROUND
-		if minetest.get_node(mcl_util.get_double_container_neighbor_pos(pos, param2, "right")).name == "mcla:"..basename.."_small" then
+		if minetest.get_node(mcla_util.get_double_container_neighbor_pos(pos, param2, "right")).name == "mcla:"..basename.."_small" then
 			minetest.swap_node(pos, {name="mcla:"..basename.."_right",param2=param2})
-			local p = mcl_util.get_double_container_neighbor_pos(pos, param2, "right")
+			local p = mcla_util.get_double_container_neighbor_pos(pos, param2, "right")
 			minetest.swap_node(p, { name = "mcla:"..basename.."_left", param2 = param2 })
-		elseif minetest.get_node(mcl_util.get_double_container_neighbor_pos(pos, param2, "left")).name == "mcla:"..basename.."_small" then
+		elseif minetest.get_node(mcla_util.get_double_container_neighbor_pos(pos, param2, "left")).name == "mcla:"..basename.."_small" then
 			minetest.swap_node(pos, {name="mcla:"..basename.."_left",param2=param2})
-			local p = mcl_util.get_double_container_neighbor_pos(pos, param2, "left")
+			local p = mcla_util.get_double_container_neighbor_pos(pos, param2, "left")
 			minetest.swap_node(p, { name = "mcla:"..basename.."_right", param2 = param2 })
 		else
 			minetest.swap_node(pos, { name = "mcla:"..basename.."_small", param2 = param2 })
@@ -235,8 +235,8 @@ minetest.register_node(":"..small_name, {
 		minetest.log("action", player:get_player_name()..
 				" takes stuff from chest at "..minetest.pos_to_string(pos))
 	end,
-	_mcl_blast_resistance = 2.5,
-	_mcl_hardness = 2.5,
+	_mcla_blast_resistance = 2.5,
+	_mcla_hardness = 2.5,
 
 	on_rightclick = function(pos, node, clicker)
 		if minetest.registered_nodes[minetest.get_node({x = pos.x, y = pos.y + 1, z = pos.z}).name].groups.opaque == 1 then
@@ -244,7 +244,7 @@ minetest.register_node(":"..small_name, {
 			return false
 		end
 
-		local chest_formspec = mcl_formspec.formspec_wrapper([[
+		local chest_formspec = mcla_formspec.formspec_wrapper([[
 			size[10,9.4,true]
 			no_prepend[]
 			real_coordinates[true]
@@ -263,7 +263,7 @@ minetest.register_node(":"..small_name, {
 
 		print(chest_formspec)
 
-		minetest.show_formspec(clicker:get_player_name(), "mcl_chests:"..basename.."_"..pos.x.."_"..pos.y.."_"..pos.z, chest_formspec)
+		minetest.show_formspec(clicker:get_player_name(), "mcla_chests:"..basename.."_"..pos.x.."_"..pos.y.."_"..pos.z, chest_formspec)
 	end,
 
 	on_destruct = function(pos)
@@ -280,11 +280,11 @@ minetest.register_node(":"..left_name, {
 	groups = {handy=1,axey=1, container=5,not_in_creative_inventory=1, material_wood=1,flammable=-1,chest_entity=1,double_chest=1},
 	drop = drop,
 	is_ground_content = false,
-	sounds = mcl_sounds.node_sound_wood_defaults(),
+	sounds = mcla_sounds.node_sound_wood_defaults(),
 	on_construct = function(pos)
 		local n = minetest.get_node(pos)
 		local param2 = n.param2
-		local p = mcl_util.get_double_container_neighbor_pos(pos, param2, "left")
+		local p = mcla_util.get_double_container_neighbor_pos(pos, param2, "left")
 		if not p or minetest.get_node(p).name ~= "mcla:"..basename.."_right" then
 			n.name = "mcla:"..basename.."_small"
 			minetest.swap_node(pos, n)
@@ -299,7 +299,7 @@ minetest.register_node(":"..left_name, {
 		close_forms(basename, pos)
 
 		local param2 = n.param2
-		local p = mcl_util.get_double_container_neighbor_pos(pos, param2, "left")
+		local p = mcla_util.get_double_container_neighbor_pos(pos, param2, "left")
 		if not p or minetest.get_node(p).name ~= "mcla:"..basename.."_right" then
 			return
 		end
@@ -319,7 +319,7 @@ minetest.register_node(":"..left_name, {
 		-- BEGIN OF LISTRING WORKAROUND
 		elseif listname == "input" then
 			local inv = minetest.get_inventory({type="node", pos=pos})
-			local other_pos = mcl_util.get_double_container_neighbor_pos(pos, minetest.get_node(pos).param2, "left")
+			local other_pos = mcla_util.get_double_container_neighbor_pos(pos, minetest.get_node(pos).param2, "left")
 			local other_inv = minetest.get_inventory({type="node", pos=other_pos})
 			return limit_put(stack, inv, other_inv)
 			--[[if inv:room_for_item("main", stack) then
@@ -347,7 +347,7 @@ minetest.register_node(":"..left_name, {
 		-- BEGIN OF LISTRING WORKAROUND
 		if listname == "input" then
 			local inv = minetest.get_inventory({type="node", pos=pos})
-			local other_pos = mcl_util.get_double_container_neighbor_pos(pos, minetest.get_node(pos).param2, "left")
+			local other_pos = mcla_util.get_double_container_neighbor_pos(pos, minetest.get_node(pos).param2, "left")
 			local other_inv = minetest.get_inventory({type="node", pos=other_pos})
 
 			inv:set_stack("input", 1, nil)
@@ -360,11 +360,11 @@ minetest.register_node(":"..left_name, {
 		minetest.log("action", player:get_player_name()..
 				" takes stuff from chest at "..minetest.pos_to_string(pos))
 	end,
-	_mcl_blast_resistance = 2.5,
-	_mcl_hardness = 2.5,
+	_mcla_blast_resistance = 2.5,
+	_mcla_hardness = 2.5,
 
 	on_rightclick = function(pos, node, clicker)
-		local pos_other = mcl_util.get_double_container_neighbor_pos(pos, node.param2, "left")
+		local pos_other = mcla_util.get_double_container_neighbor_pos(pos, node.param2, "left")
 		if minetest.registered_nodes[minetest.get_node({x = pos.x, y = pos.y + 1, z = pos.z}).name].groups.opaque == 1
 			or minetest.registered_nodes[minetest.get_node({x = pos_other.x, y = pos_other.y + 1, z = pos_other.z}).name].groups.opaque == 1 then
 				-- won't open if there is no space from the top
@@ -372,18 +372,18 @@ minetest.register_node(":"..left_name, {
 		end
 
 		minetest.show_formspec(clicker:get_player_name(),
-		"mcl_chests:"..basename.."_"..pos.x.."_"..pos.y.."_"..pos.z,
+		"mcla_chests:"..basename.."_"..pos.x.."_"..pos.y.."_"..pos.z,
 		"size[9,11.5]"..
 		"label[0,0;"..minetest.formspec_escape(minetest.colorize("#313131", S("Large Chest"))).."]"..
 		"list[nodemeta:"..pos.x..","..pos.y..","..pos.z..";main;0,0.5;9,3;]"..
-		mcl_formspec.get_itemslot_bg(0,0.5,9,3)..
+		mcla_formspec.get_itemslot_bg(0,0.5,9,3)..
 		"list[nodemeta:"..pos_other.x..","..pos_other.y..","..pos_other.z..";main;0,3.5;9,3;]"..
-		mcl_formspec.get_itemslot_bg(0,3.5,9,3)..
+		mcla_formspec.get_itemslot_bg(0,3.5,9,3)..
 		"label[0,7;"..minetest.formspec_escape(minetest.colorize("#313131", S("Inventory"))).."]"..
 		"list[current_player;main;0,7.5;9,3;9]"..
-		mcl_formspec.get_itemslot_bg(0,7.5,9,3)..
+		mcla_formspec.get_itemslot_bg(0,7.5,9,3)..
 		"list[current_player;main;0,10.75;9,1;]"..
-		mcl_formspec.get_itemslot_bg(0,10.75,9,1)..
+		mcla_formspec.get_itemslot_bg(0,10.75,9,1)..
 		-- BEGIN OF LISTRING WORKAROUND
 		"listring[current_player;main]"..
 		"listring[nodemeta:"..pos.x..","..pos.y..","..pos.z..";input]"..
@@ -404,11 +404,11 @@ minetest.register_node(":mcla:"..basename.."_right", {
 	groups = {handy=1,axey=1, container=6,not_in_creative_inventory=1, material_wood=1,flammable=-1,double_chest=2},
 	drop = drop,
 	is_ground_content = false,
-	sounds = mcl_sounds.node_sound_wood_defaults(),
+	sounds = mcla_sounds.node_sound_wood_defaults(),
 	on_construct = function(pos)
 		local n = minetest.get_node(pos)
 		local param2 = n.param2
-		local p = mcl_util.get_double_container_neighbor_pos(pos, param2, "right")
+		local p = mcla_util.get_double_container_neighbor_pos(pos, param2, "right")
 		if not p or minetest.get_node(p).name ~= "mcla:"..basename.."_left" then
 			n.name = "mcla:"..basename.."_small"
 			minetest.swap_node(pos, n)
@@ -423,7 +423,7 @@ minetest.register_node(":mcla:"..basename.."_right", {
 		close_forms(basename, pos)
 
 		local param2 = n.param2
-		local p = mcl_util.get_double_container_neighbor_pos(pos, param2, "right")
+		local p = mcla_util.get_double_container_neighbor_pos(pos, param2, "right")
 		if not p or minetest.get_node(p).name ~= "mcla:"..basename.."_left" then
 			return
 		end
@@ -443,7 +443,7 @@ minetest.register_node(":mcla:"..basename.."_right", {
 			return 0
 		-- BEGIN OF LISTRING WORKAROUND
 		elseif listname == "input" then
-			local other_pos = mcl_util.get_double_container_neighbor_pos(pos, minetest.get_node(pos).param2, "right")
+			local other_pos = mcla_util.get_double_container_neighbor_pos(pos, minetest.get_node(pos).param2, "right")
 			local other_inv = minetest.get_inventory({type="node", pos=other_pos})
 			local inv = minetest.get_inventory({type="node", pos=pos})
 			--[[if other_inv:room_for_item("main", stack) then
@@ -470,7 +470,7 @@ minetest.register_node(":mcla:"..basename.."_right", {
 				" moves stuff to chest at "..minetest.pos_to_string(pos))
 		-- BEGIN OF LISTRING WORKAROUND
 		if listname == "input" then
-			local other_pos = mcl_util.get_double_container_neighbor_pos(pos, minetest.get_node(pos).param2, "right")
+			local other_pos = mcla_util.get_double_container_neighbor_pos(pos, minetest.get_node(pos).param2, "right")
 			local other_inv = minetest.get_inventory({type="node", pos=other_pos})
 			local inv = minetest.get_inventory({type="node", pos=pos})
 
@@ -484,11 +484,11 @@ minetest.register_node(":mcla:"..basename.."_right", {
 		minetest.log("action", player:get_player_name()..
 				" takes stuff from chest at "..minetest.pos_to_string(pos))
 	end,
-	_mcl_blast_resistance = 2.5,
-	_mcl_hardness = 2.5,
+	_mcla_blast_resistance = 2.5,
+	_mcla_hardness = 2.5,
 
 	on_rightclick = function(pos, node, clicker)
-		local pos_other = mcl_util.get_double_container_neighbor_pos(pos, node.param2, "right")
+		local pos_other = mcla_util.get_double_container_neighbor_pos(pos, node.param2, "right")
 		if minetest.registered_nodes[minetest.get_node({x = pos.x, y = pos.y + 1, z = pos.z}).name].groups.opaque == 1
 			or minetest.registered_nodes[minetest.get_node({x = pos_other.x, y = pos_other.y + 1, z = pos_other.z}).name].groups.opaque == 1 then
 				-- won't open if there is no space from the top
@@ -496,19 +496,19 @@ minetest.register_node(":mcla:"..basename.."_right", {
 		end
 
 		minetest.show_formspec(clicker:get_player_name(),
-		"mcl_chests:"..basename.."_"..pos.x.."_"..pos.y.."_"..pos.z,
+		"mcla_chests:"..basename.."_"..pos.x.."_"..pos.y.."_"..pos.z,
 
 		"size[9,11.5]"..
 		"label[0,0;"..minetest.formspec_escape(minetest.colorize("#313131", S("Large Chest"))).."]"..
 		"list[nodemeta:"..pos_other.x..","..pos_other.y..","..pos_other.z..";main;0,0.5;9,3;]"..
-		mcl_formspec.get_itemslot_bg(0,0.5,9,3)..
+		mcla_formspec.get_itemslot_bg(0,0.5,9,3)..
 		"list[nodemeta:"..pos.x..","..pos.y..","..pos.z..";main;0,3.5;9,3;]"..
-		mcl_formspec.get_itemslot_bg(0,3.5,9,3)..
+		mcla_formspec.get_itemslot_bg(0,3.5,9,3)..
 		"label[0,7;"..minetest.formspec_escape(minetest.colorize("#313131", S("Inventory"))).."]"..
 		"list[current_player;main;0,7.5;9,3;9]"..
-		mcl_formspec.get_itemslot_bg(0,7.5,9,3)..
+		mcla_formspec.get_itemslot_bg(0,7.5,9,3)..
 		"list[current_player;main;0,10.75;9,1;]"..
-		mcl_formspec.get_itemslot_bg(0,10.75,9,1)..
+		mcla_formspec.get_itemslot_bg(0,10.75,9,1)..
 		-- BEGIN OF LISTRING WORKAROUND
 		"listring[current_player;main]"..
 		"listring[nodemeta:"..pos.x..","..pos.y..","..pos.z..";input]"..
@@ -544,7 +544,7 @@ register_chest("chest",
 
 -- Disable chest when it has been closed
 minetest.register_on_player_receive_fields(function(player, formname, fields)
-	if formname:find("mcl_chests:") == 1 then
+	if formname:find("mcla_chests:") == 1 then
 		if fields.quit then
 			player_chest_close(player)
 		end

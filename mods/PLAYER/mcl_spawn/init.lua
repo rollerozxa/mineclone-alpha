@@ -1,6 +1,6 @@
-mcl_spawn = {}
+mcla_spawn = {}
 
-local S = minetest.get_translator("mcl_spawn")
+local S = minetest.get_translator("mcla_spawn")
 local mg_name = minetest.get_mapgen_setting("mg_name")
 local storage = minetest.get_mod_storage()
 
@@ -56,15 +56,15 @@ local node_search_list =
 
 -- Initial variables
 
-local success = storage:get_int("mcl_spawn_success")==1
-local searched = (storage:get_int("mcl_spawn_searched")==1) or mg_name == "v6" or mg_name == "singlenode" or minetest.settings:get("static_spawnpoint")
-local wsp = minetest.string_to_pos(storage:get_string("mcl_spawn_world_spawn_point")) or {} -- world spawn position
-local check = storage:get_int("mcl_spawn_check") or 0
-local cp = minetest.string_to_pos(storage:get_string("mcl_spawn_cp")) or {x=start_pos.x, y=start_pos.y, z=start_pos.z}
-local edge_len = storage:get_int("mcl_spawn_edge_len") or 1
-local edge_dist = storage:get_int("mcl_spawn_edge_dist") or 0
-local dir_step = storage:get_int("mcl_spawn_dir_step") or 0
-local dir_ind = storage:get_int("mcl_spawn_dir_ind") or 1
+local success = storage:get_int("mcla_spawn_success")==1
+local searched = (storage:get_int("mcla_spawn_searched")==1) or mg_name == "v6" or mg_name == "singlenode" or minetest.settings:get("static_spawnpoint")
+local wsp = minetest.string_to_pos(storage:get_string("mcla_spawn_world_spawn_point")) or {} -- world spawn position
+local check = storage:get_int("mcla_spawn_check") or 0
+local cp = minetest.string_to_pos(storage:get_string("mcla_spawn_cp")) or {x=start_pos.x, y=start_pos.y, z=start_pos.z}
+local edge_len = storage:get_int("mcla_spawn_edge_len") or 1
+local edge_dist = storage:get_int("mcla_spawn_edge_dist") or 0
+local dir_step = storage:get_int("mcla_spawn_dir_step") or 0
+local dir_ind = storage:get_int("mcla_spawn_dir_ind") or 1
 local emerge_pos1, emerge_pos2
 
 -- Get world 'mapgen_limit' and 'chunksize' to calculate 'spawn_limit'.
@@ -221,28 +221,28 @@ local function next_biome()
 			next_pos()
 			if math.abs(cp.x) > spawn_limit or math.abs(cp.z) > spawn_limit then
 				check = checks + 1
-				minetest.log("warning", "[mcl_spawn] No white-listed biomes found - search stopped by overlimit")
+				minetest.log("warning", "[mcla_spawn] No white-listed biomes found - search stopped by overlimit")
 				return false
 			end
 			check = check + 1
 			cp.y = minetest.get_spawn_level(cp.x, cp.z) or start_pos.y
 			if cp.y then
 				wsp = {x = cp.x, y = cp.y, z = cp.z}
-				minetest.log("warning", "[mcl_spawn] No white-listed biomes found - using current")
+				minetest.log("warning", "[mcla_spawn] No white-listed biomes found - using current")
 				return true
 			else
-				minetest.log("warning", "[mcl_spawn] No white-listed biomes found and spawn level is nil - please define start_pos to continue")
+				minetest.log("warning", "[mcla_spawn] No white-listed biomes found and spawn level is nil - please define start_pos to continue")
 				return false
 			end
 		end
-		minetest.log("action", "[mcl_spawn] Suitable biomes found: "..tostring(#biome_ids))
+		minetest.log("action", "[mcla_spawn] Suitable biomes found: "..tostring(#biome_ids))
 	end
 	while check <= checks do
 		local biome_data = minetest.get_biome_data(cp)
 		-- Sometimes biome_data is nil
 		local biome = biome_data and biome_data.biome
 		if biome then
-			minetest.log("verbose", "[mcl_spawn] Search white-listed biome at "..minetest.pos_to_string(cp)..": "..minetest.get_biome_name(biome))
+			minetest.log("verbose", "[mcla_spawn] Search white-listed biome at "..minetest.pos_to_string(cp)..": "..minetest.get_biome_name(biome))
 			for _, biome_id in ipairs(biome_ids) do
 				if biome == biome_id then
 					cp.y = minetest.get_spawn_level(cp.x, cp.z) or start_pos.y
@@ -274,7 +274,7 @@ local function ecb_search_continue(blockpos, action, calls_remaining, param)
 		emerge_pos1 = {x = wsp.x-half_res, y = alt_min, z = wsp.z-half_res}
 		emerge_pos2 = {x = wsp.x+half_res, y = alt_max, z = wsp.z+half_res}
 		local nodes = minetest.find_nodes_in_area_under_air(emerge_pos1, emerge_pos2, node_groups_white_list)
-		minetest.log("verbose", "[mcl_spawn] Data emerge callback: "..minetest.pos_to_string(wsp).." - "..tostring(nodes and #nodes) .. " node(s) found under air")
+		minetest.log("verbose", "[mcla_spawn] Data emerge callback: "..minetest.pos_to_string(wsp).." - "..tostring(nodes and #nodes) .. " node(s) found under air")
 		if nodes then
 			if no_trees_area_counter >= 0 then
 				local trees = get_trees(emerge_pos1, emerge_pos2)
@@ -287,7 +287,7 @@ local function ecb_search_continue(blockpos, action, calls_remaining, param)
 							if wsp then
 								wsp.y = wsp.y + 1
 								if good_for_respawn(wsp) and can_find_tree(wsp, trees) then
-									minetest.log("action", "[mcl_spawn] Dynamic world spawn randomly determined to be "..minetest.pos_to_string(wsp))
+									minetest.log("action", "[mcla_spawn] Dynamic world spawn randomly determined to be "..minetest.pos_to_string(wsp))
 									searched = true
 									success = true
 									return
@@ -301,7 +301,7 @@ local function ecb_search_continue(blockpos, action, calls_remaining, param)
 							if wsp then
 								wsp.y = wsp.y + 1
 								if good_for_respawn(wsp) and can_find_tree(wsp, trees) then
-									minetest.log("action", "[mcl_spawn] Dynamic world spawn determined to be "..minetest.pos_to_string(wsp))
+									minetest.log("action", "[mcla_spawn] Dynamic world spawn determined to be "..minetest.pos_to_string(wsp))
 									searched = true
 									success = true
 									return
@@ -312,7 +312,7 @@ local function ecb_search_continue(blockpos, action, calls_remaining, param)
 				else
 					no_trees_area_counter = no_trees_area_counter + 1
 					if no_trees_area_counter > 10 then
-						minetest.log("verbose", "[mcl_spawn] More than 10 times no trees at all! Won't search trees next 200 calls")
+						minetest.log("verbose", "[mcla_spawn] More than 10 times no trees at all! Won't search trees next 200 calls")
 						no_trees_area_counter = -200
 					end
 				end
@@ -325,7 +325,7 @@ local function ecb_search_continue(blockpos, action, calls_remaining, param)
 						if wsp then
 							wsp.y = wsp.y + 1
 							if good_for_respawn(wsp) then
-								minetest.log("action", "[mcl_spawn] Dynamic world spawn randomly determined to be "..minetest.pos_to_string(wsp) .. " (no trees)")
+								minetest.log("action", "[mcla_spawn] Dynamic world spawn randomly determined to be "..minetest.pos_to_string(wsp) .. " (no trees)")
 								searched = true
 								success = true
 								return
@@ -339,7 +339,7 @@ local function ecb_search_continue(blockpos, action, calls_remaining, param)
 						if wsp then
 							wsp.y = wsp.y + 1
 							if good_for_respawn(wsp) then
-								minetest.log("action", "[mcl_spawn] Dynamic world spawn determined to be "..minetest.pos_to_string(wsp) .. " (no trees)")
+								minetest.log("action", "[mcla_spawn] Dynamic world spawn determined to be "..minetest.pos_to_string(wsp) .. " (no trees)")
 								searched = true
 								success = true
 								return
@@ -350,11 +350,11 @@ local function ecb_search_continue(blockpos, action, calls_remaining, param)
 			end
 		end
 		next_pos()
-		mcl_spawn.search()
+		mcla_spawn.search()
 	end
 end
 
-function mcl_spawn.search()
+function mcla_spawn.search()
 	if not next_biome() or check > checks then
 		return false
 	end
@@ -368,7 +368,7 @@ function mcl_spawn.search()
 end
 
 
-mcl_spawn.get_world_spawn_pos = function()
+mcla_spawn.get_world_spawn_pos = function()
 	local ssp = minetest.setting_get_pos("static_spawnpoint")
 	if ssp then
 		return ssp
@@ -376,7 +376,7 @@ mcl_spawn.get_world_spawn_pos = function()
 	if success then
 		return wsp
 	end
-	minetest.log("action", "[mcl_spawn] Failed to determine dynamic world spawn!")
+	minetest.log("action", "[mcla_spawn] Failed to determine dynamic world spawn!")
 	return start_pos
 end
 
@@ -384,7 +384,7 @@ end
 -- If player is nil or not a player, a world spawn point is returned.
 -- The second return value is true if returned spawn point is player-chosen,
 -- false otherwise.
-mcl_spawn.get_bed_spawn_pos = function(player)
+mcla_spawn.get_bed_spawn_pos = function(player)
 	local spawn, custom_spawn = nil, false
 	if player ~= nil and player:is_player() then
 		local attr = player:get_meta():get_string("mcla:spawn")
@@ -394,7 +394,7 @@ mcl_spawn.get_bed_spawn_pos = function(player)
 		end
 	end
 	if not spawn or spawn == "" then
-		spawn = mcl_spawn.get_world_spawn_pos()
+		spawn = mcla_spawn.get_world_spawn_pos()
 		custom_spawn = false
 	end
 	return spawn, custom_spawn
@@ -404,7 +404,7 @@ end
 -- Set pos to nil to clear the spawn position.
 -- If message is set, informs the player with a chat message when the spawn position
 -- changed.
-mcl_spawn.set_spawn_pos = function(player, pos, message)
+mcla_spawn.set_spawn_pos = function(player, pos, message)
 	local spawn_changed = false
 	local meta = player:get_meta()
 	if pos == nil then
@@ -432,8 +432,8 @@ mcl_spawn.set_spawn_pos = function(player, pos, message)
 	return spawn_changed
 end
 
-mcl_spawn.get_player_spawn_pos = function(player)
-	local pos, custom_spawn = mcl_spawn.get_bed_spawn_pos(player)
+mcla_spawn.get_player_spawn_pos = function(player)
+	local pos, custom_spawn = mcla_spawn.get_bed_spawn_pos(player)
 	if pos and custom_spawn then
 		-- Check if bed is still there
 		local node_bed = get_far_node(pos)
@@ -444,7 +444,7 @@ mcl_spawn.get_player_spawn_pos = function(player)
 				player:get_meta():set_string("mcla:spawn", "")
 			end
 			minetest.chat_send_player(player:get_player_name(), S("Your spawn bed was missing or blocked."))
-			return mcl_spawn.get_world_spawn_pos(), false
+			return mcla_spawn.get_world_spawn_pos(), false
 		end
 
 		-- Find spawning position on/near the bed free of solid or damaging blocks iterating a square spiral 15x15:
@@ -468,47 +468,47 @@ mcl_spawn.get_player_spawn_pos = function(player)
 		end
 		-- We here if we didn't find suitable place for respawn
 	end
-	return mcl_spawn.get_world_spawn_pos(), false
+	return mcla_spawn.get_world_spawn_pos(), false
 end
 
-mcl_spawn.spawn = function(player)
-	local pos, in_bed = mcl_spawn.get_player_spawn_pos(player)
+mcla_spawn.spawn = function(player)
+	local pos, in_bed = mcla_spawn.get_player_spawn_pos(player)
 	player:set_pos(pos)
 	return in_bed or success
 end
 
 -- Respawn player at specified respawn position
-minetest.register_on_respawnplayer(mcl_spawn.spawn)
+minetest.register_on_respawnplayer(mcla_spawn.spawn)
 
-function mcl_spawn.shadow_worker()
+function mcla_spawn.shadow_worker()
 	if not searched then
 		searched = true
-		mcl_spawn.search()
-		minetest.log("action", "[mcl_spawn] Started world spawn point search")
+		mcla_spawn.search()
+		minetest.log("action", "[mcla_spawn] Started world spawn point search")
 	end
 	if success and ((not good_for_respawn(wsp)) or (not can_find_tree(wsp))) then
 		success = false
-		minetest.log("action", "[mcl_spawn] World spawn position isn't safe anymore: "..minetest.pos_to_string(wsp))
-		mcl_spawn.search()
+		minetest.log("action", "[mcla_spawn] World spawn position isn't safe anymore: "..minetest.pos_to_string(wsp))
+		mcla_spawn.search()
 	end
 
-	minetest.after(respawn_search_interval, mcl_spawn.shadow_worker)
+	minetest.after(respawn_search_interval, mcla_spawn.shadow_worker)
 end
 
 minetest.after(respawn_search_initial_delay, function()
-	mcl_spawn.shadow_worker()
+	mcla_spawn.shadow_worker()
 
 	minetest.register_on_shutdown(function()
-		storage:set_int("mcl_spawn_success", success and 1 or 0)
+		storage:set_int("mcla_spawn_success", success and 1 or 0)
 		if wsp and wsp.x then
-			storage:set_string("mcl_spawn_world_spawn_point", minetest.pos_to_string(wsp))
+			storage:set_string("mcla_spawn_world_spawn_point", minetest.pos_to_string(wsp))
 		end
-		storage:set_int("mcl_spawn_searched", searched and 1 or 0)
-		storage:set_int("mcl_spawn_check", check)
-		storage:set_string("mcl_spawn_cp", minetest.pos_to_string(cp))
-		storage:set_int("mcl_spawn_edge_len", edge_len)
-		storage:set_int("mcl_spawn_edge_dist", edge_dist)
-		storage:set_int("mcl_spawn_dir_step", dir_step)
-		storage:set_int("mcl_spawn_dir_ind", dir_ind)
+		storage:set_int("mcla_spawn_searched", searched and 1 or 0)
+		storage:set_int("mcla_spawn_check", check)
+		storage:set_string("mcla_spawn_cp", minetest.pos_to_string(cp))
+		storage:set_int("mcla_spawn_edge_len", edge_len)
+		storage:set_int("mcla_spawn_edge_dist", edge_dist)
+		storage:set_int("mcla_spawn_dir_step", dir_step)
+		storage:set_int("mcla_spawn_dir_ind", dir_ind)
 	end)
 end)

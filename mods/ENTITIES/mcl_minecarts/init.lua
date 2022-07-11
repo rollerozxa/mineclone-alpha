@@ -1,25 +1,25 @@
-local S = minetest.get_translator("mcl_minecarts")
+local S = minetest.get_translator("mcla_minecarts")
 
-mcl_minecarts = {}
-mcl_minecarts.modpath = minetest.get_modpath("mcla_minecarts")
-mcl_minecarts.speed_max = 10
-mcl_minecarts.check_float_time = 15
+mcla_minecarts = {}
+mcla_minecarts.modpath = minetest.get_modpath("mcla_minecarts")
+mcla_minecarts.speed_max = 10
+mcla_minecarts.check_float_time = 15
 
-dofile(mcl_minecarts.modpath.."/functions.lua")
-dofile(mcl_minecarts.modpath.."/rails.lua")
+dofile(mcla_minecarts.modpath.."/functions.lua")
+dofile(mcla_minecarts.modpath.."/rails.lua")
 
 local function detach_driver(self)
 	if not self._driver then
 		return
 	end
-	mcl_player.player_attached[self._driver] = nil
+	mcla_player.player_attached[self._driver] = nil
 	local player = minetest.get_player_by_name(self._driver)
 	self._driver = nil
 	self._start_pos = nil
 	if player then
 		player:set_detach()
 		player:set_eye_offset({x=0, y=0, z=0},{x=0, y=0, z=0})
-		mcl_player.player_set_animation(player, "stand" , 30)
+		mcla_player.player_set_animation(player, "stand" , 30)
 	end
 end
 
@@ -104,7 +104,7 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 		end
 
 		if not puncher or not puncher:is_player() then
-			local cart_dir = mcl_minecarts:get_rail_direction(pos, {x=1, y=0, z=0}, nil, nil, self._railtype)
+			local cart_dir = mcla_minecarts:get_rail_direction(pos, {x=1, y=0, z=0}, nil, nil, self._railtype)
 			if vector.equals(cart_dir, {x=0, y=0, z=0}) then
 				return
 			end
@@ -157,9 +157,9 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 			end
 		end
 
-		local punch_dir = mcl_minecarts:velocity_to_dir(puncher:get_look_dir())
+		local punch_dir = mcla_minecarts:velocity_to_dir(puncher:get_look_dir())
 		punch_dir.y = 0
-		local cart_dir = mcl_minecarts:get_rail_direction(pos, punch_dir, nil, nil, self._railtype)
+		local cart_dir = mcla_minecarts:get_rail_direction(pos, punch_dir, nil, nil, self._railtype)
 		if vector.equals(cart_dir, {x=0, y=0, z=0}) then
 			return
 		end
@@ -197,7 +197,7 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 		end
 		local pos, rou_pos, node
 		-- Drop minecart if it isn't on a rail anymore
-		if self._last_float_check >= mcl_minecarts.check_float_time then
+		if self._last_float_check >= mcla_minecarts.check_float_time then
 			pos = self.object:get_pos()
 			rou_pos = vector.round(pos)
 			node = minetest.get_node(rou_pos)
@@ -208,7 +208,7 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 					if self._old_pos then
 						self.object:set_pos(self._old_pos)
 					end
-					mcl_player.player_attached[self._driver] = nil
+					mcla_player.player_attached[self._driver] = nil
 					player:set_detach()
 					player:set_eye_offset({x=0, y=0, z=0},{x=0, y=0, z=0})
 				end
@@ -216,7 +216,7 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 				-- Explode if already ignited
 				if self._boomtimer then
 					self.object:remove()
-					mcl_explosions.explode(pos, 4, { drop_chance = 1.0 })
+					mcla_explosions.explode(pos, 4, { drop_chance = 1.0 })
 					return
 				end
 
@@ -263,10 +263,10 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 			local pos = self.object:get_pos()
 			if self._boomtimer <= 0 then
 				self.object:remove()
-				mcl_explosions.explode(pos, 4, { drop_chance = 1.0 })
+				mcla_explosions.explode(pos, 4, { drop_chance = 1.0 })
 				return
 			else
-				tnt.smoke_step(pos)
+				mcla_tnt.smoke_step(pos)
 			end
 		end
 		if self._blinktimer then
@@ -296,7 +296,7 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 					"mcl_minecarts_minecart.png",
 					}})
 				end
-				self._blinktimer = tnt.BLINKTIMER
+				self._blinktimer = mcla_tnt.BLINKTIMER
 			end
 		end
 
@@ -362,7 +362,7 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 			for _,v in ipairs({"x","y","z"}) do
 				if math.abs(diff[v]) > 1.1 then
 					local expected_pos = vector.add(self._old_pos, self._old_dir)
-					dir, last_switch = mcl_minecarts:get_rail_direction(pos, self._old_dir, ctrl, self._old_switch, self._railtype)
+					dir, last_switch = mcla_minecarts:get_rail_direction(pos, self._old_dir, ctrl, self._old_switch, self._railtype)
 					if vector.equals(dir, {x=0, y=0, z=0}) then
 						dir = false
 						pos = vector.new(expected_pos)
@@ -382,10 +382,10 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 			end
 		end
 
-		local cart_dir = mcl_minecarts:velocity_to_dir(vel)
-		local max_vel = mcl_minecarts.speed_max
+		local cart_dir = mcla_minecarts:velocity_to_dir(vel)
+		local max_vel = mcla_minecarts.speed_max
 		if not dir then
-			dir, last_switch = mcl_minecarts:get_rail_direction(pos, cart_dir, ctrl, self._old_switch, self._railtype)
+			dir, last_switch = mcla_minecarts:get_rail_direction(pos, cart_dir, ctrl, self._old_switch, self._railtype)
 		end
 
 		local new_acc = {x=0, y=0, z=0}
@@ -439,7 +439,7 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 		-- Limits
 		for _,v in ipairs({"x","y","z"}) do
 			if math.abs(vel[v]) > max_vel then
-				vel[v] = mcl_minecarts:get_sign(vel[v]) * max_vel
+				vel[v] = mcla_minecarts:get_sign(vel[v]) * max_vel
 				new_acc[v] = 0
 				update.vel = true
 			end
@@ -489,16 +489,16 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 end
 
 -- Place a minecart at pointed_thing
-mcl_minecarts.place_minecart = function(itemstack, pointed_thing, placer)
+mcla_minecarts.place_minecart = function(itemstack, pointed_thing, placer)
 	if not pointed_thing.type == "node" then
 		return
 	end
 
 	local railpos, node
-	if mcl_minecarts:is_rail(pointed_thing.under) then
+	if mcla_minecarts:is_rail(pointed_thing.under) then
 		railpos = pointed_thing.under
 		node = minetest.get_node(pointed_thing.under)
-	elseif mcl_minecarts:is_rail(pointed_thing.above) then
+	elseif mcla_minecarts:is_rail(pointed_thing.above) then
 		railpos = pointed_thing.above
 		node = minetest.get_node(pointed_thing.above)
 	else
@@ -519,7 +519,7 @@ mcl_minecarts.place_minecart = function(itemstack, pointed_thing, placer)
 	if le ~= nil then
 		le._railtype = railtype
 	end
-	local cart_dir = mcl_minecarts:get_rail_direction(railpos, {x=1, y=0, z=0}, nil, nil, railtype)
+	local cart_dir = mcla_minecarts:get_rail_direction(railpos, {x=1, y=0, z=0}, nil, nil, railtype)
 	cart:set_yaw(minetest.dir_to_yaw(cart_dir))
 
 	local pname = ""
@@ -555,7 +555,7 @@ local register_craftitem = function(itemstring, entity_id, description, icon, cr
 				end
 			end
 
-			return mcl_minecarts.place_minecart(itemstack, pointed_thing, placer)
+			return mcla_minecarts.place_minecart(itemstack, pointed_thing, placer)
 		end,
 		_on_dispense = function(stack, pos, droppos, dropnode, dropdir)
 			-- Place minecart as entity on rail. If there's no rail, just drop it.
@@ -563,7 +563,7 @@ local register_craftitem = function(itemstring, entity_id, description, icon, cr
 			if minetest.get_item_group(dropnode.name, "rail") ~= 0 then
 				-- FIXME: This places minecarts even if the spot is already occupied
 				local pointed_thing = { under = droppos, above = { x=droppos.x, y=droppos.y+1, z=droppos.z } }
-				placed = mcl_minecarts.place_minecart(stack, pointed_thing)
+				placed = mcla_minecarts.place_minecart(stack, pointed_thing)
 			end
 			if placed == nil then
 				-- Drop item
@@ -616,15 +616,15 @@ register_minecart(
 		elseif not self._driver then
 			self._driver = player_name
 			self._start_pos = self.object:get_pos()
-			mcl_player.player_attached[player_name] = true
+			mcla_player.player_attached[player_name] = true
 			clicker:set_attach(self.object, "", {x=0, y=-1.75, z=-2}, {x=0, y=0, z=0})
-			mcl_player.player_attached[name] = true
+			mcla_player.player_attached[name] = true
 			minetest.after(0.2, function(name)
 				local player = minetest.get_player_by_name(name)
 				if player then
-					mcl_player.player_set_animation(player, "sit" , 30)
+					mcla_player.player_set_animation(player, "sit" , 30)
 					player:set_eye_offset({x=0, y=-5.5, z=0},{x=0, y=-4, z=0})
-					mcl_tmp_message.message(clicker, S("Sneak to dismount"))
+					mcla_tmp_message.message(clicker, S("Sneak to dismount"))
 				end
 			end, name)
 		end

@@ -3,7 +3,7 @@
 -- This code originally copied from the [mcstair] mod and merged into this mod.
 -- This file is licensed under CC0.
 
-mcl_stairs.cornerstair = {}
+mcla_stairs.cornerstair = {}
 
 local get_stair_param = function(node)
 	local stair = minetest.get_item_group(node.name, "stair")
@@ -185,7 +185,7 @@ local stair_connect_to_param = function(connect, ceiling)
 end
 
 --[[
-mcl_stairs.cornerstair.add(name, stairtiles)
+mcla_stairs.cornerstair.add(name, stairtiles)
 
 NOTE: This function is used internally. If you register a stair, this function is already called, no
 need to call it again!
@@ -203,7 +203,7 @@ Usage:
     * nil: Equivalent to "default"
 ]]
 
-function mcl_stairs.cornerstair.add(name, stairtiles)
+function mcla_stairs.cornerstair.add(name, stairtiles)
 	local node_def = minetest.registered_nodes[name]
 	local outer_tiles
 	local inner_tiles
@@ -662,7 +662,7 @@ function mcl_stairs.cornerstair.add(name, stairtiles)
 		drop = drop,
 		stairs = {name, name.."_outer", name.."_inner"},
 		after_dig_node = function(pos, oldnode) after_dig_node(pos, oldnode) end,
-		_mcl_hardness = node_def._mcl_hardness,
+		_mcla_hardness = node_def._mcla_hardness,
 		on_rotate = false,
 	})
 	minetest.register_node(":"..name.."_inner", {
@@ -685,7 +685,7 @@ function mcl_stairs.cornerstair.add(name, stairtiles)
 		drop = drop,
 		stairs = {name, name.."_outer", name.."_inner"},
 		after_dig_node = function(pos, oldnode) after_dig_node(pos, oldnode) end,
-		_mcl_hardness = node_def._mcl_hardness,
+		_mcla_hardness = node_def._mcla_hardness,
 		on_rotate = false,
 	})
 end

@@ -1,6 +1,6 @@
-local S = minetest.get_translator("mcl_mobspawners")
+local S = minetest.get_translator("mcla_mobspawners")
 
-mcl_mobspawners = {}
+mcla_mobspawners = {}
 
 local default_mob = "mobs_mc:pig"
 
@@ -84,7 +84,7 @@ All the arguments are optional!
 * YOffset: Y offset to spawn mobs; 0 to disable (default: 0)
 ]]
 
-function mcl_mobspawners.setup_spawner(pos, Mob, MinLight, MaxLight, MaxMobsInArea, PlayerDistance, YOffset)
+function mcla_mobspawners.setup_spawner(pos, Mob, MinLight, MaxLight, MaxMobsInArea, PlayerDistance, YOffset)
 	-- Activate mob spawner and disable editing functionality
 	if Mob == nil then Mob = default_mob end
 	if MinLight == nil then MinLight = 0 end
@@ -135,7 +135,7 @@ local spawn_mobs = function(pos, elapsed)
 
 	-- are we spawning a registered mob?
 	if not mobs.spawning_mobs[mob] then
-		minetest.log("error", "[mcl_mobspawners] Mob Spawner: Mob doesn't exist: "..mob)
+		minetest.log("error", "[mcla_mobspawners] Mob Spawner: Mob doesn't exist: "..mob)
 		return
 	end
 
@@ -242,7 +242,7 @@ end
 -- If this node is placed by a player, minetest.item_place, etc. default settings are applied
 -- automatially.
 -- IF this node is placed by ANY other method (e.g. minetest.set_node, LuaVoxelManip), you
--- MUST call mcl_mobspawners.setup_spawner right after the spawner has been placed.
+-- MUST call mcla_mobspawners.setup_spawner right after the spawner has been placed.
 minetest.register_node(":mcla:spawner", {
 	tiles = {"mob_spawner.png"},
 	drawtype = "glasslike",
@@ -276,7 +276,7 @@ minetest.register_node(":mcla:spawner", {
 			else
 				placepos = pointed_thing.above
 			end
-			mcl_mobspawners.setup_spawner(placepos)
+			mcla_mobspawners.setup_spawner(placepos)
 		end
 		return new_itemstack
 	end,
@@ -295,10 +295,10 @@ minetest.register_node(":mcla:spawner", {
 
 	on_timer = spawn_mobs,
 
-	sounds = mcl_sounds.node_sound_metal_defaults(),
+	sounds = mcla_sounds.node_sound_metal_defaults(),
 
-	_mcl_blast_resistance = 5,
-	_mcl_hardness = 5,
+	_mcla_blast_resistance = 5,
+	_mcla_hardness = 5,
 })
 
 -- Mob spawner doll (rotating icon inside cage)

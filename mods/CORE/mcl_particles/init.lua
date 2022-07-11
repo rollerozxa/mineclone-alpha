@@ -1,4 +1,4 @@
-mcl_particles = {}
+mcla_particles = {}
 
 -- Table of particlespawner IDs on a per-node hash basis
 -- Keys: node position hashes
@@ -6,7 +6,7 @@ mcl_particles = {}
 local particle_nodes = {}
 
 -- Node particles can be disabled via setting
-local node_particles_allowed = minetest.settings:get("mcl_node_particles") or "none"
+local node_particles_allowed = minetest.settings:get("mcla_node_particles") or "none"
 
 local levels = {
 	high = 3,
@@ -28,7 +28,7 @@ end
 -- CPU-demanding particles, like smoke of fire (which occurs frequently)
 -- NOTE: All particlespawners are automatically removed on shutdown.
 -- Returns particlespawner ID on succcess and nil on failure
-function mcl_particles.add_node_particlespawner(pos, particlespawner_definition, level)
+function mcla_particles.add_node_particlespawner(pos, particlespawner_definition, level)
 	if allowed_level == 0 or levels[level] > allowed_level then
 		return
 	end
@@ -51,7 +51,7 @@ end
 -- If no particlespawners exist for this position, nothing happens.
 -- pos: Node positon. MUST use integer values!
 -- Returns true if particlespawner could be removed and false if not
-function mcl_particles.delete_node_particlespawners(pos)
+function mcla_particles.delete_node_particlespawners(pos)
 	if allowed_level == 0 then
 		return false
 	end

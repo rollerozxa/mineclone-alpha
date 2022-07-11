@@ -23,7 +23,7 @@ MOB_CAP.ambient = 15
 MOB_CAP.water = 15
 
 -- Localize
-local S = minetest.get_translator("mcl_mobs")
+local S = minetest.get_translator("mcla_mobs")
 
 -- CMI support check
 local use_cmi = minetest.global_exists("cmi")
@@ -753,7 +753,7 @@ local check_for_death = function(self, cause, cmi_cause)
 					wielditem = puncher:get_wielded_item()
 				end
 			end
-			local cooked = mcl_burning.is_burning(self.object)
+			local cooked = mcla_burning.is_burning(self.object)
 			local looting = false
 			item_drop(self, cooked, looting)
 
@@ -775,7 +775,7 @@ local check_for_death = function(self, cause, cmi_cause)
 
 		if on_die_exit == true then
 			self.state = "die"
-			mcl_burning.extinguish(self.object)
+			mcla_burning.extinguish(self.object)
 			self.object:remove()
 			return true
 		end
@@ -838,7 +838,7 @@ local check_for_death = function(self, cause, cmi_cause)
 		local dpos = self.object:get_pos()
 		local cbox = self.collisionbox
 		local yaw = self.object:get_rotation().y
-		mcl_burning.extinguish(self.object)
+		mcla_burning.extinguish(self.object)
 		self.object:remove()
 		mobs.death_effect(dpos, yaw, cbox, not self.instant_death)
 	end
@@ -855,9 +855,9 @@ end
 -- check if within physical map limits (-30911 to 30927)
 local within_limits, wmin, wmax = nil, -30913, 30928
 within_limits = function(pos, radius)
-	if mcl_vars then
-		if mcl_vars.mapgen_edge_min and mcl_vars.mapgen_edge_max then
-			wmin, wmax = mcl_vars.mapgen_edge_min, mcl_vars.mapgen_edge_max
+	if mcla_vars then
+		if mcla_vars.mapgen_edge_min and mcla_vars.mapgen_edge_max then
+			wmin, wmax = mcla_vars.mapgen_edge_min, mcla_vars.mapgen_edge_max
 			within_limits = function(pos, radius)
 				return pos
 					and (pos.x - radius) > wmin and (pos.x + radius) < wmax
@@ -987,7 +987,7 @@ local do_env_damage = function(self)
 
 	-- remove mob if beyond map limits
 	if not within_limits(pos, 0) then
-		mcl_burning.extinguish(self.object)
+		mcla_burning.extinguish(self.object)
 		self.object:remove()
 		return true
 	end
@@ -995,7 +995,7 @@ local do_env_damage = function(self)
 
 	-- Deal light damage to mob, returns true if mob died
 	local deal_light_damage = function(self, pos, damage)
-		if not (mod_weather and (mcl_weather.rain.raining or mcl_weather.state == "snow") and mcl_weather.is_outdoor(pos)) then
+		if not (mod_weather and (mcla_weather.rain.raining or mcla_weather.state == "snow") and mcla_weather.is_outdoor(pos)) then
 			self.health = self.health - damage
 
 			effect(pos, 5, "mcl_particles_smoke.png")
@@ -1013,10 +1013,10 @@ local do_env_damage = function(self)
 		end
 	end
 	local _, dim = nil, "overworld"
-	_, dim = mcl_worlds.y_to_layer(pos.y)
+	_, dim = mcla_worlds.y_to_layer(pos.y)
 	if (self.sunlight_damage ~= 0 or self.ignited_by_sunlight) and (minetest.get_node_light(pos) or 0) == LIGHT_SUN and dim == "overworld" then
 		if self.ignited_by_sunlight then
-			mcl_burning.set_on_fire(self.object, 10)
+			mcla_burning.set_on_fire(self.object, 10)
 		else
 			deal_light_damage(self, pos, self.sunlight_damage)
 			return true
@@ -1044,7 +1044,7 @@ local do_env_damage = function(self)
 
 	-- rain
 	if self.rain_damage > 0 and mod_weather then
-		if mcl_weather.rain.raining and mcl_weather.is_outdoor(pos) then
+		if mcla_weather.rain.raining and mcla_weather.is_outdoor(pos) then
 
 			self.health = self.health - self.rain_damage
 
@@ -1152,7 +1152,7 @@ local do_env_damage = function(self)
 	end
 
 	--- suffocation inside solid node
-	-- FIXME: Redundant with mcl_playerplus
+	-- FIXME: Redundant with mcla_playerplus
 	if (self.suffocation == true)
 	and (nodef.walkable == nil or nodef.walkable == true)
 	and (nodef.collision_box == nil or nodef.collision_box.type == "regular")
@@ -2497,7 +2497,7 @@ local do_states = function(self, dtime)
 					local pos = self.object:get_pos()
 
 					if mobs_griefing and not minetest.is_protected(pos, "") then
-						mcl_explosions.explode(mcl_util.get_object_center(self.object), self.explosion_strength, { drop_chance = 1.0 }, self.object)
+						mcla_explosions.explode(mcla_util.get_object_center(self.object), self.explosion_strength, { drop_chance = 1.0 }, self.object)
 					else
 						minetest.sound_play(self.sounds.explode, {
 							pos = pos,
@@ -2508,7 +2508,7 @@ local do_states = function(self, dtime)
 						entity_physics(pos, entity_damage_radius)
 						effect(pos, 32, "mcl_particles_smoke.png", nil, nil, node_break_radius, 1, 0)
 					end
-					mcl_burning.extinguish(self.object)
+					mcla_burning.extinguish(self.object)
 					self.object:remove()
 
 					return true
@@ -3111,7 +3111,7 @@ local mob_staticdata = function(self)
 	and self.lifetimer <= 20 then
 
 		minetest.log("action", "Mob "..name.." despawns in mob_staticdata at "..minetest.pos_to_string(self.object.get_pos(), 1))
-		mcl_burning.extinguish(self.object)
+		mcla_burning.extinguish(self.object)
 		self.object:remove()
 
 		return ""-- nil
@@ -3150,7 +3150,7 @@ local mob_activate = function(self, staticdata, def, dtime)
 	-- remove monsters in peaceful mode
 	if self.type == "monster"
 	and minetest.settings:get_bool("only_peaceful_mobs", false) then
-		mcl_burning.extinguish(self.object)
+		mcla_burning.extinguish(self.object)
 		self.object:remove()
 
 		return
@@ -3315,7 +3315,7 @@ end
 local mob_step = function(self, dtime)
 
 	if not self.fire_resistant then
-		mcl_burning.tick(self.object, dtime)
+		mcla_burning.tick(self.object, dtime)
 	end
 
 	if use_cmi then
@@ -3471,7 +3471,7 @@ local mob_step = function(self, dtime)
 		end
 	end
 
-	-- Add water flowing for mobs from mcl_item_entity
+	-- Add water flowing for mobs from mcla_item_entity
 		local p, node, nn, def
 		p = self.object:get_pos()
 		node = minetest.get_node_or_nil(p)
@@ -3531,7 +3531,7 @@ local mob_step = function(self, dtime)
 		self.lifetimer = self.lifetimer - dtime
 		if self.despawn_immediately or self.lifetimer <= 0 then
 			minetest.log("action", "Mob "..self.name.." despawns in mob_step at "..minetest.pos_to_string(pos, 1))
-			mcl_burning.extinguish(self.object)
+			mcla_burning.extinguish(self.object)
 			self.object:remove()
 		elseif self.lifetimer <= 10 then
 			if math.random(10) < 4 then
@@ -4072,7 +4072,7 @@ function mobs:register_arrow(name, def)
 			if self.switch == 0
 			or self.timer > 150
 			or not within_limits(pos, 0) then
-				mcl_burning.extinguish(self.object)
+				mcla_burning.extinguish(self.object)
 				self.object:remove();
 
 				return
@@ -4176,7 +4176,7 @@ end
 -- make explosion with protection and tnt mod check
 function mobs:boom(self, pos, strength, fire)
 	if mobs_griefing and not minetest.is_protected(pos, "") then
-		mcl_explosions.explode(pos, strength, { drop_chance = 1.0, fire = fire }, self.object)
+		mcla_explosions.explode(pos, strength, { drop_chance = 1.0, fire = fire }, self.object)
 	else
 		mobs:safe_boom(self, pos, strength)
 	end
@@ -4234,7 +4234,7 @@ function mobs:register_egg(mob, desc, background, addegg, no_creative)
 						minetest.record_protection_violation(pointed_thing.under, name)
 						return itemstack
 					end
-					mcl_mobspawners.setup_spawner(pointed_thing.under, itemstack:get_name())
+					mcla_mobspawners.setup_spawner(pointed_thing.under, itemstack:get_name())
 					if not mobs.is_creative(name) then
 						itemstack:take_item()
 					end

@@ -1,4 +1,4 @@
-local S = minetest.get_translator("mcl_falling_nodes")
+local S = minetest.get_translator("mcla_falling_nodes")
 
 local get_falling_depth = function(self)
 	if not self._startpos then
@@ -25,8 +25,8 @@ minetest.register_entity(":__builtin:falling_node", {
 	set_node = function(self, node, meta)
 		local def = minetest.registered_nodes[node.name]
 		-- Change falling node if definition tells us to
-		if def and def._mcl_falling_node_alternative then
-			node.name = def._mcl_falling_node_alternative
+		if def and def._mcla_falling_node_alternative then
+			node.name = def._mcla_falling_node_alternative
 		end
 		local glow
 		self.node = node
@@ -124,8 +124,8 @@ minetest.register_entity(":__builtin:falling_node", {
 					addlevel = bcd.leveled
 				end
 				if minetest.add_node_level(bcp, addlevel) == 0 then
-					if minetest.registered_nodes[self.node.name]._mcl_after_falling then
-						minetest.registered_nodes[self.node.name]._mcl_after_falling(bcp, get_falling_depth(self))
+					if minetest.registered_nodes[self.node.name]._mcla_after_falling then
+						minetest.registered_nodes[self.node.name]._mcla_after_falling(bcp, get_falling_depth(self))
 					end
 					self.object:remove()
 					return
@@ -147,8 +147,8 @@ minetest.register_entity(":__builtin:falling_node", {
 				local def = minetest.registered_nodes[self.node.name]
 				if def then
 					minetest.add_node(np, self.node)
-					if def._mcl_after_falling then
-						def._mcl_after_falling(np, get_falling_depth(self))
+					if def._mcla_after_falling then
+						def._mcla_after_falling(np, get_falling_depth(self))
 					end
 					if self.meta then
 						local meta = minetest.get_meta(np)
@@ -187,8 +187,8 @@ minetest.register_entity(":__builtin:falling_node", {
 				minetest.add_node(npos3, self.node)
 				local def = minetest.registered_nodes[self.node.name]
 				if def then
-					if def._mcl_after_falling then
-						def._mcl_after_falling(npos3, get_falling_depth(self))
+					if def._mcla_after_falling then
+						def._mcla_after_falling(npos3, get_falling_depth(self))
 					end
 					if def.sounds and def.sounds.place and def.sounds.place.name then
 						minetest.sound_play(def.sounds.place, {pos = np}, true)

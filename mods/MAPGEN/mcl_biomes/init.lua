@@ -9,7 +9,7 @@ local OCEAN_MIN = -15
 local DEEP_OCEAN_MAX = OCEAN_MIN - 1
 local DEEP_OCEAN_MIN = -31
 
---[[ Special biome field: _mcl_biome_type:
+--[[ Special biome field: _mcla_biome_type:
 Rough categorization of biomes: One of "snowy", "cold", "medium" and "hot"
 Based off <https://minecraft.gamepedia.com/Biomes> ]]
 
@@ -31,11 +31,11 @@ local function register_biomes()
 		node_riverbed = "mcla:sand",
 		depth_riverbed = 2,
 		y_min = 4,
-		y_max = mcl_vars.mg_overworld_max,
+		y_max = mcla_vars.mg_overworld_max,
 		humidity_point = 39,
 		heat_point = 58,
-		_mcl_biome_type = "medium",
-		_mcl_palette_index = 0,
+		_mcla_biome_type = "medium",
+		_mcla_palette_index = 0,
 	})
 	minetest.register_biome({
 		name = "Plains_beach",
@@ -47,8 +47,8 @@ local function register_biomes()
 		y_max = 4,
 		humidity_point = 39,
 		heat_point = 58,
-		_mcl_biome_type = "medium",
-		_mcl_palette_index = 0,
+		_mcla_biome_type = "medium",
+		_mcla_palette_index = 0,
 	})
 	minetest.register_biome({
 		name = "Plains_ocean",
@@ -62,8 +62,8 @@ local function register_biomes()
 		y_max = -2,
 		humidity_point = 39,
 		heat_point = 58,
-		_mcl_biome_type = "medium",
-		_mcl_palette_index = 0,
+		_mcla_biome_type = "medium",
+		_mcla_palette_index = 0,
 	})
 
 	-- Forest
@@ -76,11 +76,11 @@ local function register_biomes()
 		node_riverbed = "mcla:sand",
 		depth_riverbed = 2,
 		y_min = 4,
-		y_max = mcl_vars.mg_overworld_max,
+		y_max = mcla_vars.mg_overworld_max,
 		humidity_point = 61,
 		heat_point = 45,
-		_mcl_biome_type = "medium",
-		_mcl_palette_index = 13,
+		_mcla_biome_type = "medium",
+		_mcla_palette_index = 13,
 	})
 	minetest.register_biome({
 		name = "Forest_beach",
@@ -92,8 +92,8 @@ local function register_biomes()
 		y_max = 4,
 		humidity_point = 61,
 		heat_point = 45,
-		_mcl_biome_type = "medium",
-		_mcl_palette_index = 13,
+		_mcla_biome_type = "medium",
+		_mcla_palette_index = 13,
 	})
 	minetest.register_biome({
 		name = "Forest_ocean",
@@ -107,8 +107,8 @@ local function register_biomes()
 		y_max = -2,
 		humidity_point = 61,
 		heat_point = 45,
-		_mcl_biome_type = "medium",
-		_mcl_palette_index = 13,
+		_mcla_biome_type = "medium",
+		_mcla_palette_index = 13,
 	})
 
 	-- Add deep ocean and underground biomes automatically.
@@ -129,8 +129,8 @@ local function register_biomes()
 			node_riverbed = minetest.registered_biomes[biome.."_ocean"].node_riverbed,
 			depth_riverbed = 2,
 			vertical_blend = 5,
-			_mcl_biome_type = minetest.registered_biomes[biome]._mcl_biome_type,
-			_mcl_palette_index = minetest.registered_biomes[biome]._mcl_palette_index,
+			_mcla_biome_type = minetest.registered_biomes[biome]._mcla_biome_type,
+			_mcla_palette_index = minetest.registered_biomes[biome]._mcla_palette_index,
 		})
 
 		-- Underground biomes are used to identify the underground and to prevent nodes from the surface
@@ -139,21 +139,14 @@ local function register_biomes()
 			name = biome .. "_underground",
 			heat_point = minetest.registered_biomes[biome].heat_point,
 			humidity_point = minetest.registered_biomes[biome].humidity_point,
-			y_min = mcl_vars.mg_overworld_min,
+			y_min = mcla_vars.mg_overworld_min,
 			y_max = DEEP_OCEAN_MIN - 1,
-			_mcl_biome_type = minetest.registered_biomes[biome]._mcl_biome_type,
-			_mcl_palette_index = minetest.registered_biomes[biome]._mcl_palette_index,
+			_mcla_biome_type = minetest.registered_biomes[biome]._mcla_biome_type,
+			_mcla_palette_index = minetest.registered_biomes[biome]._mcla_palette_index,
 		})
 
 	end
 end
-
--- Register ores which are limited by biomes. For all mapgens except flat and singlenode.
-local function register_biome_ores()
-	local stonelike = {"mcla:stone"}
-
-end
-
 
 -- All mapgens except mgv6
 
@@ -172,7 +165,7 @@ local function register_decorations()
 			fill_ratio = 0.00005,
 			biomes = {"Forest"},
 			y_min = 1,
-			y_max = mcl_vars.mg_overworld_max,
+			y_max = mcla_vars.mg_overworld_max,
 			schematic = minetest.get_modpath("mcla_core").."/schematics/mcl_core_oak_large_"..i..".mts",
 			flags = "place_center_x, place_center_z",
 			rotation = "random",
@@ -185,7 +178,7 @@ local function register_decorations()
 			fill_ratio = 0.00001,
 			biomes = {"Plains"},
 			y_min = 1,
-			y_max = mcl_vars.mg_overworld_max,
+			y_max = mcla_vars.mg_overworld_max,
 			schematic = minetest.get_modpath("mcla_core").."/schematics/mcl_core_oak_large_"..i..".mts",
 			flags = "place_center_x, place_center_z",
 			rotation = "random",
@@ -206,7 +199,7 @@ local function register_decorations()
 		},
 		biomes = {"Forest"},
 		y_min = 1,
-		y_max = mcl_vars.mg_overworld_max,
+		y_max = mcla_vars.mg_overworld_max,
 		schematic = minetest.get_modpath("mcla_core").."/schematics/mcl_core_oak_classic.mts",
 		flags = "place_center_x, place_center_z",
 		rotation = "random",
@@ -220,7 +213,7 @@ local function register_decorations()
 		fill_ratio = 0.001,
 		biomes = {"Plains", "Plains_shore"},
 		y_min = 1,
-		y_max = mcl_vars.mg_overworld_max,
+		y_max = mcla_vars.mg_overworld_max,
 		schematic = minetest.get_modpath("mcla_core").."/schematics/mcl_core_oak_classic.mts",
 		flags = "place_center_x, place_center_z",
 		rotation = "random",
@@ -241,7 +234,7 @@ local function register_decorations()
 		},
 		biomes = {"Forest"},
 		y_min = 1,
-		y_max = mcl_vars.mg_overworld_max,
+		y_max = mcla_vars.mg_overworld_max,
 		schematic = minetest.get_modpath("mcla_core").."/schematics/mcl_core_oak_balloon.mts",
 		flags = "place_center_x, place_center_z",
 		rotation = "random",
@@ -261,7 +254,7 @@ local function register_decorations()
 			persist = 0.7
 		},
 		y_min = 1,
-		y_max = mcl_vars.mg_overworld_max,
+		y_max = mcla_vars.mg_overworld_max,
 		decoration = "mcla:reeds",
 		height = 2,
 		height_max = 3,
@@ -283,7 +276,7 @@ local function register_decorations()
 				persist = 0.6
 			},
 			y_min = 1,
-			y_max = mcl_vars.mg_overworld_max,
+			y_max = mcla_vars.mg_overworld_max,
 			biomes = biomes,
 			decoration = "mcl_flowers:"..name,
 		})
@@ -301,9 +294,7 @@ end
 if mg_name ~= "singlenode" then
 	if mg_name ~= "v6" then
 		register_biomes()
-	end
-	register_biome_ores()
-	if mg_name ~= "v6" then
+
 		register_decorations()
 	end
 

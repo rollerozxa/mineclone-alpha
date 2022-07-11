@@ -159,7 +159,7 @@ mobs:register_mob("mobs_mc:pig", {
 	end,
 })
 
-mobs:spawn_specific("mobs_mc:pig", mobs_mc.spawn.grassland, {"air"}, 9, minetest.LIGHT_MAX+1, 30, 15000, 8, mcl_vars.mg_overworld_min, mcl_vars.mg_overworld_max)
+mobs:spawn_specific("mobs_mc:pig", mobs_mc.spawn.grassland, {"air"}, 9, minetest.LIGHT_MAX+1, 30, 15000, 8, mcla_vars.mg_overworld_min, mcla_vars.mg_overworld_max)
 
 -- spawn eggs
 mobs:register_egg("mobs_mc:pig", S("Pig"), "mobs_mc_spawn_icon_pig.png", 0)

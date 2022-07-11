@@ -1,6 +1,6 @@
-local S = minetest.get_translator("mcl_mushrooms")
+local S = minetest.get_translator("mcla_mushrooms")
 
-local on_place = mcl_util.generate_on_place_plant_function(function(place_pos, place_node)
+local on_place = mcla_util.generate_on_place_plant_function(function(place_pos, place_node)
 	local soil_node = minetest.get_node_or_nil({x=place_pos.x, y=place_pos.y-1, z=place_pos.z})
 	if not soil_node then return false end
 	local snn = soil_node.name -- soil node name
@@ -27,7 +27,7 @@ minetest.register_node(":mcla:mushroom_brown", {
 	paramtype = "light",
 	walkable = false,
 	groups = {dig_immediate=3,mushroom=1,attached_node=1,dig_by_water=1,destroy_by_lava_flow=1,deco_block=1},
-	sounds = mcl_sounds.node_sound_leaves_defaults(),
+	sounds = mcla_sounds.node_sound_leaves_defaults(),
 	light_source = 1,
 	selection_box = {
 		type = "fixed",
@@ -35,7 +35,7 @@ minetest.register_node(":mcla:mushroom_brown", {
 	},
 	node_placement_prediction = "",
 	on_place = on_place,
-	_mcl_blast_resistance = 0,
+	_mcla_blast_resistance = 0,
 })
 
 minetest.register_node(":mcla:mushroom_red", {
@@ -48,14 +48,14 @@ minetest.register_node(":mcla:mushroom_red", {
 	paramtype = "light",
 	walkable = false,
 	groups = {dig_immediate=3,mushroom=1,attached_node=1,dig_by_water=1,destroy_by_lava_flow=1,deco_block=1},
-	sounds = mcl_sounds.node_sound_leaves_defaults(),
+	sounds = mcla_sounds.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = { -3/16, -0.5, -3/16, 3/16, -2/16, 3/16 },
 	},
 	node_placement_prediction = "",
 	on_place = on_place,
-	_mcl_blast_resistance = 0,
+	_mcla_blast_resistance = 0,
 })
 
 minetest.register_craftitem(":mcla:mushroom_stew", {

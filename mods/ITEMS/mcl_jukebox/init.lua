@@ -1,7 +1,7 @@
-local S = minetest.get_translator("mcl_jukebox")
+local S = minetest.get_translator("mcla_jukebox")
 
-mcl_jukebox = {}
-mcl_jukebox.registered_records = {}
+mcla_jukebox = {}
+mcla_jukebox.registered_records = {}
 
 -- Player name-indexed table containing the currently heard track
 local active_tracks = {}
@@ -13,13 +13,13 @@ local active_huds = {}
 -- Used to make sure that minetest.after only applies to the latest HUD change event
 local hud_sequence_numbers = {}
 
-function mcl_jukebox.register_record(title, author, identifier, image, sound)
-	mcl_jukebox.registered_records["mcla:record_"..identifier] = {title, author, identifier, image, sound}
+function mcla_jukebox.register_record(title, author, identifier, image, sound)
+	mcla_jukebox.registered_records["mcla:record_"..identifier] = {title, author, identifier, image, sound}
 	minetest.register_craftitem(":mcla:record_"..identifier, {
 		description =
 			core.colorize("#55FFFF", S("Music Disc")) .. "\n" ..
 			core.colorize("#989898", S("@1—@2", author, title)),
-		--inventory_image = "mcl_jukebox_record_"..recorddata[r][3]..".png",
+		--inventory_image = "mcla_jukebox_record_"..recorddata[r][3]..".png",
 		inventory_image = image,
 		stack_max = 1,
 		groups = { music_record = 1 },
@@ -29,7 +29,7 @@ end
 local function now_playing(player, name)
 	local playername = player:get_player_name()
 	local hud = active_huds[playername]
-	local text = S("Now playing: @1—@2", mcl_jukebox.registered_records[name][2], mcl_jukebox.registered_records[name][1])
+	local text = S("Now playing: @1—@2", mcla_jukebox.registered_records[name][2], mcla_jukebox.registered_records[name][1])
 
 	if not hud_sequence_numbers[playername] then
 		hud_sequence_numbers[playername] = 1
@@ -65,7 +65,7 @@ local function now_playing(player, name)
 			active_huds[playername] = nil
 		end
 	end, {playername, id, hud_sequence_numbers[playername]})
-	
+
 end
 
 minetest.register_on_leaveplayer(function(player)
@@ -88,13 +88,13 @@ local play_record = function(pos, itemstack, player)
 	local item_name = itemstack:get_name()
 	-- ensure the jukebox uses the new record names for old records
 	local name = minetest.registered_aliases[item_name] or item_name
-	if mcl_jukebox.registered_records[name] then
+	if mcla_jukebox.registered_records[name] then
 		local cname = player:get_player_name()
 		if active_tracks[cname] ~= nil then
 			minetest.sound_stop(active_tracks[cname])
 			active_tracks[cname] = nil
 		end
-		active_tracks[cname] = minetest.sound_play(mcl_jukebox.registered_records[name][5], {
+		active_tracks[cname] = minetest.sound_play(mcla_jukebox.registered_records[name][5], {
 			to_player = cname,
 			gain = 1,
 		})
@@ -108,7 +108,7 @@ end
 minetest.register_node(":mcla:jukebox", {
 	description = S("Jukebox"),
 	tiles = {"mcl_jukebox_top.png", "mcl_jukebox_side.png", "mcl_jukebox_side.png"},
-	sounds = mcl_sounds.node_sound_wood_defaults(),
+	sounds = mcla_sounds.node_sound_wood_defaults(),
 	groups = {handy=1,axey=1, container=7, deco_block=1, material_wood=1, flammable=-1},
 	is_ground_content = false,
 	on_construct = function(pos)
@@ -208,8 +208,8 @@ minetest.register_node(":mcla:jukebox", {
 		end
 		meta:from_table(meta2:to_table())
 	end,
-	_mcl_blast_resistance = 6,
-	_mcl_hardness = 2,
+	_mcla_blast_resistance = 6,
+	_mcla_hardness = 2,
 })
 
 minetest.register_craft({
@@ -218,8 +218,8 @@ minetest.register_craft({
 	burntime = 15,
 })
 
-mcl_jukebox.register_record("The Evil Sister (Jordach's Mix)", "SoundHelix", "13", "mcl_jukebox_record_13.png", "mcl_jukebox_track_1")
-mcl_jukebox.register_record("The Energetic Rat (Jordach's Mix)", "SoundHelix", "cat", "mcl_jukebox_record_cat.png", "mcl_jukebox_track_2")
+mcla_jukebox.register_record("The Evil Sister (Jordach's Mix)", "SoundHelix", "13", "mcl_jukebox_record_13.png", "mcl_jukebox_track_1")
+mcla_jukebox.register_record("The Energetic Rat (Jordach's Mix)", "SoundHelix", "cat", "mcl_jukebox_record_cat.png", "mcl_jukebox_track_2")
 
 --add backward compatibility
 minetest.register_alias("mcla:record_1", "mcla:record_13")

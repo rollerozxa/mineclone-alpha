@@ -1,44 +1,44 @@
-local S = minetest.get_translator("mcl_burning")
+local S = minetest.get_translator("mcla_burning")
 
-function mcl_burning.get_default(datatype)
+function mcla_burning.get_default(datatype)
 	local default_table = {string = "", float = 0.0, int = 0, bool = false}
 	return default_table[datatype]
 end
 
-function mcl_burning.get(obj, datatype, name)
+function mcla_burning.get(obj, datatype, name)
 	local key
 	if obj:is_player() then
 		local meta = obj:get_meta()
-		return meta["get_" .. datatype](meta, "mcl_burning:" .. name)
+		return meta["get_" .. datatype](meta, "mcla_burning:" .. name)
 	else
 		local luaentity = obj:get_luaentity()
-		return luaentity and luaentity["mcl_burning_" .. name] or mcl_burning.get_default(datatype)
+		return luaentity and luaentity["mcla_burning_" .. name] or mcla_burning.get_default(datatype)
 	end
 end
 
-function mcl_burning.set(obj, datatype, name, value)
+function mcla_burning.set(obj, datatype, name, value)
 	if obj:is_player() then
 		local meta = obj:get_meta()
-		meta["set_" .. datatype](meta, "mcl_burning:" .. name, value or mcl_burning.get_default(datatype))
+		meta["set_" .. datatype](meta, "mcla_burning:" .. name, value or mcla_burning.get_default(datatype))
 	else
 		local luaentity = obj:get_luaentity()
-		if mcl_burning.get_default(datatype) == value then
+		if mcla_burning.get_default(datatype) == value then
 			value = nil
 		end
-		luaentity["mcl_burning_" .. name] = value
+		luaentity["mcla_burning_" .. name] = value
 	end
 end
 
-function mcl_burning.is_burning(obj)
-	return mcl_burning.get(obj, "float", "burn_time") > 0
+function mcla_burning.is_burning(obj)
+	return mcla_burning.get(obj, "float", "burn_time") > 0
 end
 
-function mcl_burning.is_affected_by_rain(obj)
-	--return mcl_weather.get_weather() == "rain" and mcl_weather.is_outdoor(obj:get_pos())
+function mcla_burning.is_affected_by_rain(obj)
+	--return mcla_weather.get_weather() == "rain" and mcla_weather.is_outdoor(obj:get_pos())
 	return false
 end
 
-function mcl_burning.get_collisionbox(obj, smaller)
+function mcla_burning.get_collisionbox(obj, smaller)
 	local box = obj:get_properties().collisionbox
 	local minp, maxp = vector.new(box[1], box[2], box[3]), vector.new(box[4], box[5], box[6])
 	if smaller then
@@ -49,16 +49,16 @@ function mcl_burning.get_collisionbox(obj, smaller)
 	return minp, maxp
 end
 
-function mcl_burning.get_touching_nodes(obj, nodenames)
+function mcla_burning.get_touching_nodes(obj, nodenames)
 	local pos = obj:get_pos()
 	local box = obj:get_properties().collisionbox
-	local minp, maxp = mcl_burning.get_collisionbox(obj, true)
+	local minp, maxp = mcla_burning.get_collisionbox(obj, true)
 	local nodes = minetest.find_nodes_in_area(vector.add(pos, minp), vector.add(pos, maxp), nodenames)
 	return nodes
 end
 
-function mcl_burning.get_highest_group_value(obj, groupname)
-	local nodes = mcl_burning.get_touching_nodes(obj, "group:" .. groupname, true)
+function mcla_burning.get_highest_group_value(obj, groupname)
+	local nodes = mcla_burning.get_touching_nodes(obj, "group:" .. groupname, true)
 	local highest_group_value = 0
 
 	for _, pos in pairs(nodes) do
@@ -72,7 +72,7 @@ function mcl_burning.get_highest_group_value(obj, groupname)
 	return highest_group_value
 end
 
-function mcl_burning.damage(obj)
+function mcla_burning.damage(obj)
 	local luaentity = obj:get_luaentity()
 	local health
 
@@ -92,11 +92,11 @@ function mcl_burning.damage(obj)
 		local name = obj:get_player_name()
 		armor.last_damage_types[name] = "fire"
 		local deathmsg = S("@1 burned to death.", name)
-		local reason = mcl_burning.get(obj, "string", "reason")
+		local reason = mcla_burning.get(obj, "string", "reason")
 		if reason ~= "" then
 			deathmsg = S("@1 was burned by @2.", name, reason)
 		end
-		mcl_death_messages.player_damage(obj, deathmsg)
+		mcla_death_messages.player_damage(obj, deathmsg)
 	else
 		if luaentity.fire_damage_resistant then
 			do_damage = false
@@ -113,13 +113,13 @@ function mcl_burning.damage(obj)
 	end
 end
 
-function mcl_burning.set_on_fire(obj, burn_time, reason)
+function mcla_burning.set_on_fire(obj, burn_time, reason)
 	local luaentity = obj:get_luaentity()
 	if luaentity and luaentity.fire_resistant then
 		return
 	end
 
-	local old_burn_time = mcl_burning.get(obj, "float", "burn_time")
+	local old_burn_time = mcla_burning.get(obj, "float", "burn_time")
 	local max_fire_prot_lvl = 0
 
 	if obj:is_player() then
@@ -133,7 +133,7 @@ function mcl_burning.set_on_fire(obj, burn_time, reason)
 	end
 
 	if old_burn_time <= burn_time then
-		local sound_id = mcl_burning.get(obj, "int", "sound_id")
+		local sound_id = mcla_burning.get(obj, "int", "sound_id")
 		if sound_id == 0 then
 			sound_id = minetest.sound_play("fire_fire", {
 				object = obj,
@@ -143,11 +143,11 @@ function mcl_burning.set_on_fire(obj, burn_time, reason)
 			}) + 1
 		end
 
-		local already_burning = mcl_burning.is_burning(obj)
+		local already_burning = mcla_burning.is_burning(obj)
 
 
-		mcl_burning.set(obj, "float", "burn_time", burn_time)
-		mcl_burning.set(obj, "string", "reason", reason)
+		mcla_burning.set(obj, "float", "burn_time", burn_time)
+		mcla_burning.set(obj, "string", "reason", reason)
 
 		if already_burning then
 			return
@@ -155,7 +155,7 @@ function mcl_burning.set_on_fire(obj, burn_time, reason)
 
 		local hud_id
 		if obj:is_player() then
-			hud_id = mcl_burning.get(obj, "int", "hud_id")
+			hud_id = mcla_burning.get(obj, "int", "hud_id")
 			if hud_id == 0 then
 				hud_id = obj:hud_add({
 					hud_elem_type = "image",
@@ -167,11 +167,11 @@ function mcl_burning.set_on_fire(obj, burn_time, reason)
 			end
 		end
 
-		mcl_burning.set(obj, "int", "hud_id", hud_id)
-		mcl_burning.set(obj, "int", "sound_id", sound_id)
+		mcla_burning.set(obj, "int", "hud_id", hud_id)
+		mcla_burning.set(obj, "int", "sound_id", sound_id)
 
 		local fire_entity = minetest.add_entity(obj:get_pos(), "mcla:fire")
-		local minp, maxp = mcl_burning.get_collisionbox(obj)
+		local minp, maxp = mcla_burning.get_collisionbox(obj)
 		local obj_size = obj:get_properties().visual_size
 
 		local vertical_grow_factor = 1.2
@@ -188,58 +188,58 @@ function mcl_burning.set_on_fire(obj, burn_time, reason)
 	end
 end
 
-function mcl_burning.extinguish(obj)
-	if mcl_burning.is_burning(obj) then
-		local sound_id = mcl_burning.get(obj, "int", "sound_id") - 1
+function mcla_burning.extinguish(obj)
+	if mcla_burning.is_burning(obj) then
+		local sound_id = mcla_burning.get(obj, "int", "sound_id") - 1
 		minetest.sound_stop(sound_id)
 
 		if obj:is_player() then
-			local hud_id = mcl_burning.get(obj, "int", "hud_id") - 1
+			local hud_id = mcla_burning.get(obj, "int", "hud_id") - 1
 			obj:hud_remove(hud_id)
 		end
 
-		mcl_burning.set(obj, "string", "reason")
-		mcl_burning.set(obj, "float", "burn_time")
-		mcl_burning.set(obj, "float", "damage_timer")
-		mcl_burning.set(obj, "int", "hud_id")
-		mcl_burning.set(obj, "int", "sound_id")
+		mcla_burning.set(obj, "string", "reason")
+		mcla_burning.set(obj, "float", "burn_time")
+		mcla_burning.set(obj, "float", "damage_timer")
+		mcla_burning.set(obj, "int", "hud_id")
+		mcla_burning.set(obj, "int", "sound_id")
 	end
 end
 
-function mcl_burning.catch_fire_tick(obj, dtime)
-	if mcl_burning.is_affected_by_rain(obj) or #mcl_burning.get_touching_nodes(obj, "group:puts_out_fire") > 0 then
-		mcl_burning.extinguish(obj)
+function mcla_burning.catch_fire_tick(obj, dtime)
+	if mcla_burning.is_affected_by_rain(obj) or #mcla_burning.get_touching_nodes(obj, "group:puts_out_fire") > 0 then
+		mcla_burning.extinguish(obj)
 	else
-		local set_on_fire_value = mcl_burning.get_highest_group_value(obj, "set_on_fire")
+		local set_on_fire_value = mcla_burning.get_highest_group_value(obj, "set_on_fire")
 
 		if set_on_fire_value > 0 then
-			mcl_burning.set_on_fire(obj, set_on_fire_value)
+			mcla_burning.set_on_fire(obj, set_on_fire_value)
 		end
 	end
 end
 
-function mcl_burning.tick(obj, dtime)
-	local burn_time = mcl_burning.get(obj, "float", "burn_time") - dtime
+function mcla_burning.tick(obj, dtime)
+	local burn_time = mcla_burning.get(obj, "float", "burn_time") - dtime
 
 	if burn_time <= 0 then
-		mcl_burning.extinguish(obj)
+		mcla_burning.extinguish(obj)
 	else
-		mcl_burning.set(obj, "float", "burn_time", burn_time)
+		mcla_burning.set(obj, "float", "burn_time", burn_time)
 
-		local damage_timer = mcl_burning.get(obj, "float", "damage_timer") + dtime
+		local damage_timer = mcla_burning.get(obj, "float", "damage_timer") + dtime
 
 		if damage_timer >= 1 then
 			damage_timer = 0
-			mcl_burning.damage(obj)
+			mcla_burning.damage(obj)
 		end
 
-		mcl_burning.set(obj, "float", "damage_timer", damage_timer)
+		mcla_burning.set(obj, "float", "damage_timer", damage_timer)
 	end
 
-	mcl_burning.catch_fire_tick(obj, dtime)
+	mcla_burning.catch_fire_tick(obj, dtime)
 end
 
-function mcl_burning.fire_entity_step(self, dtime)
+function mcla_burning.fire_entity_step(self, dtime)
 	if self.removed then
 		return
 	end
@@ -250,7 +250,7 @@ function mcl_burning.fire_entity_step(self, dtime)
 
 	self.doing_step = true
 
-	if not parent or not mcl_burning.is_burning(parent) then
+	if not parent or not mcla_burning.is_burning(parent) then
 		do_remove = true
 	else
 		for _, other in ipairs(minetest.get_objects_inside_radius(obj:get_pos(), 0)) do
@@ -302,7 +302,7 @@ minetest.register_chatcommand("burn", {
 				duration
 			)
 		end
-		mcl_burning.set_on_fire(
+		mcla_burning.set_on_fire(
 			player,
 			duration_number,
 			reason

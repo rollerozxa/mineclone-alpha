@@ -1,7 +1,7 @@
-local S = minetest.get_translator("mcl_burning")
+local S = minetest.get_translator("mcla_burning")
 local modpath = minetest.get_modpath("mcla_burning")
 
-mcl_burning = {
+mcla_burning = {
 	animation_frames = 8,
 	animation_fps = 30
 }
@@ -19,19 +19,19 @@ minetest.register_entity("mcla_burning:fire", {
 
 	animation_frame = 0,
 	animation_timer = 0,
-	on_step = mcl_burning.fire_entity_step,
+	on_step = mcla_burning.fire_entity_step,
 })
 
 minetest.register_globalstep(function(dtime)
 	for _, player in ipairs(minetest.get_connected_players()) do
-		mcl_burning.tick(player, dtime)
+		mcla_burning.tick(player, dtime)
 	end
 end)
 
 minetest.register_on_respawnplayer(function(player)
-	mcl_burning.extinguish(player)
+	mcla_burning.extinguish(player)
 end)
 
 minetest.register_on_leaveplayer(function(player)
-	mcl_burning.set(player, "int", "hud_id")
+	mcla_burning.set(player, "int", "hud_id")
 end)

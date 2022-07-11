@@ -1,4 +1,4 @@
-local S = minetest.get_translator("mcl_item_entity")
+local S = minetest.get_translator("mcla_item_entity")
 --basic settings
 local item_drop_settings                 = {} --settings table
 item_drop_settings.age                   = 1.0 --how old a dropped item (_insta_collect==false) has to be before collecting
@@ -151,7 +151,7 @@ local tmp_id = 0
 
 local function get_drops(drop, toolname, param2, paramtype2)
 	tmp_id = tmp_id + 1
-	local tmp_node_name = "mcl_item_entity:" .. tmp_id
+	local tmp_node_name = "mcla_item_entity:" .. tmp_id
 	minetest.registered_nodes[tmp_node_name] = {
 		name = tmp_node_name,
 		drop = drop,
@@ -181,7 +181,7 @@ function minetest.handle_node_drops(pos, drops, digger)
 	-- This means there is no digger. This is a special case which allows this function to be called
 	-- by hand. Creative Mode is intentionally ignored in this case.
 
-	local doTileDrops = minetest.settings:get_bool("mcl_doTileDrops", true)
+	local doTileDrops = minetest.settings:get_bool("mcla_doTileDrops", true)
 	if (digger and digger:is_player() and minetest.is_creative_enabled(digger:get_player_name())) or doTileDrops == false then
 		return
 	end
@@ -194,37 +194,37 @@ function minetest.handle_node_drops(pos, drops, digger)
 		tool = digger:get_wielded_item()
 		tooldef = minetest.registered_tools[tool:get_name()]
 
-		if not mcl_autogroup.can_harvest(dug_node.name, tool:get_name()) then
+		if not mcla_autogroup.can_harvest(dug_node.name, tool:get_name()) then
 			return
 		end
 	end
 
-	local diggroups = tooldef and tooldef._mcl_diggroups
+	local diggroups = tooldef and tooldef._mcla_diggroups
 	local shearsy_level = diggroups and diggroups.shearsy and diggroups.shearsy.level
 
-	--[[ Special node drops when dug by shears by reading _mcl_shears_drop or with a silk touch tool reading _mcl_silk_touch_drop
+	--[[ Special node drops when dug by shears by reading _mcla_shears_drop or with a silk touch tool reading _mcla_silk_touch_drop
 	from the node definition.
-	Definition of _mcl_shears_drop / _mcl_silk_touch_drop:
+	Definition of _mcla_shears_drop / _mcla_silk_touch_drop:
 	* true: Drop itself when dug by shears / silk touch tool
-	* table: Drop every itemstring in this table when dug by shears _mcl_silk_touch_drop
+	* table: Drop every itemstring in this table when dug by shears _mcla_silk_touch_drop
 	]]
 
 	local enchantments = tool
 
 	local silk_touch_drop = false
 	local nodedef = minetest.registered_nodes[dug_node.name]
-	if shearsy_level and shearsy_level > 0 and nodedef._mcl_shears_drop then
-		if nodedef._mcl_shears_drop == true then
+	if shearsy_level and shearsy_level > 0 and nodedef._mcla_shears_drop then
+		if nodedef._mcla_shears_drop == true then
 			drops = { dug_node.name }
 		else
-			drops = nodedef._mcl_shears_drop
+			drops = nodedef._mcla_shears_drop
 		end
-	elseif tool and enchantments.silk_touch and nodedef._mcl_silk_touch_drop then
+	elseif tool and enchantments.silk_touch and nodedef._mcla_silk_touch_drop then
 		silk_touch_drop = true
-		if nodedef._mcl_silk_touch_drop == true then
+		if nodedef._mcla_silk_touch_drop == true then
 			drops = { dug_node.name }
 		else
-			drops = nodedef._mcl_silk_touch_drop
+			drops = nodedef._mcla_silk_touch_drop
 		end
 	end
 

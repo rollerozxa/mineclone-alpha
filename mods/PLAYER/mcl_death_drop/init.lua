@@ -1,12 +1,12 @@
 minetest.register_on_dieplayer(function(player)
-	local keep = minetest.settings:get_bool("mcl_keepInventory", false)
+	local keep = minetest.settings:get_bool("mcla_keepInventory", false)
 	if keep == false then
 		-- Drop inventory, crafting grid and armor
 		local inv = player:get_inventory()
 		local pos = player:get_pos()
 		local name, player_armor_inv, armor_armor_inv, pos = armor:get_valid_player(player, "[on_dieplayer]")
 		-- No item drop if in deep void
-		local void, void_deadly = mcl_worlds.is_in_void(pos)
+		local void, void_deadly = mcla_worlds.is_in_void(pos)
 		local lists = {
 			{ inv = inv, listname = "main", drop = true },
 			{ inv = inv, listname = "craft", drop = true },

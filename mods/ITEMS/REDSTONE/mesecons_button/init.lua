@@ -27,14 +27,14 @@ mesecon.push_button = function(pos, node)
 		return
 	end
 	local def = minetest.registered_nodes[node.name]
-	minetest.set_node(pos, {name="mesecons_button:button_"..def._mcl_button_basename.."_on", param2=node.param2})
+	minetest.set_node(pos, {name="mesecons_button:button_"..def._mcla_button_basename.."_on", param2=node.param2})
 	mesecon.receptor_on(pos, button_get_output_rules(node))
 	local sfx = button_sounds[node.name]
 	if sfx then
 		minetest.sound_play(sfx, {pos=pos}, true)
 	end
 	local timer = minetest.get_node_timer(pos)
-	timer:start(def._mcl_button_timer)
+	timer:start(def._mcla_button_timer)
 end
 
 local on_button_place = function(itemstack, placer, pointed_thing)
@@ -130,11 +130,11 @@ mesecon.register_button = function(basename, description, texture, recipeitem, s
 			state = mesecon.state.off,
 			rules = button_get_output_rules,
 		}},
-		_mcl_button_basename = basename,
-		_mcl_button_timer = button_timer,
+		_mcla_button_basename = basename,
+		_mcla_button_timer = button_timer,
 
-		_mcl_blast_resistance = 0.5,
-		_mcl_hardness = 0.5,
+		_mcla_blast_resistance = 0.5,
+		_mcla_hardness = 0.5,
 	})
 
 	minetest.register_node("mesecons_button:button_"..basename.."_on", {
@@ -156,8 +156,8 @@ mesecon.register_button = function(basename, description, texture, recipeitem, s
 			state = mesecon.state.on,
 			rules = button_get_output_rules
 		}},
-		_mcl_button_basename = basename,
-		_mcl_button_timer = button_timer,
+		_mcla_button_basename = basename,
+		_mcla_button_timer = button_timer,
 		on_timer = function(pos, elapsed)
 			local node = minetest.get_node(pos)
 			if node.name=="mesecons_button:button_"..basename.."_on" then --has not been dug
@@ -183,8 +183,8 @@ mesecon.register_button = function(basename, description, texture, recipeitem, s
 			end
 		end,
 
-		_mcl_blast_resistance = 0.5,
-		_mcl_hardness = 0.5,
+		_mcla_blast_resistance = 0.5,
+		_mcla_hardness = 0.5,
 	})
 
 	minetest.register_craft({
@@ -198,7 +198,7 @@ mesecon.register_button(
 	S("Stone Button"),
 	"mcl_core_stone.png",
 	"mcla:stone",
-	mcl_sounds.node_sound_stone_defaults(),
+	mcla_sounds.node_sound_stone_defaults(),
 	{material_stone=1,handy=1,pickaxey=1},
 	1,
 	false,

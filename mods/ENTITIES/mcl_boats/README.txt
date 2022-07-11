@@ -1,4 +1,4 @@
-# mcl_boats
+# mcla_boats
 This mod adds drivable boats.
 
 # Credits

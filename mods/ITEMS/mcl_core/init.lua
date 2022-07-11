@@ -1,19 +1,19 @@
-mcl_core = {}
+mcla_core = {}
 
 -- Repair percentage for toolrepair
-mcl_core.repair = 0.05
+mcla_core.repair = 0.05
 
-mcl_autogroup.register_diggroup("handy")
-mcl_autogroup.register_diggroup("pickaxey", {
+mcla_autogroup.register_diggroup("handy")
+mcla_autogroup.register_diggroup("pickaxey", {
 	levels = { "wood", "gold", "stone", "iron", "diamond" }
 })
-mcl_autogroup.register_diggroup("axey")
-mcl_autogroup.register_diggroup("shovely")
-mcl_autogroup.register_diggroup("shearsy")
-mcl_autogroup.register_diggroup("shearsy_wool")
-mcl_autogroup.register_diggroup("shearsy_cobweb")
-mcl_autogroup.register_diggroup("swordy")
-mcl_autogroup.register_diggroup("swordy_cobweb")
+mcla_autogroup.register_diggroup("axey")
+mcla_autogroup.register_diggroup("shovely")
+mcla_autogroup.register_diggroup("shearsy")
+mcla_autogroup.register_diggroup("shearsy_wool")
+mcla_autogroup.register_diggroup("shearsy_cobweb")
+mcla_autogroup.register_diggroup("swordy")
+mcla_autogroup.register_diggroup("swordy_cobweb")
 
 -- Load files
 local modpath = minetest.get_modpath("mcla_core")

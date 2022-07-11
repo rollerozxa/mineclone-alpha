@@ -52,7 +52,7 @@ minetest.register_abm({
 --
 
 -- Functions
-mcl_core.grow_cactus = function(pos, node)
+mcla_core.grow_cactus = function(pos, node)
 	pos.y = pos.y-1
 	local name = minetest.get_node(pos).name
 	if minetest.get_item_group(name, "sand") ~= 0 then
@@ -70,7 +70,7 @@ mcl_core.grow_cactus = function(pos, node)
 	end
 end
 
-mcl_core.grow_reeds = function(pos, node)
+mcla_core.grow_reeds = function(pos, node)
 	pos.y = pos.y-1
 	local name = minetest.get_node(pos).name
 	if minetest.get_item_group(name, "soil_sugarcane") ~= 0 then
@@ -185,7 +185,7 @@ minetest.register_abm({
 	interval = 25,
 	chance = 10,
 	action = function(pos)
-		mcl_core.grow_cactus(pos)
+		mcla_core.grow_cactus(pos)
 	end,
 })
 
@@ -196,7 +196,7 @@ minetest.register_abm({
 	interval = 25,
 	chance = 10,
 	action = function(pos)
-		mcl_core.grow_reeds(pos)
+		mcla_core.grow_reeds(pos)
 	end,
 })
 
@@ -299,7 +299,7 @@ end
 -- trees. The 'two_by_two' option is used by jungle and spruce trees to
 -- generate huge trees. The 'balloon' option is used by oak to generate a balloon
 -- oak tree.
-function mcl_core.generate_tree(pos, tree_type, options)
+function mcla_core.generate_tree(pos, tree_type, options)
 	pos.y = pos.y-1
 	local nodename = minetest.get_node(pos).name
 
@@ -314,19 +314,19 @@ function mcl_core.generate_tree(pos, tree_type, options)
 
 	if tree_type == nil or tree_type == OAK_TREE_ID then
 		if mg_name == "v6" then
-			mcl_core.generate_v6_oak_tree(pos)
+			mcla_core.generate_v6_oak_tree(pos)
 		else
 			if balloon then
-				mcl_core.generate_balloon_oak_tree(pos)
+				mcla_core.generate_balloon_oak_tree(pos)
 			else
-				mcl_core.generate_oak_tree(pos)
+				mcla_core.generate_oak_tree(pos)
 			end
 		end
 	end
 end
 
 -- Classic oak in v6 style
-function mcl_core.generate_v6_oak_tree(pos)
+function mcla_core.generate_v6_oak_tree(pos)
 	local trunk = "mcla:tree"
 	local leaves = "mcla:leaves"
 	local node = {name = ""}
@@ -391,7 +391,7 @@ function mcl_core.generate_v6_oak_tree(pos)
 end
 
 -- Ballon Oak
-function mcl_core.generate_balloon_oak_tree(pos)
+function mcla_core.generate_balloon_oak_tree(pos)
 	local path
 	local offset
 	local s = math.random(1, 12)
@@ -413,7 +413,7 @@ function mcl_core.generate_balloon_oak_tree(pos)
 end
 
 -- Oak
-function mcl_core.generate_oak_tree(pos)
+function mcla_core.generate_oak_tree(pos)
 	local path = minetest.get_modpath("mcla_core") .. "/schematics/mcl_core_oak_classic.mts"
 	local offset = { x = -2, y = -1, z = -2 }
 
@@ -473,7 +473,7 @@ end
 local grass_spread_randomizer = PseudoRandom(minetest.get_mapgen_setting("seed"))
 
 -- Return appropriate grass block node for pos
-function mcl_core.get_grass_block_type(pos)
+function mcla_core.get_grass_block_type(pos)
 	local biome_data = minetest.get_biome_data(pos)
 	local index = 0
 	if biome_data then
@@ -481,7 +481,7 @@ function mcl_core.get_grass_block_type(pos)
 		local biome_name = minetest.get_biome_name(biome)
 		local reg_biome = minetest.registered_biomes[biome_name]
 		if reg_biome then
-			index = reg_biome._mcl_palette_index
+			index = reg_biome._mcla_palette_index
 		end
 	end
 	return {name="mcla:dirt_with_grass", param2=index}
@@ -530,7 +530,7 @@ minetest.register_abm({
 			-- All checks passed! Let's spread the grass!
 			local n2 = minetest.get_node(p2)
 			if minetest.get_item_group(n2.name, "grass_block") ~= 0 then
-				n2 = mcl_core.get_grass_block_type(pos)
+				n2 = mcla_core.get_grass_block_type(pos)
 			end
 			minetest.set_node(pos, {name=n2.name})
 		end
@@ -655,28 +655,28 @@ local sapling_grow_action = function(tree_id, soil_needed, one_by_one, two_by_tw
 					minetest.remove_node(p2)
 					minetest.remove_node(p3)
 					minetest.remove_node(p4)
-					mcl_core.generate_tree(pos, tree_id, { two_by_two = true })
+					mcla_core.generate_tree(pos, tree_id, { two_by_two = true })
 					return
 				elseif s3 and s5 and s6 and check_tree_growth(p6, tree_id, { two_by_two = true }) then
 					minetest.remove_node(pos)
 					minetest.remove_node(p3)
 					minetest.remove_node(p5)
 					minetest.remove_node(p6)
-					mcl_core.generate_tree(p6, tree_id, { two_by_two = true })
+					mcla_core.generate_tree(p6, tree_id, { two_by_two = true })
 					return
 				elseif s6 and s7 and s8 and check_tree_growth(p7, tree_id, { two_by_two = true }) then
 					minetest.remove_node(pos)
 					minetest.remove_node(p6)
 					minetest.remove_node(p7)
 					minetest.remove_node(p8)
-					mcl_core.generate_tree(p7, tree_id, { two_by_two = true })
+					mcla_core.generate_tree(p7, tree_id, { two_by_two = true })
 					return
 				elseif s2 and s8 and s9 and check_tree_growth(p8, tree_id, { two_by_two = true }) then
 					minetest.remove_node(pos)
 					minetest.remove_node(p2)
 					minetest.remove_node(p8)
 					minetest.remove_node(p9)
-					mcl_core.generate_tree(p8, tree_id, { two_by_two = true })
+					mcla_core.generate_tree(p8, tree_id, { two_by_two = true })
 					return
 				end
 			end
@@ -686,7 +686,7 @@ local sapling_grow_action = function(tree_id, soil_needed, one_by_one, two_by_tw
 					-- Check if there is room for that
 					if check_tree_growth(pos, tree_id, { balloon = true }) then
 						minetest.set_node(pos, {name="air"})
-						mcl_core.generate_tree(pos, tree_id, { balloon = true })
+						mcla_core.generate_tree(pos, tree_id, { balloon = true })
 						return
 					end
 				end
@@ -696,7 +696,7 @@ local sapling_grow_action = function(tree_id, soil_needed, one_by_one, two_by_tw
 				-- Single sapling
 				minetest.set_node(pos, {name="air"})
 				local r = math.random(1, 12)
-				mcl_core.generate_tree(pos, tree_id)
+				mcla_core.generate_tree(pos, tree_id)
 				return
 			end
 		else
@@ -711,7 +711,7 @@ local grow_oak = sapling_grow_action(OAK_TREE_ID, 1, true, false)
 -- pos: Position
 -- node: Node table of the node at this position, from minetest.get_node
 -- Returns true on success and false on failure
-mcl_core.grow_sapling = function(pos, node)
+mcla_core.grow_sapling = function(pos, node)
 	local grow
 	if node.name == "mcla:sapling" then
 		grow = grow_oak
@@ -775,14 +775,14 @@ end
 -- the player places a node of that kind, you will want to set param2=1 or so.
 --
 
-mcl_core.leafdecay_trunk_cache = {}
-mcl_core.leafdecay_enable_cache = true
+mcla_core.leafdecay_trunk_cache = {}
+mcla_core.leafdecay_enable_cache = true
 -- Spread the load of finding trunks
-mcl_core.leafdecay_trunk_find_allow_accumulator = 0
+mcla_core.leafdecay_trunk_find_allow_accumulator = 0
 
 minetest.register_globalstep(function(dtime)
 	local finds_per_second = 5000
-	mcl_core.leafdecay_trunk_find_allow_accumulator =
+	mcla_core.leafdecay_trunk_find_allow_accumulator =
 			math.floor(dtime * finds_per_second)
 end)
 
@@ -807,9 +807,9 @@ minetest.register_abm({
 			return
 		end
 		local p0_hash = nil
-		if mcl_core.leafdecay_enable_cache then
+		if mcla_core.leafdecay_enable_cache then
 			p0_hash = minetest.hash_node_position(p0)
-			local trunkp = mcl_core.leafdecay_trunk_cache[p0_hash]
+			local trunkp = mcla_core.leafdecay_trunk_cache[p0_hash]
 			if trunkp then
 				local n = minetest.get_node(trunkp)
 				local reg = minetest.registered_nodes[n.name]
@@ -818,21 +818,21 @@ minetest.register_abm({
 					return
 				end
 				-- Cache is invalid
-				table.remove(mcl_core.leafdecay_trunk_cache, p0_hash)
+				table.remove(mcla_core.leafdecay_trunk_cache, p0_hash)
 			end
 		end
-		if mcl_core.leafdecay_trunk_find_allow_accumulator <= 0 then
+		if mcla_core.leafdecay_trunk_find_allow_accumulator <= 0 then
 			return
 		end
-		mcl_core.leafdecay_trunk_find_allow_accumulator =
-				mcl_core.leafdecay_trunk_find_allow_accumulator - 1
+		mcla_core.leafdecay_trunk_find_allow_accumulator =
+				mcla_core.leafdecay_trunk_find_allow_accumulator - 1
 		-- Assume ignore is a trunk, to make the thing work at the border of the active area
 		local p1 = minetest.find_node_near(p0, d, {"ignore", "group:tree"})
 		if p1 then
 			do_preserve = true
-			if mcl_core.leafdecay_enable_cache then
+			if mcla_core.leafdecay_enable_cache then
 				-- Cache the trunk
-				mcl_core.leafdecay_trunk_cache[p0_hash] = p1
+				mcla_core.leafdecay_trunk_cache[p0_hash] = p1
 			end
 		end
 		if not do_preserve then
@@ -863,7 +863,7 @@ minetest.register_abm({
 	action = function(pos, node)
 		if minetest.get_node_light(pos, 0) >= 12 then
 			if node.name == "mcla:ice" then
-				mcl_core.melt_ice(pos)
+				mcla_core.melt_ice(pos)
 			else
 				minetest.remove_node(pos)
 			end
@@ -872,11 +872,11 @@ minetest.register_abm({
 })
 
 -- Melt ice at pos. mcla:ice MUST be at pos if you call this!
-function mcl_core.melt_ice(pos)
+function mcla_core.melt_ice(pos)
 	-- Create a water source if ice is destroyed and there was something below it
 	local below = {x=pos.x, y=pos.y-1, z=pos.z}
 	local belownode = minetest.get_node(below)
-	local dim = mcl_worlds.pos_to_dimension(below)
+	local dim = mcla_worlds.pos_to_dimension(below)
 	if belownode.name ~= "air" and belownode.name ~= "ignore" and belownode.name ~= "mcla:void" then
 		minetest.set_node(pos, {name="mcla:water_source"})
 	else
@@ -907,9 +907,9 @@ end
 -- * clear_colorization: Optional. If true, will clear all paramtype2="color" related node def. fields
 -- * desc: Item description
 --
--- The snowable nodes also MUST have _mcl_snowed defined to contain the name
+-- The snowable nodes also MUST have _mcla_snowed defined to contain the name
 -- of the snowed node.
-mcl_core.register_snowed_node = function(itemstring_snowed, itemstring_clear, tiles, sounds, clear_colorization, desc)
+mcla_core.register_snowed_node = function(itemstring_snowed, itemstring_clear, tiles, sounds, clear_colorization, desc)
 	local def = table.copy(minetest.registered_nodes[itemstring_clear])
 	local create_doc_alias
 	if def.description then
@@ -929,9 +929,9 @@ mcl_core.register_snowed_node = function(itemstring_snowed, itemstring_clear, ti
 	def.groups.spreading_dirt_type = nil
 
 	-- Add the clear node to the item definition for easy lookup
-	def._mcl_snowless = itemstring_clear
+	def._mcla_snowless = itemstring_clear
 
-	-- Note: _mcl_snowed must be added to the clear node manually!
+	-- Note: _mcla_snowed must be added to the clear node manually!
 
 	if not tiles then
 		def.tiles = {"mcl_core_snow.png", "mcl_core_dirt.png", {name="mcl_core_grass_side_snowed.png", tileable_vertical=false}}
@@ -946,14 +946,14 @@ mcl_core.register_snowed_node = function(itemstring_snowed, itemstring_clear, ti
 		def.overlay_tiles = nil
 	end
 	if not sounds then
-		def.sounds = mcl_sounds.node_sound_dirt_defaults({
+		def.sounds = mcla_sounds.node_sound_dirt_defaults({
 			footstep = { name = "pedology_snow_soft_footstep", gain = 0.5 }
 		})
 	else
 		def.sounds = sounds
 	end
 
-	def._mcl_silk_touch_drop = {itemstring_clear}
+	def._mcla_silk_touch_drop = {itemstring_clear}
 
 	-- Register stuff
 	minetest.register_node(itemstring_snowed, def)
@@ -962,10 +962,10 @@ end
 -- Reverts a snowed dirtlike node at pos to its original snow-less form.
 -- This function assumes there is no snow cover node above. This function
 -- MUST NOT be called if there is a snow cover node above pos.
-mcl_core.clear_snow_dirt = function(pos, node)
+mcla_core.clear_snow_dirt = function(pos, node)
 	local def = minetest.registered_nodes[node.name]
-	if def._mcl_snowless then
-		minetest.swap_node(pos, {name = def._mcl_snowless, param2=node.param2})
+	if def._mcla_snowless then
+		minetest.swap_node(pos, {name = def._mcla_snowless, param2=node.param2})
 	end
 end
 
@@ -974,7 +974,7 @@ end
 
 -- on_construct
 -- Makes constructed snowable node snowed if placed below a snow cover node.
-mcl_core.on_snowable_construct = function(pos)
+mcla_core.on_snowable_construct = function(pos)
 	-- Myself
 	local node = minetest.get_node(pos)
 
@@ -985,8 +985,8 @@ mcl_core.on_snowable_construct = function(pos)
 	-- Make snowed if needed
 	if minetest.get_item_group(anode.name, "snow_cover") == 1 then
 		local def = minetest.registered_nodes[node.name]
-		if def._mcl_snowed then
-			minetest.swap_node(pos, {name = def._mcl_snowed, param2=node.param2})
+		if def._mcla_snowed then
+			minetest.swap_node(pos, {name = def._mcla_snowed, param2=node.param2})
 		end
 	end
 end
@@ -1002,17 +1002,17 @@ end
 
 -- on_construct
 -- Makes snowable node below snowed.
-mcl_core.on_snow_construct = function(pos)
+mcla_core.on_snow_construct = function(pos)
 	local npos = {x=pos.x, y=pos.y-1, z=pos.z}
 	local node = minetest.get_node(npos)
 	local def = minetest.registered_nodes[node.name]
-	if def._mcl_snowed then
-		minetest.swap_node(npos, {name = def._mcl_snowed, param2=node.param2})
+	if def._mcla_snowed then
+		minetest.swap_node(npos, {name = def._mcla_snowed, param2=node.param2})
 	end
 end
 -- after_destruct
 -- Clears snowed dirtlike node below.
-mcl_core.after_snow_destruct = function(pos)
+mcla_core.after_snow_destruct = function(pos)
 	local nn = minetest.get_node(pos).name
 	-- No-op if snow was replaced with snow
 	if minetest.get_item_group(nn, "snow_cover") == 1 then
@@ -1020,6 +1020,6 @@ mcl_core.after_snow_destruct = function(pos)
 	end
 	local npos = {x=pos.x, y=pos.y-1, z=pos.z}
 	local node = minetest.get_node(npos)
-	mcl_core.clear_snow_dirt(npos, node)
+	mcla_core.clear_snow_dirt(npos, node)
 end
 

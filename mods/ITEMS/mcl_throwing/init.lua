@@ -1,6 +1,6 @@
-mcl_throwing = {}
+mcla_throwing = {}
 
-local S = minetest.get_translator("mcl_throwing")
+local S = minetest.get_translator("mcla_throwing")
 
 --
 -- Snowballs and other throwable items
@@ -16,7 +16,7 @@ local velocities = {
 	["mcla:snowball_entity"] = 22,
 }
 
-mcl_throwing.throw = function(throw_item, pos, dir, velocity, thrower)
+mcla_throwing.throw = function(throw_item, pos, dir, velocity, thrower)
 	if velocity == nil then
 		velocity = velocities[throw_item]
 	end
@@ -40,7 +40,7 @@ local player_throw_function = function(entity_name, velocity)
 	local func = function(item, player, pointed_thing)
 		local playerpos = player:get_pos()
 		local dir = player:get_look_dir()
-		local obj = mcl_throwing.throw(item, {x=playerpos.x, y=playerpos.y+1.5, z=playerpos.z}, dir, velocity, player:get_player_name())
+		local obj = mcla_throwing.throw(item, {x=playerpos.x, y=playerpos.y+1.5, z=playerpos.z}, dir, velocity, player:get_player_name())
 		if not minetest.is_creative_enabled(player:get_player_name()) then
 			item:take_item()
 		end
@@ -52,7 +52,7 @@ end
 local dispense_function = function(stack, dispenserpos, droppos, dropnode, dropdir)
 	-- Launch throwable item
 	local shootpos = vector.add(dispenserpos, vector.multiply(dropdir, 0.51))
-	mcl_throwing.throw(stack:get_name(), shootpos, dropdir)
+	mcla_throwing.throw(stack:get_name(), shootpos, dropdir)
 end
 
 -- Staticdata handling because objects may want to be reloaded
