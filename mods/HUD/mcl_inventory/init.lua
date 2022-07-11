@@ -1,5 +1,3 @@
-local S = minetest.get_translator("mcla_inventory")
-local F = minetest.formspec_escape
 
 mcla_inventory = {}
 

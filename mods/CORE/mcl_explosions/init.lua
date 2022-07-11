@@ -12,8 +12,6 @@ under the LGPLv2.1 license.
 
 mcla_explosions = {}
 
-local CONTENT_FIRE = minetest.get_content_id("mcla:fire")
-
 local S = minetest.get_translator("mcla_explosions")
 
 -- Saved sphere explosion shapes for various radiuses

@@ -23,29 +23,6 @@ local function detach_driver(self)
 	end
 end
 
-local function activate_tnt_minecart(self, timer)
-	if self._boomtimer then
-		return
-	end
-	self.object:set_armor_groups({immortal=1})
-	if timer then
-		self._boomtimer = timer
-	else
-		self._boomtimer = tnt.BOOMTIMER
-	end
-	self.object:set_properties({textures = {
-		"mcl_tnt_blink.png",
-		"mcl_tnt_blink.png",
-		"mcl_tnt_blink.png",
-		"mcl_tnt_blink.png",
-		"mcl_tnt_blink.png",
-		"mcl_tnt_blink.png",
-		"mcl_minecarts_minecart.png",
-	}})
-	self._blinktimer = tnt.BLINKTIMER
-	minetest.sound_play("tnt_ignite", {pos = self.object:get_pos(), gain = 1.0, max_hear_distance = 15}, true)
-end
-
 local activate_normal_minecart = detach_driver
 
 -- Table for item-to-entity mapping. Keys: itemstring, Values: Corresponding entity ID

@@ -238,7 +238,7 @@ minetest.register_on_dieplayer(function(player, reason)
 			-- Player was slain by potions
 			if not hitter then return end
 
-			local hittername, hittertype, hittersubtype, shooter
+			local hittername, hittersubtype, shooter
 			local hitter_toolname  = get_tool_name(hitter:get_wielded_item())
 
 			-- Custom message
@@ -269,12 +269,11 @@ minetest.register_on_dieplayer(function(player, reason)
 					msg = dmsg("murder_any", name)
 				end
 			-- Arrow
-			elseif hitter:get_luaentity().name == "mcla:arrow_entity" or hitter:get_luaentity().name == "mobs_mc:arrow_entity" and not killed_by_potion then
+			elseif hitter:get_luaentity().name == "mcla:arrow_entity" or hitter:get_luaentity().name == "mobs_mc:arrow_entity" then
 				local shooter
 				if hitter:get_luaentity()._shooter then
 					shooter = hitter:get_luaentity()._shooter
 				end
-				local is_mob = false
 				local s_ent = shooter and shooter:get_luaentity()
 				if shooter == nil then
 					msg = dmsg("arrow", name)

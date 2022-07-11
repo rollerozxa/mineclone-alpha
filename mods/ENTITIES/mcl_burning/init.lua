@@ -1,4 +1,3 @@
-local S = minetest.get_translator("mcla_burning")
 local modpath = minetest.get_modpath("mcla_burning")
 
 mcla_burning = {

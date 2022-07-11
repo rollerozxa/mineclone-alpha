@@ -1,4 +1,3 @@
-local S = minetest.get_translator("mcla_item_entity")
 --basic settings
 local item_drop_settings                 = {} --settings table
 item_drop_settings.age                   = 1.0 --how old a dropped item (_insta_collect==false) has to be before collecting
@@ -141,40 +140,6 @@ minetest.register_globalstep(function(dtime)
 		end
 	end
 end)
-
--- Stupid workaround to get drops from a drop table:
--- Create a temporary table in minetest.registered_nodes that contains the proper drops,
--- because unfortunately minetest.get_node_drops needs the drop table to be inside a registered node definition
--- (very ugly)
-
-local tmp_id = 0
-
-local function get_drops(drop, toolname, param2, paramtype2)
-	tmp_id = tmp_id + 1
-	local tmp_node_name = "mcla_item_entity:" .. tmp_id
-	minetest.registered_nodes[tmp_node_name] = {
-		name = tmp_node_name,
-		drop = drop,
-		paramtype2 = paramtype2
-	}
-	local drops = minetest.get_node_drops({name = tmp_node_name, param2 = param2}, toolname)
-	minetest.registered_nodes[tmp_node_name] = nil
-	return drops
-end
-
-local function discrete_uniform_distribution(drops, min_count, max_count, cap)
-	local new_drops = table.copy(drops)
-	for i, item in ipairs(drops) do
-		local new_item = ItemStack(item)
-		local multiplier = math.random(min_count, max_count)
-		if cap then
-			multiplier = math.min(cap, multiplier)
-		end
-		new_item:set_count(multiplier * new_item:get_count())
-		new_drops[i] = new_item
-	end
-	return new_drops
-end
 
 function minetest.handle_node_drops(pos, drops, digger)
 	-- NOTE: This function override allows digger to be nil.

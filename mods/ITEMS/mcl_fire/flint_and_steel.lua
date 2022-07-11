@@ -59,7 +59,7 @@ minetest.register_tool(":mcla:flint_and_steel", {
 			end
 		-- Ignite TNT
 		elseif dropnode.name == "mcla:tnt" then
-			tnt.ignite(droppos)
+			mcla_tnt.ignite(droppos)
 			if not minetest.is_creative_enabled("") then
 				stack:add_wear(65535/65) -- 65 uses
 			end
