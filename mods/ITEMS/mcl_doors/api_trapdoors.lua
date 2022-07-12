@@ -1,4 +1,3 @@
-local S = minetest.get_translator("mcla_doors")
 
 -- Wrapper around mintest.pointed_thing_to_face_pos.
 local function get_fpos(placer, pointed_thing)

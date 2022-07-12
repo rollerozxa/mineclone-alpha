@@ -122,7 +122,7 @@ local function add_particles(pos, radius)
 		maxexptime = 1.0,
 		minsize = radius * 0.5,
 		maxsize = radius * 1.0,
-		texture = "mcl_particles_smoke.png",
+		texture = "mcla_particles_smoke.png",
 	})
 end
 

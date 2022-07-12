@@ -64,7 +64,7 @@ end)
 local images = {}
 for frame = 0, compass_frames-1 do
 	local s = string.format("%02d", frame)
-	table.insert(images, "mcl_compass_compass_"..s..".png")
+	table.insert(images, "mcla_compass_"..s..".png")
 end
 
 local stereotype_frame = 18

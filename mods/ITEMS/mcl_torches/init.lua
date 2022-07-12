@@ -14,7 +14,7 @@ local spawn_flames_floor = function(pos)
 		maxexptime = 0.6,
 		minsize = 0.7,
 		maxsize = 2,
-		texture = "mcl_particles_flame.png",
+		texture = "mcla_particles_flame.png",
 		glow = LIGHT_TORCH,
 	}, "low")
 	-- Smoke
@@ -29,7 +29,7 @@ local spawn_flames_floor = function(pos)
 		maxexptime = 2.0,
 		minsize = 1.5,
 		maxsize = 1.5,
-		texture = "mcl_particles_smoke_anim.png",
+		texture = "mcla_particles_smoke_anim.png",
 		animation = {
 			type = "vertical_frames",
 			aspect_w = 8,
@@ -69,7 +69,7 @@ local spawn_flames_wall = function(pos, param2)
 		maxexptime = 0.6,
 		minsize = 0.7,
 		maxsize = 2,
-		texture = "mcl_particles_flame.png",
+		texture = "mcla_particles_flame.png",
 		glow = LIGHT_TORCH,
 	}, "low")
 	-- Smoke
@@ -84,7 +84,7 @@ local spawn_flames_wall = function(pos, param2)
 		maxexptime = 2.0,
 		minsize = 1.5,
 		maxsize = 1.5,
-		texture = "mcl_particles_smoke_anim.png",
+		texture = "mcla_particles_smoke_anim.png",
 		animation = {
 			type = "vertical_frames",
 			aspect_w = 8,
@@ -280,10 +280,10 @@ end
 
 mcla_torches.register_torch("torch",
 	S("Torch"),
-	"mcl_torches_on_floor.png",
+	"mcla_torches_on_floor.png",
 	"mcl_torches_torch_floor.obj", "mcl_torches_torch_wall.obj",
 	{{
-		name = "mcl_torches_on_floor_animated.png",
+		name = "mcla_torches_on_floor_animated.png",
 		animation = {type = "vertical_frames", aspect_w = 16, aspect_h = 16, length = 3.3}
 	}},
 	LIGHT_TORCH,

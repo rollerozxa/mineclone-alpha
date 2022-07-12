@@ -5,10 +5,10 @@ mcla_vars.redstone_tick = 0.1
 
 --- GUI / inventory menu settings
 mcla_vars.gui_slots = "listcolors[#9990;#FFF7;#FFF0;#000;#FFF]"
--- nonbg is added as formspec prepend in mcl_formspec_prepend
+-- nonbg is added as formspec prepend in mcla_formspec_prepend
 mcla_vars.gui_nonbg = mcla_vars.gui_slots ..
-	"style_type[image_button;border=false;bgimg=mcl_inventory_button9.png;bgimg_pressed=mcl_inventory_button9_pressed.png;bgimg_middle=2,2]"..
-	"style_type[button;border=false;bgimg=mcl_inventory_button9.png;bgimg_pressed=mcl_inventory_button9_pressed.png;bgimg_middle=2,2]"..
+	"style_type[image_button;border=false;bgimg=mcla_inventory_button9.png;bgimg_pressed=mcla_inventory_button9_pressed.png;bgimg_middle=2,2]"..
+	"style_type[button;border=false;bgimg=mcla_inventory_button9.png;bgimg_pressed=mcla_inventory_button9_pressed.png;bgimg_middle=2,2]"..
 	"style_type[field;textcolor=#323232]"..
 	"style_type[label;textcolor=#323232]"..
 	"style_type[textarea;textcolor=#323232]"..
@@ -16,7 +16,7 @@ mcla_vars.gui_nonbg = mcla_vars.gui_slots ..
 
 -- Background stuff must be manually added by mods (no formspec prepend)
 mcla_vars.gui_bg_color = "bgcolor[#00000000]"
-mcla_vars.gui_bg_img = "background9[1,1;1,1;mcl_base_textures_background9.png;true;7]"
+mcla_vars.gui_bg_img = "background9[1,1;1,1;mcla_base_textures_background9.png;true;7]"
 
 -- Legacy
 mcla_vars.inventory_header = ""

@@ -278,7 +278,7 @@ local function register_decorations()
 			y_min = 1,
 			y_max = mcla_vars.mg_overworld_max,
 			biomes = biomes,
-			decoration = "mcl_flowers:"..name,
+			decoration = "mcla:"..name,
 		})
 	end
 

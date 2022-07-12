@@ -117,7 +117,7 @@ local boat = {
 	collisionbox = {-0.5, -0.35, -0.5, 0.5, 0.3, 0.5},
 	visual = "mesh",
 	mesh = "mcl_boats_boat.b3d",
-	textures = {"mcl_boats_boat_texture.png"},
+	textures = {"mcla_boats_boat_texture.png"},
 	visual_size = boat_visual_size,
 	hp_max = boat_max_hp,
 	damage_texture_modifier = "^[colorize:white:0",
@@ -377,7 +377,7 @@ minetest.register_entity("mcla_boats:boat", boat)
 
 minetest.register_craftitem(":mcla:boat", {
 	description = S("Boat"),
-	inventory_image = "mcl_boats_boat.png",
+	inventory_image = "mcla_boats_boat.png",
 	liquids_pointable = true,
 	groups = { boat = 1, transport = 1},
 	stack_max = 1,
@@ -406,7 +406,7 @@ minetest.register_craftitem(":mcla:boat", {
 		end
 		local boat = minetest.add_entity(pos, "mcla:boat")
 		boat:get_luaentity()._itemstring = "mcla:boat"
-		boat:set_properties({textures = { "mcl_boats_boat_texture.png" }})
+		boat:set_properties({textures = { "mcla_boats_boat_texture.png" }})
 		boat:set_yaw(placer:get_look_horizontal())
 		if not minetest.is_creative_enabled(placer:get_player_name()) then
 			itemstack:take_item()

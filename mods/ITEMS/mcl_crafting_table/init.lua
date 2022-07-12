@@ -3,8 +3,8 @@ local S = minetest.get_translator("mcla_crafting_table")
 minetest.register_node(":mcla:crafting_table", {
 	description = S("Crafting Table"),
 	is_ground_content = false,
-	tiles = {"mcl_crafting_table_top.png", "mcl_core_wood.png", "mcl_crafting_table_side.png",
-		"mcl_crafting_table_side.png", "mcl_crafting_table_front.png", "mcl_crafting_table_front.png"},
+	tiles = {"mcla_crafting_table_top.png", "mcla_core_wood.png", "mcla_crafting_table_side.png",
+		"mcla_crafting_table_side.png", "mcla_crafting_table_front.png", "mcla_crafting_table_front.png"},
 	paramtype2 = "facedir",
 	groups = {handy=1,axey=1, deco_block=1, material_wood=1,flammable=-1},
 	on_rightclick = function(pos, node, player, itemstack)
@@ -18,7 +18,7 @@ minetest.register_node(":mcla:crafting_table", {
 			bgcolor[blue;true]
 			listcolors[#ffffff00;#ffffff80]
 			style_type[list;spacing=0.07,0.07;size=0.95,0.95]
-			image[0,0;10,9.4;mcl_crafting_table_gui.png]
+			image[0,0;10,9.4;mcla_crafting_table_gui.png]
 			list[current_player;craft;1.7,0.95;3,3;0]
 			list[current_player;craftpreview;7.05,1.97;1,1;0]
 			list[current_player;main;0.46,8;9,1;0]

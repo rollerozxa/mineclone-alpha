@@ -17,7 +17,7 @@ end
 
 minetest.register_craftitem(":mcla:arrow", {
 	description = S("Arrow"),
-	inventory_image = "mcl_bows_arrow_inv.png",
+	inventory_image = "mcla_bows_arrow_inv.png",
 	groups = { ammo=1, ammo_bow=1, ammo_bow_regular=1 },
 	_on_dispense = function(itemstack, dispenserpos, droppos, dropnode, dropdir)
 		-- Shoot arrow
@@ -55,7 +55,7 @@ minetest.register_node(":mcla:arrow_box", {
 			{7.5/17, -2.5/17, -2.5/17, 8.5/17, -3.5/17, -3.5/17},
 		}
 	},
-	tiles = {"mcl_bows_arrow.png^[transformFX", "mcl_bows_arrow.png^[transformFX", "mcl_bows_arrow_back.png", "mcl_bows_arrow_front.png", "mcl_bows_arrow.png", "mcl_bows_arrow.png^[transformFX"},
+	tiles = {"mcla_bows_arrow.png^[transformFX", "mcla_bows_arrow.png^[transformFX", "mcla_bows_arrow_back.png", "mcla_bows_arrow_front.png", "mcla_bows_arrow.png", "mcla_bows_arrow.png^[transformFX"},
 	use_texture_alpha = minetest.features.use_texture_alpha_string_modes and "opaque" or false,
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -120,7 +120,7 @@ local damage_particles = function(pos, is_critical)
 			maxsize = 1.5,
 			collisiondetection = false,
 			vertical = false,
-			texture = "mcl_particles_crit.png^[colorize:#bc7a57:127",
+			texture = "mcla_particles_crit.png^[colorize:#bc7a57:127",
 		})
 	end
 end

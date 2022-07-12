@@ -6,8 +6,8 @@ local S = minetest.get_translator("mcla_fishing")
 minetest.register_tool(":mcla:fishing_rod", {
 	description = S("Fishing Rod"),
 	groups = { tool=1, fishing_rod=1 },
-	inventory_image = "mcl_fishing_fishing_rod.png",
-	wield_image = "mcl_fishing_fishing_rod.png^[transformR270",
+	inventory_image = "mcla_fishing_fishing_rod.png",
+	wield_image = "mcla_fishing_fishing_rod.png^[transformR270",
 	wield_scale = { x = 1.5, y = 1.5, z = 1 },
 	stack_max = 1,
 	_mcla_uses = 65,

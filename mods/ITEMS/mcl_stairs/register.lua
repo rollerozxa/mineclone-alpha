@@ -6,7 +6,7 @@
 local S = minetest.get_translator("mcla_stairs")
 
 local woods = {
-	{ "wood", "mcl_core_wood.png", S("Wood Stairs"), S("Wood Slab"), S("Double Wood Slab") }
+	{ "wood", "mcla_core_wood.png", S("Wood Stairs"), S("Wood Slab"), S("Double Wood Slab") }
 }
 
 for w=1, #woods do
@@ -27,7 +27,7 @@ end
 
 mcla_stairs.register_slab("stone", "mcla:stone_smooth",
 		{pickaxey=1, material_stone=1},
-		{"mcl_stairs_stone_slab_top.png", "mcl_stairs_stone_slab_top.png", "mcl_stairs_stone_slab_side.png"},
+		{"mcla_stairs_stone_slab_top.png", "mcla_stairs_stone_slab_top.png", "mcla_stairs_stone_slab_side.png"},
 		S("Polished Stone Slab"),
 		mcla_sounds.node_sound_stone_defaults(), 6, 2,
 		S("Double Polished Stone Slab"))

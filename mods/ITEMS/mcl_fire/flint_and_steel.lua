@@ -3,7 +3,7 @@ local S = minetest.get_translator("mcla_fire")
 -- Flint and Steel
 minetest.register_tool(":mcla:flint_and_steel", {
 	description = S("Flint and Steel"),
-	inventory_image = "mcl_fire_flint_and_steel.png",
+	inventory_image = "mcla_fire_flint_and_steel.png",
 	liquids_pointable = false,
 	stack_max = 1,
 	groups = { tool = 1, },

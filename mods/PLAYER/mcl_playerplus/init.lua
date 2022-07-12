@@ -348,7 +348,7 @@ minetest.register_globalstep(function(dtime)
 				maxexptime = 0.8,
 				minsize = 0.7,
 				maxsize = 2.4,
-				texture = "mcl_particles_bubble.png"
+				texture = "mcla_particles_bubble.png"
 			})
 		end
 

@@ -4,46 +4,37 @@ dofile(minetest.get_modpath(minetest.get_current_modname()).."/armor.lua")
 
 -- Regisiter Head Armor
 
-minetest.register_tool(":mcla:helmet_leather", {
+minetest.register_tool(":mcla:leather_helmet", {
 	description = S("Leather Cap"),
-	inventory_image = "mcl_armor_inv_helmet_leather.png",
+	inventory_image = "mcla_armor_inv_leather_helmet.png",
 	groups = { armor_head=1, mcla_armor_points=1, mcla_armor_uses=56 },
 
 	on_place = armor.on_armor_use,
 	on_secondary_use = armor.on_armor_use,
 })
 
-minetest.register_tool(":mcla:helmet_iron", {
+minetest.register_tool(":mcla:iron_helmet", {
 	description = S("Iron Helmet"),
-	inventory_image = "mcl_armor_inv_helmet_iron.png",
+	inventory_image = "mcla_armor_inv_iron_helmet.png",
 	groups = { armor_head=1, mcla_armor_points=2, mcla_armor_uses=166 },
 
 	on_place = armor.on_armor_use,
 	on_secondary_use = armor.on_armor_use,
 })
 
-minetest.register_tool(":mcla:helmet_gold", {
+minetest.register_tool(":mcla:gold_helmet", {
 	description = S("Golden Helmet"),
-	inventory_image = "mcl_armor_inv_helmet_gold.png",
+	inventory_image = "mcla_armor_inv_gold_helmet.png",
 	groups = { armor_head=1, mcla_armor_points=2, mcla_armor_uses=78 },
 
 	on_place = armor.on_armor_use,
 	on_secondary_use = armor.on_armor_use,
 })
 
-minetest.register_tool(":mcla:helmet_diamond",{
+minetest.register_tool(":mcla:diamond_helmet",{
 	description = S("Diamond Helmet"),
-	inventory_image = "mcl_armor_inv_helmet_diamond.png",
+	inventory_image = "mcla_armor_inv_diamond_helmet.png",
 	groups = { armor_head=1, mcla_armor_points=3, mcla_armor_uses=364, mcla_armor_toughness=2 },
-
-	on_place = armor.on_armor_use,
-	on_secondary_use = armor.on_armor_use,
-})
-
-minetest.register_tool(":mcla:helmet_chain", {
-	description = S("Chain Helmet"),
-	inventory_image = "mcl_armor_inv_helmet_chain.png",
-	groups = { armor_head=1, mcla_armor_points=2, mcla_armor_uses=166 },
 
 	on_place = armor.on_armor_use,
 	on_secondary_use = armor.on_armor_use,
@@ -51,46 +42,37 @@ minetest.register_tool(":mcla:helmet_chain", {
 
 -- Regisiter Torso Armor
 
-minetest.register_tool(":mcla:chestplate_leather", {
+minetest.register_tool(":mcla:leather_chestplate", {
 	description = S("Leather Tunic"),
-	inventory_image = "mcl_armor_inv_chestplate_leather.png",
+	inventory_image = "mcla_armor_inv_leather_chestplate.png",
 	groups = { armor_torso=1, mcla_armor_points=3, mcla_armor_uses=81 },
 
 	on_place = armor.on_armor_use,
 	on_secondary_use = armor.on_armor_use,
 })
 
-minetest.register_tool(":mcla:chestplate_iron", {
+minetest.register_tool(":mcla:iron_chestplate", {
 	description = S("Iron Chestplate"),
-	inventory_image = "mcl_armor_inv_chestplate_iron.png",
+	inventory_image = "mcla_armor_inv_iron_chestplate.png",
 	groups = { armor_torso=1, mcla_armor_points=6, mcla_armor_uses=241 },
 
 	on_place = armor.on_armor_use,
 	on_secondary_use = armor.on_armor_use,
 })
 
-minetest.register_tool(":mcla:chestplate_gold", {
+minetest.register_tool(":mcla:gold_chestplate", {
 	description = S("Golden Chestplate"),
-	inventory_image = "mcl_armor_inv_chestplate_gold.png",
+	inventory_image = "mcla_armor_inv_gold_chestplate.png",
 	groups = { armor_torso=1, mcla_armor_points=5, mcla_armor_uses=113 },
 
 	on_place = armor.on_armor_use,
 	on_secondary_use = armor.on_armor_use,
 })
 
-minetest.register_tool(":mcla:chestplate_diamond",{
+minetest.register_tool(":mcla:diamond_chestplate",{
 	description = S("Diamond Chestplate"),
-	inventory_image = "mcl_armor_inv_chestplate_diamond.png",
+	inventory_image = "mcla_armor_inv_diamond_chestplate.png",
 	groups = { armor_torso=1, mcla_armor_points=8, mcla_armor_uses=529, mcla_armor_toughness=2 },
-
-	on_place = armor.on_armor_use,
-	on_secondary_use = armor.on_armor_use,
-})
-
-minetest.register_tool(":mcla:chestplate_chain", {
-	description = S("Chain Chestplate"),
-	inventory_image = "mcl_armor_inv_chestplate_chain.png",
-	groups = { armor_torso=1, mcla_armor_points=5, mcla_armor_uses=241 },
 
 	on_place = armor.on_armor_use,
 	on_secondary_use = armor.on_armor_use,
@@ -98,92 +80,75 @@ minetest.register_tool(":mcla:chestplate_chain", {
 
 -- Regisiter Leg Armor
 
-minetest.register_tool(":mcla:leggings_leather", {
+minetest.register_tool(":mcla:leather_leggings", {
 	description = S("Leather Pants"),
-	inventory_image = "mcl_armor_inv_leggings_leather.png",
+	inventory_image = "mcla_armor_inv_leather_leggings.png",
 	groups = { armor_legs=1, mcla_armor_points=2, mcla_armor_uses=76 },
 
 	on_place = armor.on_armor_use,
 	on_secondary_use = armor.on_armor_use,
 })
 
-minetest.register_tool(":mcla:leggings_iron", {
+minetest.register_tool(":mcla:iron_leggings", {
 	description = S("Iron Leggings"),
-	inventory_image = "mcl_armor_inv_leggings_iron.png",
+	inventory_image = "mcla_armor_inv_iron_leggings.png",
 	groups = { armor_legs=1, mcla_armor_points=5, mcla_armor_uses=226 },
 
 	on_place = armor.on_armor_use,
 	on_secondary_use = armor.on_armor_use,
 })
 
-minetest.register_tool(":mcla:leggings_gold", {
+minetest.register_tool(":mcla:gold_leggings", {
 	description = S("Golden Leggings"),
-	inventory_image = "mcl_armor_inv_leggings_gold.png",
+	inventory_image = "mcla_armor_inv_gold_leggings.png",
 	groups = { armor_legs=1, mcla_armor_points=3, mcla_armor_uses=106 },
 
 	on_place = armor.on_armor_use,
 	on_secondary_use = armor.on_armor_use,
 })
 
-minetest.register_tool(":mcla:leggings_diamond",{
+minetest.register_tool(":mcla:diamond_leggings",{
 	description = S("Diamond Leggings"),
-	inventory_image = "mcl_armor_inv_leggings_diamond.png",
+	inventory_image = "mcla_armor_inv_diamond_leggings.png",
 	groups = { armor_legs=1, mcla_armor_points=6, mcla_armor_uses=496, mcla_armor_toughness=2 },
 
 	on_place = armor.on_armor_use,
 	on_secondary_use = armor.on_armor_use,
 })
 
-minetest.register_tool(":mcla:leggings_chain", {
-	description = S("Chain Leggings"),
-	inventory_image = "mcl_armor_inv_leggings_chain.png",
-	groups = {armor_legs=1, mcla_armor_points=4, mcla_armor_uses=226 },
-
-	on_place = armor.on_armor_use,
-	on_secondary_use = armor.on_armor_use,
-})
 -- Regisiter Boots
 
-minetest.register_tool(":mcla:boots_leather", {
+minetest.register_tool(":mcla:leather_boots", {
 	description = S("Leather Boots"),
-	inventory_image = "mcl_armor_inv_boots_leather.png",
+	inventory_image = "mcla_armor_inv_leather_boots.png",
 	groups = {armor_feet=1, mcla_armor_points=1, mcla_armor_uses=66 },
 
 	on_place = armor.on_armor_use,
 	on_secondary_use = armor.on_armor_use,
 })
 
-minetest.register_tool(":mcla:boots_iron", {
+minetest.register_tool(":mcla:iron_boots", {
 	description = S("Iron Boots"),
-	inventory_image = "mcl_armor_inv_boots_iron.png",
+	inventory_image = "mcla_armor_inv_iron_boots.png",
 	groups = {armor_feet=1, mcla_armor_points=2, mcla_armor_uses=196 },
 
 	on_place = armor.on_armor_use,
 	on_secondary_use = armor.on_armor_use,
 })
 
-minetest.register_tool(":mcla:boots_gold", {
+minetest.register_tool(":mcla:gold_boots", {
 	description = S("Golden Boots"),
-	inventory_image = "mcl_armor_inv_boots_gold.png",
+	inventory_image = "mcla_armor_inv_gold_boots.png",
 	groups = {armor_feet=1, mcla_armor_points=1, mcla_armor_uses=92 },
 
 	on_place = armor.on_armor_use,
 	on_secondary_use = armor.on_armor_use,
 })
 
-minetest.register_tool(":mcla:boots_diamond",{
+minetest.register_tool(":mcla:diamond_boots",{
 	description = S("Diamond Boots"),
-	inventory_image = "mcl_armor_inv_boots_diamond.png",
+	inventory_image = "mcla_armor_inv_diamond_boots.png",
 	groups = {armor_feet=1, mcla_armor_points=3, mcla_armor_uses=430, mcla_armor_toughness=2 },
-
-	on_place = armor.on_armor_use,
-	on_secondary_use = armor.on_armor_use,
-})
-
-minetest.register_tool(":mcla:boots_chain", {
-	description = S("Chain Boots"),
-	inventory_image = "mcl_armor_inv_boots_chain.png",
-	groups = {armor_feet=1, mcla_armor_points=1, mcla_armor_uses=196 },
 
 	on_place = armor.on_armor_use,
 	on_secondary_use = armor.on_armor_use,
@@ -202,7 +167,7 @@ for k, v in pairs(craft_ingreds) do
 	-- material
 	if v ~= nil then
 		minetest.register_craft({
-			output = "mcla:helmet_"..k,
+			output = "mcla:"..k.."_helmet",
 			recipe = {
 				{v, v, v},
 				{v, "", v},
@@ -210,7 +175,7 @@ for k, v in pairs(craft_ingreds) do
 			},
 		})
 		minetest.register_craft({
-			output = "mcla:chestplate_"..k,
+			output = "mcla:"..k.."_chestplate",
 			recipe = {
 				{v, "", v},
 				{v, v, v},
@@ -218,7 +183,7 @@ for k, v in pairs(craft_ingreds) do
 			},
 		})
 		minetest.register_craft({
-			output = "mcla:leggings_"..k,
+			output = "mcla:"..k.."_leggings",
 			recipe = {
 				{v, v, v},
 				{v, "", v},
@@ -226,7 +191,7 @@ for k, v in pairs(craft_ingreds) do
 			},
 		})
 		minetest.register_craft({
-			output = "mcla:boots_"..k,
+			output = "mcla:"..k.."_boots",
 			recipe = {
 				{v, "", v},
 				{v, "", v},

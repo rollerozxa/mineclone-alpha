@@ -251,7 +251,7 @@ minetest.register_node(":"..small_name, {
 			bgcolor[blue;true]
 			listcolors[#0000ff00;#ffffff80]
 			style_type[list;spacing=0.07,0.07;size=0.95,0.95]
-			image[0,0;10,9.4;mcl_chests_gui.png]
+			image[0,0;10,9.4;mcla_chests_gui.png]
 			list[nodemeta:${chestpos};main;0.46,0.95;9,3;0]
 			list[current_player;main;0.46,8;9,1;0]
 			list[current_player;main;0.46,4.72;9,3;9]
@@ -528,17 +528,17 @@ register_chest("chest",
 	S("Chest"),
 	{
 		inv = {
-			"mcl_chests_top.png", "mcl_chests_top.png",
-			"mcl_chests_side.png", "mcl_chests_side.png",
-			"mcl_chests_side.png", "mcl_chests_front.png"},
+			"mcla_chests_top.png", "mcla_chests_top.png",
+			"mcla_chests_side.png", "mcla_chests_side.png",
+			"mcla_chests_side.png", "mcla_chests_front.png"},
 		left = {
-			"mcl_chests_top.png", "mcl_chests_top.png",
-			"mcl_chests_side.png", "mcl_chests_side.png",
-			"mcl_chests_back_big.png^[transformFX", "mcl_chests_front_big.png"},
+			"mcla_chests_top.png", "mcla_chests_top.png",
+			"mcla_chests_side.png", "mcla_chests_side.png",
+			"mcla_chests_back_big.png^[transformFX", "mcla_chests_front_big.png"},
 		right = {
-			"mcl_chests_top.png", "mcl_chests_top.png",
-			"mcl_chests_side.png", "mcl_chests_side.png",
-			"mcl_chests_back_big.png", "mcl_chests_front_big.png^[transformFX"},
+			"mcla_chests_top.png", "mcla_chests_top.png",
+			"mcla_chests_side.png", "mcla_chests_side.png",
+			"mcla_chests_back_big.png", "mcla_chests_front_big.png^[transformFX"},
 	}
 )
 

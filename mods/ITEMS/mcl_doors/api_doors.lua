@@ -1,4 +1,3 @@
-local S = minetest.get_translator("mcla_doors")
 
 -- This helper function calls on_place_node callbacks.
 local function on_place_node(place_to, newnode,

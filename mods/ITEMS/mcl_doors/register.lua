@@ -5,12 +5,12 @@ local S = minetest.get_translator("mcla_doors")
 --- Oak Door ---
 mcla_doors:register_door("mcla:wooden_door", {
 	description = S("Door"),
-	inventory_image = "mcl_doors_item_wood.png",
+	inventory_image = "mcla_doors_item_wood.png",
 	groups = {handy=1,axey=1, material_wood=1, flammable=-1},
 	_mcla_hardness = 3,
 	_mcla_blast_resistance = 3,
-	tiles_bottom = {"mcl_doors_door_wood_lower.png", "mcl_doors_door_wood_side_lower.png"},
-	tiles_top = {"mcl_doors_door_wood_upper.png", "mcl_doors_door_wood_side_upper.png"},
+	tiles_bottom = {"mcla_doors_door_wood_lower.png", "mcla_doors_door_wood_side_lower.png"},
+	tiles_top = {"mcla_doors_door_wood_upper.png", "mcla_doors_door_wood_side_upper.png"},
 	sounds = mcla_sounds.node_sound_wood_defaults(),
 })
 
@@ -32,12 +32,12 @@ minetest.register_craft({
 --- Iron Door ---
 mcla_doors:register_door("mcla:iron_door", {
 	description = S("Iron Door"),
-	inventory_image = "mcl_doors_item_steel.png",
+	inventory_image = "mcla_doors_item_steel.png",
 	groups = {pickaxey=1, mesecon_effector_on=1},
 	_mcla_hardness = 5,
 	_mcla_blast_resistance = 5,
-	tiles_bottom = {"mcl_doors_door_iron_lower.png^[transformFX", "mcl_doors_door_iron_side_lower.png"},
-	tiles_top = {"mcl_doors_door_iron_upper.png^[transformFX", "mcl_doors_door_iron_side_upper.png"},
+	tiles_bottom = {"mcla_doors_door_iron_lower.png^[transformFX", "mcla_doors_door_iron_side_lower.png"},
+	tiles_top = {"mcla_doors_door_iron_upper.png^[transformFX", "mcla_doors_door_iron_side_upper.png"},
 	sounds = mcla_sounds.node_sound_metal_defaults(),
 	sound_open = "doors_steel_door_open",
 	sound_close = "doors_steel_door_close",

@@ -118,7 +118,7 @@ end
 -- Bow item, uncharged state
 minetest.register_tool(":mcla:bow", {
 	description = S("Bow"),
-	inventory_image = "mcl_bows_bow.png",
+	inventory_image = "mcla_bows_bow.png",
 	wield_scale = { x = 1.8, y = 1.8, z = 1 },
 	stack_max = 1,
 	range = 4,

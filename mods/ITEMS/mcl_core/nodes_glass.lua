@@ -5,7 +5,7 @@ minetest.register_node(":mcla:glass", {
 	description = S("Glass"),
 	drawtype = "glasslike",
 	is_ground_content = false,
-	tiles = {"mcl_core_glass.png"},
+	tiles = {"mcla_core_glass.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
 	stack_max = 64,

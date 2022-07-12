@@ -4,7 +4,7 @@ minetest.register_craftitem(":mcla:wheat_seeds", {
 	-- Original Minecraft name: “Seeds”
 	description = S("Seeds"),
 	groups = { craftitem=1 },
-	inventory_image = "mcl_farming_wheat_seeds.png",
+	inventory_image = "mcla_farming_wheat_seeds.png",
 	on_place = function(itemstack, placer, pointed_thing)
 		return mcla_farming:place_seed(itemstack, placer, pointed_thing, "mcla:wheat_1")
 	end
@@ -30,9 +30,9 @@ for i=1,7 do
 		walkable = false,
 		drawtype = "plantlike",
 		drop = "mcla:wheat_seeds",
-		tiles = {"mcl_farming_wheat_stage_"..(i-1)..".png"},
-		inventory_image = "mcl_farming_wheat_stage_"..(i-1)..".png",
-		wield_image = "mcl_farming_wheat_stage_"..(i-1)..".png",
+		tiles = {"mcla_farming_wheat_stage_"..(i-1)..".png"},
+		inventory_image = "mcla_farming_wheat_stage_"..(i-1)..".png",
+		wield_image = "mcla_farming_wheat_stage_"..(i-1)..".png",
 		selection_box = {
 			type = "fixed",
 			fixed = {
@@ -53,9 +53,9 @@ minetest.register_node(":mcla:wheat", {
 	place_param2 = 3,
 	walkable = false,
 	drawtype = "plantlike",
-	tiles = {"mcl_farming_wheat_stage_7.png"},
-	inventory_image = "mcl_farming_wheat_stage_7.png",
-	wield_image = "mcl_farming_wheat_stage_7.png",
+	tiles = {"mcla_farming_wheat_stage_7.png"},
+	inventory_image = "mcla_farming_wheat_stage_7.png",
+	wield_image = "mcla_farming_wheat_stage_7.png",
 	drop = {
 		max_items = 4,
 		items = {
@@ -74,7 +74,7 @@ mcla_farming:add_plant("plant_wheat", "mcla:wheat", {"mcla:wheat_1", "mcla:wheat
 
 minetest.register_craftitem(":mcla:wheat_item", {
 	description = S("Wheat"),
-	inventory_image = "mcl_farming_wheat_harvested.png",
+	inventory_image = "mcla_farming_wheat_harvested.png",
 	groups = { craftitem = 1 },
 })
 
@@ -87,7 +87,7 @@ minetest.register_craft({
 
 minetest.register_craftitem(":mcla:bread", {
 	description = S("Bread"),
-	inventory_image = "mcl_farming_bread.png",
+	inventory_image = "mcla_farming_bread.png",
 	groups = {food=2},
 	on_place = minetest.item_eat(5),
 	on_secondary_use = minetest.item_eat(5),

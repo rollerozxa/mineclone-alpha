@@ -36,8 +36,8 @@ mcla_fences.register_fence = function(id, fence_name, texture, groups, hardness,
 	minetest.register_node(":"..fence_id, {
 		description = fence_name,
 		tiles = {texture},
-		inventory_image = "mcl_fences_fence_mask.png^" .. texture .. "^mcl_fences_fence_mask.png^[makealpha:255,126,126",
-		wield_image = "mcl_fences_fence_mask.png^" .. texture .. "^mcl_fences_fence_mask.png^[makealpha:255,126,126",
+		inventory_image = "mcla_fences_fence_mask.png^" .. texture .. "^mcla_fences_fence_mask.png^[makealpha:255,126,126",
+		wield_image = "mcla_fences_fence_mask.png^" .. texture .. "^mcla_fences_fence_mask.png^[makealpha:255,126,126",
 		paramtype = "light",
 		is_ground_content = false,
 		groups = cgroups,
@@ -75,7 +75,7 @@ local wood_connect = {"group:fence_wood"}
 local wood_sounds = mcla_sounds.node_sound_wood_defaults()
 
 local woods = {
-	{"", S("Fence"), "mcl_core_wood.png", "mcla:wood"},
+	{"", S("Fence"), "mcla_core_wood.png", "mcla:wood"},
 }
 
 for w=1, #woods do

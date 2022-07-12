@@ -163,7 +163,7 @@ minetest.register_craftitem(":mcla:bucket_empty", {
 	description = S("Empty Bucket"),
 
 	liquids_pointable = true,
-	inventory_image = "mcl_buckets_empty.png",
+	inventory_image = "mcla_buckets_empty.png",
 	stack_max = 16,
 	on_place = function(itemstack, user, pointed_thing)
 		-- Must be pointing to node
@@ -252,7 +252,7 @@ mcla_buckets.register_liquid(
 	end,
 	{"mcla:lava_source"},
 	"mcla:bucket_lava",
-	"mcl_buckets_lava.png",
+	"mcla_buckets_lava.png",
 	S("Lava Bucket")
 )
 
@@ -261,7 +261,7 @@ mcla_buckets.register_liquid(
 	"mcla:water_source",
 	{"mcla:water_source"},
 	"mcla:bucket_water",
-	"mcl_buckets_water.png",
+	"mcla_buckets_water.png",
 	S("Water Bucket"),
 	function(pos, placer)
 		-- Check protection
@@ -284,7 +284,7 @@ mcla_buckets.register_liquid(
 	"mclx_core:river_water_source",
 	{"mclx_core:river_water_source"},
 	"mcla:bucket_river_water",
-	"mcl_buckets_river_water.png",
+	"mcla_buckets_river_water.png",
 	S("River Water Bucket"),
 	function(pos, placer)
 		-- Check protection

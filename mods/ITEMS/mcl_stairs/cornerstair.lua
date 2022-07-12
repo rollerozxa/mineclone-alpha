@@ -219,11 +219,11 @@ function mcla_stairs.cornerstair.add(name, stairtiles)
 			end
 		end
 		local t = node_def.tiles[1]
-		outer_tiles[1] = t.."^("..t.."^[transformR90^mcl_stairs_turntexture.png^[makealpha:255,0,255)"
-		outer_tiles[2] = t.."^("..t.."^mcl_stairs_turntexture.png^[transformR270^[makealpha:255,0,255)"
+		outer_tiles[1] = t.."^("..t.."^[transformR90^mcla_stairs_turntexture.png^[makealpha:255,0,255)"
+		outer_tiles[2] = t.."^("..t.."^mcla_stairs_turntexture.png^[transformR270^[makealpha:255,0,255)"
 		outer_tiles[3] = t
-		inner_tiles[1] = t.."^("..t.."^[transformR90^(mcl_stairs_turntexture.png^[transformR180)^[makealpha:255,0,255)"
-		inner_tiles[2] = t.."^("..t.."^[transformR270^(mcl_stairs_turntexture.png^[transformR90)^[makealpha:255,0,255)"
+		inner_tiles[1] = t.."^("..t.."^[transformR90^(mcla_stairs_turntexture.png^[transformR180)^[makealpha:255,0,255)"
+		inner_tiles[2] = t.."^("..t.."^[transformR270^(mcla_stairs_turntexture.png^[transformR90)^[makealpha:255,0,255)"
 		inner_tiles[3] = t
 	elseif stairtiles == nil or stairtiles == "default" then
 		outer_tiles = node_def.tiles

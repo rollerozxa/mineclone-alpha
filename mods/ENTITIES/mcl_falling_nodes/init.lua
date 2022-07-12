@@ -1,4 +1,3 @@
-local S = minetest.get_translator("mcla_falling_nodes")
 
 local get_falling_depth = function(self)
 	if not self._startpos then

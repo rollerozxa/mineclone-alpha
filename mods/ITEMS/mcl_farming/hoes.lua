@@ -59,7 +59,7 @@ local uses = {
 
 minetest.register_tool(":mcla:wood_hoe", {
 	description = S("Wood Hoe"),
-	inventory_image = "mcl_farming_wood_hoe.png",
+	inventory_image = "mcla_farming_wood_hoe.png",
 	wield_scale = { x = 1.8, y = 1.8, z = 1 },
 	on_place = hoe_on_place_function(uses.wood),
 	groups = { tool=1, hoe=1, },
@@ -95,7 +95,7 @@ minetest.register_craft({
 
 minetest.register_tool(":mcla:stone_hoe", {
 	description = S("Stone Hoe"),
-	inventory_image = "mcl_farming_stone_hoe.png",
+	inventory_image = "mcla_farming_stone_hoe.png",
 	wield_scale = { x = 1.8, y = 1.8, z = 1 },
 	on_place = hoe_on_place_function(uses.stone),
 	groups = { tool=1, hoe=1 },
@@ -126,7 +126,7 @@ minetest.register_craft({
 
 minetest.register_tool(":mcla:iron_hoe", {
 	description = S("Iron Hoe"),
-	inventory_image = "mcl_farming_iron_hoe.png",
+	inventory_image = "mcla_farming_iron_hoe.png",
 	wield_scale = { x = 1.8, y = 1.8, z = 1 },
 	on_place = hoe_on_place_function(uses.iron),
 	groups = { tool=1, hoe=1 },
@@ -158,7 +158,7 @@ minetest.register_craft({
 
 minetest.register_tool(":mcla:gold_hoe", {
 	description = S("Golden Hoe"),
-	inventory_image = "mcl_farming_gold_hoe.png",
+	inventory_image = "mcla_farming_gold_hoe.png",
 	wield_scale = { x = 1.8, y = 1.8, z = 1 },
 	on_place = hoe_on_place_function(uses.gold),
 	groups = { tool=1, hoe=1 },
@@ -191,7 +191,7 @@ minetest.register_craft({
 
 minetest.register_tool(":mcla:diamond_hoe", {
 	description = S("Diamond Hoe"),
-	inventory_image = "mcl_farming_diamond_hoe.png",
+	inventory_image = "mcla_farming_diamond_hoe.png",
 	wield_scale = { x = 1.8, y = 1.8, z = 1 },
 	on_place = hoe_on_place_function(uses.diamond),
 	groups = { tool=1, hoe=1 },

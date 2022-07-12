@@ -45,9 +45,6 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 		_start_pos = nil, -- Used to calculate distance for “On A Rail” achievement
 		_last_float_check = nil, -- timestamp of last time the cart was checked to be still on a rail
 		_fueltime = nil, -- how many seconds worth of fuel is left. Only used by minecart with furnace
-		_boomtimer = nil, -- how many seconds are left before exploding
-		_blinktimer = nil, -- how many seconds are left before TNT blinking
-		_blink = false, -- is TNT blink texture active?
 		_old_dir = {x=0, y=0, z=0},
 		_old_pos = nil,
 		_old_vel = {x=0, y=0, z=0},
@@ -91,8 +88,8 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 			return
 		end
 
-		-- Punch+sneak: Pick up minecart (unless TNT was ignited)
-		if puncher:get_player_control().sneak and not self._boomtimer then
+		-- Punch+sneak: Pick up minecart
+		if puncher:get_player_control().sneak then
 			if self._driver then
 				if self._old_pos then
 					self.object:set_pos(self._old_pos)
@@ -190,13 +187,6 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 					player:set_eye_offset({x=0, y=0, z=0},{x=0, y=0, z=0})
 				end
 
-				-- Explode if already ignited
-				if self._boomtimer then
-					self.object:remove()
-					mcla_explosions.explode(pos, 4, { drop_chance = 1.0 })
-					return
-				end
-
 				-- Drop items and remove cart entity
 				local pname = ""
 				if player then
@@ -220,62 +210,18 @@ local function register_entity(entity_id, mesh, textures, drop, on_rightclick, o
 			if self._fueltime <= 0 then
 				self.object:set_properties({textures =
 					{
-					"mcl_furnaces_top.png",
-					"mcl_furnaces_top.png",
-					"mcl_furnaces_front.png",
-					"mcl_furnaces_side.png",
-					"mcl_furnaces_side.png",
-					"mcl_furnaces_side.png",
-					"mcl_minecarts_minecart.png",
+					"mcla_furnaces_top.png",
+					"mcla_furnaces_top.png",
+					"mcla_furnaces_front.png",
+					"mcla_furnaces_side.png",
+					"mcla_furnaces_side.png",
+					"mcla_furnaces_side.png",
+					"mcla_minecarts_minecart.png",
 				}})
 				self._fueltime = 0
 			end
 		end
 		local has_fuel = self._fueltime and self._fueltime > 0
-
-		-- Update TNT stuff
-		if self._boomtimer then
-			-- Explode
-			self._boomtimer = self._boomtimer - dtime
-			local pos = self.object:get_pos()
-			if self._boomtimer <= 0 then
-				self.object:remove()
-				mcla_explosions.explode(pos, 4, { drop_chance = 1.0 })
-				return
-			else
-				mcla_tnt.smoke_step(pos)
-			end
-		end
-		if self._blinktimer then
-			self._blinktimer = self._blinktimer - dtime
-			if self._blinktimer <= 0 then
-				self._blink = not self._blink
-				if self._blink then
-					self.object:set_properties({textures =
-					{
-					"mcl_tnt_top.png",
-					"mcl_tnt_bottom.png",
-					"mcl_tnt_side.png",
-					"mcl_tnt_side.png",
-					"mcl_tnt_side.png",
-					"mcl_tnt_side.png",
-					"mcl_minecarts_minecart.png",
-					}})
-				else
-					self.object:set_properties({textures =
-					{
-					"mcl_tnt_blink.png",
-					"mcl_tnt_blink.png",
-					"mcl_tnt_blink.png",
-					"mcl_tnt_blink.png",
-					"mcl_tnt_blink.png",
-					"mcl_tnt_blink.png",
-					"mcl_minecarts_minecart.png",
-					}})
-				end
-				self._blinktimer = mcla_tnt.BLINKTIMER
-			end
-		end
 
 		if self._punched then
 			vel = vector.add(vel, self._velocity)
@@ -579,8 +525,8 @@ register_minecart(
 	"mcla_minecarts:minecart",
 	S("Minecart"),
 	"mcl_minecarts_minecart.b3d",
-	{"mcl_minecarts_minecart.png"},
-	"mcl_minecarts_minecart_normal.png",
+	{"mcla_minecarts_minecart.png"},
+	"mcla_minecarts_minecart_normal.png",
 	{"mcla:minecart"},
 	function(self, clicker)
 		local name = clicker:get_player_name()
@@ -614,8 +560,8 @@ register_minecart(
 	"mcla_minecarts:chest_minecart",
 	S("Minecart with Chest"),
 	"mcl_minecarts_minecart_chest.b3d",
-	{ "mcl_chests_normal.png", "mcl_minecarts_minecart.png" },
-	"mcl_minecarts_minecart_chest.png",
+	{ "mcla_chests_normal.png", "mcla_minecarts_minecart.png" },
+	"mcla_minecarts_minecart_chest.png",
 	{"mcla:minecart", "mcla:chest"},
 	nil, nil, false)
 
@@ -626,15 +572,15 @@ register_minecart(
 	S("Minecart with Furnace"),
 	"mcl_minecarts_minecart_block.b3d",
 	{
-		"mcl_furnaces_top.png",
-		"mcl_furnaces_top.png",
-		"mcl_furnaces_front.png",
-		"mcl_furnaces_side.png",
-		"mcl_furnaces_side.png",
-		"mcl_furnaces_side.png",
-		"mcl_minecarts_minecart.png",
+		"mcla_furnaces_top.png",
+		"mcla_furnaces_top.png",
+		"mcla_furnaces_front.png",
+		"mcla_furnaces_side.png",
+		"mcla_furnaces_side.png",
+		"mcla_furnaces_side.png",
+		"mcla_minecarts_minecart.png",
 	},
-	"mcl_minecarts_minecart_furnace.png",
+	"mcla_minecarts_minecart_furnace.png",
 	{"mcla:minecart", "mcla:furnace"},
 	-- Feed furnace with coal
 	function(self, clicker)
@@ -656,13 +602,13 @@ register_minecart(
 			end
 			self.object:set_properties({textures =
 			{
-				"mcl_furnaces_top.png",
-				"mcl_furnaces_top.png",
-				"mcl_furnaces_front_active.png",
-				"mcl_furnaces_side.png",
-				"mcl_furnaces_side.png",
-				"mcl_furnaces_side.png",
-				"mcl_minecarts_minecart.png",
+				"mcla_furnaces_top.png",
+				"mcla_furnaces_top.png",
+				"mcla_furnaces_front_active.png",
+				"mcla_furnaces_side.png",
+				"mcla_furnaces_side.png",
+				"mcla_furnaces_side.png",
+				"mcla_minecarts_minecart.png",
 			}})
 		end
 	end, nil, false

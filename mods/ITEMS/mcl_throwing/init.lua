@@ -81,7 +81,7 @@ end
 local snowball_ENTITY={
 	physical = false,
 	timer=0,
-	textures = {"mcl_throwing_snowball.png"},
+	textures = {"mcla_throwing_snowball.png"},
 	visual_size = {x=0.5, y=0.5},
 	collisionbox = {0,0,0,0,0,0},
 	pointable = false,
@@ -174,7 +174,7 @@ minetest.register_entity("mcla_throwing:snowball_entity", snowball_ENTITY)
 -- Snowball
 minetest.register_craftitem(":mcla:snowball", {
 	description = S("Snowball"),
-	inventory_image = "mcl_throwing_snowball.png",
+	inventory_image = "mcla_throwing_snowball.png",
 	stack_max = 16,
 	groups = { weapon_ranged = 1 },
 	on_use = player_throw_function("mcla:snowball_entity"),
@@ -184,7 +184,7 @@ minetest.register_craftitem(":mcla:snowball", {
 -- Egg
 minetest.register_craftitem(":mcla:egg", {
 	description = S("Egg"),
-	inventory_image = "mcl_throwing_egg.png",
+	inventory_image = "mcla_throwing_egg.png",
 	stack_max = 16,
 	groups = { craftitem = 1 },
 })

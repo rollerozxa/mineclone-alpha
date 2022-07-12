@@ -8,15 +8,9 @@
 # setting is disabled, but they still deal damage to creatures.
 enable_fire (Destructive and spreading fire) bool true
 
-# If enabled, the weather will change naturally over time.
-mcla_doWeatherCycle (Change weather) bool true
-
 # If enabled, breaking blocks will cause them to drop as item.
 # Note that blocks never have drops when in Creative Mode.
 mcla_doTileDrops (Blocks have drops) bool true
-
-# If enabled, TNT explosions destroy blocks.
-mcla_tnt_griefing (TNT destroys blocks) bool true
 
 [Players]
 # If enabled, the night can be skipped if all players are in bed.

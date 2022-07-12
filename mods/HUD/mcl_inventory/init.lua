@@ -64,7 +64,7 @@ local function set_inventory(player, armor_change_only)
 	local armor_slot_imgs = ""
 	for a=1,4 do
 		if inv:get_stack("armor", a+1):is_empty() then
-			armor_slot_imgs = armor_slot_imgs .. "image[0.46,"..((a-0.6))..";0.9,0.9;mcl_inventory_empty_armor_slot_"..armor_slots[a]..".png]"
+			armor_slot_imgs = armor_slot_imgs .. "image[0.46,"..((a-0.6))..";0.9,0.9;mcla_inventory_empty_armor_slot_"..armor_slots[a]..".png]"
 		end
 	end
 
@@ -129,8 +129,8 @@ minetest.register_on_joinplayer(function(player)
 	--set hotbar size
 	player:hud_set_hotbar_itemcount(9)
 	--add hotbar images
-	player:hud_set_hotbar_image("mcl_inventory_hotbar.png")
-	player:hud_set_hotbar_selected_image("mcl_inventory_hotbar_selected.png")
+	player:hud_set_hotbar_image("mcla_inventory_hotbar.png")
+	player:hud_set_hotbar_selected_image("mcla_inventory_hotbar_selected.png")
 
 	local set_player_armor_original = armor.set_player_armor
 	local update_inventory_original = armor.update_inventory

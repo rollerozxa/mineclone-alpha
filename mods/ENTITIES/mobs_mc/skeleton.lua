@@ -24,7 +24,7 @@ local skeleton = {
 	visual = "mesh",
 	mesh = "mobs_mc_skeleton.b3d",
 	textures = { {
-		"mcl_bows_bow_0.png", -- bow
+		"mcla_bows_bow_0.png", -- bow
 		"mobs_mc_skeleton.png", -- skeleton
 	} },
 	visual_size = {x=3, y=3},

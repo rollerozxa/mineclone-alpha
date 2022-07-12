@@ -107,7 +107,7 @@ end
 -- Jukebox
 minetest.register_node(":mcla:jukebox", {
 	description = S("Jukebox"),
-	tiles = {"mcl_jukebox_top.png", "mcl_jukebox_side.png", "mcl_jukebox_side.png"},
+	tiles = {"mcla_jukebox_top.png", "mcla_jukebox_side.png", "mcla_jukebox_side.png"},
 	sounds = mcla_sounds.node_sound_wood_defaults(),
 	groups = {handy=1,axey=1, container=7, deco_block=1, material_wood=1, flammable=-1},
 	is_ground_content = false,
@@ -218,8 +218,8 @@ minetest.register_craft({
 	burntime = 15,
 })
 
-mcla_jukebox.register_record("The Evil Sister (Jordach's Mix)", "SoundHelix", "13", "mcl_jukebox_record_13.png", "mcl_jukebox_track_1")
-mcla_jukebox.register_record("The Energetic Rat (Jordach's Mix)", "SoundHelix", "cat", "mcl_jukebox_record_cat.png", "mcl_jukebox_track_2")
+mcla_jukebox.register_record("The Evil Sister (Jordach's Mix)", "SoundHelix", "13", "mcla_jukebox_record_13.png", "mcl_jukebox_track_1")
+mcla_jukebox.register_record("The Energetic Rat (Jordach's Mix)", "SoundHelix", "cat", "mcla_jukebox_record_cat.png", "mcl_jukebox_track_2")
 
 --add backward compatibility
 minetest.register_alias("mcla:record_1", "mcla:record_13")

@@ -141,7 +141,7 @@ armor.set_player_armor = function(self, player)
 				if v == false then
 					local level = def.groups["armor_"..k]
 					if level then
-						local texture = def.texture or item:gsub("%:", "_")
+						local texture = def.texture or item:gsub("mcla:", "mcla_armor_")
 						local enchanted_addition = ""
 						table.insert(textures, texture..".png"..enchanted_addition)
 						preview = "player.png^[opacity:0^"..texture.."_preview.png"..enchanted_addition..""..(preview and "^"..preview or "")

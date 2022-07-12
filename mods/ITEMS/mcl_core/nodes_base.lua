@@ -4,7 +4,7 @@ local S = minetest.get_translator("mcla_core")
 
 minetest.register_node(":mcla:stone", {
 	description = S("Stone"),
-	tiles = {"mcl_core_stone.png"},
+	tiles = {"mcla_core_stone.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {pickaxey=1, stone=1, building_block=1, material_stone=1},
@@ -17,7 +17,7 @@ minetest.register_node(":mcla:stone", {
 
 minetest.register_node(":mcla:stone_with_coal", {
 	description = S("Coal Ore"),
-	tiles = {"mcl_core_coal_ore.png"},
+	tiles = {"mcla_core_coal_ore.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {pickaxey=1, building_block=1, material_stone=1, xp=1},
@@ -30,7 +30,7 @@ minetest.register_node(":mcla:stone_with_coal", {
 
 minetest.register_node(":mcla:stone_with_iron", {
 	description = S("Iron Ore"),
-	tiles = {"mcl_core_iron_ore.png"},
+	tiles = {"mcla_core_iron_ore.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {pickaxey=3, building_block=1, material_stone=1},
@@ -44,7 +44,7 @@ minetest.register_node(":mcla:stone_with_iron", {
 
 minetest.register_node(":mcla:stone_with_gold", {
 	description = S("Gold Ore"),
-	tiles = {"mcl_core_gold_ore.png"},
+	tiles = {"mcla_core_gold_ore.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {pickaxey=4, building_block=1, material_stone=1},
@@ -63,7 +63,7 @@ local redstone_ore_activate = function(pos)
 end
 minetest.register_node(":mcla:stone_with_redstone", {
 	description = S("Redstone Ore"),
-	tiles = {"mcl_core_redstone_ore.png"},
+	tiles = {"mcla_core_redstone_ore.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {pickaxey=4, building_block=1, material_stone=1, xp=7},
@@ -94,7 +94,7 @@ end
 -- Light the redstone ore up when it has been touched
 minetest.register_node(":mcla:stone_with_redstone_lit", {
 	description = S("Lit Redstone Ore"),
-	tiles = {"mcl_core_redstone_ore.png"},
+	tiles = {"mcla_core_redstone_ore.png"},
 	paramtype = "light",
 	light_source = 9,
 	is_ground_content = true,
@@ -127,7 +127,7 @@ minetest.register_node(":mcla:stone_with_redstone_lit", {
 
 minetest.register_node(":mcla:stone_with_diamond", {
 	description = S("Diamond Ore"),
-	tiles = {"mcl_core_diamond_ore.png"},
+	tiles = {"mcla_core_diamond_ore.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {pickaxey=4, building_block=1, material_stone=1, xp=4},
@@ -141,8 +141,8 @@ minetest.register_node(":mcla:stone_with_diamond", {
 -- Grass Block
 minetest.register_node(":mcla:dirt_with_grass", {
 	description = S("Grass Block"),
-	tiles = {"mcl_core_grass_block_top.png", { name="mcl_core_dirt.png", color="white" }},
-	overlay_tiles = {"mcl_core_grass_block_top.png", "", {name="mcl_core_grass_block_side_overlay.png", tileable_vertical=false}},
+	tiles = {"mcla_core_grass_block_top.png", { name="mcla_core_dirt.png", color="white" }},
+	overlay_tiles = {"mcla_core_grass_block_top.png", "", {name="mcla_core_grass_block_side_overlay.png", tileable_vertical=false}},
 	--color = "#91f56b",
 	is_ground_content = true,
 	stack_max = 64,
@@ -170,7 +170,7 @@ mcla_core.register_snowed_node(":mcla:dirt_with_grass_snow", "mcla:dirt_with_gra
 
 minetest.register_node(":mcla:dirt", {
 	description = S("Dirt"),
-	tiles = {"mcl_core_dirt.png"},
+	tiles = {"mcla_core_dirt.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {handy=1,shovely=1, dirt=1,soil=1, soil_sapling=2, soil_sugarcane=1, cultivatable=2, building_block=1},
@@ -181,7 +181,7 @@ minetest.register_node(":mcla:dirt", {
 
 minetest.register_node(":mcla:gravel", {
 	description = S("Gravel"),
-	tiles = {"mcl_core_gravel.png"},
+	tiles = {"mcla_core_gravel.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {handy=1,shovely=1, falling_node=1, building_block=1, material_sand=1},
@@ -202,7 +202,7 @@ minetest.register_node(":mcla:gravel", {
 
 minetest.register_node(":mcla:sand", {
 	description = S("Sand"),
-	tiles = {"mcl_core_sand.png"},
+	tiles = {"mcla_core_sand.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {handy=1,shovely=1, falling_node=1, sand=1, soil_sugarcane=1, building_block=1, material_sand=1},
@@ -215,7 +215,7 @@ minetest.register_node(":mcla:sand", {
 
 minetest.register_node(":mcla:clay", {
 	description = S("Clay"),
-	tiles = {"mcl_core_clay.png"},
+	tiles = {"mcla_core_clay.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {handy=1,shovely=1, building_block=1},
@@ -229,7 +229,7 @@ minetest.register_node(":mcla:clay", {
 minetest.register_node(":mcla:brick_block", {
 	-- Original name: “Bricks”
 	description = S("Brick Block"),
-	tiles = {"mcl_core_brick.png"},
+	tiles = {"mcla_core_brick.png"},
 	is_ground_content = false,
 	stack_max = 64,
 	groups = {pickaxey=1, building_block=1, material_stone=1},
@@ -241,7 +241,7 @@ minetest.register_node(":mcla:brick_block", {
 
 minetest.register_node(":mcla:bedrock", {
 	description = S("Bedrock"),
-	tiles = {"mcl_core_bedrock.png"},
+	tiles = {"mcla_core_bedrock.png"},
 	stack_max = 64,
 	groups = {creative_breakable=1, building_block=1, material_stone=1},
 	sounds = mcla_sounds.node_sound_stone_defaults(),
@@ -254,7 +254,7 @@ minetest.register_node(":mcla:bedrock", {
 
 minetest.register_node(":mcla:cobble", {
 	description = S("Cobblestone"),
-	tiles = {"mcl_core_cobble.png"},
+	tiles = {"mcla_core_cobble.png"},
 	is_ground_content = false,
 	stack_max = 64,
 	groups = {pickaxey=1, building_block=1, material_stone=1},
@@ -265,7 +265,7 @@ minetest.register_node(":mcla:cobble", {
 
 minetest.register_node(":mcla:mossycobble", {
 	description = S("Mossy Cobblestone"),
-	tiles = {"mcl_core_mossycobble.png"},
+	tiles = {"mcla_core_mossycobble.png"},
 	is_ground_content = false,
 	stack_max = 64,
 	groups = {pickaxey=1, building_block=1, material_stone=1},
@@ -276,7 +276,7 @@ minetest.register_node(":mcla:mossycobble", {
 
 minetest.register_node(":mcla:ironblock", {
 	description = S("Block of Iron"),
-	tiles = {"mcl_core_steel_block.png"},
+	tiles = {"mcla_core_steel_block.png"},
 	is_ground_content = false,
 	stack_max = 64,
 	groups = {pickaxey=2, building_block=1},
@@ -287,7 +287,7 @@ minetest.register_node(":mcla:ironblock", {
 
 minetest.register_node(":mcla:goldblock", {
 	description = S("Block of Gold"),
-	tiles = {"mcl_core_gold_block.png"},
+	tiles = {"mcla_core_gold_block.png"},
 	is_ground_content = false,
 	stack_max = 64,
 	groups = {pickaxey=4, building_block=1},
@@ -298,7 +298,7 @@ minetest.register_node(":mcla:goldblock", {
 
 minetest.register_node(":mcla:diamondblock", {
 	description = S("Block of Diamond"),
-	tiles = {"mcl_core_diamond_block.png"},
+	tiles = {"mcla_core_diamond_block.png"},
 	is_ground_content = false,
 	stack_max = 64,
 	groups = {pickaxey=4, building_block=1},
@@ -309,7 +309,7 @@ minetest.register_node(":mcla:diamondblock", {
 
 minetest.register_node(":mcla:obsidian", {
 	description = S("Obsidian"),
-	tiles = {"mcl_core_obsidian.png"},
+	tiles = {"mcla_core_obsidian.png"},
 	is_ground_content = true,
 	sounds = mcla_sounds.node_sound_stone_defaults(),
 	stack_max = 64,
@@ -320,7 +320,7 @@ minetest.register_node(":mcla:obsidian", {
 
 minetest.register_node(":mcla:ice", {
 	description = S("Ice"),
-	tiles = {"mcl_core_ice.png"},
+	tiles = {"mcla_core_ice.png"},
 	is_ground_content = true,
 	paramtype = "light",
 	stack_max = 64,
@@ -409,8 +409,8 @@ for i=1,8 do
 
 	minetest.register_node(id, {
 		description = desc,
-		tiles = {"mcl_core_snow.png"},
-		wield_image = "mcl_core_snow.png",
+		tiles = {"mcla_core_snow.png"},
+		wield_image = "mcla_core_snow.png",
 		wield_scale = { x=1, y=1, z=i },
 		is_ground_content = true,
 		paramtype = "light",
@@ -441,7 +441,7 @@ end
 
 minetest.register_node(":mcla:snowblock", {
 	description = S("Snow"),
-	tiles = {"mcl_core_snow.png"},
+	tiles = {"mcla_core_snow.png"},
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {shovely=1, building_block=1, snow_cover=1},
@@ -458,7 +458,7 @@ minetest.register_node(":mcla:sponge", {
 	description = S("Sponge"),
 	drawtype = "normal",
 	is_ground_content = false,
-	tiles = {"mcl_sponges_sponge.png"},
+	tiles = {"mcla_sponges_sponge.png"},
 	walkable = true,
 	pointable = true,
 	diggable = true,
@@ -473,7 +473,7 @@ minetest.register_node(":mcla:sponge", {
 -- Bookshelf
 minetest.register_node(":mcla:bookshelf", {
 	description = S("Bookshelf"),
-	tiles = {"mcl_core_wood.png", "mcl_core_wood.png", "mcl_core_bookshelf.png"},
+	tiles = {"mcla_core_wood.png", "mcla_core_wood.png", "mcla_core_bookshelf.png"},
 	stack_max = 64,
 	is_ground_content = false,
 	groups = {handy=1,axey=1, flammable=3,building_block=1, material_wood=1, fire_encouragement=30, fire_flammability=20},

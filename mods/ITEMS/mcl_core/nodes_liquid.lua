@@ -22,17 +22,17 @@ local lava_death_messages = {
 
 minetest.register_node(":mcla:water_flowing", {
 	description = S("Flowing Water"),
-	wield_image = "mcl_core_water_flowing_animated.png^[verticalframe:64:0",
+	wield_image = "mcla_core_water_flowing_animated.png^[verticalframe:64:0",
 	drawtype = "flowingliquid",
-	tiles = {"mcl_core_water_flowing_animated.png^[verticalframe:64:0"},
+	tiles = {"mcla_core_water_flowing_animated.png^[verticalframe:64:0"},
 	special_tiles = {
 		{
-			image="mcl_core_water_flowing_animated.png",
+			image="mcla_core_water_flowing_animated.png",
 			backface_culling=false,
 			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=4.0}
 		},
 		{
-			image="mcl_core_water_flowing_animated.png",
+			image="mcla_core_water_flowing_animated.png",
 			backface_culling=false,
 			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=4.0}
 		},
@@ -65,12 +65,12 @@ minetest.register_node(":mcla:water_source", {
 	description = S("Water Source"),
 	drawtype = "liquid",
 	tiles = {
-		{name="mcl_core_water_source_animated.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=5.0}}
+		{name="mcla_core_water_source_animated.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=5.0}}
 	},
 	special_tiles = {
 		-- New-style water source material (mostly unused)
 		{
-			name="mcl_core_water_source_animated.png",
+			name="mcla_core_water_source_animated.png",
 			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=5.0},
 			backface_culling = false,
 		}
@@ -101,17 +101,17 @@ minetest.register_node(":mcla:water_source", {
 
 minetest.register_node(":mcla:lava_flowing", {
 	description = S("Flowing Lava"),
-	wield_image = "mcl_core_lava_flowing_animated.png^[verticalframe:64:0",
+	wield_image = "mcla_core_lava_flowing_animated.png^[verticalframe:64:0",
 	drawtype = "flowingliquid",
-	tiles = {"mcl_core_lava_flowing_animated.png^[verticalframe:64:0"},
+	tiles = {"mcla_core_lava_flowing_animated.png^[verticalframe:64:0"},
 	special_tiles = {
 		{
-			image="mcl_core_lava_flowing_animated.png",
+			image="mcla_core_lava_flowing_animated.png",
 			backface_culling=false,
 			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=6.6}
 		},
 		{
-			image="mcl_core_lava_flowing_animated.png",
+			image="mcla_core_lava_flowing_animated.png",
 			backface_culling=false,
 			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=6.6}
 		},
@@ -149,12 +149,12 @@ minetest.register_node(":mcla:lava_source", {
 	description = S("Lava Source"),
 	drawtype = "liquid",
 	tiles = {
-		{name="mcl_core_lava_source_animated.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}}
+		{name="mcla_core_lava_source_animated.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}}
 	},
 	special_tiles = {
 		-- New-style lava source material (mostly unused)
 		{
-			name="mcl_core_lava_source_animated.png",
+			name="mcla_core_lava_source_animated.png",
 			animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0},
 			backface_culling = false,
 		}
@@ -203,7 +203,7 @@ local emit_lava_particle = function(pos)
 		collisiondetection = true,
 		collision_removal = true,
 		size = math.random(20, 30)/10,
-		texture = "mcl_particles_lava.png",
+		texture = "mcla_particles_lava.png",
 		glow = LIGHT_LAVA,
 	})
 end

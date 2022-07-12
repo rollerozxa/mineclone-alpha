@@ -21,10 +21,10 @@ local function active_formspec(fuel_percent, item_percent)
 	mcla_formspec.get_itemslot_bg(2.75,2.5,1,1)..
 	"list[current_name;dst;5.75,1.5;1,1;]"..
 	mcla_formspec.get_itemslot_bg(5.75,1.5,1,1)..
-	"image[2.75,1.5;1,1;mcl_furnaces_fire_bg.png^[lowpart:"..
-	(100-fuel_percent)..":mcl_furnaces_fire_fg.png]"..
-	"image[4.1,1.5;1.5,1;mcl_furnaces_arrow_bg.png^[lowpart:"..
-	(item_percent)..":mcl_furnaces_arrow_fg.png^[transformR270]"..
+	"image[2.75,1.5;1,1;mcla_furnaces_fire_bg.png^[lowpart:"..
+	(100-fuel_percent)..":mcla_furnaces_fire_fg.png]"..
+	"image[4.1,1.5;1.5,1;mcla_furnaces_arrow_bg.png^[lowpart:"..
+	(item_percent)..":mcla_furnaces_arrow_fg.png^[transformR270]"..
 	-- Craft guide button temporarily removed due to Minetest bug.
 	-- TODO: Add it back when the Minetest bug is fixed.
 	--"image_button[8,0;1,1;craftguide_book.png;craftguide;]"..
@@ -50,8 +50,8 @@ local inactive_formspec = "size[9,8.75]"..
 	mcla_formspec.get_itemslot_bg(2.75,2.5,1,1)..
 	"list[current_name;dst;5.75,1.5;1,1;]"..
 	mcla_formspec.get_itemslot_bg(5.75,1.5,1,1)..
-	"image[2.75,1.5;1,1;mcl_furnaces_fire_bg.png]"..
-	"image[4.1,1.5;1.5,1;mcl_furnaces_arrow_bg.png^[transformR270]"..
+	"image[2.75,1.5;1,1;mcla_furnaces_fire_bg.png]"..
+	"image[4.1,1.5;1.5,1;mcla_furnaces_arrow_bg.png^[transformR270]"..
 	"listring[current_name;dst]"..
 	"listring[current_player;main]"..
 	"listring[current_name;src]"..
@@ -160,7 +160,7 @@ local function spawn_flames(pos, param2)
 		maxexptime = 0.6,
 		minsize = 0.4,
 		maxsize = 0.8,
-		texture = "mcl_particles_flame.png",
+		texture = "mcla_particles_flame.png",
 		glow = LIGHT_ACTIVE_FURNACE,
 	}, "low")
 end
@@ -403,9 +403,9 @@ end
 minetest.register_node(":mcla:furnace", {
 	description = S("Furnace"),
 	tiles = {
-		"mcl_core_stone.png", "mcl_core_stone.png",
-		"mcl_furnaces_side.png", "mcl_furnaces_side.png",
-		"mcl_furnaces_side.png", "mcl_furnaces_front.png"
+		"mcla_core_stone.png", "mcla_core_stone.png",
+		"mcla_furnaces_side.png", "mcla_furnaces_side.png",
+		"mcla_furnaces_side.png", "mcla_furnaces_front.png"
 	},
 	paramtype2 = "facedir",
 	groups = {pickaxey=1, container=4, deco_block=1, material_stone=1},
@@ -469,9 +469,9 @@ minetest.register_node(":mcla:furnace", {
 minetest.register_node(":mcla:furnace_active", {
 	description = S("Burning Furnace"),
 	tiles = {
-		"mcl_core_stone.png", "mcl_core_stone.png",
-		"mcl_furnaces_side.png", "mcl_furnaces_side.png",
-		"mcl_furnaces_side.png", "mcl_furnaces_front_active.png",
+		"mcla_core_stone.png", "mcla_core_stone.png",
+		"mcla_furnaces_side.png", "mcla_furnaces_side.png",
+		"mcla_furnaces_side.png", "mcla_furnaces_front_active.png",
 	},
 	paramtype2 = "facedir",
 	paramtype = "light",

@@ -27,5 +27,5 @@ Same as media license for MineClone 2 (see root directory).
 
 With modifications by GitHub user kingoscargames:
 - `doors_item_steel.png`
-- `mcl_doors_door_iron_lower.png`
-- `mcl_doors_door_iron_upper.png`
+- `mcla_doors_door_iron_lower.png`
+- `mcla_doors_door_iron_upper.png`

@@ -4,7 +4,7 @@ dofile(minetest.get_modpath(minetest.get_current_modname()).."/paintings.lua")
 
 local S = minetest.get_translator("mcla_paintings")
 
-local wood = "[combine:16x16:-192,0=mcl_paintings_paintings.png"
+local wood = "[combine:16x16:-192,0=mcla_paintings_paintings.png"
 
 local is_protected = function(pos, name)
 	if minetest.is_protected(pos, name) then
@@ -50,7 +50,7 @@ local get_painting = function(x, y, motive)
 	end
 	local px, py = -painting.cx, -painting.cy
 	local sx, sy = 16*x, 16*y
-	return "[combine:"..sx.."x"..sy..":"..px..","..py.."=mcl_paintings_paintings.png"
+	return "[combine:"..sx.."x"..sy..":"..px..","..py.."=mcla_paintings_paintings.png"
 end
 
 local get_random_painting = function(x, y)
@@ -186,7 +186,7 @@ minetest.register_entity("mcla_paintings:painting", {
 
 minetest.register_craftitem(":mcla:painting", {
 	description = S("Painting"),
-	inventory_image = "mcl_paintings_painting.png",
+	inventory_image = "mcla_paintings_painting.png",
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.type ~= "node" then
 			return itemstack

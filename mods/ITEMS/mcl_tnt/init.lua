@@ -1,5 +1,4 @@
 local S = minetest.get_translator("mcla_tnt")
-local tnt_griefing = minetest.settings:get_bool("mcla_tnt_griefing", true)
 
 local function spawn_tnt(pos, entname)
 	minetest.sound_play("tnt_ignite", {pos = pos,gain = 1.0,max_hear_distance = 15,}, true)
@@ -26,7 +25,7 @@ mcla_tnt.smoke_step = function(pos)
 		expirationtime = 0.15 + math.random() * 0.25,
 		size = 1.0 + math.random(),
 		collisiondetection = false,
-		texture = "mcl_particles_smoke.png"
+		texture = "mcla_particles_smoke.png"
 	})
 end
 
@@ -42,9 +41,9 @@ local tnt_mesecons = {effector = {
 	}}
 
 minetest.register_node(":mcla:tnt", {
-	tiles = {"mcl_tnt_top.png", "mcl_tnt_bottom.png",
-			"mcl_tnt_side.png", "mcl_tnt_side.png",
-			"mcl_tnt_side.png", "mcl_tnt_side.png"},
+	tiles = {"mcla_tnt_top.png", "mcla_tnt_bottom.png",
+			"mcla_tnt_side.png", "mcla_tnt_side.png",
+			"mcla_tnt_side.png", "mcla_tnt_side.png"},
 	is_ground_content = false,
 	stack_max = 64,
 	description = S("TNT"),
@@ -84,9 +83,9 @@ local TNT = {
 	 --weight = -100,
 	collisionbox = {-0.5,-0.5,-0.5, 0.5,0.5,0.5},
 	visual = "cube",
-	textures = {"mcl_tnt_top.png", "mcl_tnt_bottom.png",
-			"mcl_tnt_side.png", "mcl_tnt_side.png",
-			"mcl_tnt_side.png", "mcl_tnt_side.png"},
+	textures = {"mcla_tnt_top.png", "mcla_tnt_bottom.png",
+			"mcla_tnt_side.png", "mcla_tnt_side.png",
+			"mcla_tnt_side.png", "mcla_tnt_side.png"},
 	-- Initial value for our timer
 	timer = 0,
 	blinktimer = 0,
@@ -99,7 +98,7 @@ function TNT:on_activate(staticdata)
 	local hdir_z = math.sin(phi) * 0.02
 	self.object:set_velocity({x=hdir_x, y=2, z=hdir_z})
 	self.object:set_acceleration({x=0, y=-10, z=0})
-	self.object:set_texture_mod("^mcl_tnt_blink.png")
+	self.object:set_texture_mod("^mcla_tnt_blink.png")
 end
 
 local function add_effects(pos, radius, drops)
@@ -116,12 +115,12 @@ local function add_effects(pos, radius, drops)
 		maxexptime = 2.5,
 		minsize = radius * 1,
 		maxsize = radius * 3,
-		texture = "mcl_particles_smoke.png",
+		texture = "mcla_particles_smoke.png",
 	})
 
 	-- we just dropped some items. Look at the items entities and pick
 	-- one of them to use as texture
-	local texture = "mcl_particles_smoke.png" --fallback texture
+	local texture = "mcla_particles_smoke.png" --fallback texture
 	local most = 0
 	for name, stack in pairs(drops) do
 		local count = stack:get_count()
@@ -161,7 +160,7 @@ function TNT:on_step(dtime)
 		if self.blinkstatus then
 			self.object:set_texture_mod("")
 		else
-			self.object:set_texture_mod("^mcl_tnt_blink.png")
+			self.object:set_texture_mod("^mcla_tnt_blink.png")
 		end
 		self.blinkstatus = not self.blinkstatus
 	end

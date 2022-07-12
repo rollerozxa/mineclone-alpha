@@ -115,10 +115,10 @@ end
 
 ---------------------
 
-register_tree_trunk("tree", S("Wood"), S("Bark"), "mcl_core_tree_top.png", "mcl_core_tree.png")
+register_tree_trunk("tree", S("Wood"), S("Bark"), "mcla_core_tree_top.png", "mcla_core_tree.png")
 
-register_wooden_planks("wood", S("Wood Planks"), {"mcl_core_wood.png"})
+register_wooden_planks("wood", S("Wood Planks"), {"mcla_core_wood.png"})
 
-register_sapling("sapling", S("Sapling"), "mcl_core_sapling.png", {-5/16, -0.5, -5/16, 5/16, 0.5, 5/16})
+register_sapling("sapling", S("Sapling"), "mcla_core_sapling.png", {-5/16, -0.5, -5/16, 5/16, 0.5, 5/16})
 
-register_leaves("leaves", S("Leaves"), {"mcl_core_leaves.png"}, "mcla:sapling", true, {20, 16, 12, 10})
+register_leaves("leaves", S("Leaves"), {"mcla_core_leaves.png"}, "mcla:sapling", true, {20, 16, 12, 10})
