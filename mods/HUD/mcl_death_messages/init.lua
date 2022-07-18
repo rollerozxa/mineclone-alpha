@@ -7,9 +7,9 @@ local function get_tool_name(item)
 		local def = item:get_definition()
 		name=def._tt_original_description or def.description
 	end
-	local sanitized_name, substitution_count = name:gsub("[\r\n]"," ")
+	local sanitized_name, _ = name:gsub("[\r\n]"," ")
 	return sanitized_name
-  end
+end
 
 local test_tool_1a = {
 	get_meta = function()

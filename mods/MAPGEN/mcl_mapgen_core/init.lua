@@ -3,7 +3,6 @@ mcla_mapgen_core.registered_generators = {}
 
 local lvm, nodes, param2 = 0, 0, 0
 
-local generating = {} -- generating chunks
 local chunks = {} -- intervals of chunks generated
 local function add_chunk(pos)
 	local n = mcla_vars.get_chunk_number(pos) -- unsigned int
@@ -81,12 +80,11 @@ local c_dirt = minetest.get_content_id("mcla:dirt")
 local c_dirt_with_grass = minetest.get_content_id("mcla:dirt_with_grass")
 local c_dirt_with_grass_snow = minetest.get_content_id("mcla:dirt_with_grass_snow")
 local c_void = minetest.get_content_id("mcla:void")
-local c_lava = minetest.get_content_id("mcla:lava_source")
+--local c_lava = minetest.get_content_id("mcla:lava_source")
 local c_water = minetest.get_content_id("mcla:water_source")
 local c_top_snow = minetest.get_content_id("mcla:snow")
 local c_snow_block = minetest.get_content_id("mcla:snowblock")
 local c_clay = minetest.get_content_id("mcla:clay")
-local c_air = minetest.CONTENT_AIR
 
 --
 -- Ore generation
@@ -710,54 +708,7 @@ local function generate_clay(minp, maxp, blockseed, voxelmanip_data, voxelmanip_
 end
 
 -- TODO: Try to use more efficient structure generating code
-local function generate_structures(minp, maxp, blockseed, biomemap)
-	local chunk_has_desert_well = false
-	local chunk_has_desert_temple = false
-	local chunk_has_igloo = false
-	local struct_min, struct_max = -3, 111 --64
-
-	if maxp.y >= struct_min and minp.y <= struct_max then
-		-- Generate structures
-		local pr = PcgRandom(blockseed)
-		perlin_structures = perlin_structures or minetest.get_perlin(329, 3, 0.6, 100)
-		-- Assume X and Z lengths are equal
-		local divlen = 5
-		for x0 = minp.x, maxp.x, divlen do for z0 = minp.z, maxp.z, divlen do
-			-- Determine amount from perlin noise
-			local amount = math.floor(perlin_structures:get_2d({x=x0, y=z0}) * 9)
-			-- Find random positions based on this random
-			local p, ground_y
-			for i=0, amount do
-				p = {x = pr:next(x0, x0+divlen-1), y = 0, z = pr:next(z0, z0+divlen-1)}
-				-- Find ground level
-				ground_y = nil
-				local nn
-				for y = struct_max, struct_min, -1 do
-					p.y = y
-					local checknode = minetest.get_node(p)
-					if checknode then
-						nn = checknode.name
-						local def = minetest.registered_nodes[nn]
-						if def and def.walkable then
-							ground_y = y
-							break
-						end
-					end
-				end
-
-				if ground_y then
-					p.y = ground_y+1
-					local nn0 = minetest.get_node(p).name
-					-- Check if the node can be replaced
-					if minetest.registered_nodes[nn0] and minetest.registered_nodes[nn0].buildable_to then
-
-					end
-				end
-
-			end
-		end end
-	end
-end
+--local function generate_structures(minp, maxp, blockseed, biomemap); end
 
 -- Buffers for LuaVoxelManip
 -- local lvm_buffer = {}
@@ -1033,7 +984,7 @@ local function basic_node(minp, maxp, blockseed)
 	if mg_name ~= "singlenode" then
 		-- Generate special decorations
 		generate_underground_mushrooms(minp, maxp, blockseed)
-		generate_structures(minp, maxp, blockseed, minetest.get_mapgen_object("biomemap"))
+		--generate_structures(minp, maxp, blockseed, minetest.get_mapgen_object("biomemap"))
 	end
 end
 

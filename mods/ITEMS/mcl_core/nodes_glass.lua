@@ -14,5 +14,4 @@ minetest.register_node(":mcla:glass", {
 	drop = "",
 	_mcla_blast_resistance = 0.3,
 	_mcla_hardness = 0.3,
-	_mcla_silk_touch_drop = true,
 })

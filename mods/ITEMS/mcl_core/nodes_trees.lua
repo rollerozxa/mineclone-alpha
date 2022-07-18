@@ -74,7 +74,6 @@ local register_leaves = function(subname, description, tiles, sapling, drop_appl
 		sounds = mcla_sounds.node_sound_leaves_defaults(),
 		_mcla_blast_resistance = 0.2,
 		_mcla_hardness = 0.2,
-		_mcla_silk_touch_drop = true
 	})
 end
 

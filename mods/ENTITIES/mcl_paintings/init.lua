@@ -65,24 +65,6 @@ local get_random_painting = function(x, y)
 	return get_painting(x, y, r), r
 end
 
-local size_to_minmax = function(size)
-	local min, max
-	if size == 2 then
-		min = -0.5
-		max = 1.5
-	elseif size == 3 then
-		min = -1.5
-		max = 1.5
-	elseif size == 4 then
-		min = -1.5
-		max = 2.5
-	else
-		min = -0.5
-		max = 0.5
-	end
-	return min, max
-end
-
 local size_to_minmax_entity = function(size)
 	return -size/2, size/2
 end
@@ -169,7 +151,7 @@ minetest.register_entity("mcla_paintings:painting", {
 	on_punch = function(self, puncher, time_from_last_punch, tool_capabilities, dir, damage)
 		-- Drop as item on punch
 		if puncher and puncher:is_player() then
-			kname = puncher:get_player_name()
+			local kname = puncher:get_player_name()
 			local pos = self._pos
 			if not pos then
 				pos = self.object:get_pos()

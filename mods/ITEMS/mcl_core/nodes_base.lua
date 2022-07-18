@@ -12,7 +12,6 @@ minetest.register_node(":mcla:stone", {
 	sounds = mcla_sounds.node_sound_stone_defaults(),
 	_mcla_blast_resistance = 6,
 	_mcla_hardness = 1.5,
-	_mcla_silk_touch_drop = true,
 })
 
 minetest.register_node(":mcla:stone_with_coal", {
@@ -25,7 +24,6 @@ minetest.register_node(":mcla:stone_with_coal", {
 	sounds = mcla_sounds.node_sound_stone_defaults(),
 	_mcla_blast_resistance = 3,
 	_mcla_hardness = 3,
-	_mcla_silk_touch_drop = true,
 })
 
 minetest.register_node(":mcla:stone_with_iron", {
@@ -38,7 +36,6 @@ minetest.register_node(":mcla:stone_with_iron", {
 	sounds = mcla_sounds.node_sound_stone_defaults(),
 	_mcla_blast_resistance = 3,
 	_mcla_hardness = 3,
-	_mcla_silk_touch_drop = true,
 })
 
 
@@ -52,7 +49,6 @@ minetest.register_node(":mcla:stone_with_gold", {
 	sounds = mcla_sounds.node_sound_stone_defaults(),
 	_mcla_blast_resistance = 3,
 	_mcla_hardness = 3,
-	_mcla_silk_touch_drop = true,
 })
 
 local redstone_timer = 68.28
@@ -84,7 +80,6 @@ minetest.register_node(":mcla:stone_with_redstone", {
 	on_walk_over = redstone_ore_activate, -- Uses walkover mod
 	_mcla_blast_resistance = 3,
 	_mcla_hardness = 3,
-	_mcla_silk_touch_drop = true,
 })
 
 local redstone_ore_reactivate = function(pos)
@@ -122,7 +117,6 @@ minetest.register_node(":mcla:stone_with_redstone_lit", {
 	end,
 	_mcla_blast_resistance = 3,
 	_mcla_hardness = 3,
-	_mcla_silk_touch_drop = {"mcla:stone_with_redstone"},
 })
 
 minetest.register_node(":mcla:stone_with_diamond", {
@@ -135,7 +129,6 @@ minetest.register_node(":mcla:stone_with_diamond", {
 	sounds = mcla_sounds.node_sound_stone_defaults(),
 	_mcla_blast_resistance = 3,
 	_mcla_hardness = 3,
-	_mcla_silk_touch_drop = true,
 })
 
 -- Grass Block
@@ -164,7 +157,6 @@ minetest.register_node(":mcla:dirt_with_grass", {
 	_mcla_snowed = "mcla:dirt_with_grass_snow",
 	_mcla_blast_resistance = 0.5,
 	_mcla_hardness = 0.6,
-	_mcla_silk_touch_drop = true,
 })
 mcla_core.register_snowed_node(":mcla:dirt_with_grass_snow", "mcla:dirt_with_grass", nil, nil, true, S("Dirt with Snow"))
 
@@ -197,7 +189,6 @@ minetest.register_node(":mcla:gravel", {
 	}),
 	_mcla_blast_resistance = 0.6,
 	_mcla_hardness = 0.6,
-	_mcla_silk_touch_drop = true,
 })
 
 minetest.register_node(":mcla:sand", {
@@ -223,7 +214,6 @@ minetest.register_node(":mcla:clay", {
 	sounds = mcla_sounds.node_sound_dirt_defaults(),
 	_mcla_blast_resistance = 0.6,
 	_mcla_hardness = 0.6,
-	_mcla_silk_touch_drop = true,
 })
 
 minetest.register_node(":mcla:brick_block", {
@@ -333,7 +323,6 @@ minetest.register_node(":mcla:ice", {
 	end,
 	_mcla_blast_resistance = 0.5,
 	_mcla_hardness = 0.5,
-	_mcla_silk_touch_drop = true,
 })
 
 for i=1,8 do
@@ -435,7 +424,6 @@ for i=1,8 do
 		drop = "mcla:snowball "..(i+1),
 		_mcla_blast_resistance = 0.1,
 		_mcla_hardness = 0.1,
-		_mcla_silk_touch_drop = {"mcla:snow " .. i},
 	})
 end
 
@@ -451,7 +439,6 @@ minetest.register_node(":mcla:snowblock", {
 	drop = "mcla:snowball 4",
 	_mcla_blast_resistance = 0.2,
 	_mcla_hardness = 0.2,
-	_mcla_silk_touch_drop = true,
 })
 
 minetest.register_node(":mcla:sponge", {
@@ -481,5 +468,4 @@ minetest.register_node(":mcla:bookshelf", {
 	sounds = mcla_sounds.node_sound_wood_defaults(),
 	_mcla_blast_resistance = 1.5,
 	_mcla_hardness = 1.5,
-	_mcla_silk_touch_drop = true,
 })

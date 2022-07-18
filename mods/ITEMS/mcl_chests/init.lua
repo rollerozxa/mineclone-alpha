@@ -261,8 +261,6 @@ minetest.register_node(":"..small_name, {
 			chestpos = pos.x..","..pos.y..","..pos.z
 		})
 
-		print(chest_formspec)
-
 		minetest.show_formspec(clicker:get_player_name(), "mcla_chests:"..basename.."_"..pos.x.."_"..pos.y.."_"..pos.z, chest_formspec)
 	end,
 

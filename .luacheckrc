@@ -14,13 +14,15 @@ read_globals = {
 	"PseudoRandom",
 	"PerlinNoise",
 	"PcgRandom",
-	
-	
+
+
 	"mobs",
-	
-	"mcla_tnt", "mcla_burning", "mcla_playerinfo", "mcla_sprint", "mcla_worlds", "mcla_util", 
+
+	"mcla_tnt", "mcla_burning", "mcla_playerinfo", "mcla_sprint", "mcla_worlds", "mcla_util", "mcla_weather",
 	"screwdriver",
-	
+
+	"unpack",
+
 	string = {fields = {"split", "trim"}},
 	table  = {fields = {"copy", "getn", "indexof", "insert_all"}},
 	math   = {fields = {"hypot", "round"}},
@@ -29,7 +31,7 @@ read_globals = {
 globals = {
 	"armor",
 	"mesecon",
-	"mcla_vars", 
+	"mcla_vars",
 }
 
 ignore = {"631"}

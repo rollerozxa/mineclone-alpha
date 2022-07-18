@@ -12,7 +12,6 @@ local colors = {
 }
 
 local sheep_texture = function(color_group)
-	color_group = "unicolor_white"
 	return {
 		"mobs_mc_sheep_fur.png^[colorize:"..colors[color_group][2],
 		"mobs_mc_sheep.png",

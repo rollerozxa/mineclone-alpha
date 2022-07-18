@@ -886,8 +886,6 @@ mcla_core.register_snowed_node = function(itemstring_snowed, itemstring_clear, t
 		def.sounds = sounds
 	end
 
-	def._mcla_silk_touch_drop = {itemstring_clear}
-
 	-- Register stuff
 	minetest.register_node(itemstring_snowed, def)
 end
