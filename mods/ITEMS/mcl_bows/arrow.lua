@@ -300,7 +300,7 @@ ARROW_ENTITY.on_step = function(self, dtime)
 				self._stuckin = nil
 				if self._deflection_cooloff <= 0 then
 					-- Lose 1/3 of velocity on deflection
-					local newvel = vector.multiply(vel, 0.6667)
+					local newvel = vector.multiply(vel, 0)
 
 					self.object:set_velocity(newvel)
 					-- Reset deflection cooloff timer to prevent many deflections happening in quick succession
