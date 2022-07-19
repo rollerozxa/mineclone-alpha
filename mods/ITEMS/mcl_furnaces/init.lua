@@ -149,7 +149,7 @@ local function spawn_flames(pos, param2)
 	else
 		return
 	end
-	mcl_particles.add_node_particlespawner(pos, {
+	mcla_particles.add_node_particlespawner(pos, {
 		amount = 4,
 		time = 0,
 		minpos = vector.add(pos, minrelpos),
@@ -175,7 +175,7 @@ local function swap_node(pos, name)
 	if name == "mcla:furnace_active" then
 		spawn_flames(pos, node.param2)
 	else
-		mcl_particles.delete_node_particlespawners(pos)
+		mcla_particles.delete_node_particlespawners(pos)
 	end
 end
 
@@ -392,7 +392,7 @@ if minetest.get_modpath("screwdriver") then
 	on_rotate = screwdriver.rotate_simple
 	after_rotate_active = function(pos)
 		local node = minetest.get_node(pos)
-		mcl_particles.delete_node_particlespawners(pos)
+		mcla_particles.delete_node_particlespawners(pos)
 		if node.name == "mcla:furnace" then
 			return
 		end
@@ -437,7 +437,7 @@ minetest.register_node(":mcla:furnace", {
 		inv:set_size('dst', 1)
 	end,
 	on_destruct = function(pos)
-		mcl_particles.delete_node_particlespawners(pos)
+		mcla_particles.delete_node_particlespawners(pos)
 	end,
 
 	on_metadata_inventory_move = function(pos)
@@ -502,7 +502,7 @@ minetest.register_node(":mcla:furnace_active", {
 		spawn_flames(pos, node.param2)
 	end,
 	on_destruct = function(pos)
-		mcl_particles.delete_node_particlespawners(pos)
+		mcla_particles.delete_node_particlespawners(pos)
 	end,
 
 	allow_metadata_inventory_put = allow_metadata_inventory_put,

@@ -168,7 +168,7 @@ mesecon.register_button = function(basename, description, texture, recipeitem, s
 					local objs = minetest.get_objects_inside_radius(pos, 1)
 					for o=1, #objs do
 						local entity = objs[o]:get_luaentity()
-						if entity and entity.name == "mcl_bows:arrow_entity" then
+						if entity and entity.name == "mcla_bows:arrow_entity" then
 							local timer = minetest.get_node_timer(pos)
 							timer:start(button_timer)
 							return

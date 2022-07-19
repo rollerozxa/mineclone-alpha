@@ -142,7 +142,7 @@ minetest.register_node(":mcla:dirt_with_grass", {
 	groups = {handy=1,shovely=1,dirt=2,grass_block=1, grass_block_no_snow=1, soil=1, soil_sapling=2, soil_sugarcane=1, cultivatable=2, spreading_dirt_type=1, building_block=1},
 	drop = 'mcla:dirt',
 	sounds = mcla_sounds.node_sound_dirt_defaults({
-		footstep = {name="mcl_core_grass_footstep", gain=0.1},
+		footstep = {name="default_grass_footstep", gain=0.1},
 	}),
 	on_construct = function(pos)
 		local node = minetest.get_node(pos)
@@ -185,7 +185,7 @@ minetest.register_node(":mcla:gravel", {
 		}
 	},
 	sounds = mcla_sounds.node_sound_dirt_defaults({
-		footstep = {name="mcl_core_gravel_footstep", gain=0.45},
+		footstep = {name="default_gravel_footstep", gain=0.45},
 	}),
 	_mcla_blast_resistance = 0.6,
 	_mcla_hardness = 0.6,

@@ -170,7 +170,7 @@ function mcla_burning.set_on_fire(obj, burn_time, reason)
 		mcla_burning.set(obj, "int", "hud_id", hud_id)
 		mcla_burning.set(obj, "int", "sound_id", sound_id)
 
-		local fire_entity = minetest.add_entity(obj:get_pos(), "mcla:fire")
+		local fire_entity = minetest.add_entity(obj:get_pos(), "mcla_burning:fire")
 		local minp, maxp = mcla_burning.get_collisionbox(obj)
 		local obj_size = obj:get_properties().visual_size
 
@@ -255,7 +255,7 @@ function mcla_burning.fire_entity_step(self, dtime)
 	else
 		for _, other in ipairs(minetest.get_objects_inside_radius(obj:get_pos(), 0)) do
 			local luaentity = obj:get_luaentity()
-			if luaentity and luaentity.name == "mcla:fire" and not luaentity.doing_step and not luaentity.removed then
+			if luaentity and luaentity.name == "mcla_burning:fire" and not luaentity.doing_step and not luaentity.removed then
 				do_remove = true
 				break
 			end

@@ -7,6 +7,7 @@ mcla_burning = {
 
 dofile(modpath .. "/api.lua")
 
+local fire_texture = "mcla_burning_entity_flame_animated.png^[opacity:180^[verticalframe:8:1"
 minetest.register_entity("mcla_burning:fire", {
 	initial_properties = {
 		physical = false,
@@ -14,6 +15,7 @@ minetest.register_entity("mcla_burning:fire", {
 		visual = "cube",
 		pointable = false,
 		glow = -1,
+		textures = {"blank.png", "blank.png", fire_texture, fire_texture, fire_texture, fire_texture}
 	},
 
 	animation_frame = 0,

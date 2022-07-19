@@ -63,7 +63,7 @@ end
 -- This is a helper function to register both chests and trapped chests. Trapped chests will make use of the additional parameters
 local register_chest = function(basename, desc, tiles_table)
 -- START OF register_chest FUNCTION BODY
-drop = "mcla:"..basename
+local drop = "mcla:"..basename
 
 local double_chest_add_item = function(top_inv, bottom_inv, listname, stack)
 	if not stack or stack:is_empty() then

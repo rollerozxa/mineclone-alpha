@@ -220,8 +220,8 @@ local collision = function(self)
 
 	for _,object in ipairs(minetest.get_objects_inside_radius(pos, width)) do
 
-		if object:is_player()
-		or (object:get_luaentity()._cmi_is_mob == true and object ~= self.object) then
+		if object:is_player() then
+		--or (object:get_luaentity()._cmi_is_mob == true and object ~= self.object) then
 
 			local pos2 = object:get_pos()
 			local vec  = {x = pos.x - pos2.x, z = pos.z - pos2.z}
@@ -4452,10 +4452,12 @@ minetest.register_globalstep(function(dtime)
 	for _, player in ipairs(minetest.get_connected_players()) do
 		local pos = player:get_pos()
 		for _, obj in ipairs(minetest.get_objects_inside_radius(pos, 47)) do
-			local lua = obj:get_luaentity()
-			if lua and lua._cmi_is_mob then
-				lua.lifetimer = math.max(20, lua.lifetimer)
-				lua.despawn_immediately = false
+			if not obj:is_player() then
+				local lua = obj:get_luaentity()
+				if lua and lua._cmi_is_mob then
+					lua.lifetimer = math.max(20, lua.lifetimer)
+					lua.despawn_immediately = false
+				end
 			end
 		end
 	end
