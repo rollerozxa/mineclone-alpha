@@ -31,7 +31,7 @@ mobs:register_mob("mobs_mc:pig", {
 	fear_height = 4,
 	sounds = {
 		random = "mobs_pig",
-		death = "mobs_pig_angry",
+		death = "mobs_pig_death",
 		damage = "mobs_pig",
 		eat = "mobs_mc_animal_eat_generic",
 		distance = 16,

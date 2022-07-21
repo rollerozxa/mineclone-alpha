@@ -72,10 +72,10 @@ Origin of those models:
     * `mobs_sheep.ogg`,
 * TenPlus1, from `mobs_monster` or `mobs_animal` mod (MIT License)
     * `mobs_fireball.ogg`
-    * `mobs_mc_cat_idle.1.ogg`
-    * `mobs_mc_llama.ogg`
     * `mobs_pig.ogg`
-    * `mobs_pig_angry.ogg`
+* [Erdie](https://freesound.org/people/Erdie/)
+    * `mobs_pig_death.ogg` (CC BY 4.0)
+        * Source: <https://freesound.org/people/Erdie/sounds/44273/>
 * [Daysycho](https://freesound.org/people/Darsycho/)
     * `mobs_mc_spider_hurt.*.ogg` (CC0)
         * Source: <https://freesound.org/people/Darsycho/sounds/505185/>
