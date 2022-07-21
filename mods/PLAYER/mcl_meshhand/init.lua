@@ -1,5 +1,3 @@
-local has_mcla_skins = minetest.get_modpath("mcla_skins") ~= nil
-
 local def = minetest.registered_items[""]
 
 -- This is a fake node that should never be placed in the world

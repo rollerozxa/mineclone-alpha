@@ -158,7 +158,6 @@ function mcla_farming:place_seed(itemstack, placer, pointed_thing, plantname)
 	if string.find(farmland.name, "mcla:soil") and string.find(place_s.name, "air")  then
 		minetest.sound_play(minetest.registered_nodes[plantname].sounds.place, {pos = pos}, true)
 		minetest.add_node(pos, {name=plantname, param2 = minetest.registered_nodes[plantname].place_param2})
-		local intervals_counter = get_intervals_counter(pos, 1, 1)
 	else
 		return
 	end
@@ -461,6 +460,6 @@ minetest.register_lbm({
 			return
 		end
 		local low_speed = minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name ~= "mcla:soil_wet"
-		mcla:grow_plant(identifier, pos, node, false, false, low_speed)
+		mcla_farming:grow_plant(identifier, pos, node, false, false, low_speed)
 	end,
 })

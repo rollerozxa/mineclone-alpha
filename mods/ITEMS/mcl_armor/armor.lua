@@ -1,10 +1,7 @@
 local ARMOR_INIT_DELAY = 1
 local ARMOR_INIT_TIMES = 1
-local ARMOR_BONES_DELAY = 1
 
 local skin_mod = nil
-
-local modpath = minetest.get_modpath(minetest.get_current_modname())
 
 armor = {
 	timer = 0,
@@ -23,8 +20,6 @@ armor = {
 
 if minetest.get_modpath("mcla_skins") then
 	skin_mod = "mcla_skins"
-elseif minetest.get_modpath("skins") then
-	skin_mod = "skins"
 end
 
 function armor.on_armor_use(itemstack, user, pointed_thing)
@@ -456,11 +451,6 @@ minetest.register_on_joinplayer(function(player)
 	if skin_mod == "mcla_skins" then
 		local skin = mcla_skins.skins[name]
 		if skin then
-			armor.textures[name].skin = skin..".png"
-		end
-	elseif skin_mod == "skins" then
-		local skin = skins.skins[name]
-		if skin and skins.get_type(skin) == skins.type.MODEL then
 			armor.textures[name].skin = skin..".png"
 		end
 	end

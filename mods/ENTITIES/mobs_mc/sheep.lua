@@ -84,20 +84,6 @@ mobs:register_mob("mobs_mc:sheep", {
 	do_custom = function(self)
 
 	end,
-
-	on_rightclick = function(self, clicker)
-		local item = clicker:get_wielded_item()
-
-		if mobs:feed_tame(self, clicker, 1, true, true) then return end
-		if mobs:protect(self, clicker) then return end
-
-		if mobs:capture_mob(self, clicker, 0, 5, 70, false, nil) then return end
-	end,
-	on_breed = function(parent1, parent2)
-		-- Breed sheep and choose a fur color for the child.
-		local pos = parent1.object:get_pos()
-		local child = mobs:spawn_child(pos, parent1.name)
-	end,
 })
 mobs:spawn_specific("mobs_mc:sheep", mobs_mc.spawn.grassland, {"air"}, 0, minetest.LIGHT_MAX+1, 30, 15000, 3, mcla_vars.mg_overworld_min, mcla_vars.mg_overworld_max)
 

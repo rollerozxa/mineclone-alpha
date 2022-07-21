@@ -58,8 +58,6 @@ local function set_inventory(player, armor_change_only)
 	local player_name = player:get_player_name()
 
 	-- Show armor and player image
-	local player_preview = mcla_player.get_player_formspec_model(player, 1.0, 0.0, 2.25, 4.5, "")
-
 	local armor_slots = {"helmet", "chestplate", "leggings", "boots"}
 	local armor_slot_imgs = ""
 	for a=1,4 do

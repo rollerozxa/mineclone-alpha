@@ -75,16 +75,6 @@ end
 add_simple_flower("red", S("Red flower"), "mcla_flowers_red", { -5/16, -0.5, -5/16, 5/16, 5/16, 5/16 })
 add_simple_flower("yellow", S("Yellow flower"), "mcla_flowers_yellow", { -4/16, -0.5, -4/16, 4/16, 3/16, 4/16 })
 
-local wheat_seed_drop = {
-	max_items = 1,
-	items = {
-		{
-			items = {'mcla:wheat_seeds'},
-			rarity = 8,
-		},
-	}
-}
-
 minetest.register_abm({
 	label = "Pop out flowers",
 	nodenames = {"group:flower"},

@@ -6,8 +6,6 @@ if minetest.get_modpath("screwdriver") then
 	simple_rotate = function(pos, node, user, mode, new_param2)
 		if screwdriver.rotate_simple(pos, node, user, mode, new_param2) ~= false then
 			local nodename = node.name
-			local nodedef = minetest.registered_nodes[nodename]
-			local dir = minetest.facedir_to_dir(new_param2)
 		else
 			return false
 		end
@@ -20,14 +18,6 @@ Value:
     If player is using a chest: { pos = <chest node position> }
     Otherwise: nil ]]
 local open_chests = {}
-
-local function back_is_blocked(pos, dir)
-	pos = vector.add(pos, dir)
-	local def = minetest.registered_nodes[minetest.get_node(pos).name]
-	pos.y = pos.y + 1
-	local def2 = minetest.registered_nodes[minetest.get_node(pos).name]
-	return not def or def.groups.opaque == 1 or not def2 or def2.groups.opaque == 1
-end
 
 -- Simple protection checking functions
 local protection_check_move = function(pos, from_list, from_index, to_list, to_index, count, player)
@@ -428,7 +418,7 @@ minetest.register_node(":mcla:"..basename.."_right", {
 		close_forms(basename, p)
 
 		minetest.swap_node(p, { name = small_name, param2 = param2 })
-		local meta = minetest.get_meta(pos)
+		--local meta = minetest.get_meta(pos)
 	end,
 	after_dig_node = drop_items_chest,
 	on_blast = on_chest_blast,

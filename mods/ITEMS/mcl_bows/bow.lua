@@ -2,58 +2,20 @@ local S = minetest.get_translator("mcla_bows")
 
 mcla_bows = {}
 
--- local arrows = {
--- 	["mcla:arrow"] = "mcla:arrow_entity",
--- }
-
 local GRAVITY = 9.81
 local BOW_DURABILITY = 385
 
--- Charging time in microseconds
-local BOW_CHARGE_TIME_HALF = 200000 -- bow level 1
-local BOW_CHARGE_TIME_FULL = 500000 -- bow level 2 (full charge)
-
--- Factor to multiply with player speed while player uses bow
--- This emulates the sneak speed.
-local PLAYER_USE_BOW_SPEED = tonumber(minetest.settings:get("movement_speed_crouch")) / tonumber(minetest.settings:get("movement_speed_walk"))
-
--- TODO: Use Minecraft speed (ca. 53 m/s)
--- Currently nerfed because at full speed the arrow would easily get out of the range of the loaded map.
-local BOW_MAX_SPEED = 15
-
---[[ Store the charging state of each player.
-keys: player name
-value:
-nil = not charging or player not existing
-number: currently charging, the number is the time from minetest.get_us_time
-             in which the charging has started
-]]
-local bow_load = {}
-
--- Another player table, this one stores the wield index of the bow being charged
-local bow_index = {}
-
-mcla_bows.shoot_arrow = function(arrow_item, pos, dir, yaw, shooter, power, damage, is_critical, bow_stack, collectable)
+mcla_bows.shoot_arrow = function(arrow_item, pos, dir, yaw, shooter, bow_stack, collectable)
 	local obj = minetest.add_entity({x=pos.x,y=pos.y,z=pos.z}, arrow_item:gsub("mcla", "mcla_bows").."_entity")
-	if power == nil then
-		power = BOW_MAX_SPEED --19
-	end
-	if damage == nil then
-		damage = 3
-	end
-	local knockback
-	if bow_stack then
 
-	end
-	obj:set_velocity({x=dir.x*power, y=dir.y*power, z=dir.z*power})
+	obj:set_velocity({x=dir.x*15, y=dir.y*15, z=dir.z*15})
 	obj:set_acceleration({x=0, y=-GRAVITY, z=0})
 	obj:set_yaw(yaw-math.pi/2)
 	local le = obj:get_luaentity()
 	le._shooter = shooter
-	le._damage = damage
-	le._is_critical = is_critical
+	le._damage = 3
+	le._is_critical = false
 	le._startpos = pos
-	le._knockback = knockback
 	le._collectable = collectable
 	minetest.sound_play("mcl_bows_bow_shoot", {pos=pos, max_hear_distance=16}, true)
 	if shooter ~= nil and shooter:is_player() then
@@ -79,7 +41,7 @@ local get_arrow = function(player)
 	return arrow_stack, arrow_stack_id
 end
 
-local player_shoot_arrow = function(itemstack, player, power, damage, is_critical)
+local player_shoot_arrow = function(itemstack, player)
 	local arrow_stack, arrow_stack_id = get_arrow(player)
 	local arrow_itemstring
 	local has_infinity_enchantment = false
@@ -111,7 +73,7 @@ local player_shoot_arrow = function(itemstack, player, power, damage, is_critica
 	local dir = player:get_look_dir()
 	local yaw = player:get_look_horizontal()
 
-	mcla_bows.shoot_arrow(arrow_itemstring, {x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, dir, yaw, player, power, damage, is_critical, player:get_wielded_item(), not infinity_used)
+	mcla_bows.shoot_arrow(arrow_itemstring, {x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, dir, yaw, player, player:get_wielded_item(), not infinity_used)
 	return true
 end
 
@@ -149,21 +111,7 @@ controls.register_on_press(function(player, key, time)
 	local inv = minetest.get_inventory({type="player", name=player:get_player_name()})
 	local wielditem = player:get_wielded_item()
 	if (wielditem:get_name()=="mcla:bow") then
-
-		-- Calculate damage and speed
-		-- Fully charged
-		local is_critical = false
-		speed = BOW_MAX_SPEED
-		local r = math.random(1,4)
-		if r == 1 then
-			-- 25% chance for critical hit
-			damage = 10
-			is_critical = true
-		else
-			damage = 9
-		end
-
-		has_shot = player_shoot_arrow(wielditem, player, speed, damage, is_critical)
+		local has_shot = player_shoot_arrow(wielditem, player)
 
 		wielditem:set_name("mcla:bow")
 

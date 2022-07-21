@@ -39,7 +39,6 @@ local register_leaves = function(subname, description, tiles, sapling, drop_appl
 		leafdecay_distance = 4
 	end
 	local apple_chances = {200, 180, 160, 120, 40}
-	local stick_chances = {50, 45, 30, 35, 10}
 
 	local function get_drops(fortune_level)
 		local drop = {

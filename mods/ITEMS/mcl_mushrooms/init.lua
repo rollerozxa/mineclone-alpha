@@ -4,7 +4,6 @@ local on_place = mcla_util.generate_on_place_plant_function(function(place_pos, 
 	local soil_node = minetest.get_node_or_nil({x=place_pos.x, y=place_pos.y-1, z=place_pos.z})
 	if not soil_node then return false end
 	local snn = soil_node.name -- soil node name
-	local sd = minetest.registered_nodes[snn] -- soil definition
 
 	-- Placement rules:
 	-- * Always allowed on podzol or mycelimu
@@ -83,7 +82,6 @@ minetest.register_abm({
 	interval = 11,
 	chance = 50,
 	action = function(pos, node)
-		local node_soil = minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name
 		-- Mushrooms uproot in light
 		if minetest.get_node_light(pos, nil) > 12 then
 			minetest.dig_node(pos)

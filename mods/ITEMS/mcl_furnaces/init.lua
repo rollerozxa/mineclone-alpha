@@ -348,7 +348,6 @@ local function furnace_node_timer(pos, elapsed)
 	-- Update formspec and node
 	--
 	local formspec = inactive_formspec
-	local item_state
 	local item_percent = 0
 	if cookable then
 		item_percent = math.floor(src_time / cooked.time * 100)

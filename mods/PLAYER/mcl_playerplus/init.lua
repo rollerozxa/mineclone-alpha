@@ -12,7 +12,6 @@ local function degrees(rad)
 end
 
 local dir_to_pitch = function(dir)
-	local dir2 = vector.normalize(dir)
 	local xz = math.abs(dir.x) + math.abs(dir.z)
 	return -math.atan2(-dir.y, xz)
 end

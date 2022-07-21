@@ -138,7 +138,6 @@ function mcla_doors:register_trapdoor(name, def)
 
 			local fpos = get_fpos(placer, pointed_thing)
 
-			local origname = itemstack:get_name()
 			if p0.y - 1 == p1.y or (fpos > 0 and fpos < 0.5)
 					or (fpos < -0.5 and fpos > -0.999999999) then
 				param2 = param2 + 20

@@ -87,8 +87,6 @@ mobs:register_mob("mobs_mc:pig", {
 			return
 		end
 
-		local wielditem = clicker:get_wielded_item()
-
 		if mobs:protect(self, clicker) then return end
 
 		if self.child then
@@ -129,7 +127,6 @@ mobs:register_mob("mobs_mc:pig", {
 		end
 
 		-- Mount or detach player
-		local name = clicker:get_player_name()
 		if self.driver and clicker == self.driver then
 			-- Detach if already attached
 			mobs.detach(clicker, {x=1, y=0, z=0})

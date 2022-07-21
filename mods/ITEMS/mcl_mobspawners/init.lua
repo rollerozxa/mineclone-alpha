@@ -4,9 +4,6 @@ mcla_mobspawners = {}
 
 local default_mob = "mobs_mc:pig"
 
--- Mob spawner
-local spawner_default = default_mob.." 0 15 4 15"
-
 local function get_mob_textures(mob)
 	local list = minetest.registered_entities[mob].texture_list
 	if type(list[1]) == "table" then
@@ -116,7 +113,6 @@ end
 -- Spawn mobs around pos
 -- NOTE: The node is timer-based, rather than ABM-based.
 local spawn_mobs = function(pos, elapsed)
-
 	-- get meta
 	local meta = minetest.get_meta(pos)
 
@@ -142,23 +138,17 @@ local spawn_mobs = function(pos, elapsed)
 	-- check objects inside 8×8 area around spawner
 	local objs = minetest.get_objects_inside_radius(pos, 8)
 	local count = 0
-	local ent = nil
-
 
 	local timer = minetest.get_node_timer(pos)
 
 	-- spawn mob if player detected and in range
 	if pla > 0 then
-
 		local in_range = 0
 		local objs = minetest.get_objects_inside_radius(pos, pla)
 
 		for _,oir in pairs(objs) do
-
 			if oir:is_player() then
-
 				in_range = 1
-
 				break
 			end
 		end
@@ -187,7 +177,6 @@ local spawn_mobs = function(pos, elapsed)
 
 	-- count mob objects of same type in area
 	for k, obj in ipairs(objs) do
-
 		ent = obj:get_luaentity()
 
 		if ent and ent.name and ent.name == mob then

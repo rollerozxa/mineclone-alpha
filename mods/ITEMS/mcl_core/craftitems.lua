@@ -23,7 +23,6 @@ minetest.register_craftitem(":mcla:paper", {
 
 minetest.register_craftitem(":mcla:coal_lump", {
 	description = S("Coal"),
-	groups = { coal=1 },
 	inventory_image = "mcla_core_coal_lump.png",
 	stack_max = 64,
 	groups = { craftitem=1, coal=1 },
