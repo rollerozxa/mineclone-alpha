@@ -5,7 +5,7 @@
 --
 
 local tool_data = {
-	plank = "wood",
+	wood = "wood",
 	cobble = "stone",
 	iron_ingot = "iron",
 	gold_ingot = "gold",
