@@ -1,222 +1,73 @@
-minetest.register_craft({
-	output = 'mcla:wood_pickaxe',
-	recipe = {
-		{'group:wood', 'group:wood', 'group:wood'},
-		{'', 'mcla:stick', ''},
-		{'', 'mcla:stick', ''},
-	}
-})
 
-minetest.register_craft({
-	output = 'mcla:stone_pickaxe',
-	recipe = {
-		{'mcla:cobble', 'mcla:cobble', 'mcla:cobble'},
-		{'', 'mcla:stick', ''},
-		{'', 'mcla:stick', ''},
-	}
-})
 
-minetest.register_craft({
-	output = 'mcla:iron_pickaxe',
-	recipe = {
-		{'mcla:iron_ingot', 'mcla:iron_ingot', 'mcla:iron_ingot'},
-		{'', 'mcla:stick', ''},
-		{'', 'mcla:stick', ''},
-	}
-})
+--
+-- Tool recipes.
+--
 
-minetest.register_craft({
-	output = 'mcla:gold_pickaxe',
-	recipe = {
-		{'mcla:gold_ingot', 'mcla:gold_ingot', 'mcla:gold_ingot'},
-		{'', 'mcla:stick', ''},
-		{'', 'mcla:stick', ''},
-	}
-})
+local tool_data = {
+	plank = "wood",
+	cobble = "stone",
+	iron_ingot = "iron",
+	gold_ingot = "gold",
+	diamond = "diamond"
+}
 
-minetest.register_craft({
-	output = 'mcla:diamond_pickaxe',
-	recipe = {
-		{'mcla:diamond', 'mcla:diamond', 'mcla:diamond'},
-		{'', 'mcla:stick', ''},
-		{'', 'mcla:stick', ''},
-	}
-})
+local s = "mcla:stick"
+local e = ""
 
-minetest.register_craft({
-	output = 'mcla:wood_shovel',
-	recipe = {
-		{'group:wood'},
-		{'mcla:stick'},
-		{'mcla:stick'},
-	}
-})
+for k, v in pairs(tool_data) do
+	local i = "mcla:"..k
+	local o = "mcla:"..v.."_"
+	-- Pickaxes
+	minetest.register_craft({
+		output = o.."pickaxe",
+		recipe = {
+			{i, i, i},
+			{e, s, e},
+			{e, s, e},
+		}
+	})
 
-minetest.register_craft({
-	output = 'mcla:stone_shovel',
-	recipe = {
-		{'mcla:cobble'},
-		{'mcla:stick'},
-		{'mcla:stick'},
-	}
-})
+	-- Shovels
+	minetest.register_craft({
+		output = o.."shovel",
+		recipe = {
+			{i},
+			{s},
+			{s},
+		}
+	})
 
-minetest.register_craft({
-	output = 'mcla:iron_shovel',
-	recipe = {
-		{'mcla:iron_ingot'},
-		{'mcla:stick'},
-		{'mcla:stick'},
-	}
-})
+	-- Axes
+	minetest.register_craft({
+		output = o.."axe",
+		recipe = {
+			{i, i},
+			{s, i},
+			{s, e},
+		}
+	})
 
-minetest.register_craft({
-	output = 'mcla:gold_shovel',
-	recipe = {
-		{'mcla:gold_ingot'},
-		{'mcla:stick'},
-		{'mcla:stick'},
-	}
-})
+	-- Axes (Mirrored)
+	minetest.register_craft({
+		output = o.."axe",
+		recipe = {
+			{i, i},
+			{i, s},
+			{e, s},
+		}
+	})
 
-minetest.register_craft({
-	output = 'mcla:diamond_shovel',
-	recipe = {
-		{'mcla:diamond'},
-		{'mcla:stick'},
-		{'mcla:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'mcla:wood_axe',
-	recipe = {
-		{'group:wood', 'group:wood'},
-		{'group:wood', 'mcla:stick'},
-		{'', 'mcla:stick'},
-	}
-})
-minetest.register_craft({
-	output = 'mcla:wood_axe',
-	recipe = {
-		{'group:wood', 'group:wood'},
-		{'mcla:stick', 'group:wood'},
-		{'mcla:stick', ''},
-	}
-})
-
-minetest.register_craft({
-	output = 'mcla:stone_axe',
-	recipe = {
-		{'mcla:cobble', 'mcla:cobble'},
-		{'mcla:cobble', 'mcla:stick'},
-		{'', 'mcla:stick'},
-	}
-})
-minetest.register_craft({
-	output = 'mcla:stone_axe',
-	recipe = {
-		{'mcla:cobble', 'mcla:cobble'},
-		{'mcla:stick', 'mcla:cobble'},
-		{'mcla:stick', ''},
-	}
-})
-
-minetest.register_craft({
-	output = 'mcla:iron_axe',
-	recipe = {
-		{'mcla:iron_ingot', 'mcla:iron_ingot'},
-		{'mcla:iron_ingot', 'mcla:stick'},
-		{'', 'mcla:stick'},
-	}
-})
-minetest.register_craft({
-	output = 'mcla:iron_axe',
-	recipe = {
-		{'mcla:iron_ingot', 'mcla:iron_ingot'},
-		{'mcla:stick', 'mcla:iron_ingot'},
-		{'mcla:stick', ''},
-	}
-})
-
-minetest.register_craft({
-	output = 'mcla:gold_axe',
-	recipe = {
-		{'mcla:gold_ingot', 'mcla:gold_ingot'},
-		{'mcla:gold_ingot', 'mcla:stick'},
-		{'', 'mcla:stick'},
-	}
-})
-minetest.register_craft({
-	output = 'mcla:gold_axe',
-	recipe = {
-		{'mcla:gold_ingot', 'mcla:gold_ingot'},
-		{'mcla:stick', 'mcla:gold_ingot'},
-		{'mcla:stick', ''},
-	}
-})
-
-minetest.register_craft({
-	output = 'mcla:diamond_axe',
-	recipe = {
-		{'mcla:diamond', 'mcla:diamond'},
-		{'mcla:diamond', 'mcla:stick'},
-		{'', 'mcla:stick'},
-	}
-})
-minetest.register_craft({
-	output = 'mcla:diamond_axe',
-	recipe = {
-		{'mcla:diamond', 'mcla:diamond'},
-		{'mcla:stick', 'mcla:diamond'},
-		{'mcla:stick', ''},
-	}
-})
-
-minetest.register_craft({
-	output = 'mcla:wood_sword',
-	recipe = {
-		{'group:wood'},
-		{'group:wood'},
-		{'mcla:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'mcla:stone_sword',
-	recipe = {
-		{'mcla:cobble'},
-		{'mcla:cobble'},
-		{'mcla:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'mcla:iron_sword',
-	recipe = {
-		{'mcla:iron_ingot'},
-		{'mcla:iron_ingot'},
-		{'mcla:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'mcla:gold_sword',
-	recipe = {
-		{'mcla:gold_ingot'},
-		{'mcla:gold_ingot'},
-		{'mcla:stick'},
-	}
-})
-
-minetest.register_craft({
-	output = 'mcla:diamond_sword',
-	recipe = {
-		{'mcla:diamond'},
-		{'mcla:diamond'},
-		{'mcla:stick'},
-	}
-})
+	-- Sword
+	minetest.register_craft({
+		output = o.."sword",
+		recipe = {
+			{i},
+			{i},
+			{s}
+		}
+	})
+end
 
 minetest.register_craft({
 	type = "fuel",
