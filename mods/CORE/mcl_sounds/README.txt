@@ -10,6 +10,9 @@ http://creativecommons.org/licenses/by-sa/4.0/
 Creative Commons Attribution 3.0 Unported (CC BY-SA 3.0)
 http://creativecommons.org/licenses/by/3.0/
 
+Player hurt sound (CC BY 3.0):
+  https://freesound.org/people/thecheeseman/sounds/44429/
+
 Glass breaking sounds (CC BY 3.0):
    1: http://www.freesound.org/people/cmusounddesign/sounds/71947/
    2: http://www.freesound.org/people/Tomlija/sounds/97669/
@@ -68,10 +71,6 @@ blukotek (CC0 1.0)
 https://www.freesound.org/people/blukotek/sounds/251660/
   default_dig_snappy.ogg
 
-sonictechtonic (CC BY 3.0)
-https://www.freesound.org/people/sonictechtonic/sounds/241872/
-  player_damage.ogg
-
 Voxelands project <http://www.voxelands.com/> (CC BY-SA 3.0)
   mcl_sounds_place_node_water.ogg
   mcl_sounds_dug_water.ogg
@@ -82,10 +81,6 @@ Voxelands project <http://www.voxelands.com/> (CC BY-SA 3.0)
 Michel Baradari <https://opengameart.org/content/lava-splash> (CC BY 3.0)
 
   default_place_node_lava.ogg
-
-Adam_N (CC0 1.0):
-  player_falling_damage.ogg
-    Source: <https://www.freesound.org/people/Adam_N/sounds/346692/>
 
 Alecia Shepherd (CC BY-SA 4.0):
   mcl_sounds_cloth.ogg
