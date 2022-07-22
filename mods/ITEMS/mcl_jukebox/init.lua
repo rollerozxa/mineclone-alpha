@@ -108,7 +108,7 @@ end
 minetest.register_node(":mcla:jukebox", {
 	description = S("Jukebox"),
 	tiles = {"mcla_jukebox_top.png", "mcla_jukebox_side.png", "mcla_jukebox_side.png"},
-	sounds = mcla_sounds.node_sound_wood_defaults(),
+	sounds = mcla_sounds.node_sound_wood(),
 	groups = {handy=1,axey=1, container=7, deco_block=1, material_wood=1, flammable=-1},
 	is_ground_content = false,
 	on_construct = function(pos)

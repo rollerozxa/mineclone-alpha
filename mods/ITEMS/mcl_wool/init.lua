@@ -25,7 +25,7 @@ for _, row in ipairs(wool.dyes) do
 		is_ground_content = false,
 		tiles = {texture..".png"},
 		groups = {handy=1,shearsy_wool=1, flammable=1,fire_encouragement=30, fire_flammability=60, wool=1,building_block=1,[color_group]=1},
-		sounds = mcla_sounds.node_sound_wool_defaults(),
+		sounds = mcla_sounds.node_sound_wool(),
 		_mcla_hardness = 0.8,
 		_mcla_blast_resistance = 0.8,
 	})

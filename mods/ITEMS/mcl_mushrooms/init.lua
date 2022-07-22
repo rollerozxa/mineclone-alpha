@@ -26,7 +26,7 @@ minetest.register_node(":mcla:mushroom_brown", {
 	paramtype = "light",
 	walkable = false,
 	groups = {dig_immediate=3,mushroom=1,attached_node=1,dig_by_water=1,destroy_by_lava_flow=1,deco_block=1},
-	sounds = mcla_sounds.node_sound_leaves_defaults(),
+	sounds = mcla_sounds.node_sound_leaves(),
 	light_source = 1,
 	selection_box = {
 		type = "fixed",
@@ -47,7 +47,7 @@ minetest.register_node(":mcla:mushroom_red", {
 	paramtype = "light",
 	walkable = false,
 	groups = {dig_immediate=3,mushroom=1,attached_node=1,dig_by_water=1,destroy_by_lava_flow=1,deco_block=1},
-	sounds = mcla_sounds.node_sound_leaves_defaults(),
+	sounds = mcla_sounds.node_sound_leaves(),
 	selection_box = {
 		type = "fixed",
 		fixed = { -3/16, -0.5, -3/16, 3/16, -2/16, 3/16 },

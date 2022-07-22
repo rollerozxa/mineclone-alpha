@@ -288,7 +288,7 @@ mcla_torches.register_torch("torch",
 	}},
 	LIGHT_TORCH,
 	{dig_immediate=3, torch=1, deco_block=1},
-	mcla_sounds.node_sound_wood_defaults(),
+	mcla_sounds.node_sound_wood(),
 	{
 	on_destruct = function(pos)
 		remove_flames(pos)

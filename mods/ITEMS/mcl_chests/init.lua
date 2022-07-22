@@ -137,7 +137,7 @@ minetest.register_node(":mcla:"..basename, {
 	use_texture_alpha = minetest.features.use_texture_alpha_string_modes and "opaque" or false,
 	paramtype2 = "facedir",
 	stack_max = 64,
-	sounds = mcla_sounds.node_sound_wood_defaults(),
+	sounds = mcla_sounds.node_sound_wood(),
 	groups = {deco_block=1},
 	on_construct = function(pos, node)
 		local node = minetest.get_node(pos)
@@ -164,7 +164,7 @@ minetest.register_node(":"..small_name, {
 	drop = drop,
 	groups = {handy=1,axey=1, container=2, deco_block=1, material_wood=1,flammable=-1,chest_entity=1, not_in_creative_inventory=1},
 	is_ground_content = false,
-	sounds = mcla_sounds.node_sound_wood_defaults(),
+	sounds = mcla_sounds.node_sound_wood(),
 	on_construct = function(pos)
 		local param2 = minetest.get_node(pos).param2
 		local meta = minetest.get_meta(pos)
@@ -268,7 +268,7 @@ minetest.register_node(":"..left_name, {
 	groups = {handy=1,axey=1, container=5,not_in_creative_inventory=1, material_wood=1,flammable=-1,chest_entity=1,double_chest=1},
 	drop = drop,
 	is_ground_content = false,
-	sounds = mcla_sounds.node_sound_wood_defaults(),
+	sounds = mcla_sounds.node_sound_wood(),
 	on_construct = function(pos)
 		local n = minetest.get_node(pos)
 		local param2 = n.param2
@@ -392,7 +392,7 @@ minetest.register_node(":mcla:"..basename.."_right", {
 	groups = {handy=1,axey=1, container=6,not_in_creative_inventory=1, material_wood=1,flammable=-1,double_chest=2},
 	drop = drop,
 	is_ground_content = false,
-	sounds = mcla_sounds.node_sound_wood_defaults(),
+	sounds = mcla_sounds.node_sound_wood(),
 	on_construct = function(pos)
 		local n = minetest.get_node(pos)
 		local param2 = n.param2

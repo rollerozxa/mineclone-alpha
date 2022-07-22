@@ -11,7 +11,7 @@ mcla_doors:register_door("mcla:wooden_door", {
 	_mcla_blast_resistance = 3,
 	tiles_bottom = {"mcla_doors_door_wood_lower.png", "mcla_doors_door_wood_side_lower.png"},
 	tiles_top = {"mcla_doors_door_wood_upper.png", "mcla_doors_door_wood_side_upper.png"},
-	sounds = mcla_sounds.node_sound_wood_defaults(),
+	sounds = mcla_sounds.node_sound_wood(),
 })
 
 minetest.register_craft({
@@ -38,7 +38,7 @@ mcla_doors:register_door("mcla:iron_door", {
 	_mcla_blast_resistance = 5,
 	tiles_bottom = {"mcla_doors_door_iron_lower.png^[transformFX", "mcla_doors_door_iron_side_lower.png"},
 	tiles_top = {"mcla_doors_door_iron_upper.png^[transformFX", "mcla_doors_door_iron_side_upper.png"},
-	sounds = mcla_sounds.node_sound_metal_defaults(),
+	sounds = mcla_sounds.node_sound_metal(),
 	sound_open = "doors_steel_door_open",
 	sound_close = "doors_steel_door_close",
 

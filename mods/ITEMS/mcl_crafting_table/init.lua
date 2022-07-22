@@ -29,7 +29,7 @@ minetest.register_node(":mcla:crafting_table", {
 
 		minetest.show_formspec(player:get_player_name(), "main", form)
 	end,
-	sounds = mcla_sounds.node_sound_wood_defaults(),
+	sounds = mcla_sounds.node_sound_wood(),
 	_mcla_blast_resistance = 2.5,
 	_mcla_hardness = 2.5,
 })

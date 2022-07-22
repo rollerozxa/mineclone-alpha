@@ -20,7 +20,7 @@ local register_rail = function(itemstring, tiles, def_extras, creative)
 		},
 		stack_max = 64,
 		groups = groups,
-		sounds = mcla_sounds.node_sound_metal_defaults(),
+		sounds = mcla_sounds.node_sound_metal(),
 		_mcla_blast_resistance = 3.5,
 		_mcla_hardness = 0.7,
 		after_destruct = function(pos)

@@ -148,7 +148,7 @@ for w=1, #woods do
 		woods[w][3],
 		nil,
 		{{woods[w][2], woods[w][2]}},
-		mcla_sounds.node_sound_wood_defaults(),
+		mcla_sounds.node_sound_wood(),
 		{axey=1, material_wood=1},
 		nil)
 
@@ -167,7 +167,7 @@ mesecon.register_pressure_plate(
 	"mcla_core_stone.png",
 	nil,
 	{{"mcla:stone", "mcla:stone"}},
-	mcla_sounds.node_sound_stone_defaults(),
+	mcla_sounds.node_sound_stone(),
 	{pickaxey=1, material_stone=1},
 	{ player = true, mob = true })
 

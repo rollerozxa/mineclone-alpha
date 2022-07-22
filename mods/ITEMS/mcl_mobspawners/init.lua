@@ -284,7 +284,7 @@ minetest.register_node(":mcla:spawner", {
 
 	on_timer = spawn_mobs,
 
-	sounds = mcla_sounds.node_sound_metal_defaults(),
+	sounds = mcla_sounds.node_sound_metal(),
 
 	_mcla_blast_resistance = 5,
 	_mcla_hardness = 5,

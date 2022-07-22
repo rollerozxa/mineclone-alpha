@@ -34,7 +34,7 @@ mcla_tnt.BLINKTIMER = 0.25
 
 local TNT_RANGE = 3
 
-local sounds = mcla_sounds.node_sound_wood_defaults()
+local sounds = mcla_sounds.node_sound_wood()
 local tnt_mesecons = {effector = {
 		action_on = mcla_tnt.ignite,
 		rules = mesecon.rules.alldirs,

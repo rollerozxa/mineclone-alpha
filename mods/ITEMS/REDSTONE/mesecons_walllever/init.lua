@@ -120,7 +120,7 @@ minetest.register_node("mesecons_walllever:wall_lever_off", {
 		return itemstack
 	end,
 
-	sounds = mcla_sounds.node_sound_stone_defaults(),
+	sounds = mcla_sounds.node_sound_stone(),
 	mesecons = {receptor = {
 		rules = lever_get_output_rules,
 		state = mesecon.state.off
@@ -152,7 +152,7 @@ minetest.register_node("mesecons_walllever:wall_lever_on", {
 		mesecon.receptor_off(pos, lever_get_output_rules(node))
 		minetest.sound_play("mesecons_button_push", {pos=pos, max_hear_distance=16, pitch=0.9}, true)
 	end,
-	sounds = mcla_sounds.node_sound_stone_defaults(),
+	sounds = mcla_sounds.node_sound_stone(),
 	mesecons = {receptor = {
 		rules = lever_get_output_rules,
 		state = mesecon.state.on

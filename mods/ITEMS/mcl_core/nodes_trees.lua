@@ -14,7 +14,7 @@ local function register_tree_trunk(subname, description_trunk, description_bark,
 		tiles = {tile_inner, tile_inner, tile_bark},
 		stack_max = 64,
 		groups = {handy=1, axey=1, tree=1, flammable=2, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
-		sounds = mcla_sounds.node_sound_wood_defaults(),
+		sounds = mcla_sounds.node_sound_wood(),
 		_mcla_blast_resistance = 2,
 		_mcla_hardness = 2,
 	})
@@ -27,7 +27,7 @@ local function register_wooden_planks(subname, description, tiles)
 		stack_max = 64,
 		is_ground_content = false,
 		groups = {handy=1, axey=1, flammable=3,wood=1,building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=20},
-		sounds = mcla_sounds.node_sound_wood_defaults(),
+		sounds = mcla_sounds.node_sound_wood(),
 		_mcla_blast_resistance = 3,
 		_mcla_hardness = 2,
 	})
@@ -70,7 +70,7 @@ local register_leaves = function(subname, description, tiles, sapling, drop_appl
 		groups = {handy=1, shearsy=1, swordy=1, leafdecay=leafdecay_distance, flammable=2, leaves=1, deco_block=1,  fire_encouragement=30, fire_flammability=60},
 		drop = get_drops(0),
 		_mcla_shears_drop = true,
-		sounds = mcla_sounds.node_sound_leaves_defaults(),
+		sounds = mcla_sounds.node_sound_leaves(),
 		_mcla_blast_resistance = 0.2,
 		_mcla_hardness = 0.2,
 	})
@@ -94,7 +94,7 @@ local function register_sapling(subname, description, texture, selbox)
 		},
 		stack_max = 64,
 		groups = {dig_immediate=3, plant=1, sapling=1, attached_node=1, dig_by_water=1,  destroy_by_lava_flow=1, deco_block=1},
-		sounds = mcla_sounds.node_sound_leaves_defaults(),
+		sounds = mcla_sounds.node_sound_leaves(),
 		on_construct = function(pos)
 			local meta = minetest.get_meta(pos)
 			meta:set_int("stage", 0)

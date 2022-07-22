@@ -409,7 +409,7 @@ minetest.register_node(":mcla:furnace", {
 	paramtype2 = "facedir",
 	groups = {pickaxey=1, container=4, deco_block=1, material_stone=1},
 	is_ground_content = false,
-	sounds = mcla_sounds.node_sound_stone_defaults(),
+	sounds = mcla_sounds.node_sound_stone(),
 
 	on_timer = furnace_node_timer,
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
@@ -478,7 +478,7 @@ minetest.register_node(":mcla:furnace_active", {
 	drop = "mcla:furnace",
 	groups = {pickaxey=1, container=4, deco_block=1, not_in_creative_inventory=1, material_stone=1},
 	is_ground_content = false,
-	sounds = mcla_sounds.node_sound_stone_defaults(),
+	sounds = mcla_sounds.node_sound_stone(),
 	on_timer = furnace_node_timer,
 
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)

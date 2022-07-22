@@ -72,7 +72,7 @@ end
 
 local wood_groups = {handy=1,axey=1, flammable=2,fence_wood=1, fire_encouragement=5, fire_flammability=20}
 local wood_connect = {"group:fence_wood"}
-local wood_sounds = mcla_sounds.node_sound_wood_defaults()
+local wood_sounds = mcla_sounds.node_sound_wood()
 
 local woods = {
 	{"", S("Fence"), "mcla_core_wood.png", "mcla:wood"},

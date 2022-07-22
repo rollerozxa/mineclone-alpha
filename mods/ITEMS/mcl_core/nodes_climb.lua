@@ -33,7 +33,7 @@ minetest.register_node(":mcla:ladder", {
 	},
 	stack_max = 64,
 	groups = {handy=1,axey=1, attached_node=1, deco_block=1, },
-	sounds = mcla_sounds.node_sound_wood_defaults(),
+	sounds = mcla_sounds.node_sound_wood(),
 	node_placement_prediction = "",
 	-- Restrict placement of ladders
 	on_place = function(itemstack, placer, pointed_thing)

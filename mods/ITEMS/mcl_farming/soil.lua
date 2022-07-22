@@ -18,7 +18,7 @@ minetest.register_node(":mcla:soil", {
 		meta:set_int("wet", 0)
 	end,
 	groups = {handy=1,shovely=1, dirtifies_below_solid=1, dirtifier=1, soil=2, soil_sapling=1, deco_block=1 },
-	sounds = mcla_sounds.node_sound_dirt_defaults(),
+	sounds = mcla_sounds.node_sound_dirt(),
 	_mcla_blast_resistance = 0.5,
 	_mcla_hardness = 0.6,
 })
@@ -40,7 +40,7 @@ minetest.register_node(":mcla:soil_wet", {
 		meta:set_int("wet", 7)
 	end,
 	groups = {handy=1,shovely=1, not_in_creative_inventory=1, dirtifies_below_solid=1, dirtifier=1, soil=3, soil_sapling=1 },
-	sounds = mcla_sounds.node_sound_dirt_defaults(),
+	sounds = mcla_sounds.node_sound_dirt(),
 	_mcla_blast_resistance = 0.5,
 	_mcla_hardness = 0.6,
 })

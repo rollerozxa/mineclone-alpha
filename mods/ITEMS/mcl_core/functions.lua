@@ -879,9 +879,8 @@ mcla_core.register_snowed_node = function(itemstring_snowed, itemstring_clear, t
 		def.overlay_tiles = nil
 	end
 	if not sounds then
-		def.sounds = mcla_sounds.node_sound_dirt_defaults({
-			footstep = { name = "pedology_snow_soft_footstep", gain = 0.5 }
-		})
+		-- TODO: readd snowy stuffs
+		def.sounds = mcla_sounds.node_sound_grass()
 	else
 		def.sounds = sounds
 	end

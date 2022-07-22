@@ -10,7 +10,7 @@ minetest.register_node(":mcla:cactus", {
 	is_ground_content = true,
 	stack_max = 64,
 	groups = {handy=1, attached_node=1, plant=1, deco_block=1, },
-	sounds = mcla_sounds.node_sound_wood_defaults(),
+	sounds = mcla_sounds.node_sound_wood(),
 	paramtype = "light",
 	sunlight_propagates = true,
 	node_placement_prediction = "",
@@ -71,7 +71,7 @@ minetest.register_node(":mcla:reeds", {
 	},
 	stack_max = 64,
 	groups = {dig_immediate=3, craftitem=1, deco_block=1, plant=1 },
-	sounds = mcla_sounds.node_sound_leaves_defaults(),
+	sounds = mcla_sounds.node_sound_leaves(),
 	node_placement_prediction = "",
 	on_place = mcla_util.generate_on_place_plant_function(function(place_pos, place_node)
 		local soil_pos = {x=place_pos.x, y=place_pos.y-1, z=place_pos.z}

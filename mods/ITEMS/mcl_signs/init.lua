@@ -273,7 +273,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 end)
 
-local node_sounds = mcla_sounds.node_sound_wood_defaults()
+local node_sounds = mcla_sounds.node_sound_wood()
 
 minetest.register_node(":mcla:wall_sign", {
 	description = S("Sign"),

@@ -10,7 +10,7 @@ minetest.register_node(":mcla:glass", {
 	sunlight_propagates = true,
 	stack_max = 64,
 	groups = {handy=1, glass=1, building_block=1, material_glass=1},
-	sounds = mcla_sounds.node_sound_glass_defaults(),
+	sounds = mcla_sounds.node_sound_glass(),
 	drop = "",
 	_mcla_blast_resistance = 0.3,
 	_mcla_hardness = 0.3,

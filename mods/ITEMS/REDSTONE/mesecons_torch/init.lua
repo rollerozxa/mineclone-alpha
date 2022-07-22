@@ -123,7 +123,7 @@ mcla_torches.register_torch("mesecon_torch_off", S("Redstone Torch (off)"),
 	{"jeija_torches_off.png"},
 	0,
 	{dig_immediate=3, dig_by_water=1, redstone_torch=2, mesecon_ignore_opaque_dig=1, not_in_creative_inventory=1},
-	mcla_sounds.node_sound_wood_defaults(),
+	mcla_sounds.node_sound_wood(),
 	{
 		mesecons = {
 			receptor = {
@@ -146,7 +146,7 @@ mcla_torches.register_torch("mesecon_torch_overheated", S("Redstone Torch (overh
 	{"jeija_torches_off.png"},
 	0,
 	{dig_immediate=3, dig_by_water=1, redstone_torch=2, mesecon_ignore_opaque_dig=1, not_in_creative_inventory=1},
-	mcla_sounds.node_sound_wood_defaults(),
+	mcla_sounds.node_sound_wood(),
 	{
 		drop = "mesecons_torch:mesecon_torch_on",
 		on_timer = function(pos, elapsed)
@@ -166,7 +166,7 @@ mcla_torches.register_torch("mesecon_torch_on", S("Redstone Torch"),
 	{"jeija_torches_on.png"},
 	7,
 	{dig_immediate=3, dig_by_water=1, redstone_torch=1, mesecon_ignore_opaque_dig=1},
-	mcla_sounds.node_sound_wood_defaults(),
+	mcla_sounds.node_sound_wood(),
 	{
 		on_destruct = function(pos, oldnode)
 			local node = minetest.get_node(pos)

@@ -247,7 +247,7 @@ local function register_wires()
 			node_box = nodebox,
 			walkable = false,
 			drop = "mesecons:wire_00000000_off",
-			sounds = mcla_sounds.node_sound_defaults(),
+			sounds = mcla_sounds.node_sound(),
 			is_ground_content = false,
 			mesecon_wire = true
 		},{

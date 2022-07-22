@@ -287,7 +287,7 @@ function mcla_farming:add_gourd(full_unconnected_stem, connected_stem_basename, 
 		stem_def.groups = {dig_immediate=3, not_in_creative_inventory=1, plant=1,attached_node=1, dig_by_water=1,destroy_by_lava_flow=1,}
 	end
 	if stem_def.sounds == nil then
-		stem_def.sounds = mcla_sounds.node_sound_leaves_defaults()
+		stem_def.sounds = mcla_sounds.node_sound_leaves()
 	end
 
 	if not stem_def.on_construct then
@@ -361,7 +361,7 @@ function mcla_farming:add_gourd(full_unconnected_stem, connected_stem_basename, 
 			tiles = connected_stem_tiles[i],
 			use_texture_alpha = minetest.features.use_texture_alpha_string_modes and "clip" or true,
 			groups = {dig_immediate=3, not_in_creative_inventory=1, plant=1,attached_node=1, dig_by_water=1,destroy_by_lava_flow=1,},
-			sounds = mcla_sounds.node_sound_leaves_defaults(),
+			sounds = mcla_sounds.node_sound_leaves(),
 			_mcla_blast_resistance = 0,
 		})
 	end
