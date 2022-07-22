@@ -62,7 +62,7 @@ local function set_inventory(player, armor_change_only)
 	local armor_slot_imgs = ""
 	for a=1,4 do
 		if inv:get_stack("armor", a+1):is_empty() then
-			armor_slot_imgs = armor_slot_imgs .. "image[0.46,"..((a-0.6))..";0.9,0.9;mcla_inventory_empty_armor_slot_"..armor_slots[a]..".png]"
+			armor_slot_imgs = armor_slot_imgs .. "image[0.47,"..((a-0.5))..";0.9,0.9;mcla_inventory_empty_armor_slot_"..armor_slots[a]..".png]"
 		end
 	end
 
