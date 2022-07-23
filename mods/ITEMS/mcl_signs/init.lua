@@ -191,7 +191,7 @@ local destruct_sign = function(pos)
 	local objects = minetest.get_objects_inside_radius(pos, 0.5)
 	for _, v in ipairs(objects) do
 		local ent = v:get_luaentity()
-		if ent and ent.name == "mcla:text" then
+		if ent and ent.name == "mcla_signs:text" then
 			v:remove()
 		end
 	end
@@ -234,7 +234,7 @@ local update_sign = function(pos, fields, sender, force_remove)
 	local text_entity
 	for _, v in ipairs(objects) do
 		local ent = v:get_luaentity()
-		if ent and ent.name == "mcla:text" then
+		if ent and ent.name == "mcla_signs:text" then
 			if force_remove then
 				v:remove()
 			else
@@ -248,7 +248,7 @@ local update_sign = function(pos, fields, sender, force_remove)
 		text_entity = minetest.add_entity({
 			x = pos.x + sign_info.delta.x,
 			y = pos.y + sign_info.delta.y,
-			z = pos.z + sign_info.delta.z}, "mcla:text")
+			z = pos.z + sign_info.delta.z}, "mcla_signs:text")
 	end
 	text_entity:get_luaentity()._signnodename = nn
 	text_entity:set_properties({textures={generate_texture(create_lines(text), nn)}})
@@ -384,7 +384,7 @@ minetest.register_node(":mcla:wall_sign", {
 		local text_entity = minetest.add_entity({
 			x = place_pos.x + sign_info.delta.x,
 			y = place_pos.y + sign_info.delta.y,
-			z = place_pos.z + sign_info.delta.z}, "mcla:text")
+			z = place_pos.z + sign_info.delta.z}, "mcla_signs:text")
 		text_entity:set_yaw(sign_info.yaw)
 		text_entity:get_luaentity()._signnodename = nodeitem:get_name()
 
