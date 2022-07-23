@@ -3,9 +3,8 @@ local item_drop_settings                 = {} --settings table
 item_drop_settings.age                   = 1.0 --how old a dropped item (_insta_collect==false) has to be before collecting
 item_drop_settings.radius_magnet         = 2.0 --radius of item magnet. MUST BE LARGER THAN radius_collect!
 item_drop_settings.xp_radius_magnet      = 7.25 --radius of xp magnet. MUST BE LARGER THAN radius_collect!
-item_drop_settings.radius_collect        = 0.2 --radius of collection
+item_drop_settings.radius_collect        = 0.5 --radius of collection
 item_drop_settings.player_collect_height = 1.0 --added to their pos y value
-item_drop_settings.collection_safety     = false --do this to prevent items from flying away on laggy servers
 item_drop_settings.random_item_velocity  = true --this sets random item velocity if velocity is 0
 
 item_drop_settings.magnet_time           = 0.75 -- how many seconds an item follows the player before giving up
@@ -38,9 +37,11 @@ local disable_physics = function(object, luaentity, ignore_check, reset_movement
 	end
 end
 
+local enable_damage = minetest.settings:get_bool("enable_damage")
+
 minetest.register_globalstep(function(dtime)
 	for _,player in ipairs(minetest.get_connected_players()) do
-		if player:get_hp() > 0 or not minetest.settings:get_bool("enable_damage") then
+		if player:get_hp() > 0 or not enable_damage then
 			local pos = player:get_pos()
 			local inv = player:get_inventory()
 			local checkpos = {x=pos.x,y=pos.y + item_drop_settings.player_collect_height,z=pos.z}
@@ -84,7 +85,6 @@ minetest.register_globalstep(function(dtime)
 							vec = vector.add(opos, vector.divide(vec, 2))
 							object:move_to(vec)
 
-
 							--fix eternally falling items
 							minetest.after(0, function(object)
 								local lua = object:get_luaentity()
@@ -92,37 +92,6 @@ minetest.register_globalstep(function(dtime)
 									object:set_acceleration({x=0, y=0, z=0})
 								end
 							end, object)
-
-
-							--this is a safety to prevent items flying away on laggy servers
-							if item_drop_settings.collection_safety == true then
-								if object:get_luaentity().init ~= true then
-									object:get_luaentity().init = true
-									minetest.after(1, function(args)
-										local playername = args[1]
-										local player = minetest.get_player_by_name(playername)
-										local object = args[2]
-										local lua = object:get_luaentity()
-										if player == nil or not player:is_player() or object == nil or lua == nil or lua.itemstring == nil then
-											return
-										end
-										if inv:room_for_item("main", ItemStack(object:get_luaentity().itemstring)) then
-											inv:add_item("main", ItemStack(object:get_luaentity().itemstring))
-											if not object:get_luaentity()._removed then
-												minetest.sound_play("item_drop_pickup", {
-													pos = pos,
-													max_hear_distance = 16,
-													gain = 1.0,
-												}, true)
-											end
-											object:get_luaentity()._removed = true
-											object:remove()
-										else
-											enable_physics(object, object:get_luaentity())
-										end
-									end, {player:get_player_name(), object})
-								end
-							end
 						end
 					end
 
